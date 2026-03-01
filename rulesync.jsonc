@@ -1,0 +1,35 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dyoshikawa/rulesync/refs/heads/main/config-schema.json",
+  "targets": [
+    "claudecode",
+    "codexcli",
+    "geminicli",
+    "antigravity",
+    "opencode",
+    "copilot",
+    "cursor"
+  ],
+  "features": [
+    "rules",
+    "ignore",
+    "mcp",
+    "commands",
+    "subagents",
+    "skills",
+    "hooks"
+  ],
+  "sources": [
+    // Official rulesync skill (teaches AI agents how to use rulesync)
+    { "source": "dyoshikawa/rulesync", "skills": ["rulesync"] }
+  ],
+  "baseDirs": [
+    "."
+  ],
+  "delete": true,
+  "verbose": false,
+  "silent": false,
+  "global": false,
+  "simulateCommands": false,
+  "simulateSubagents": false,
+  "simulateSkills": false
+}
