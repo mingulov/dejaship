@@ -1,0 +1,121 @@
+import hashlib
+import hmac
+import secrets
+from datetime import datetime, timezone
+from uuid import UUID
+
+from sqlalchemy import case, func, select
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from dejaship.config import settings
+from dejaship.embeddings import build_embedding_text, embed_text
+from dejaship.models import AgentIntent, IntentStatus
+from dejaship.schemas import (
+    ActiveClaim,
+    CheckResponse,
+    ClaimResponse,
+    IntentInput,
+    NeighborhoodDensity,
+    UpdateInput,
+    UpdateResponse,
+)
+
+
+def _hash_token(token: str) -> str:
+    return hashlib.sha256(token.encode()).hexdigest()
+
+
+async def check_airspace(input: IntentInput, session: AsyncSession) -> CheckResponse:
+    text = build_embedding_text(input.core_mechanic, input.keywords)
+    vector = embed_text(text)
+
+    # cosine_distance = 1 - cosine_similarity, so threshold becomes 1 - similarity
+    distance_threshold = 1.0 - settings.SIMILARITY_THRESHOLD
+
+    distance_expr = AgentIntent.embedding.cosine_distance(vector)
+
+    # Count by status
+    count_query = (
+        select(
+            AgentIntent.status,
+            func.count().label("cnt"),
+        )
+        .where(distance_expr <= distance_threshold)
+        .group_by(AgentIntent.status)
+    )
+    result = await session.execute(count_query)
+    counts = {row.status: row.cnt for row in result}
+
+    density = NeighborhoodDensity(
+        in_progress=counts.get(IntentStatus.IN_PROGRESS, 0),
+        shipped=counts.get(IntentStatus.SHIPPED, 0),
+        abandoned=counts.get(IntentStatus.ABANDONED, 0),
+    )
+
+    # Get closest active claims
+    now = datetime.now(timezone.utc)
+    closest_query = (
+        select(AgentIntent)
+        .where(distance_expr <= distance_threshold)
+        .where(AgentIntent.status != IntentStatus.ABANDONED)
+        .order_by(distance_expr)
+        .limit(settings.MAX_CLOSEST_RESULTS)
+    )
+    result = await session.execute(closest_query)
+    closest = []
+    for intent in result.scalars():
+        age_hours = (now - intent.created_at.replace(tzinfo=timezone.utc)).total_seconds() / 3600
+        closest.append(
+            ActiveClaim(
+                mechanic=intent.core_mechanic,
+                status=intent.status.value,
+                age_hours=round(age_hours, 1),
+            )
+        )
+
+    return CheckResponse(neighborhood_density=density, closest_active_claims=closest)
+
+
+async def claim_intent(input: IntentInput, session: AsyncSession) -> ClaimResponse:
+    text = build_embedding_text(input.core_mechanic, input.keywords)
+    vector = embed_text(text)
+
+    edit_token = secrets.token_urlsafe(32)
+
+    intent = AgentIntent(
+        core_mechanic=input.core_mechanic,
+        keywords=input.keywords,
+        embedding=vector,
+        edit_token_hash=_hash_token(edit_token),
+    )
+    session.add(intent)
+    await session.commit()
+    await session.refresh(intent)
+
+    return ClaimResponse(
+        claim_id=intent.id,
+        edit_token=edit_token,
+        status=intent.status.value,
+        timestamp=intent.created_at,
+    )
+
+
+async def update_claim(input: UpdateInput, session: AsyncSession) -> UpdateResponse:
+    intent = await session.get(AgentIntent, input.claim_id)
+    if intent is None:
+        raise ValueError("Claim not found")
+
+    # Constant-time token comparison
+    if not hmac.compare_digest(_hash_token(input.edit_token), intent.edit_token_hash):
+        raise PermissionError("Invalid edit token")
+
+    # Validate state transition
+    if intent.status != IntentStatus.IN_PROGRESS:
+        raise ValueError(f"Cannot transition from {intent.status.value}")
+
+    intent.status = IntentStatus(input.status)
+    intent.resolution_url = input.resolution_url
+    intent.updated_at = datetime.now(timezone.utc)
+    await session.commit()
+
+    return UpdateResponse(success=True)
