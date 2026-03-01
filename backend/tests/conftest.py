@@ -1,0 +1,78 @@
+import asyncio
+from collections.abc import AsyncGenerator
+
+import pytest
+from httpx import ASGITransport, AsyncClient
+from sqlalchemy import text
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+from testcontainers.postgres import PostgresContainer
+
+from dejaship.db import get_session
+from dejaship.embeddings import load_model
+from dejaship.models import Base
+
+
+@pytest.fixture(scope="session")
+def event_loop():
+    loop = asyncio.new_event_loop()
+    yield loop
+    loop.close()
+
+
+@pytest.fixture(scope="session")
+def postgres_container():
+    with PostgresContainer(
+        image="pgvector/pgvector:pg17",
+        username="test",
+        password="test",
+        dbname="test",
+    ) as container:
+        yield container
+
+
+@pytest.fixture(scope="session")
+def embedding_model():
+    return load_model()
+
+
+@pytest.fixture(scope="session")
+async def engine(postgres_container):
+    url = postgres_container.get_connection_url().replace("psycopg2", "asyncpg")
+    eng = create_async_engine(url)
+
+    # Enable pgvector extension and create tables
+    async with eng.begin() as conn:
+        await conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
+        await conn.run_sync(Base.metadata.create_all)
+
+    yield eng
+    await eng.dispose()
+
+
+@pytest.fixture
+async def session(engine) -> AsyncGenerator[AsyncSession, None]:
+    session_factory = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+    async with session_factory() as session:
+        yield session
+        await session.rollback()
+
+
+@pytest.fixture
+async def client(engine, embedding_model) -> AsyncGenerator[AsyncClient, None]:
+    from dejaship.main import app
+
+    session_factory = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+
+    async def override_session():
+        async with session_factory() as session:
+            yield session
+
+    app.dependency_overrides[get_session] = override_session
+
+    async with AsyncClient(
+        transport=ASGITransport(app=app),
+        base_url="http://test",
+    ) as client:
+        yield client
+
+    app.dependency_overrides.clear()
