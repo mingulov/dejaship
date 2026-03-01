@@ -35,7 +35,7 @@ def upgrade() -> None:
     sa.Column('updated_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_index('idx_intents_embedding', 'agent_intents', ['embedding'], unique=False, postgresql_using='hnsw', postgresql_ops={'embedding': 'vector_cosine_ops'})
+    op.create_index('idx_intents_embedding', 'agent_intents', ['embedding'], unique=False, postgresql_using='hnsw', postgresql_ops={'embedding': 'vector_cosine_ops'}, postgresql_with={'m': 16, 'ef_construction': 64})
     op.create_index('idx_intents_status', 'agent_intents', ['status'], unique=False)
     # ### end Alembic commands ###
 
