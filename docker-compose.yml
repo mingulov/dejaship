@@ -1,0 +1,30 @@
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: dejaship
+      POSTGRES_USER: dejaship
+      POSTGRES_PASSWORD: dejaship
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dejaship"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      DEJASHIP_DATABASE_URL: postgresql+asyncpg://dejaship:dejaship@db:5432/dejaship
+      DEJASHIP_EMBEDDING_MODEL: BAAI/bge-base-en-v1.5
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
