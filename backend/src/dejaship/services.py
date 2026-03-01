@@ -2,9 +2,7 @@ import hashlib
 import hmac
 import secrets
 from datetime import datetime, timezone
-from uuid import UUID
-
-from sqlalchemy import case, func, select
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from dejaship.config import settings
