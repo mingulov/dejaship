@@ -16,6 +16,7 @@ node_modules/
 **/.augment/rules/
 **/.augment-guidelines
 **/CLAUDE.md
+!.rulesync/rules/CLAUDE.md
 **/CLAUDE.local.md
 **/.claude/CLAUDE.md
 **/.claude/CLAUDE.local.md
