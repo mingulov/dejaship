@@ -1,4 +1,5 @@
 from mcp.server.fastmcp import FastMCP
+from pydantic import ValidationError
 
 from dejaship.db import async_session
 from dejaship.schemas import IntentInput, UpdateInput
@@ -24,9 +25,12 @@ async def dejaship_check_airspace(
 
     Args:
         core_mechanic: A short description of what you plan to build (max 250 chars).
-        keywords: 5+ lowercase keywords describing the project (each 3-40 chars, alphanumeric + hyphens).
+        keywords: 5-50 lowercase keywords describing the project (each 3-40 chars, alphanumeric + hyphens).
     """
-    input = IntentInput(core_mechanic=core_mechanic, keywords=keywords)
+    try:
+        input = IntentInput(core_mechanic=core_mechanic, keywords=keywords)
+    except ValidationError as e:
+        return {"error": str(e)}
     async with async_session() as session:
         result = await check_airspace(input, session)
     return result.model_dump()
@@ -44,9 +48,12 @@ async def dejaship_claim_intent(
 
     Args:
         core_mechanic: A short description of what you plan to build (max 250 chars).
-        keywords: 5+ lowercase keywords describing the project (each 3-40 chars, alphanumeric + hyphens).
+        keywords: 5-50 lowercase keywords describing the project (each 3-40 chars, alphanumeric + hyphens).
     """
-    input = IntentInput(core_mechanic=core_mechanic, keywords=keywords)
+    try:
+        input = IntentInput(core_mechanic=core_mechanic, keywords=keywords)
+    except ValidationError as e:
+        return {"error": str(e)}
     async with async_session() as session:
         result = await claim_intent(input, session)
     return result.model_dump(mode="json")
@@ -69,12 +76,15 @@ async def dejaship_update_claim(
         status: Either "shipped" or "abandoned".
         resolution_url: The live URL if status is "shipped" (optional).
     """
-    input = UpdateInput(
-        claim_id=claim_id,
-        edit_token=edit_token,
-        status=status,
-        resolution_url=resolution_url,
-    )
+    try:
+        input = UpdateInput(
+            claim_id=claim_id,
+            edit_token=edit_token,
+            status=status,
+            resolution_url=resolution_url,
+        )
+    except ValidationError as e:
+        return {"error": str(e)}
     async with async_session() as session:
         try:
             result = await update_claim(input, session)

@@ -18,12 +18,22 @@ class Settings(BaseSettings):
 
     # Validation
     MIN_KEYWORDS: int = 5
+    MAX_KEYWORDS: int = 50
     KEYWORD_MIN_LENGTH: int = 3
     KEYWORD_MAX_LENGTH: int = 40
     CORE_MECHANIC_MAX_LENGTH: int = 250
 
+    # Database pool
+    DB_POOL_SIZE: int = 5
+    DB_MAX_OVERFLOW: int = 10
+
     # Stale claim cleanup
     ABANDONMENT_DAYS: int = 7
+
+    # Rate limits (requests per minute per IP)
+    RATE_LIMIT_CHECK: str = "60/minute"
+    RATE_LIMIT_CLAIM: str = "60/minute"
+    RATE_LIMIT_UPDATE: str = "60/minute"
 
     model_config = {"env_prefix": "DEJASHIP_"}
 

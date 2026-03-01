@@ -6,12 +6,12 @@ from pydantic import BaseModel, Field, field_validator
 
 from dejaship.config import settings
 
-KEYWORD_PATTERN = re.compile(r"^[a-z0-9][a-z0-9\-]*[a-z0-9]$|^[a-z0-9]{1,2}$")
+KEYWORD_PATTERN = re.compile(r"^[a-z0-9][a-z0-9\-]*[a-z0-9]$")
 
 
 class IntentInput(BaseModel):
     core_mechanic: str = Field(..., min_length=1, max_length=settings.CORE_MECHANIC_MAX_LENGTH)
-    keywords: list[str] = Field(..., min_length=settings.MIN_KEYWORDS)
+    keywords: list[str] = Field(..., min_length=settings.MIN_KEYWORDS, max_length=settings.MAX_KEYWORDS)
 
     @field_validator("keywords")
     @classmethod
@@ -54,9 +54,9 @@ class ClaimResponse(BaseModel):
 
 class UpdateInput(BaseModel):
     claim_id: UUID
-    edit_token: str
+    edit_token: str = Field(..., max_length=256)
     status: str = Field(..., pattern=r"^(shipped|abandoned)$")
-    resolution_url: str | None = None
+    resolution_url: str | None = Field(default=None, max_length=2048)
 
 
 class UpdateResponse(BaseModel):

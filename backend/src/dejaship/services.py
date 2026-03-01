@@ -5,6 +5,8 @@ from datetime import datetime, timezone
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from starlette.concurrency import run_in_threadpool
+
 from dejaship.config import settings
 from dejaship.embeddings import build_embedding_text, embed_text
 from dejaship.models import AgentIntent, IntentStatus
@@ -25,7 +27,7 @@ def _hash_token(token: str) -> str:
 
 async def check_airspace(input: IntentInput, session: AsyncSession) -> CheckResponse:
     text = build_embedding_text(input.core_mechanic, input.keywords)
-    vector = embed_text(text)
+    vector = await run_in_threadpool(embed_text, text)
 
     # cosine_distance = 1 - cosine_similarity, so threshold becomes 1 - similarity
     distance_threshold = 1.0 - settings.SIMILARITY_THRESHOLD
@@ -76,7 +78,7 @@ async def check_airspace(input: IntentInput, session: AsyncSession) -> CheckResp
 
 async def claim_intent(input: IntentInput, session: AsyncSession) -> ClaimResponse:
     text = build_embedding_text(input.core_mechanic, input.keywords)
-    vector = embed_text(text)
+    vector = await run_in_threadpool(embed_text, text)
 
     edit_token = secrets.token_urlsafe(32)
 
