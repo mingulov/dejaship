@@ -14,8 +14,8 @@ WORKDIR /app
 # Install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
-# Copy baked model from build stage
-COPY --from=model-downloader /root/.cache/fastembed /root/.cache/fastembed
+# Copy baked model from build stage (fastembed v0.7+ caches to /tmp/fastembed_cache)
+COPY --from=model-downloader /tmp/fastembed_cache /tmp/fastembed_cache
 
 # Install dependencies
 COPY pyproject.toml uv.lock ./

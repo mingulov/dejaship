@@ -62,7 +62,7 @@ async def check_airspace(input: IntentInput, session: AsyncSession) -> CheckResp
     result = await session.execute(closest_query)
     closest = []
     for intent in result.scalars():
-        age_hours = (now - intent.created_at.replace(tzinfo=timezone.utc)).total_seconds() / 3600
+        age_hours = (now - intent.created_at.astimezone(timezone.utc)).total_seconds() / 3600
         closest.append(
             ActiveClaim(
                 mechanic=intent.core_mechanic,

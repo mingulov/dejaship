@@ -5,6 +5,7 @@ import pytest
 from httpx import ASGITransport, AsyncClient
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+from sqlalchemy.pool import NullPool
 from testcontainers.postgres import PostgresContainer
 
 from dejaship.db import get_session
@@ -38,7 +39,7 @@ def embedding_model():
 @pytest.fixture(scope="session")
 async def engine(postgres_container):
     url = postgres_container.get_connection_url().replace("psycopg2", "asyncpg")
-    eng = create_async_engine(url)
+    eng = create_async_engine(url, poolclass=NullPool)
 
     # Enable pgvector extension and create tables
     async with eng.begin() as conn:
@@ -59,6 +60,8 @@ async def session(engine) -> AsyncGenerator[AsyncSession, None]:
 
 @pytest.fixture
 async def client(engine, embedding_model) -> AsyncGenerator[AsyncClient, None]:
+    # embedding_model is injected to ensure load_model() runs before any request
+    _ = embedding_model
     from dejaship.main import app
 
     session_factory = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
@@ -76,3 +79,7 @@ async def client(engine, embedding_model) -> AsyncGenerator[AsyncClient, None]:
         yield client
 
     app.dependency_overrides.clear()
+
+    # Clean up data between tests for isolation
+    async with engine.begin() as conn:
+        await conn.execute(text("DELETE FROM agent_intents"))
