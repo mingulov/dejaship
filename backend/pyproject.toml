@@ -26,6 +26,7 @@ dev = [
     "instructor>=1.0.0",
     "openai>=1.0.0",
     "testcontainers[postgres]>=4.0.0",
+    "hypothesis>=6.0.0",
 ]
 nlp = [
     "nltk>=3.8.0",
