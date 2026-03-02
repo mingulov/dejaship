@@ -45,17 +45,17 @@ class IntentInput(BaseModel):
 class NeighborhoodDensity(BaseModel):
     """Counts of claims in the semantic neighborhood, grouped by status."""
 
-    in_progress: int = Field(description="Claims currently being built")
-    shipped: int = Field(description="Claims that have been shipped")
-    abandoned: int = Field(description="Claims that were abandoned")
+    in_progress: int = Field(description="Claims currently being built", examples=[3])
+    shipped: int = Field(description="Claims that have been shipped", examples=[12])
+    abandoned: int = Field(description="Claims that were abandoned", examples=[5])
 
 
 class ActiveClaim(BaseModel):
     """A claim in the semantic neighborhood that is currently active."""
 
-    mechanic: str = Field(description="The core mechanic description of this claim")
-    status: str = Field(description="Current status: in_progress or shipped")
-    age_hours: float = Field(description="Hours since this claim was created")
+    mechanic: str = Field(description="The core mechanic description of this claim", examples=["AI-powered HVAC maintenance scheduling with predictive failure detection"])
+    status: str = Field(description="Current status: in_progress or shipped", examples=["in_progress"])
+    age_hours: float = Field(description="Hours since this claim was created", examples=[4.5])
 
 
 class CheckResponse(BaseModel):
@@ -68,31 +68,31 @@ class CheckResponse(BaseModel):
 class ClaimResponse(BaseModel):
     """Result of claiming an intent to build a project."""
 
-    claim_id: UUID = Field(description="Unique identifier for this claim")
-    edit_token: str = Field(description="Secret token for updating this claim. Store it safely — it cannot be recovered.")
-    status: str = Field(description="Initial status (always 'in_progress')")
-    timestamp: datetime = Field(description="When the claim was created")
+    claim_id: UUID = Field(description="Unique identifier for this claim", examples=["3fa85f64-5717-4562-b3fc-2c963f66afa6"])
+    edit_token: str = Field(description="Secret token for updating this claim. Store it safely — it cannot be recovered.", examples=["abc123def456"])
+    status: str = Field(description="Initial status (always 'in_progress')", examples=["in_progress"])
+    timestamp: datetime = Field(description="When the claim was created", examples=["2026-03-02T10:00:00Z"])
 
 
 class UpdateInput(BaseModel):
     """Input for updating an existing claim's status."""
 
-    claim_id: UUID = Field(description="The claim_id returned from /v1/claim")
-    edit_token: str = Field(..., max_length=256, description="The secret edit_token returned from /v1/claim")
-    status: str = Field(..., pattern=r"^(shipped|abandoned)$", description="New status: 'shipped' or 'abandoned'")
-    resolution_url: str | None = Field(default=None, max_length=2048, description="The live URL if status is 'shipped' (optional)")
+    claim_id: UUID = Field(description="The claim_id returned from /v1/claim", examples=["3fa85f64-5717-4562-b3fc-2c963f66afa6"])
+    edit_token: str = Field(..., max_length=256, description="The secret edit_token returned from /v1/claim", examples=["abc123def456"])
+    status: str = Field(..., pattern=r"^(shipped|abandoned)$", description="New status: 'shipped' or 'abandoned'", examples=["shipped"])
+    resolution_url: str | None = Field(default=None, max_length=2048, description="The live URL if status is 'shipped' (optional)", examples=["https://myapp.com"])
 
 
 class UpdateResponse(BaseModel):
     """Result of updating a claim."""
 
-    success: bool = Field(description="Whether the update succeeded")
+    success: bool = Field(description="Whether the update succeeded", examples=[True])
 
 
 class StatsResponse(BaseModel):
     """Public statistics about the global intent ledger."""
 
-    total_claims: int = Field(description="Total claims ever created")
-    active: int = Field(description="Claims currently in_progress")
-    shipped: int = Field(description="Claims that shipped")
-    abandoned: int = Field(description="Claims that were abandoned")
+    total_claims: int = Field(description="Total claims ever created", examples=[150])
+    active: int = Field(description="Claims currently in_progress", examples=[42])
+    shipped: int = Field(description="Claims that shipped", examples=[85])
+    abandoned: int = Field(description="Claims that were abandoned", examples=[23])
