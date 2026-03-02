@@ -14,7 +14,7 @@ router = APIRouter()
 @router.get("/stats", response_model=StatsResponse)
 @limiter.limit(settings.RATE_LIMIT_STATS)
 async def stats(request: Request, session: AsyncSession = Depends(get_session)):
-    """Public statistics: total claims and counts by status."""
+    """Return public statistics about the global intent ledger."""
     query = select(AgentIntent.status, func.count().label("cnt")).group_by(AgentIntent.status)
     result = await session.execute(query)
     counts = {row.status: row.cnt for row in result}
