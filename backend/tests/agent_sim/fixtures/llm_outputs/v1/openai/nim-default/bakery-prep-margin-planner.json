@@ -1,0 +1,275 @@
+{
+  "brief_id": "bakery-prep-margin-planner",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "nim-default",
+    "model_name": "stepfun-ai/step-3.5-flash",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "e0debfffbd5ca662fdb0aeb56f2d18ca89b28dd523b50870d6dac5fa7bc413ef",
+    "prompt_hash": "89289d1309bcd73251d17fdea93b2f21f5ee36a5ac90e1808f9c47b8cfdab003",
+    "generated_at": "2026-03-02T06:32:30.493792Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"bakery-prep-margin-planner\",\n  \"title\": \"Prep forecasting and waste control for specialty bakery production teams\",\n  \"category\": \"food-ops\",\n  \"target_customer\": \"Specialty bakeries with one to four locations that juggle wholesale orders, custom cakes, and daily walk-in traffic.\",\n  \"problem\": \"Production leads over-prep fragile items because demand changes daily, leading to margin loss from waste and rushed last-minute labor.\",\n  \"workflow\": \"Combine standing wholesale demand, local event calendars, and custom-order windows into a prep forecast that can be adjusted before mixing starts.\",\n  \"recurring_revenue_model\": \"Monthly subscription sold per location with optional forecasting support for seasonal holidays.\",\n  \"pricing_shape\": \"Per-location subscription with an add-on for wholesale order complexity.\",\n  \"distribution_channel\": \"Founder outreach, bakery association communities, and referral accountants serving food businesses.\",\n  \"constraints\": [\n    \"Must handle fast-changing short shelf-life inventory.\",\n    \"Needs to work before dawn for prep teams with limited training time.\",\n    \"Cannot assume deep POS integrations at launch.\"\n  ],\n  \"must_have_features\": [\n    \"Daily prep targets by product family\",\n    \"Waste and overage tracking\",\n    \"Holiday demand overlays\",\n    \"Wholesale commitment visibility\"\n  ],\n  \"seed_keywords\": [\n    \"bakery\",\n    \"prep\",\n    \"waste\",\n    \"forecasting\",\n    \"wholesale\",\n    \"inventory\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a full restaurant POS.\",\n    \"Do not optimize national chains first.\"\n  ],\n  \"success_metric\": \"Lower spoilage percentage while preserving sell-through on peak days.\",\n  \"prompt_rendered_brief\": \"The product is a prep forecasting and waste control system for specialty bakery production teams that make perishable goods before sunrise. Managers currently rely on instinct when balancing wholesale commitments, custom orders, weather swings, and holiday spikes, so they either throw away margin in waste or pay overtime to recover late demand. The software should convert those signals into a daily prep plan that feels concrete enough for bakers and kitchen leads, not abstract enough for finance dashboards only. Revenue comes from recurring subscriptions per bakery location because the value compounds every day that the team avoids spoilage and labor chaos. The workflow must be fast, visual, and resilient to missing integrations because many bakeries still coordinate production with paper sheets and text threads. Success means the bakery makes the right amount of product more often and stops losing money to preventable over-prep.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-8413abf7bb11dcb8",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-a4446ebb74590d83",
+              "function": {
+                "arguments": "{\n  \"core_mechanic\": \"Daily prep forecasting that combines wholesale orders, custom cake windows, and event calendars to set production targets before mixing, reducing waste and last-minute labor costs for specialty bakeries.\",\n  \"keywords\": [\n    \"bakery\",\n    \"prep\",\n    \"forecasting\",\n    \"waste\",\n    \"margin\",\n    \"production\",\n    \"perishable\",\n    \"wholesale\",\n    \"custom\",\n    \"overage\",\n    \"subscription\",\n    \"location\"\n  ]\n}",
+                "name": "GeneratedIntentDraft"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning": null,
+          "reasoning_content": null
+        },
+        "stop_reason": null,
+        "token_ids": null
+      }
+    ],
+    "created": 1772433148,
+    "model": "stepfun-ai/step-3.5-flash",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 110,
+      "prompt_tokens": 1025,
+      "total_tokens": 1135,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "{\"core_mechanic\":\"Daily prep forecasting that combines wholesale orders, custom cake windows, and event calendars to set production targets before mixing, reducing waste and last-minute labor costs for specialty bakeries.\",\"keywords\":[\"bakery\",\"prep\",\"forecasting\",\"waste\",\"margin\",\"production\",\"perishable\",\"wholesale\",\"custom\",\"overage\",\"subscription\",\"location\"]}",
+  "llm_output": {
+    "core_mechanic": "Daily prep forecasting that combines wholesale orders, custom cake windows, and event calendars to set production targets before mixing, reducing waste and last-minute labor costs for specialty bakeries.",
+    "keywords": [
+      "bakery",
+      "prep",
+      "forecasting",
+      "waste",
+      "margin",
+      "production",
+      "perishable",
+      "wholesale",
+      "custom",
+      "overage",
+      "subscription",
+      "location"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "bakery",
+      "prep",
+      "forecasting",
+      "waste",
+      "margin",
+      "production",
+      "perishable",
+      "wholesale",
+      "custom",
+      "overage",
+      "subscription",
+      "location"
+    ],
+    "derived_keywords": [
+      "and",
+      "demand",
+      "with",
+      "that",
+      "for",
+      "adjusted",
+      "bakeries",
+      "because",
+      "cakes",
+      "calendars",
+      "can",
+      "changes",
+      "combine",
+      "commitment",
+      "custom",
+      "custom-order",
+      "event",
+      "family",
+      "forecast",
+      "four",
+      "fragile",
+      "from",
+      "holiday",
+      "into",
+      "items",
+      "juggle",
+      "labor",
+      "last-minute",
+      "leading",
+      "leads",
+      "locations",
+      "loss",
+      "margin",
+      "mixing",
+      "one",
+      "orders",
+      "over-prep",
+      "overage",
+      "overlays",
+      "production",
+      "rushed",
+      "specialty",
+      "standing",
+      "starts",
+      "targets",
+      "tracking",
+      "traffic",
+      "visibility",
+      "walk-in",
+      "windows",
+      "holidays",
+      "location",
+      "optional",
+      "seasonal",
+      "sold",
+      "support",
+      "add-on",
+      "assume",
+      "complexity",
+      "dawn",
+      "days",
+      "deep",
+      "fast-changing",
+      "food-ops",
+      "integrations",
+      "launch",
+      "limited",
+      "must",
+      "needs",
+      "order",
+      "peak",
+      "per-location",
+      "percentage",
+      "pos",
+      "preserving",
+      "sell-through",
+      "shelf-life",
+      "short",
+      "spoilage",
+      "time",
+      "training",
+      "while",
+      "work",
+      "accountants",
+      "association",
+      "communities",
+      "food",
+      "outreach",
+      "referral",
+      "serving"
+    ],
+    "final_keywords": [
+      "bakery",
+      "prep",
+      "forecasting",
+      "waste",
+      "margin",
+      "production",
+      "perishable",
+      "wholesale",
+      "custom",
+      "overage"
+    ],
+    "keyword_provenance": {
+      "bakery": [
+        "field:distribution_channel",
+        "llm",
+        "seed_keywords"
+      ],
+      "prep": [
+        "field:constraints",
+        "field:must_have_features",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "forecasting": [
+        "field:recurring_revenue_model",
+        "llm",
+        "seed_keywords"
+      ],
+      "waste": [
+        "field:must_have_features",
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "margin": [
+        "field:problem",
+        "llm"
+      ],
+      "production": [
+        "field:problem",
+        "llm"
+      ],
+      "perishable": [
+        "llm"
+      ],
+      "wholesale": [
+        "field:must_have_features",
+        "field:pricing_shape",
+        "field:target_customer",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "custom": [
+        "field:target_customer",
+        "llm"
+      ],
+      "overage": [
+        "field:must_have_features",
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Daily prep forecasting that combines wholesale orders, custom cake windows, and event calendars to set production targets before mixing, reducing waste and last-minute labor costs for specialty bakeries.",
+    "keywords": [
+      "bakery",
+      "prep",
+      "forecasting",
+      "waste",
+      "margin",
+      "production",
+      "perishable",
+      "wholesale",
+      "custom",
+      "overage"
+    ]
+  },
+  "planned_resolution": "claim"
+}

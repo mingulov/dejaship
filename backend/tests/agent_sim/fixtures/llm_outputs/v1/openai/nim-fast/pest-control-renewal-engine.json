@@ -1,0 +1,248 @@
+{
+  "brief_id": "pest-control-renewal-engine",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "nim-fast",
+    "model_name": "meta/llama-3.1-8b-instruct",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "e0ddb2e2d58b1d1d96c898a135d535909e43c676dd4917420d4076e206c7110d",
+    "prompt_hash": "5bd7d9dc1ff3c43f216c97433dcf3881be99052898af760b74dbf775faa4560e",
+    "generated_at": "2026-03-02T06:33:33.728895Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"pest-control-renewal-engine\",\n  \"title\": \"Recurring contract recovery and route prep for regional pest control operators\",\n  \"category\": \"field-service\",\n  \"target_customer\": \"Regional pest control companies with recurring quarterly service contracts and small call-center teams.\",\n  \"problem\": \"Contracts lapse quietly because route managers focus on today's stops instead of upcoming renewals, cancelled cards, and high-risk accounts.\",\n  \"workflow\": \"Watch contracts and payment failures, group accounts by route geography, and push save actions to office staff before routes are finalized.\",\n  \"recurring_revenue_model\": \"Quarterly or annual pest prevention memberships that renew automatically when customers do not churn.\",\n  \"pricing_shape\": \"Monthly subscription with usage tiers based on active contract count.\",\n  \"distribution_channel\": \"Direct outbound to owner-operators and consultants serving pest control agencies.\",\n  \"constraints\": [\n    \"Must support geographically grouped follow-up instead of generic churn lists.\",\n    \"Needs clear handling for card failures and skipped visits.\",\n    \"Should avoid requiring custom mobile hardware in the field.\"\n  ],\n  \"must_have_features\": [\n    \"Renewal-at-risk queue\",\n    \"Route-aware follow-up buckets\",\n    \"Failed-payment recovery board\",\n    \"Customer save-offer logging\"\n  ],\n  \"seed_keywords\": [\n    \"pest-control\",\n    \"renewals\",\n    \"routes\",\n    \"memberships\",\n    \"failed-payments\",\n    \"churn\"\n  ],\n  \"anti_goals\": [\n    \"Do not replace technician route execution tools.\",\n    \"Do not focus on one-time termite jobs.\"\n  ],\n  \"success_metric\": \"Lower contract churn and fewer route gaps caused by preventable lapses.\",\n  \"prompt_rendered_brief\": \"This product is a recurring contract recovery and route prep engine for regional pest control operators that live on quarterly service plans. The owner already has route software, but renewal risk, failed cards, and rescue calls are hidden inside generic customer lists that nobody works in time. The system should identify expiring or broken contracts, group them by route and technician assignment, and tell office staff which households need outreach before the next calendar is locked. The revenue model is straightforward recurring SaaS tied to active membership volume because the customer's economic value comes from retaining contracts rather than booking one-time jobs. The workflow needs to feel operational and local, with route-aware follow-up and clear notes about save offers or payment recovery attempts. If the product works, the business keeps more recurring revenue and protects route density without forcing the team to adopt a giant enterprise stack.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-144056ff-fbfe-4816-b394-91b9f4ce1c9d",
+    "choices": [
+      {
+        "finish_reason": "tool_calls",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": null,
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "call-915ce7fc-9193-4454-bbd7-5af1e16b436c",
+              "function": {
+                "arguments": "{\"core_mechanic\": \"Recurring contract recovery and route prep for regional pest control operators\", \"keywords\": [\"pest-control\", \"renewals\", \"route-aware\", \"failed-payments\", \"churn\", \"recurring-revenue\", \"route-density\", \"renewal-risk\"]}",
+                "name": "GeneratedIntentDraft"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning_content": null
+        }
+      }
+    ],
+    "created": 1772433211,
+    "model": "meta/llama-3.1-8b-instruct",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 62,
+      "prompt_tokens": 972,
+      "total_tokens": 1034,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 16
+      }
+    }
+  },
+  "response_text": "{\"core_mechanic\":\"Recurring contract recovery and route prep for regional pest control operators\",\"keywords\":[\"pest-control\",\"renewals\",\"route-aware\",\"failed-payments\",\"churn\",\"recurring-revenue\",\"route-density\",\"renewal-risk\"]}",
+  "llm_output": {
+    "core_mechanic": "Recurring contract recovery and route prep for regional pest control operators",
+    "keywords": [
+      "pest-control",
+      "renewals",
+      "route-aware",
+      "failed-payments",
+      "churn",
+      "recurring-revenue",
+      "route-density",
+      "renewal-risk"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "pest-control",
+      "renewals",
+      "route-aware",
+      "failed-payments",
+      "churn",
+      "recurring-revenue",
+      "route-density",
+      "renewal-risk"
+    ],
+    "derived_keywords": [
+      "and",
+      "contracts",
+      "route",
+      "accounts",
+      "pest",
+      "quarterly",
+      "failures",
+      "follow-up",
+      "instead",
+      "with",
+      "control",
+      "actions",
+      "are",
+      "because",
+      "board",
+      "buckets",
+      "call-center",
+      "cancelled",
+      "cards",
+      "contract",
+      "failed-payment",
+      "finalized",
+      "geography",
+      "group",
+      "high-risk",
+      "lapse",
+      "logging",
+      "office",
+      "payment",
+      "push",
+      "queue",
+      "quietly",
+      "recovery",
+      "renewal-at-risk",
+      "route-aware",
+      "save",
+      "save-offer",
+      "staff",
+      "stops",
+      "today",
+      "upcoming",
+      "watch",
+      "automatically",
+      "not",
+      "prevention",
+      "renew",
+      "that",
+      "when",
+      "active",
+      "avoid",
+      "based",
+      "card",
+      "caused",
+      "clear",
+      "count",
+      "custom",
+      "fewer",
+      "field",
+      "field-service",
+      "for",
+      "gaps",
+      "generic",
+      "geographically",
+      "grouped",
+      "handling",
+      "hardware",
+      "lapses",
+      "lists",
+      "mobile",
+      "must",
+      "needs",
+      "preventable",
+      "requiring",
+      "should",
+      "skipped",
+      "support",
+      "the",
+      "tiers",
+      "usage",
+      "visits",
+      "agencies",
+      "consultants",
+      "direct",
+      "outbound",
+      "owner-operators",
+      "serving"
+    ],
+    "final_keywords": [
+      "pest-control",
+      "renewals",
+      "route-aware",
+      "failed-payments",
+      "churn",
+      "recurring-revenue",
+      "route-density",
+      "renewal-risk",
+      "routes",
+      "memberships"
+    ],
+    "keyword_provenance": {
+      "pest-control": [
+        "llm",
+        "seed_keywords"
+      ],
+      "renewals": [
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "route-aware": [
+        "field:must_have_features",
+        "llm"
+      ],
+      "failed-payments": [
+        "llm",
+        "seed_keywords"
+      ],
+      "churn": [
+        "field:constraints",
+        "field:recurring_revenue_model",
+        "field:success_metric",
+        "llm",
+        "seed_keywords"
+      ],
+      "recurring-revenue": [
+        "llm"
+      ],
+      "route-density": [
+        "llm"
+      ],
+      "renewal-risk": [
+        "llm"
+      ],
+      "routes": [
+        "field:workflow",
+        "seed_keywords"
+      ],
+      "memberships": [
+        "field:recurring_revenue_model",
+        "seed_keywords"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Recurring contract recovery and route prep for regional pest control operators",
+    "keywords": [
+      "pest-control",
+      "renewals",
+      "route-aware",
+      "failed-payments",
+      "churn",
+      "recurring-revenue",
+      "route-density",
+      "renewal-risk",
+      "routes",
+      "memberships"
+    ]
+  },
+  "planned_resolution": "claim"
+}

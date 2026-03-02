@@ -1,0 +1,252 @@
+{
+  "brief_id": "ghost-kitchen-demand-planner",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "nim-default",
+    "model_name": "stepfun-ai/step-3.5-flash",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "25ae2df8279e6a76705775ff598159458b729a1568e98a00aee1cac6a25f8024",
+    "prompt_hash": "0e82fc780ba4ef822c1ea7c5eb82da1f6f636487aaf696e15950944832a5364b",
+    "generated_at": "2026-03-02T06:32:31.494928Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"ghost-kitchen-demand-planner\",\n  \"title\": \"Demand shaping and prep scheduling for ghost kitchen operators\",\n  \"category\": \"food-ops\",\n  \"target_customer\": \"Ghost kitchen brands running multiple menus from one facility and relying heavily on delivery marketplaces.\",\n  \"problem\": \"Prep levels and staff timing drift because promotions, weather, and marketplace rankings change faster than kitchen managers can react.\",\n  \"workflow\": \"Forecast order waves, recommend prep windows, and connect promo timing to labor and ingredient readiness for each menu line.\",\n  \"recurring_revenue_model\": \"Monthly subscription per kitchen plus premium analytics for multi-brand operators.\",\n  \"pricing_shape\": \"Base kitchen fee with add-ons for each additional menu brand.\",\n  \"distribution_channel\": \"Outbound to multi-brand kitchen groups and delivery-operations consultants.\",\n  \"constraints\": [\n    \"Needs useful recommendations even when marketplace data is incomplete.\",\n    \"Must separate menu-brand behavior within the same kitchen.\",\n    \"Cannot depend on deeply customized ERP deployments.\"\n  ],\n  \"must_have_features\": [\n    \"Order wave forecasting\",\n    \"Prep timing recommendations\",\n    \"Promo and labor alignment dashboard\",\n    \"Multi-brand kitchen views\"\n  ],\n  \"seed_keywords\": [\n    \"ghost-kitchen\",\n    \"demand\",\n    \"prep\",\n    \"labor\",\n    \"promotions\",\n    \"delivery\"\n  ],\n  \"anti_goals\": [\n    \"Do not build a driver dispatch network.\",\n    \"Do not focus on dine-in restaurant workflows.\"\n  ],\n  \"success_metric\": \"Higher on-time fulfillment with less over-prep during promo-driven demand swings.\",\n  \"prompt_rendered_brief\": \"This demand shaping and prep scheduling product is for ghost kitchen operators running several virtual brands from the same production line. The pain is not generic analytics; it is the operational gap between volatile delivery demand, marketplace promotions, ingredient prep, and who should be on the line at each hour. Kitchen managers need a system that turns noisy demand signals into practical prep windows and staffing guidance before the rush starts. The software should monetize as recurring SaaS per kitchen and per menu brand because complexity rises quickly as operators stack more concepts into one facility. It also needs to stay useful when data is imperfect, since marketplace visibility is often partial or delayed. The win condition is fewer prep mistakes, better service levels, and smarter promo timing for a delivery-first kitchen business.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-ada21608ad7c1481",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-b340e61f0143a173",
+              "function": {
+                "arguments": "{\n  \"core_mechanic\": \"Forecast order waves and align prep timing with labor and promotions for multi-brand ghost kitchens.\",\n  \"keywords\": [\n    \"ghost-kitchen\",\n    \"demand-forecasting\",\n    \"prep-scheduling\",\n    \"labor-alignment\",\n    \"promotion-timing\",\n    \"multi-brand\",\n    \"kitchen-operations\",\n    \"delivery-ops\",\n    \"subscription-saas\",\n    \"order-waves\",\n    \"prep-windows\",\n    \"recurring-revenue\"\n  ]\n}",
+                "name": "GeneratedIntentDraft"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning": null,
+          "reasoning_content": null
+        },
+        "stop_reason": null,
+        "token_ids": null
+      }
+    ],
+    "created": 1772433149,
+    "model": "stepfun-ai/step-3.5-flash",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 120,
+      "prompt_tokens": 995,
+      "total_tokens": 1115,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "{\"core_mechanic\":\"Forecast order waves and align prep timing with labor and promotions for multi-brand ghost kitchens.\",\"keywords\":[\"ghost-kitchen\",\"demand-forecasting\",\"prep-scheduling\",\"labor-alignment\",\"promotion-timing\",\"multi-brand\",\"kitchen-operations\",\"delivery-ops\",\"subscription-saas\",\"order-waves\",\"prep-windows\",\"recurring-revenue\"]}",
+  "llm_output": {
+    "core_mechanic": "Forecast order waves and align prep timing with labor and promotions for multi-brand ghost kitchens.",
+    "keywords": [
+      "ghost-kitchen",
+      "demand-forecasting",
+      "prep-scheduling",
+      "labor-alignment",
+      "promotion-timing",
+      "multi-brand",
+      "kitchen-operations",
+      "delivery-ops",
+      "subscription-saas",
+      "order-waves",
+      "prep-windows",
+      "recurring-revenue"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "ghost-kitchen",
+      "demand-forecasting",
+      "prep-scheduling",
+      "labor-alignment",
+      "promotion-timing",
+      "multi-brand",
+      "kitchen-operations",
+      "delivery-ops",
+      "subscription-saas",
+      "order-waves",
+      "prep-windows",
+      "recurring-revenue"
+    ],
+    "derived_keywords": [
+      "and",
+      "kitchen",
+      "timing",
+      "for",
+      "multi-brand",
+      "order",
+      "promo",
+      "each",
+      "marketplace",
+      "menu",
+      "recommendations",
+      "alignment",
+      "because",
+      "brands",
+      "can",
+      "change",
+      "connect",
+      "dashboard",
+      "drift",
+      "facility",
+      "faster",
+      "forecast",
+      "forecasting",
+      "from",
+      "ghost",
+      "heavily",
+      "ingredient",
+      "levels",
+      "line",
+      "marketplaces",
+      "menus",
+      "one",
+      "rankings",
+      "react",
+      "readiness",
+      "recommend",
+      "relying",
+      "running",
+      "staff",
+      "than",
+      "views",
+      "wave",
+      "waves",
+      "weather",
+      "windows",
+      "with",
+      "analytics",
+      "plus",
+      "premium",
+      "add-ons",
+      "additional",
+      "behavior",
+      "brand",
+      "customized",
+      "data",
+      "deeply",
+      "depend",
+      "deployments",
+      "during",
+      "erp",
+      "even",
+      "fee",
+      "food-ops",
+      "fulfillment",
+      "incomplete",
+      "less",
+      "menu-brand",
+      "must",
+      "needs",
+      "on-time",
+      "over-prep",
+      "promo-driven",
+      "same",
+      "separate",
+      "swings",
+      "the",
+      "useful",
+      "when",
+      "within",
+      "consultants",
+      "delivery-operations",
+      "groups",
+      "outbound"
+    ],
+    "final_keywords": [
+      "ghost-kitchen",
+      "demand-forecasting",
+      "prep-scheduling",
+      "labor-alignment",
+      "promotion-timing",
+      "multi-brand",
+      "kitchen-operations",
+      "delivery-ops",
+      "subscription-saas",
+      "order-waves"
+    ],
+    "keyword_provenance": {
+      "ghost-kitchen": [
+        "llm",
+        "seed_keywords"
+      ],
+      "demand-forecasting": [
+        "llm"
+      ],
+      "prep-scheduling": [
+        "llm"
+      ],
+      "labor-alignment": [
+        "llm"
+      ],
+      "promotion-timing": [
+        "llm"
+      ],
+      "multi-brand": [
+        "field:distribution_channel",
+        "field:must_have_features",
+        "field:recurring_revenue_model",
+        "llm"
+      ],
+      "kitchen-operations": [
+        "llm"
+      ],
+      "delivery-ops": [
+        "llm"
+      ],
+      "subscription-saas": [
+        "llm"
+      ],
+      "order-waves": [
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Forecast order waves and align prep timing with labor and promotions for multi-brand ghost kitchens.",
+    "keywords": [
+      "ghost-kitchen",
+      "demand-forecasting",
+      "prep-scheduling",
+      "labor-alignment",
+      "promotion-timing",
+      "multi-brand",
+      "kitchen-operations",
+      "delivery-ops",
+      "subscription-saas",
+      "order-waves"
+    ]
+  },
+  "planned_resolution": "claim"
+}

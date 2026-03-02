@@ -1,0 +1,247 @@
+{
+  "brief_id": "failed-invoice-recovery-hub",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "nim-default",
+    "model_name": "stepfun-ai/step-3.5-flash",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "3f6f588fd00a078a7e619ccf9967465a40c0ae231446b4887dceef0ada76238f",
+    "prompt_hash": "b8685527f4d0e44dc7a0a20fb3b4ca162c6c5796bf2ae627855ee1ba0a269207",
+    "generated_at": "2026-03-02T06:32:43.489059Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"failed-invoice-recovery-hub\",\n  \"title\": \"Failed invoice recovery and dunning orchestration for micro SaaS teams\",\n  \"category\": \"subscription-finance\",\n  \"target_customer\": \"Bootstrapped B2B SaaS teams with self-serve subscriptions and no dedicated finance operations staff.\",\n  \"problem\": \"Failed invoices pile up because no one owns dunning logic, payment retries, or manual outreach once a customer looks risky.\",\n  \"workflow\": \"Group failed payments by account health, trigger recovery sequences, and route the highest-value cases to a founder or account owner.\",\n  \"recurring_revenue_model\": \"Recurring SaaS priced by invoice volume and recovered revenue bands.\",\n  \"pricing_shape\": \"Base monthly fee plus success-based tiering tied to recovered subscription revenue.\",\n  \"distribution_channel\": \"Founder communities, SaaS finance operators, and accountant referrals.\",\n  \"constraints\": [\n    \"Must work with small customer-success teams or no team at all.\",\n    \"Needs simple prioritization instead of enterprise billing abstractions.\",\n    \"Cannot require replacing the billing system.\"\n  ],\n  \"must_have_features\": [\n    \"Failed-invoice queue\",\n    \"Recovery sequence builder\",\n    \"Account risk scoring\",\n    \"Founder follow-up routing\"\n  ],\n  \"seed_keywords\": [\n    \"failed-invoices\",\n    \"dunning\",\n    \"subscriptions\",\n    \"recovery\",\n    \"billing\",\n    \"churn\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a payments processor.\",\n    \"Do not focus on enterprise revops teams first.\"\n  ],\n  \"success_metric\": \"More recurring revenue recovered per failed billing event.\",\n  \"prompt_rendered_brief\": \"The product is a failed invoice recovery and dunning orchestration hub for micro SaaS teams that cannot afford full-time finance operations. Founders know failed payments matter, but they usually discover the problem too late because billing retries, manual outreach, and account risk are scattered across Stripe dashboards and ad hoc reminders. The software should rank the recovery queue, automate practical dunning steps, and tell the founder which accounts deserve direct human follow-up. Revenue fits a recurring subscription model with success-weighted tiering because the value scales with recovered revenue and retained subscribers. The workflow must stay simple enough for teams that do not think of themselves as finance specialists. If it succeeds, the business loses less recurring revenue to payment friction and preventable churn.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-a397f849105150f6",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-963263e3f6606f5a",
+              "function": {
+                "arguments": "{\n  \"core_mechanic\": \"Orchestrate failed invoice recovery by scoring account risk, automating dunning sequences, and routing high-value cases to founders for manual follow-up, with pricing tied to recovered revenue.\",\n  \"keywords\": [\n    \"failed-invoices\",\n    \"dunning\",\n    \"recovery\",\n    \"subscriptions\",\n    \"billing\",\n    \"churn\",\n    \"micro-saas\",\n    \"bootstrapped\",\n    \"founder\",\n    \"risk-scoring\",\n    \"revenue-recovery\",\n    \"tiered-pricing\"\n  ]\n}",
+                "name": "GeneratedIntentDraft"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning": null,
+          "reasoning_content": null
+        },
+        "stop_reason": null,
+        "token_ids": null
+      }
+    ],
+    "created": 1772433157,
+    "model": "stepfun-ai/step-3.5-flash",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 123,
+      "prompt_tokens": 1002,
+      "total_tokens": 1125,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "{\"core_mechanic\":\"Orchestrate failed invoice recovery by scoring account risk, automating dunning sequences, and routing high-value cases to founders for manual follow-up, with pricing tied to recovered revenue.\",\"keywords\":[\"failed-invoices\",\"dunning\",\"recovery\",\"subscriptions\",\"billing\",\"churn\",\"micro-saas\",\"bootstrapped\",\"founder\",\"risk-scoring\",\"revenue-recovery\",\"tiered-pricing\"]}",
+  "llm_output": {
+    "core_mechanic": "Orchestrate failed invoice recovery by scoring account risk, automating dunning sequences, and routing high-value cases to founders for manual follow-up, with pricing tied to recovered revenue.",
+    "keywords": [
+      "failed-invoices",
+      "dunning",
+      "recovery",
+      "subscriptions",
+      "billing",
+      "churn",
+      "micro-saas",
+      "bootstrapped",
+      "founder",
+      "risk-scoring",
+      "revenue-recovery",
+      "tiered-pricing"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "failed-invoices",
+      "dunning",
+      "recovery",
+      "subscriptions",
+      "billing",
+      "churn",
+      "micro-saas",
+      "bootstrapped",
+      "founder",
+      "risk-scoring",
+      "revenue-recovery",
+      "tiered-pricing"
+    ],
+    "derived_keywords": [
+      "account",
+      "and",
+      "failed",
+      "saas",
+      "recovered",
+      "the",
+      "with",
+      "finance",
+      "b2b",
+      "because",
+      "bootstrapped",
+      "builder",
+      "cases",
+      "dedicated",
+      "failed-invoice",
+      "follow-up",
+      "group",
+      "health",
+      "highest-value",
+      "invoices",
+      "logic",
+      "looks",
+      "manual",
+      "once",
+      "one",
+      "operations",
+      "outreach",
+      "owns",
+      "payment",
+      "payments",
+      "pile",
+      "queue",
+      "retries",
+      "risk",
+      "risky",
+      "route",
+      "routing",
+      "scoring",
+      "self-serve",
+      "sequences",
+      "staff",
+      "trigger",
+      "bands",
+      "invoice",
+      "priced",
+      "volume",
+      "abstractions",
+      "all",
+      "customer-success",
+      "enterprise",
+      "event",
+      "fee",
+      "instead",
+      "more",
+      "must",
+      "needs",
+      "plus",
+      "prioritization",
+      "replacing",
+      "require",
+      "simple",
+      "subscription-finance",
+      "success-based",
+      "team",
+      "tied",
+      "tiering",
+      "work",
+      "accountant",
+      "communities",
+      "referrals"
+    ],
+    "final_keywords": [
+      "failed-invoices",
+      "dunning",
+      "recovery",
+      "subscriptions",
+      "billing",
+      "churn",
+      "micro-saas",
+      "bootstrapped",
+      "founder",
+      "risk-scoring"
+    ],
+    "keyword_provenance": {
+      "failed-invoices": [
+        "llm",
+        "seed_keywords"
+      ],
+      "dunning": [
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "recovery": [
+        "field:must_have_features",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "subscriptions": [
+        "llm",
+        "seed_keywords"
+      ],
+      "billing": [
+        "field:constraints",
+        "field:success_metric",
+        "llm",
+        "seed_keywords"
+      ],
+      "churn": [
+        "llm",
+        "seed_keywords"
+      ],
+      "micro-saas": [
+        "llm"
+      ],
+      "bootstrapped": [
+        "field:target_customer",
+        "llm"
+      ],
+      "founder": [
+        "llm"
+      ],
+      "risk-scoring": [
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Orchestrate failed invoice recovery by scoring account risk, automating dunning sequences, and routing high-value cases to founders for manual follow-up, with pricing tied to recovered revenue.",
+    "keywords": [
+      "failed-invoices",
+      "dunning",
+      "recovery",
+      "subscriptions",
+      "billing",
+      "churn",
+      "micro-saas",
+      "bootstrapped",
+      "founder",
+      "risk-scoring"
+    ]
+  },
+  "planned_resolution": "claim"
+}
