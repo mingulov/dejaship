@@ -113,6 +113,18 @@ async def check_airspace(input: IntentInput, session: AsyncSession) -> CheckResp
             candidate_multiplier=settings.STAGE2_CANDIDATE_MULTIPLIER,
             top_k=settings.MAX_CLOSEST_RESULTS,
         )
+    elif settings.ENABLE_HYBRID_SEARCH:
+        from dejaship.fts import hybrid_search
+        query_text = " ".join([input.core_mechanic] + input.keywords)
+        intents = await hybrid_search(
+            session,
+            query_vector=vector,
+            query_text=query_text,
+            distance_threshold=distance_threshold,
+            fts_weight=settings.HYBRID_FTS_WEIGHT,
+            k=settings.HYBRID_RRF_K,
+            top_n=settings.MAX_CLOSEST_RESULTS,
+        )
     else:
         closest_query = (
             select(AgentIntent)
@@ -164,8 +176,12 @@ async def claim_intent(input: IntentInput, session: AsyncSession) -> ClaimRespon
         core_mechanic=input.core_mechanic,
         keywords=input.keywords,
         embedding=vector,
-        mechanic_embedding=mechanic_vector,  # NEW
+        mechanic_embedding=mechanic_vector,
         edit_token_hash=_hash_token(edit_token),
+        search_tsvector=func.to_tsvector(
+            'english',
+            input.core_mechanic + ' ' + ' '.join(input.keywords)
+        ),
     )
     session.add(intent)
     await session.commit()

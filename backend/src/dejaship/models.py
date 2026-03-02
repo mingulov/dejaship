@@ -1,10 +1,11 @@
 import enum
 from datetime import datetime
+from typing import Optional
 from uuid import UUID
 
 from pgvector.sqlalchemy import Vector
 from sqlalchemy import DateTime, Enum, Index, Text, func
-from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.dialects.postgresql import JSONB, TSVECTOR
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 from dejaship.config import settings
@@ -35,6 +36,7 @@ class AgentIntent(Base):
     )
     edit_token_hash: Mapped[str] = mapped_column(Text, nullable=False)
     resolution_url: Mapped[str | None] = mapped_column(Text, nullable=True)
+    search_tsvector: Mapped[Optional[str]] = mapped_column(TSVECTOR, nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), nullable=False, server_default=func.now()
     )

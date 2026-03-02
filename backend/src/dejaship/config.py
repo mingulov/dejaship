@@ -76,6 +76,13 @@ class Settings(BaseSettings):
     RERANKER_MODEL: str = "colbert-ir/colbertv2.0"
     RERANKER_THRESHOLD: float = 0.5
 
+    # Hybrid vector + full-text search
+    # Combines vector similarity ranking with PostgreSQL FTS using RRF fusion.
+    # See docs/search-quality/improvement-approaches.md
+    ENABLE_HYBRID_SEARCH: bool = False
+    HYBRID_RRF_K: int = 60
+    HYBRID_FTS_WEIGHT: float = 0.3
+
     model_config = {"env_prefix": "DEJASHIP_"}
 
 
