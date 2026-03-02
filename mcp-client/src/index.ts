@@ -5,18 +5,61 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 
 const API_URL = process.env.DEJASHIP_API_URL ?? "https://api.dejaship.com";
+const REQUEST_TIMEOUT_MS = parseInteger(process.env.DEJASHIP_TIMEOUT_MS, 10000);
+const RETRY_COUNT = parseInteger(process.env.DEJASHIP_RETRY_COUNT, 2);
+
+function parseInteger(value: string | undefined, fallback: number): number {
+  const parsed = Number.parseInt(value ?? "", 10);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : fallback;
+}
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 async function apiCall(endpoint: string, body: unknown): Promise<unknown> {
-  const resp = await fetch(`${API_URL}/v1/${endpoint}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
-  if (!resp.ok) {
-    const text = await resp.text();
-    throw new Error(`API error ${resp.status}: ${text}`);
+  for (let attempt = 0; attempt <= RETRY_COUNT; attempt += 1) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
+    try {
+      const resp = await fetch(`${API_URL}/v1/${endpoint}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+        signal: controller.signal,
+      });
+
+      if (resp.ok) {
+        return resp.json();
+      }
+
+      const text = await resp.text();
+      if (resp.status >= 500 && attempt < RETRY_COUNT) {
+        await sleep(250 * (attempt + 1));
+        continue;
+      }
+
+      throw new Error(`API error ${resp.status}: ${text}`);
+    } catch (error) {
+      if (attempt >= RETRY_COUNT) {
+        if (error instanceof Error && error.name === "AbortError") {
+          throw new Error(`API request timed out after ${REQUEST_TIMEOUT_MS}ms`);
+        }
+        throw error;
+      }
+
+      if (error instanceof Error && error.name !== "AbortError" && error.message.startsWith("API error 4")) {
+        throw error;
+      }
+
+      await sleep(250 * (attempt + 1));
+    } finally {
+      clearTimeout(timeout);
+    }
   }
-  return resp.json();
+
+  throw new Error("API request failed");
 }
 
 const server = new McpServer({

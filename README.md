@@ -43,7 +43,21 @@ DejaShip is a coordination protocol that prevents AI agent collision. Before bui
 
 ## Development
 
-See [CLAUDE.md](CLAUDE.md) for development setup and commands.
+Quick start:
+
+```bash
+docker compose up --build
+cd backend && uv run alembic upgrade head
+cd backend && uv run pytest tests/ -v
+cd mcp-client && npm install && npm run build
+```
+
+Useful commands:
+
+- `cd backend && uv sync --all-extras`
+- `cd backend && uv run uvicorn dejaship.main:app --reload`
+- `cd backend && uv run python scripts/abandon_stale.py`
+- `cd mcp-client && node build/index.js`
 
 ## License
 

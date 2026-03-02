@@ -1,6 +1,10 @@
 import uuid
 
 import pytest
+from starlette.requests import Request
+
+from dejaship.config import settings
+from dejaship.limiter import get_client_ip
 
 
 SAMPLE_KEYWORDS_SEO = ["seo", "plumber", "local-business", "marketing", "website"]
@@ -437,6 +441,36 @@ async def test_mcp_endpoint_mounted(client):
     assert resp.status_code != 404
 
 
+@pytest.mark.asyncio
+async def test_mcp_endpoint_rate_limited(client, monkeypatch):
+    """MCP endpoint uses the dedicated rate limit."""
+    monkeypatch.setattr(settings, "RATE_LIMIT_MCP", "1/minute")
+
+    first = await client.post("/mcp", json={
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "initialize",
+        "params": {
+            "protocolVersion": "2025-03-26",
+            "capabilities": {},
+            "clientInfo": {"name": "test", "version": "0.1.0"},
+        },
+    })
+    second = await client.post("/mcp", json={
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "initialize",
+        "params": {
+            "protocolVersion": "2025-03-26",
+            "capabilities": {},
+            "clientInfo": {"name": "test", "version": "0.1.0"},
+        },
+    })
+
+    assert first.status_code != 429
+    assert second.status_code == 429
+
+
 # --- Boundary Value Tests ---
 
 
@@ -526,3 +560,74 @@ async def test_health(client):
     resp = await client.get("/health")
     assert resp.status_code == 200
     assert resp.json()["status"] == "ok"
+
+
+@pytest.mark.asyncio
+async def test_ready(client):
+    """Readiness endpoint checks DB and embedding model."""
+    resp = await client.get("/ready")
+    assert resp.status_code == 200
+    assert resp.json() == {
+        "status": "ok",
+        "checks": {"database": "ok", "embeddings": "ok"},
+    }
+
+
+@pytest.mark.asyncio
+async def test_ready_reports_failures(client, monkeypatch):
+    """Readiness endpoint returns 503 when a dependency is unavailable."""
+
+    class BrokenConnect:
+        async def __aenter__(self):
+            raise RuntimeError("db down")
+
+        async def __aexit__(self, exc_type, exc, tb):
+            return False
+
+    class BrokenEngine:
+        def connect(self):
+            return BrokenConnect()
+
+    monkeypatch.setattr("dejaship.main.engine", BrokenEngine())
+    monkeypatch.setattr("dejaship.main.get_model", lambda: (_ for _ in ()).throw(RuntimeError("missing")))
+
+    resp = await client.get("/ready")
+    assert resp.status_code == 503
+    assert resp.json() == {
+        "status": "error",
+        "checks": {"database": "error", "embeddings": "error"},
+    }
+
+
+def test_get_client_ip_ignores_untrusted_proxy_headers(monkeypatch):
+    """Proxy headers are ignored unless the peer is trusted."""
+    monkeypatch.setattr(settings, "TRUST_PROXY_HEADERS", False)
+
+    request = Request({
+        "type": "http",
+        "headers": [
+            (b"cf-connecting-ip", b"203.0.113.10"),
+            (b"x-forwarded-for", b"198.51.100.1"),
+        ],
+        "client": ("127.0.0.1", 12345),
+        "method": "GET",
+        "path": "/v1/check",
+    })
+
+    assert get_client_ip(request) == "127.0.0.1"
+
+
+def test_get_client_ip_uses_trusted_proxy_headers(monkeypatch):
+    """Trusted proxies can supply the real client IP."""
+    monkeypatch.setattr(settings, "TRUST_PROXY_HEADERS", True)
+    monkeypatch.setattr(settings, "TRUSTED_PROXY_CIDRS", "127.0.0.0/8")
+
+    request = Request({
+        "type": "http",
+        "headers": [(b"x-forwarded-for", b"198.51.100.1, 127.0.0.1")],
+        "client": ("127.0.0.1", 12345),
+        "method": "GET",
+        "path": "/v1/check",
+    })
+
+    assert get_client_ip(request) == "198.51.100.1"

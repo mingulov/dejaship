@@ -10,6 +10,7 @@ from testcontainers.postgres import PostgresContainer
 
 from dejaship.db import get_session
 from dejaship.embeddings import load_model
+from dejaship.limiter import limiter
 from dejaship.models import Base
 
 
@@ -62,15 +63,19 @@ async def session(engine) -> AsyncGenerator[AsyncSession, None]:
 async def client(engine, embedding_model) -> AsyncGenerator[AsyncClient, None]:
     # embedding_model is injected to ensure load_model() runs before any request
     _ = embedding_model
-    from dejaship.main import app
+    from dejaship import main
+
+    app = main.app
 
     session_factory = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+    original_engine = main.engine
 
     async def override_session():
         async with session_factory() as session:
             yield session
 
     app.dependency_overrides[get_session] = override_session
+    main.engine = engine
 
     async with AsyncClient(
         transport=ASGITransport(app=app),
@@ -79,7 +84,15 @@ async def client(engine, embedding_model) -> AsyncGenerator[AsyncClient, None]:
         yield client
 
     app.dependency_overrides.clear()
+    main.engine = original_engine
 
     # Clean up data between tests for isolation
     async with engine.begin() as conn:
         await conn.execute(text("DELETE FROM agent_intents"))
+
+
+@pytest.fixture(autouse=True)
+def reset_rate_limiter():
+    limiter._storage.reset()
+    yield
+    limiter._storage.reset()
