@@ -88,3 +88,50 @@ def test_apply_jaccard_filter_applies_at_min_keywords():
     candidates = [FakeRecord(["x", "y", "z"])]
     result = apply_jaccard_filter(["a", "b", "c"], candidates, threshold=0.9, min_keywords=3)
     assert result == []  # 3 >= 3, filter active; no overlap → empty
+
+
+def test_apply_jaccard_filter_lemmatizes_when_enabled():
+    """With lemmatize=True, 'renewals' and 'renewal' match as the same root."""
+    class Claim:
+        def __init__(self, keywords):
+            self.keywords = keywords
+
+    # Query uses "renewal" (singular), claim uses "renewals" (plural)
+    query_keywords = ["crm", "renewal", "billing"]
+    candidates = [
+        Claim(["crm", "renewals", "billing"]),  # plural — should match with lemmatization
+        Claim(["analytics", "dashboard"]),         # no overlap — should not match
+    ]
+
+    result = apply_jaccard_filter(
+        query_keywords=query_keywords,
+        candidates=candidates,
+        threshold=0.3,
+        min_keywords=2,
+        lemmatize=True,
+    )
+    assert len(result) == 1
+    assert result[0].keywords == ["crm", "renewals", "billing"]
+
+
+def test_apply_jaccard_filter_no_lemmatize_by_default():
+    """Without lemmatize=True, 'renewals' and 'renewal' do NOT match."""
+    class Claim:
+        def __init__(self, keywords):
+            self.keywords = keywords
+
+    query_keywords = ["crm", "renewal", "billing"]
+    candidates = [
+        Claim(["crm", "renewals", "billing"]),
+    ]
+
+    # At threshold=0.5: query_set={"crm","renewal","billing"}, claim_set={"crm","renewals","billing"}
+    # intersection={"crm","billing"} (2), union={"crm","renewal","renewals","billing"} (4) → J=0.5
+    result = apply_jaccard_filter(
+        query_keywords=query_keywords,
+        candidates=candidates,
+        threshold=0.6,  # higher threshold that would not pass without lemmatization
+        min_keywords=2,
+        lemmatize=False,
+    )
+    assert len(result) == 0  # doesn't match without lemmatization at threshold=0.6

@@ -20,9 +20,22 @@ def get_model() -> TextEmbedding:
 
 
 @functools.lru_cache(maxsize=None)
-def _parse_stopwords(keyword_stopwords: str) -> set[str]:
-    """Parse the KEYWORD_STOPWORDS config string into a set. Cached by value."""
-    return {s.strip().lower() for s in keyword_stopwords.split(",") if s.strip()}
+def _parse_stopwords(keyword_stopwords: str, use_nltk: bool = False) -> set[str]:
+    """Parse KEYWORD_STOPWORDS config into a set, optionally merging NLTK stopwords.
+
+    Cached by (keyword_stopwords, use_nltk) tuple. NLTK corpus downloaded on
+    first use if not already present.
+    """
+    base = {s.strip().lower() for s in keyword_stopwords.split(",") if s.strip()}
+    if use_nltk:
+        import nltk
+        try:
+            nltk.data.find("corpora/stopwords")
+        except LookupError:
+            nltk.download("stopwords", quiet=True)
+        from nltk.corpus import stopwords as nltk_stopwords
+        base = base | set(nltk_stopwords.words("english"))
+    return base
 
 
 def clean_keywords(keywords: list[str], stopwords: set[str]) -> list[str]:
@@ -41,7 +54,10 @@ def build_embedding_text(core_mechanic: str, keywords: list[str]) -> str:
     - ENABLE_KEYWORD_CLEANUP (default False): remove generic SaaS stopwords before embedding.
     """
     if settings.ENABLE_KEYWORD_CLEANUP:
-        keywords = clean_keywords(keywords, _parse_stopwords(settings.KEYWORD_STOPWORDS))
+        keywords = clean_keywords(
+            keywords,
+            _parse_stopwords(settings.KEYWORD_STOPWORDS, settings.ENABLE_NLTK_STOPWORDS),
+        )
     primary = keywords[:10]
     secondary = keywords[10:]
     parts = []

@@ -141,6 +141,7 @@ async def check_airspace(input: IntentInput, session: AsyncSession) -> CheckResp
                 candidates=intents,
                 threshold=settings.JACCARD_THRESHOLD,
                 min_keywords=settings.JACCARD_MIN_KEYWORDS,
+                lemmatize=settings.ENABLE_SPACY_LEMMATIZATION,
             )
     if settings.ENABLE_RERANKER:
         from dejaship.reranker import rerank

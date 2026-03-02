@@ -27,6 +27,10 @@ dev = [
     "openai>=1.0.0",
     "testcontainers[postgres]>=4.0.0",
 ]
+nlp = [
+    "nltk>=3.8.0",
+    "spacy>=3.7.0",
+]
 
 [build-system]
 requires = ["hatchling"]

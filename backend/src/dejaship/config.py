@@ -59,6 +59,13 @@ class Settings(BaseSettings):
     ENABLE_KEYWORD_CLEANUP: bool = False
     KEYWORD_STOPWORDS: str = "and,with,the,for,subscription,saas,recurring-revenue,revenue,renewals,retention"
 
+    # NLP keyword preprocessing (requires nlp extras: uv sync --extra nlp)
+    # ENABLE_NLTK_STOPWORDS: augments KEYWORD_STOPWORDS with NLTK English stopwords (179 words).
+    # ENABLE_SPACY_LEMMATIZATION: lemmatizes keywords before Jaccard comparison so
+    #   "renewal" and "renewals" match. Adds ~10ms per request (spaCy CPU inference).
+    ENABLE_NLTK_STOPWORDS: bool = False
+    ENABLE_SPACY_LEMMATIZATION: bool = False
+
     # Two-stage retrieval
     # Stage 1: broad candidate retrieval with combined embedding at lower threshold
     # Stage 2: rerank by core_mechanic-only embedding similarity

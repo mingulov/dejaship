@@ -111,3 +111,44 @@ def test_build_embedding_text_applies_cleanup_when_enabled(monkeypatch):
     assert "renewals" not in words
     assert "crm" in words
     assert "invoicing" in words
+
+
+def test_parse_stopwords_includes_nltk_when_enabled():
+    """When use_nltk=True, NLTK English stopwords are merged into the set."""
+    from dejaship.embeddings import _parse_stopwords
+    result = _parse_stopwords("saas,renewals", True)
+    # NLTK English list includes common words like "the", "and", "is"
+    assert "the" in result
+    assert "and" in result
+    assert "is" in result
+    # Manual words still included
+    assert "saas" in result
+    assert "renewals" in result
+
+
+def test_parse_stopwords_excludes_nltk_when_disabled():
+    """When use_nltk=False, NLTK words not automatically added."""
+    from dejaship.embeddings import _parse_stopwords
+    result = _parse_stopwords("saas", False)
+    # Common NLTK words should NOT be present
+    assert "the" not in result
+    assert "and" not in result
+    # But manual words are still present
+    assert "saas" in result
+
+
+def test_build_embedding_text_uses_nltk_stopwords(monkeypatch):
+    """When both ENABLE_KEYWORD_CLEANUP and ENABLE_NLTK_STOPWORDS are True,
+    NLTK stopwords are applied to keywords before embedding."""
+    from dejaship.config import settings
+    from dejaship.embeddings import build_embedding_text
+    monkeypatch.setattr(settings, "ENABLE_KEYWORD_CLEANUP", True)
+    monkeypatch.setattr(settings, "ENABLE_NLTK_STOPWORDS", True)
+    monkeypatch.setattr(settings, "KEYWORD_STOPWORDS", "saas")
+    text = build_embedding_text("billing tool", ["saas", "the", "crm", "and"])
+    words = text.split()
+    # "the" and "and" are in NLTK stopwords → removed
+    assert "the" not in words
+    assert "and" not in words
+    # "crm" is not a stopword → kept
+    assert "crm" in words

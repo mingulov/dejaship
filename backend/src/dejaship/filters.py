@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import functools
 from typing import Protocol, TypeVar
 
 
@@ -22,21 +23,46 @@ def jaccard_similarity(set_a: set[str], set_b: set[str]) -> float:
     return len(intersection) / len(union)
 
 
+@functools.lru_cache(maxsize=1)
+def _get_nlp():
+    """Load spaCy en_core_web_sm model (cached singleton).
+
+    Requires: uv sync --extra nlp && python -m spacy download en_core_web_sm
+    Only loaded when ENABLE_SPACY_LEMMATIZATION=True.
+    """
+    import spacy
+    return spacy.load("en_core_web_sm", disable=["parser", "ner"])
+
+
+def _normalize_keyword(kw: str, *, lemmatize: bool) -> str:
+    """Lowercase and optionally lemmatize a keyword."""
+    if not lemmatize:
+        return kw.lower()
+    nlp = _get_nlp()
+    doc = nlp(kw.lower())
+    return " ".join(token.lemma_ for token in doc)
+
+
 def apply_jaccard_filter(
     query_keywords: list[str],
     candidates: list[_T],
     threshold: float,
     min_keywords: int,
+    lemmatize: bool = False,
 ) -> list[_T]:
     """Filter candidates by keyword Jaccard similarity.
 
-    Skips filtering if query has fewer than min_keywords (not enough signal).
-    Each candidate must have a .keywords attribute (list[str]).
+    If query has fewer than min_keywords, skip filtering (not enough signal).
+    When lemmatize=True, normalizes keywords to their root form before comparison
+    (e.g., "renewals" and "renewal" are treated as identical).
     """
     if len(query_keywords) < min_keywords:
         return candidates
-    query_set = {kw.lower() for kw in query_keywords}
+    query_set = {_normalize_keyword(kw, lemmatize=lemmatize) for kw in query_keywords}
     return [
         c for c in candidates
-        if jaccard_similarity(query_set, {kw.lower() for kw in c.keywords}) >= threshold
+        if jaccard_similarity(
+            query_set,
+            {_normalize_keyword(kw, lemmatize=lemmatize) for kw in c.keywords},
+        ) >= threshold
     ]
