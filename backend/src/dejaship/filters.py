@@ -2,7 +2,15 @@
 
 from __future__ import annotations
 
-from dejaship.config import settings
+from typing import Protocol, TypeVar
+
+
+class HasKeywords(Protocol):
+    """Structural type: any object with a .keywords list attribute."""
+    keywords: list[str]
+
+
+_T = TypeVar("_T", bound=HasKeywords)
 
 
 def jaccard_similarity(set_a: set[str], set_b: set[str]) -> float:
@@ -16,10 +24,10 @@ def jaccard_similarity(set_a: set[str], set_b: set[str]) -> float:
 
 def apply_jaccard_filter(
     query_keywords: list[str],
-    candidates: list,
+    candidates: list[_T],
     threshold: float,
     min_keywords: int,
-) -> list:
+) -> list[_T]:
     """Filter candidates by keyword Jaccard similarity.
 
     Skips filtering if query has fewer than min_keywords (not enough signal).

@@ -35,6 +35,10 @@ async def check_airspace(input: IntentInput, session: AsyncSession) -> CheckResp
 
     distance_expr = AgentIntent.embedding.cosine_distance(vector)
 
+    # density counts ALL vector-nearby records by status (raw vector neighbourhood signal).
+    # closest_active_claims is a curated list that may be further narrowed by post-filters
+    # (e.g. Jaccard). The two intentionally differ: density tells you "how crowded is this
+    # space?", closest tells you "which specific claims should you be aware of?".
     # Count by status
     count_query = (
         select(

@@ -1,5 +1,4 @@
 """Unit tests for keyword Jaccard post-filter."""
-import pytest
 from dejaship.filters import apply_jaccard_filter, jaccard_similarity
 
 
@@ -75,3 +74,17 @@ def test_apply_jaccard_filter_exact_threshold():
 def test_apply_jaccard_filter_empty_candidates():
     result = apply_jaccard_filter(["a", "b", "c"], [], threshold=0.15, min_keywords=3)
     assert result == []
+
+
+def test_apply_jaccard_filter_skips_at_min_keywords_minus_one():
+    """Query of exactly min_keywords - 1 skips the filter (boundary: < not <=)."""
+    candidates = [FakeRecord(["x", "y", "z"])]
+    result = apply_jaccard_filter(["a", "b"], candidates, threshold=0.9, min_keywords=3)
+    assert result == candidates  # 2 < 3, filter skipped
+
+
+def test_apply_jaccard_filter_applies_at_min_keywords():
+    """Query of exactly min_keywords does apply the filter."""
+    candidates = [FakeRecord(["x", "y", "z"])]
+    result = apply_jaccard_filter(["a", "b", "c"], candidates, threshold=0.9, min_keywords=3)
+    assert result == []  # 3 >= 3, filter active; no overlap → empty
