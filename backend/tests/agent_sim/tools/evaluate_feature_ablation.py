@@ -27,18 +27,19 @@ from tests.agent_sim._support.retrieval_analysis import (
     PostFilterFn,
     RetrievalRecord,
     compute_cross_model_retrieval_matrix,
+    cosine_similarity,
 )
 
 
 def _jaccard_filter(threshold: float, min_keywords: int) -> PostFilterFn:
     """Post-filter: drop candidates whose keyword Jaccard similarity < threshold."""
     def _filter(
-        query_keywords: list[str],
+        query: RetrievalRecord,
         candidates: list[tuple[RetrievalRecord, float]],
     ) -> list[tuple[RetrievalRecord, float]]:
-        if len(query_keywords) < min_keywords:
+        if len(query.keywords) < min_keywords:
             return candidates
-        query_set = {kw.lower() for kw in query_keywords}
+        query_set = {kw.lower() for kw in query.keywords}
         result = []
         for record, sim in candidates:
             if not record.keywords:
@@ -53,11 +54,34 @@ def _jaccard_filter(threshold: float, min_keywords: int) -> PostFilterFn:
     return _filter
 
 
+def _mechanic_rerank_filter(threshold: float) -> PostFilterFn:
+    """Post-filter: drop candidates whose mechanic_vector cosine similarity < threshold."""
+    def _filter(
+        query: RetrievalRecord,
+        candidates: list[tuple[RetrievalRecord, float]],
+    ) -> list[tuple[RetrievalRecord, float]]:
+        if not query.mechanic_vector:
+            return candidates
+        result = []
+        for record, sim in candidates:
+            if not record.mechanic_vector:
+                result.append((record, sim))
+                continue
+            mech_sim = cosine_similarity(query.mechanic_vector, record.mechanic_vector)
+            if mech_sim >= threshold:
+                result.append((record, sim))
+        return result
+    return _filter
+
+
 def _build_filters() -> list[tuple[str, PostFilterFn | None]]:
     filters: list[tuple[str, PostFilterFn | None]] = [("baseline", None)]
     for t in [0.05, 0.10, 0.15, 0.20, 0.25, 0.30]:
         label = f"jaccard_{int(t * 100):02d}"
         filters.append((label, _jaccard_filter(t, min_keywords=2)))
+    for t in [0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80]:
+        label = f"mechanic_{int(t * 100):02d}"
+        filters.append((label, _mechanic_rerank_filter(t)))
     return filters
 
 

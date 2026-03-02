@@ -55,7 +55,7 @@ def test_post_filter_reduces_retrieved():
         records=records,
         threshold=0.0,
         top_k=10,
-        post_filter=lambda kws, cands: [],
+        post_filter=lambda q, cands: [],
     )
     assert result["summary"]["false_positive_rate"] == 0.0  # type: ignore[index]
 

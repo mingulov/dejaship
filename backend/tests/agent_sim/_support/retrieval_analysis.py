@@ -7,7 +7,7 @@ from typing import Callable, cast
 from tests.agent_sim._support.types import AppCatalog
 
 PostFilterFn = Callable[
-    [list[str], list[tuple["RetrievalRecord", float]]],
+    ["RetrievalRecord", list[tuple["RetrievalRecord", float]]],
     list[tuple["RetrievalRecord", float]],
 ]
 
@@ -118,7 +118,7 @@ def compute_cross_model_retrieval_matrix(
                     if similarity >= threshold
                 ][:top_k]
                 if post_filter is not None:
-                    retrieved = post_filter(query.keywords, retrieved)
+                    retrieved = post_filter(query, retrieved)
                 related_ids = related_brief_ids(catalog, query.brief_id)
                 exact_target = claim_by_brief.get(query.brief_id)
                 relevant_ids = set(related_ids)
