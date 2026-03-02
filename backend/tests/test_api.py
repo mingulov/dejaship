@@ -637,7 +637,7 @@ def test_get_client_ip_uses_trusted_proxy_headers(monkeypatch):
 # --- Stats Endpoint ---
 
 
-@pytest.mark.anyio
+@pytest.mark.asyncio
 async def test_stats_empty_db(client: AsyncClient):
     resp = await client.get("/v1/stats")
     assert resp.status_code == 200
@@ -648,7 +648,7 @@ async def test_stats_empty_db(client: AsyncClient):
     assert data["abandoned"] == 0
 
 
-@pytest.mark.anyio
+@pytest.mark.asyncio
 async def test_stats_counts_claims(client: AsyncClient):
     keywords = ["saas", "billing", "invoicing", "payments", "recurring"]
     r1 = await client.post("/v1/claim", json={"core_mechanic": "Invoice tracking", "keywords": keywords})
@@ -661,6 +661,7 @@ async def test_stats_counts_claims(client: AsyncClient):
         "claim_id": claim["claim_id"],
         "edit_token": claim["edit_token"],
         "status": "shipped",
+        "resolution_url": "https://example.com",
     })
 
     resp = await client.get("/v1/stats")

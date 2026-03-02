@@ -41,6 +41,7 @@ class Settings(BaseSettings):
     RATE_LIMIT_CLAIM: str = "60/minute"
     RATE_LIMIT_UPDATE: str = "60/minute"
     RATE_LIMIT_MCP: str = "60/minute"
+    RATE_LIMIT_STATS: str = "120/minute"
 
     # Proxy trust
     TRUST_PROXY_HEADERS: bool = False

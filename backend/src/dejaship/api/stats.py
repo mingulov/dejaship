@@ -1,8 +1,10 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Request
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from dejaship.config import settings
 from dejaship.db import get_session
+from dejaship.limiter import limiter
 from dejaship.models import AgentIntent, IntentStatus
 from dejaship.schemas import StatsResponse
 
@@ -10,7 +12,8 @@ router = APIRouter()
 
 
 @router.get("/stats", response_model=StatsResponse)
-async def stats(session: AsyncSession = Depends(get_session)):
+@limiter.limit(settings.RATE_LIMIT_STATS)
+async def stats(request: Request, session: AsyncSession = Depends(get_session)):
     """Public statistics: total claims and counts by status."""
     query = select(AgentIntent.status, func.count().label("cnt")).group_by(AgentIntent.status)
     result = await session.execute(query)
