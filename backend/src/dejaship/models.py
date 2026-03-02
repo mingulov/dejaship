@@ -27,6 +27,7 @@ class AgentIntent(Base):
     core_mechanic: Mapped[str] = mapped_column(Text, nullable=False)
     keywords: Mapped[list] = mapped_column(JSONB, nullable=False)
     embedding = mapped_column(Vector(settings.VECTOR_DIMENSIONS), nullable=False)
+    mechanic_embedding = mapped_column(Vector(settings.VECTOR_DIMENSIONS), nullable=True)
     status: Mapped[IntentStatus] = mapped_column(
         Enum(IntentStatus, values_callable=lambda x: [e.value for e in x]),
         nullable=False,

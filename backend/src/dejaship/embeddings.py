@@ -58,3 +58,8 @@ def embed_text(text: str) -> list[float]:
     model = get_model()
     embeddings = list(model.embed([text]))
     return embeddings[0].tolist()
+
+
+def cosine_similarity(vec_a: list[float], vec_b: list[float]) -> float:
+    """Compute cosine similarity between two unit-norm vectors (dot product)."""
+    return sum(a * b for a, b in zip(vec_a, vec_b))

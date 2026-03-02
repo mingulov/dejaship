@@ -59,6 +59,15 @@ class Settings(BaseSettings):
     ENABLE_KEYWORD_CLEANUP: bool = False
     KEYWORD_STOPWORDS: str = "and,with,the,for,subscription,saas,recurring-revenue,revenue,renewals,retention"
 
+    # Two-stage retrieval
+    # Stage 1: broad candidate retrieval with combined embedding at lower threshold
+    # Stage 2: rerank by core_mechanic-only embedding similarity
+    # See docs/decisions/2026-03-02-embedding-text-strategy.md
+    ENABLE_TWO_STAGE_RETRIEVAL: bool = False
+    STAGE1_THRESHOLD: float = 0.55
+    STAGE2_THRESHOLD: float = 0.65
+    STAGE2_CANDIDATE_MULTIPLIER: int = 3
+
     model_config = {"env_prefix": "DEJASHIP_"}
 
 

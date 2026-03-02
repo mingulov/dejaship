@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from starlette.concurrency import run_in_threadpool
 
 from dejaship.config import settings
-from dejaship.embeddings import build_embedding_text, embed_text
+from dejaship.embeddings import build_embedding_text, cosine_similarity, embed_text
 from dejaship.filters import apply_jaccard_filter
 from dejaship.models import AgentIntent, IntentStatus
 from dejaship.schemas import (
@@ -24,6 +24,45 @@ from dejaship.schemas import (
 
 def _hash_token(token: str) -> str:
     return hashlib.sha256(token.encode()).hexdigest()
+
+
+async def _check_airspace_two_stage(
+    input: IntentInput,
+    session: AsyncSession,
+    *,
+    stage1_threshold: float,
+    stage2_threshold: float,
+    candidate_multiplier: int,
+    top_k: int,
+) -> list[AgentIntent]:
+    """Stage 1: broad retrieval; Stage 2: rerank by mechanic embedding."""
+    text = build_embedding_text(input.core_mechanic, input.keywords)
+    combined_vector = await run_in_threadpool(embed_text, text)
+    mechanic_vector = await run_in_threadpool(embed_text, input.core_mechanic)
+
+    distance_expr = AgentIntent.embedding.cosine_distance(combined_vector)
+    distance_threshold = 1.0 - stage1_threshold
+
+    candidates_query = (
+        select(AgentIntent)
+        .where(distance_expr <= distance_threshold)
+        .where(AgentIntent.status != IntentStatus.ABANDONED)
+        .order_by(distance_expr)
+        .limit(top_k * candidate_multiplier)
+    )
+    result = await session.execute(candidates_query)
+    candidates = list(result.scalars())
+
+    # Stage 2: rerank by mechanic similarity, filter at stage2_threshold
+    scored = []
+    for claim in candidates:
+        if claim.mechanic_embedding is None:
+            continue
+        sim = cosine_similarity(mechanic_vector, list(claim.mechanic_embedding))
+        if sim >= stage2_threshold:
+            scored.append((sim, claim))
+    scored.sort(key=lambda x: x[0], reverse=True)
+    return [claim for _, claim in scored[:top_k]]
 
 
 async def check_airspace(input: IntentInput, session: AsyncSession) -> CheckResponse:
@@ -59,22 +98,31 @@ async def check_airspace(input: IntentInput, session: AsyncSession) -> CheckResp
 
     # Get closest active claims
     now = datetime.now(timezone.utc)
-    closest_query = (
-        select(AgentIntent)
-        .where(distance_expr <= distance_threshold)
-        .where(AgentIntent.status != IntentStatus.ABANDONED)
-        .order_by(distance_expr)
-        .limit(settings.MAX_CLOSEST_RESULTS)
-    )
-    result = await session.execute(closest_query)
-    intents = list(result.scalars())
-    if settings.ENABLE_JACCARD_FILTER:
-        intents = apply_jaccard_filter(
-            query_keywords=input.keywords,
-            candidates=intents,
-            threshold=settings.JACCARD_THRESHOLD,
-            min_keywords=settings.JACCARD_MIN_KEYWORDS,
+    if settings.ENABLE_TWO_STAGE_RETRIEVAL:
+        intents = await _check_airspace_two_stage(
+            input, session,
+            stage1_threshold=settings.STAGE1_THRESHOLD,
+            stage2_threshold=settings.STAGE2_THRESHOLD,
+            candidate_multiplier=settings.STAGE2_CANDIDATE_MULTIPLIER,
+            top_k=settings.MAX_CLOSEST_RESULTS,
         )
+    else:
+        closest_query = (
+            select(AgentIntent)
+            .where(distance_expr <= distance_threshold)
+            .where(AgentIntent.status != IntentStatus.ABANDONED)
+            .order_by(distance_expr)
+            .limit(settings.MAX_CLOSEST_RESULTS)
+        )
+        result = await session.execute(closest_query)
+        intents = list(result.scalars())
+        if settings.ENABLE_JACCARD_FILTER:
+            intents = apply_jaccard_filter(
+                query_keywords=input.keywords,
+                candidates=intents,
+                threshold=settings.JACCARD_THRESHOLD,
+                min_keywords=settings.JACCARD_MIN_KEYWORDS,
+            )
     closest = []
     for intent in intents:
         age_hours = (now - intent.created_at.astimezone(timezone.utc)).total_seconds() / 3600
@@ -92,6 +140,7 @@ async def check_airspace(input: IntentInput, session: AsyncSession) -> CheckResp
 async def claim_intent(input: IntentInput, session: AsyncSession) -> ClaimResponse:
     text = build_embedding_text(input.core_mechanic, input.keywords)
     vector = await run_in_threadpool(embed_text, text)
+    mechanic_vector = await run_in_threadpool(embed_text, input.core_mechanic)  # NEW
 
     edit_token = secrets.token_urlsafe(32)
 
@@ -99,6 +148,7 @@ async def claim_intent(input: IntentInput, session: AsyncSession) -> ClaimRespon
         core_mechanic=input.core_mechanic,
         keywords=input.keywords,
         embedding=vector,
+        mechanic_embedding=mechanic_vector,  # NEW
         edit_token_hash=_hash_token(edit_token),
     )
     session.add(intent)
