@@ -21,6 +21,9 @@ from dejaship.mcp.server import mcp
 async def lifespan(app: FastAPI):
     # Startup: load embedding model
     load_model()
+    if settings.ENABLE_RERANKER:
+        from dejaship.reranker import load_reranker
+        load_reranker()
     # Start MCP session manager
     async with mcp.session_manager.run():
         yield

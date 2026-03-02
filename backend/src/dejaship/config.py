@@ -68,6 +68,14 @@ class Settings(BaseSettings):
     STAGE2_THRESHOLD: float = 0.65
     STAGE2_CANDIDATE_MULTIPLIER: int = 3
 
+    # ColBERT reranker (late-interaction reranking)
+    # Reranks vector search candidates using ColBERT MaxSim scoring.
+    # Adds latency but improves precision.
+    # See docs/search-quality/improvement-approaches.md
+    ENABLE_RERANKER: bool = False
+    RERANKER_MODEL: str = "colbert-ir/colbertv2.0"
+    RERANKER_THRESHOLD: float = 0.5
+
     model_config = {"env_prefix": "DEJASHIP_"}
 
 

@@ -130,6 +130,15 @@ async def check_airspace(input: IntentInput, session: AsyncSession) -> CheckResp
                 threshold=settings.JACCARD_THRESHOLD,
                 min_keywords=settings.JACCARD_MIN_KEYWORDS,
             )
+    if settings.ENABLE_RERANKER:
+        from dejaship.reranker import rerank
+        intents = await run_in_threadpool(
+            rerank,
+            input.core_mechanic,
+            intents,
+            threshold=settings.RERANKER_THRESHOLD,
+            text_fn=lambda intent: intent.core_mechanic,
+        )
     closest = []
     for intent in intents:
         age_hours = (now - intent.created_at.astimezone(timezone.utc)).total_seconds() / 3600
