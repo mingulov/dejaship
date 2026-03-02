@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     VECTOR_DIMENSIONS: int = 768
 
     # Similarity search
-    SIMILARITY_THRESHOLD: float = 0.75
+    SIMILARITY_THRESHOLD: float = 0.60
     MAX_CLOSEST_RESULTS: int = 10
 
     # Keyword weighting

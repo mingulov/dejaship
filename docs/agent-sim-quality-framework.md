@@ -171,6 +171,18 @@ The suite should be treated as a regression harness for semantic behavior:
 - if a change improves one metric but damages false-positive rate badly, it is not an overall improvement
 - if a change improves same-model retrieval but hurts cross-model retrieval, it may reduce robustness for real clients
 
+Current measured recommendation from the default stored-fixture corpus:
+
+- keep the current combined embedding text strategy
+- keep `KEYWORD_REPEAT=2`
+- lower `SIMILARITY_THRESHOLD` from `0.75` to `0.60`
+
+Reason:
+
+- `0.75` preserved exact-match retrieval but collapsed cross-model overlap retrieval almost completely
+- `0.60` preserved exact retrieval while restoring useful related-overlap discovery
+- current combined text with `KEYWORD_REPEAT=2` remained the best balanced default among the tested text variants
+
 ## Current Command Set
 
 Run the offline suite:
