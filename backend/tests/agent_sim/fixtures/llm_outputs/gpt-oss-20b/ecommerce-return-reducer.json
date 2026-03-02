@@ -1,0 +1,235 @@
+{
+  "brief_id": "ecommerce-return-reducer",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "gpt-oss-20b",
+    "model_name": "openai/gpt-oss-20b",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "189912381d05d39c75260f53d9e2c431ba9aa4d52de2c10c385ca97305515b4f",
+    "prompt_hash": "e325b25b0d9044a4b77ce16704b31116497f097f8be251357ba560cce29c5e82",
+    "generated_at": "2026-03-02T08:05:42.131791Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"ecommerce-return-reducer\",\n  \"title\": \"Return reason clustering and save-offer workflow for specialty ecommerce brands\",\n  \"category\": \"commerce-ops\",\n  \"target_customer\": \"Specialty ecommerce brands with premium products, rising return rates, and small post-purchase support teams.\",\n  \"problem\": \"Brands collect return reasons, but they do not convert that data into save offers, product fixes, or recurring retention actions fast enough.\",\n  \"workflow\": \"Cluster return reasons, propose recovery playbooks, and route the right save offer before a return becomes a lost customer.\",\n  \"recurring_revenue_model\": \"Monthly subscription priced by order volume and saved revenue.\",\n  \"pricing_shape\": \"Base subscription with usage tiers tied to monthly return cases.\",\n  \"distribution_channel\": \"Ecommerce operators, retention agencies, and post-purchase optimization communities.\",\n  \"constraints\": [\n    \"Must help support teams act before the refund is final.\",\n    \"Needs enough structure to compare product and offer patterns over time.\",\n    \"Cannot require replacing help desk or order systems.\"\n  ],\n  \"must_have_features\": [\n    \"Return reason clustering\",\n    \"Save-offer recommendation queue\",\n    \"Product issue pattern reporting\",\n    \"Refund prevention workflow\"\n  ],\n  \"seed_keywords\": [\n    \"ecommerce\",\n    \"returns\",\n    \"save-offers\",\n    \"retention\",\n    \"refunds\",\n    \"support\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a warehouse returns platform.\",\n    \"Do not focus on giant retail enterprises first.\"\n  ],\n  \"success_metric\": \"More orders saved before refund completion and clearer insight into recurring return causes.\",\n  \"prompt_rendered_brief\": \"This product is a return reason clustering and save-offer workflow for specialty ecommerce brands that care about margin and customer lifetime value. Teams usually collect return tickets, but they do not turn that signal into immediate save offers, product fixes, or recurring retention decisions while the customer is still reachable. The software should cluster reasons, suggest recovery playbooks, and tell support which offer to try before the refund becomes final. A recurring subscription works well because brands face this workflow every week and the value comes from both immediate saves and pattern learning over time. The brief intentionally sits near subscription recovery and retention concepts so it can create ambiguous neighborhoods in simulation. A win means fewer preventable refunds and better learning from post-purchase friction.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-85fba2db6b38418dbeb5482ce0a7d0da",
+    "choices": [
+      {
+        "finish_reason": "tool_calls",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": null,
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-4fc7b5978b2e4ebebdd614eeaac79bed",
+              "function": {
+                "arguments": "{\"core_mechanic\": \"Subscription-based service that clusters return reasons and recommends real-time save offers to ecommerce brands, enabling support teams to prevent refunds and learn patterns.\", \"keywords\": [\"ecommerce-retail\", \"return-clustering\", \"save-offers\", \"subscription-revenue\", \"support-workflow\", \"order-volume\", \"refund-prevention\", \"product-issue-reporting\"]}",
+                "name": "GeneratedIntentDraft"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning": "We need to produce JSON with core_mechanic and keywords. Core mechanic under 250 characters. Keywords 5-12 lowercase alphanumeric or hyphenated. Avoid filler terms like app, ai, tool, platform unless discriminative. Focus on true commercial mechanism, target customer, recurring revenue path.\n\nTarget customer: specialty ecommerce brands with premium products, rising return rates, small post-purchase support teams.\n\nProblem: they collect return reasons but don't convert into save offers, product fixes, or retention actions fast enough.\n\nWorkflow: cluster return reasons, propose recovery playbooks, route right save offer before return becomes lost.\n\nRecurring revenue model: monthly subscription priced by order volume and saved revenue. Base subscription with usage tiers tied to monthly return cases.\n\nMust-have features: return reason clustering, save-offer recommendation queue, product issue pattern reporting, refund prevention workflow.\n\nConstraints: act before refund final, structure to compare patterns, no need to replace help desk or order systems.\n\nSo core mechanic: \"Subscription-based service that clusters return reasons and recommends real-time save offers to ecommerce brands, enabling support teams to prevent refunds and learn patterns.\"\n\nWe need under 250 chars. Let's count: \"Subscription-based service that clusters return reasons and recommends real-time save offers to ecommerce brands, enabling support teams to prevent refunds and learn patterns.\" Count: Let's approximate: Subscription-based(18) service(7) that(4) clusters(7) return(6) reasons(7) and(3) recommends(10) real-time(9) save(4) offers(6) to(2) ecommerce(9) brands,(7) enabling(8) support(7) teams(5) to(2) prevent(7) refunds(7) and(3) learn(5) patterns(8). Sum: 18+7+4+7+6+7+3+10+9+4+6+2+9+7+8+7+5+2+7+7+3+5+8 = let's add: 18+7=25, +4=29, +7=36, +6=42, +7=49, +3=52, +10=62, +9=71, +4=75, +6=81, +2=83, +9=92, +7=99, +8=107, +7=114, +5=119, +2=121, +7=128, +7=135, +3=138, +5=143, +8=151. 151 chars, fine.\n\nKeywords: need 5-12 lowercase alphanumeric or hyphenated. Should capture target customer, problem, workflow, recurring revenue, pricing shape, must-have features, constraints. Avoid filler. Let's propose: \"ecommerce-retail\", \"return-clustering\", \"save-offers\", \"subscription-revenue\", \"support-workflow\", \"order-volume\", \"refund-prevention\", \"product-issue-reporting\". That's 8 keywords. All lowercase, hyphenated allowed. All alphanumeric/hyphenated. Good.\n\nReturn strict JSON with core_mechanic and keywords.",
+          "reasoning_content": "We need to produce JSON with core_mechanic and keywords. Core mechanic under 250 characters. Keywords 5-12 lowercase alphanumeric or hyphenated. Avoid filler terms like app, ai, tool, platform unless discriminative. Focus on true commercial mechanism, target customer, recurring revenue path.\n\nTarget customer: specialty ecommerce brands with premium products, rising return rates, small post-purchase support teams.\n\nProblem: they collect return reasons but don't convert into save offers, product fixes, or retention actions fast enough.\n\nWorkflow: cluster return reasons, propose recovery playbooks, route right save offer before return becomes lost.\n\nRecurring revenue model: monthly subscription priced by order volume and saved revenue. Base subscription with usage tiers tied to monthly return cases.\n\nMust-have features: return reason clustering, save-offer recommendation queue, product issue pattern reporting, refund prevention workflow.\n\nConstraints: act before refund final, structure to compare patterns, no need to replace help desk or order systems.\n\nSo core mechanic: \"Subscription-based service that clusters return reasons and recommends real-time save offers to ecommerce brands, enabling support teams to prevent refunds and learn patterns.\"\n\nWe need under 250 chars. Let's count: \"Subscription-based service that clusters return reasons and recommends real-time save offers to ecommerce brands, enabling support teams to prevent refunds and learn patterns.\" Count: Let's approximate: Subscription-based(18) service(7) that(4) clusters(7) return(6) reasons(7) and(3) recommends(10) real-time(9) save(4) offers(6) to(2) ecommerce(9) brands,(7) enabling(8) support(7) teams(5) to(2) prevent(7) refunds(7) and(3) learn(5) patterns(8). Sum: 18+7+4+7+6+7+3+10+9+4+6+2+9+7+8+7+5+2+7+7+3+5+8 = let's add: 18+7=25, +4=29, +7=36, +6=42, +7=49, +3=52, +10=62, +9=71, +4=75, +6=81, +2=83, +9=92, +7=99, +8=107, +7=114, +5=119, +2=121, +7=128, +7=135, +3=138, +5=143, +8=151. 151 chars, fine.\n\nKeywords: need 5-12 lowercase alphanumeric or hyphenated. Should capture target customer, problem, workflow, recurring revenue, pricing shape, must-have features, constraints. Avoid filler. Let's propose: \"ecommerce-retail\", \"return-clustering\", \"save-offers\", \"subscription-revenue\", \"support-workflow\", \"order-volume\", \"refund-prevention\", \"product-issue-reporting\". That's 8 keywords. All lowercase, hyphenated allowed. All alphanumeric/hyphenated. Good.\n\nReturn strict JSON with core_mechanic and keywords."
+        },
+        "stop_reason": 200012,
+        "token_ids": null
+      }
+    ],
+    "created": 1772438736,
+    "model": "openai/gpt-oss-20b",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 741,
+      "prompt_tokens": 825,
+      "total_tokens": 1566,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "{\"core_mechanic\":\"Subscription-based service that clusters return reasons and recommends real-time save offers to ecommerce brands, enabling support teams to prevent refunds and learn patterns.\",\"keywords\":[\"ecommerce-retail\",\"return-clustering\",\"save-offers\",\"subscription-revenue\",\"support-workflow\",\"order-volume\",\"refund-prevention\",\"product-issue-reporting\"]}",
+  "llm_output": {
+    "core_mechanic": "Subscription-based service that clusters return reasons and recommends real-time save offers to ecommerce brands, enabling support teams to prevent refunds and learn patterns.",
+    "keywords": [
+      "ecommerce-retail",
+      "return-clustering",
+      "save-offers",
+      "subscription-revenue",
+      "support-workflow",
+      "order-volume",
+      "refund-prevention",
+      "product-issue-reporting"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "ecommerce-retail",
+      "return-clustering",
+      "save-offers",
+      "subscription-revenue",
+      "support-workflow",
+      "order-volume",
+      "refund-prevention",
+      "product-issue-reporting"
+    ],
+    "derived_keywords": [
+      "return",
+      "and",
+      "brands",
+      "reasons",
+      "refund",
+      "save",
+      "enough",
+      "into",
+      "offer",
+      "the",
+      "with",
+      "order",
+      "post-purchase",
+      "saved",
+      "actions",
+      "becomes",
+      "but",
+      "cluster",
+      "clustering",
+      "collect",
+      "convert",
+      "data",
+      "fast",
+      "fixes",
+      "help",
+      "issue",
+      "lost",
+      "not",
+      "offers",
+      "pattern",
+      "playbooks",
+      "premium",
+      "prevention",
+      "products",
+      "propose",
+      "queue",
+      "rates",
+      "reason",
+      "recommendation",
+      "recovery",
+      "right",
+      "rising",
+      "route",
+      "save-offer",
+      "specialty",
+      "that",
+      "priced",
+      "volume",
+      "act",
+      "cases",
+      "causes",
+      "clearer",
+      "commerce-ops",
+      "compare",
+      "completion",
+      "desk",
+      "final",
+      "insight",
+      "more",
+      "must",
+      "needs",
+      "orders",
+      "over",
+      "patterns",
+      "replacing",
+      "require",
+      "structure",
+      "systems",
+      "tied",
+      "tiers",
+      "time",
+      "usage",
+      "agencies",
+      "communities",
+      "optimization"
+    ],
+    "final_keywords": [
+      "ecommerce-retail",
+      "return-clustering",
+      "save-offers",
+      "subscription-revenue",
+      "support-workflow",
+      "order-volume",
+      "refund-prevention",
+      "product-issue-reporting",
+      "ecommerce",
+      "returns"
+    ],
+    "keyword_provenance": {
+      "ecommerce-retail": [
+        "llm"
+      ],
+      "return-clustering": [
+        "llm"
+      ],
+      "save-offers": [
+        "llm",
+        "seed_keywords"
+      ],
+      "subscription-revenue": [
+        "llm"
+      ],
+      "support-workflow": [
+        "llm"
+      ],
+      "order-volume": [
+        "llm"
+      ],
+      "refund-prevention": [
+        "llm"
+      ],
+      "product-issue-reporting": [
+        "llm"
+      ],
+      "ecommerce": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "seed_keywords"
+      ],
+      "returns": [
+        "seed_keywords"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Subscription-based service that clusters return reasons and recommends real-time save offers to ecommerce brands, enabling support teams to prevent refunds and learn patterns.",
+    "keywords": [
+      "ecommerce-retail",
+      "return-clustering",
+      "save-offers",
+      "subscription-revenue",
+      "support-workflow",
+      "order-volume",
+      "refund-prevention",
+      "product-issue-reporting",
+      "ecommerce",
+      "returns"
+    ]
+  },
+  "planned_resolution": "claim"
+}

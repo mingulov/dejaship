@@ -1,0 +1,258 @@
+{
+  "brief_id": "hvac-service-plan-ops",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "seed-oss-36b-instruct",
+    "model_name": "bytedance/seed-oss-36b-instruct",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "3d38917840b8c4b74a5ee33221af3266efa61f080303c55101d546d3f2c6ac07",
+    "prompt_hash": "f1d9f94aad4c84a2c898eb508dac598755ae265dcc8b0037c51a6bd85175d978",
+    "generated_at": "2026-03-02T07:50:06.415651Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"hvac-service-plan-ops\",\n  \"title\": \"Service plan renewals and dispatch prep for independent HVAC installers\",\n  \"category\": \"field-service\",\n  \"target_customer\": \"Independent HVAC installation and maintenance companies with three to twenty-five technicians.\",\n  \"problem\": \"Owners sell maintenance plans after every install, but renewals, seasonal reminders, and technician follow-up all live in spreadsheets that get ignored during busy periods.\",\n  \"workflow\": \"Capture every install, schedule renewal windows, queue outbound reminders, and feed daily prep lists to dispatch before technicians leave the warehouse.\",\n  \"recurring_revenue_model\": \"Annual maintenance plans with optional monthly financing for larger equipment protection bundles.\",\n  \"pricing_shape\": \"Base subscription plus per-technician seats once the team grows past five field staff.\",\n  \"distribution_channel\": \"Founder-led outbound to local HVAC operators plus accountant and distributor referrals.\",\n  \"constraints\": [\n    \"Must work well for phone-first teams who barely use desktop software during the day.\",\n    \"Needs simple seasonal campaigns that map to spring and fall tune-up demand.\",\n    \"Cannot require deep integrations with enterprise field-service suites.\"\n  ],\n  \"must_have_features\": [\n    \"Renewal pipeline with due-date visibility\",\n    \"Technician-ready morning call sheets\",\n    \"Plan upsell prompts after completed installs\",\n    \"Contact history for homeowners and landlords\"\n  ],\n  \"seed_keywords\": [\n    \"hvac\",\n    \"maintenance-plans\",\n    \"renewals\",\n    \"dispatch\",\n    \"homeowner\",\n    \"technician\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a full dispatch suite.\",\n    \"Do not target national franchise operators first.\"\n  ],\n  \"success_metric\": \"More renewal revenue captured per install cohort without adding office headcount.\",\n  \"prompt_rendered_brief\": \"The product is a service plan renewals and dispatch prep system for independent HVAC installers that already sell maintenance memberships but fail to renew them consistently. The buyer is usually the owner or office manager at a shop with a small technician team and a large seasonal backlog. They need a way to record every install, trigger the right reminder campaigns, and hand dispatch a clean list of homeowner conversations to make each morning. Revenue should come from recurring software subscriptions tied to the number of technicians and renewal volume, not from one-off setup work. The workflow must be light enough for phone-first teams that still run the business with shared inboxes, clipboards, and quick calls from the van. The ideal product increases renewal capture, smooths shoulder-season demand, and creates a repeatable service-plan process without replacing the company's existing dispatch software.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-09e3ed6e80514bfe975eb3c742a07ff6",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-8eda44f17cf343c587d9f09d30c406dd",
+              "function": {
+                "arguments": "{\n  \"core_mechanic\": \"A system for independent HVAC installers to automate maintenance plan renewals, seasonal reminders, and daily technician dispatch prep, with recurring revenue from subscription fees (base + per-tech seats) and optional plan financing.\",\n  \"keywords\": [\n    \"independent-hvac\",\n    \"maintenance-renewals\",\n    \"dispatch-prep\",\n    \"recurring-subscriptions\",\n    \"technician-seats\",\n    \"seasonal-reminders\",\n    \"homeowner-conversations\"\n  ]\n}",
+                "name": "GeneratedIntentDraft"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning_content": "\nGot it, let's tackle this step by step. First, I need to remember the requirements: core_mechanic under 250 characters, 5-12 lowercase keywords (alphanumeric/hyphenated), focusing on commercial mechanism, target customer, recurring revenue.\n\nStarting with core_mechanic. The key points from the brief: target is independent HVAC installers (3-25 techs), problem is spreadsheet chaos with renewals/reminders/dispatch prep, workflow is capture installs → schedule renewals → reminders → daily dispatch lists, recurring revenue is annual maintenance plans with optional monthly financing + base sub + per-tech seats after 5. So need to distill that concisely. Maybe: \"A system for independent HVAC installers to automate maintenance plan renewals, seasonal reminders, and daily technician dispatch prep, with recurring revenue from subscription fees (base + per-tech seats) and optional plan financing.\" Check character count—let me see, that's under 250.\n\nNext, keywords. Need 5-12, lowercase, alphanumeric/hyphenated. Focus on target customer (independent HVAC installers), commercial mechanism (renewals, subscription, dispatch prep), recurring revenue (maintenance-plans, financing). Seed keywords are given: hvac, maintenance-plans, renewals, dispatch, homeowner, technician. But need to make sure they're discriminative. Let's list possible:\n\n- hvac (from seed, target industry)\n- independent-hvac (target customer type, since anti-goal is national franchises)\n- maintenance-renewals (combines problem and core mechanic)\n- dispatch-prep (workflow key)\n- technician-seats (pricing shape: per-tech seats)\n- seasonal-reminders (constraints: simple seasonal campaigns)\n- recurring-subscriptions (recurring revenue model: base subscription)\n- homeowner-conversations (must-have: contact history, workflow feed to dispatch)\n\nWait, need to check: are they alphanumeric/hyphenated? Yes. Lowercase? Yes. Avoid filler: no \"app\", \"ai\", etc. Let's pick the most critical:\n\nFrom target customer: independent-hvac (since \"hvac\" is too broad, but \"independent-hvac\" is more specific)\nFrom problem/commercial mechanism: maintenance-renewals (core problem is renewal failure), dispatch-prep (key workflow)\nFrom recurring revenue: recurring-subscriptions (base + per-tech), technician-seats (pricing component)\nFrom must-have/workflow: seasonal-reminders (constraint: simple seasonal campaigns), homeowner-conversations (must-have: contact history for homeowners, fed to dispatch)\n\nWait, let's count: independent-hvac, maintenance-renewals, dispatch-prep, recurring-subscriptions, technician-seats, seasonal-reminders, homeowner-conversations—that's 7, which is within 5-12. Let's check if they're discriminative:\n\n- independent-hvac: yes, target customer is independent, not national franchises.\n- maintenance-renewals: core problem and revenue driver.\n- dispatch-prep: key workflow output (daily prep lists to dispatch).\n- recurring-subscriptions: recurring revenue model (base + per-tech).\n- technician-seats: pricing shape component (per-technician after 5).\n- seasonal-reminders: constraint (must have simple seasonal campaigns for spring/fall tune-ups).\n- homeowner-conversations: must-have (contact history for homeowners, fed to dispatch) and part of workflow.\n\nAre any filler? No. Do they cover target customer, commercial mechanism, recurring revenue? Yes.\n\nLet me refine core_mechanic again to be more concise: Maybe \"A system for independent HVAC installers to automate maintenance plan renewals, seasonal reminders, and daily technician dispatch prep, with recurring revenue from subscription fees (base + per-tech seats) and optional plan financing.\" Let's check character count: Let's see, that's 237 characters, which is under 250. Perfect.\n\nKeywords: Let's list final ones: independent-hvac, maintenance-renewals, dispatch-prep, recurring-subscriptions, technician-seats, seasonal-reminders, homeowner-conversations. That's 7, all meet requirements.\n\nWait, let's check if \"homeowner-conversations\" is necessary—yes, because the workflow feeds daily prep lists with homeowner conversations to dispatch, and it's a must-have feature (contact history for homeowners). \"Seasonal-reminders\" is a constraint (must work for simple seasonal campaigns) and part of the workflow (queue outbound reminders). \"Technician-seats\" is directly from pricing shape. \"Recurring-subscriptions\" from recurring revenue model. \"Maintenance-renewals\" from problem and core mechanic. \"Dispatch-prep\" from workflow. \"Independent-hvac\" from target customer (independent, not national). \n\nYes, that all fits. Let me confirm no filler: none of the keywords are \"app\", \"ai\", \"tool\", \"platform\". Perfect."
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772437778,
+    "model": "bytedance/seed-oss-36b-instruct",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1187,
+      "prompt_tokens": 940,
+      "total_tokens": 2127,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "{\"core_mechanic\":\"A system for independent HVAC installers to automate maintenance plan renewals, seasonal reminders, and daily technician dispatch prep, with recurring revenue from subscription fees (base + per-tech seats) and optional plan financing.\",\"keywords\":[\"independent-hvac\",\"maintenance-renewals\",\"dispatch-prep\",\"recurring-subscriptions\",\"technician-seats\",\"seasonal-reminders\",\"homeowner-conversations\"]}",
+  "llm_output": {
+    "core_mechanic": "A system for independent HVAC installers to automate maintenance plan renewals, seasonal reminders, and daily technician dispatch prep, with recurring revenue from subscription fees (base + per-tech seats) and optional plan financing.",
+    "keywords": [
+      "independent-hvac",
+      "maintenance-renewals",
+      "dispatch-prep",
+      "recurring-subscriptions",
+      "technician-seats",
+      "seasonal-reminders",
+      "homeowner-conversations"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "independent-hvac",
+      "maintenance-renewals",
+      "dispatch-prep",
+      "recurring-subscriptions",
+      "technician-seats",
+      "seasonal-reminders",
+      "homeowner-conversations"
+    ],
+    "derived_keywords": [
+      "and",
+      "with",
+      "maintenance",
+      "install",
+      "renewal",
+      "for",
+      "reminders",
+      "technicians",
+      "the",
+      "plans",
+      "during",
+      "seasonal",
+      "that",
+      "outbound",
+      "all",
+      "busy",
+      "but",
+      "call",
+      "capture",
+      "completed",
+      "contact",
+      "due-date",
+      "feed",
+      "field-service",
+      "follow-up",
+      "get",
+      "history",
+      "homeowners",
+      "ignored",
+      "independent",
+      "installation",
+      "installs",
+      "landlords",
+      "leave",
+      "lists",
+      "live",
+      "morning",
+      "periods",
+      "pipeline",
+      "plan",
+      "prep",
+      "prompts",
+      "queue",
+      "schedule",
+      "sell",
+      "sheets",
+      "spreadsheets",
+      "technician-ready",
+      "three",
+      "twenty-five",
+      "upsell",
+      "visibility",
+      "warehouse",
+      "windows",
+      "bundles",
+      "equipment",
+      "financing",
+      "larger",
+      "optional",
+      "plus",
+      "protection",
+      "adding",
+      "barely",
+      "campaigns",
+      "captured",
+      "cohort",
+      "day",
+      "deep",
+      "demand",
+      "desktop",
+      "enterprise",
+      "fall",
+      "field",
+      "five",
+      "grows",
+      "headcount",
+      "integrations",
+      "map",
+      "more",
+      "must",
+      "needs",
+      "office",
+      "once",
+      "past",
+      "per-technician",
+      "phone-first",
+      "require",
+      "seats",
+      "simple",
+      "spring",
+      "staff",
+      "suites",
+      "team",
+      "tune-up",
+      "use",
+      "well",
+      "who",
+      "without",
+      "work",
+      "accountant",
+      "distributor",
+      "founder-led",
+      "referrals"
+    ],
+    "final_keywords": [
+      "independent-hvac",
+      "maintenance-renewals",
+      "dispatch-prep",
+      "recurring-subscriptions",
+      "technician-seats",
+      "seasonal-reminders",
+      "homeowner-conversations",
+      "hvac",
+      "maintenance-plans",
+      "renewals"
+    ],
+    "keyword_provenance": {
+      "independent-hvac": [
+        "llm"
+      ],
+      "maintenance-renewals": [
+        "llm"
+      ],
+      "dispatch-prep": [
+        "llm"
+      ],
+      "recurring-subscriptions": [
+        "llm"
+      ],
+      "technician-seats": [
+        "llm"
+      ],
+      "seasonal-reminders": [
+        "llm"
+      ],
+      "homeowner-conversations": [
+        "llm"
+      ],
+      "hvac": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "seed_keywords"
+      ],
+      "maintenance-plans": [
+        "seed_keywords"
+      ],
+      "renewals": [
+        "field:problem",
+        "seed_keywords"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "A system for independent HVAC installers to automate maintenance plan renewals, seasonal reminders, and daily technician dispatch prep, with recurring revenue from subscription fees (base + per-tech seats) and optional plan financing.",
+    "keywords": [
+      "independent-hvac",
+      "maintenance-renewals",
+      "dispatch-prep",
+      "recurring-subscriptions",
+      "technician-seats",
+      "seasonal-reminders",
+      "homeowner-conversations",
+      "hvac",
+      "maintenance-plans",
+      "renewals"
+    ]
+  },
+  "planned_resolution": "claim"
+}

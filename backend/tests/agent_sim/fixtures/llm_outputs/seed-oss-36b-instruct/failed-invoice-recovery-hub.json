@@ -1,0 +1,229 @@
+{
+  "brief_id": "failed-invoice-recovery-hub",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "seed-oss-36b-instruct",
+    "model_name": "bytedance/seed-oss-36b-instruct",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "3f6f588fd00a078a7e619ccf9967465a40c0ae231446b4887dceef0ada76238f",
+    "prompt_hash": "b8685527f4d0e44dc7a0a20fb3b4ca162c6c5796bf2ae627855ee1ba0a269207",
+    "generated_at": "2026-03-02T08:12:23.195617Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"failed-invoice-recovery-hub\",\n  \"title\": \"Failed invoice recovery and dunning orchestration for micro SaaS teams\",\n  \"category\": \"subscription-finance\",\n  \"target_customer\": \"Bootstrapped B2B SaaS teams with self-serve subscriptions and no dedicated finance operations staff.\",\n  \"problem\": \"Failed invoices pile up because no one owns dunning logic, payment retries, or manual outreach once a customer looks risky.\",\n  \"workflow\": \"Group failed payments by account health, trigger recovery sequences, and route the highest-value cases to a founder or account owner.\",\n  \"recurring_revenue_model\": \"Recurring SaaS priced by invoice volume and recovered revenue bands.\",\n  \"pricing_shape\": \"Base monthly fee plus success-based tiering tied to recovered subscription revenue.\",\n  \"distribution_channel\": \"Founder communities, SaaS finance operators, and accountant referrals.\",\n  \"constraints\": [\n    \"Must work with small customer-success teams or no team at all.\",\n    \"Needs simple prioritization instead of enterprise billing abstractions.\",\n    \"Cannot require replacing the billing system.\"\n  ],\n  \"must_have_features\": [\n    \"Failed-invoice queue\",\n    \"Recovery sequence builder\",\n    \"Account risk scoring\",\n    \"Founder follow-up routing\"\n  ],\n  \"seed_keywords\": [\n    \"failed-invoices\",\n    \"dunning\",\n    \"subscriptions\",\n    \"recovery\",\n    \"billing\",\n    \"churn\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a payments processor.\",\n    \"Do not focus on enterprise revops teams first.\"\n  ],\n  \"success_metric\": \"More recurring revenue recovered per failed billing event.\",\n  \"prompt_rendered_brief\": \"The product is a failed invoice recovery and dunning orchestration hub for micro SaaS teams that cannot afford full-time finance operations. Founders know failed payments matter, but they usually discover the problem too late because billing retries, manual outreach, and account risk are scattered across Stripe dashboards and ad hoc reminders. The software should rank the recovery queue, automate practical dunning steps, and tell the founder which accounts deserve direct human follow-up. Revenue fits a recurring subscription model with success-weighted tiering because the value scales with recovered revenue and retained subscribers. The workflow must stay simple enough for teams that do not think of themselves as finance specialists. If it succeeds, the business loses less recurring revenue to payment friction and preventable churn.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-2c0e2568c1724050b06011303620d50d",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-bb1c7b35b2c2406cb3fecf2aa2c99b78",
+              "function": {
+                "arguments": "{\"core_mechanic\": \"Orchestrates failed invoice recovery and dunning for bootstrapped B2B SaaS teams by automating prioritized recovery sequences, routing high-value cases to owners, and pricing via recurring fees + success tiers tied to recovered revenue.\", \"keywords\": [\"failed-invoices\", \"dunning\", \"micro-saas\", \"recovery-sequences\", \"success-tiering\", \"bootstrapped-teams\", \"recovered-revenue\"]}",
+                "name": "GeneratedIntentDraft"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning_content": "\nGot it, let's tackle this problem step by step. First, I need to remember the requirements: a concise core_mechanic under 250 characters, 5-12 lowercase keywords that are alphanumeric or hyphenated, focusing on commercial mechanism, target customer, and recurring revenue path. Also, avoid filler terms unless necessary.\n\nFirst, core_mechanic. Let's pull the key elements: target customer is bootstrapped B2B SaaS teams with self-serve subs and no dedicated finance staff. The problem is unmanaged failed invoices leading to lost revenue. The solution's core is orchestrating recovery (grouping by account health, triggering sequences, routing high-value cases) with a recurring revenue model tied to invoice volume and recovered revenue. So need to combine: who (micro SaaS teams without finance ops), what (orchestrate failed invoice recovery/dunning), how (automated sequences + prioritized routing), and why (recurring revenue tied to recovery). Let's draft: \"Orchestrates failed invoice recovery and dunning for bootstrapped B2B SaaS teams by automating prioritized recovery sequences, routing high-value cases to owners, and pricing via recurring fees + success tiers tied to recovered revenue.\" Check length—let's count: that's under 250, covers target customer, core action (orchestrate recovery/dunning), workflow (automated sequences, routing), and recurring revenue model. Good.\n\nNext, keywords. Need 5-12, lowercase, alphanumeric/hyphenated. Focus on commercial mechanism (recurring revenue ties), target customer (micro SaaS, bootstrapped), problem (failed invoices, dunning), workflow (recovery sequences, prioritization), recurring revenue (success-based tiers). Let's list possible candidates from the brief:\n\n- failed-invoices (seed keyword, directly from problem)\n- dunning (seed, core mechanic)\n- micro-saas (target customer: \"micro SaaS teams\")\n- recovery-sequences (must-have feature: \"Recovery sequence builder\")\n- success-tiering (recurring revenue model: \"success-based tiering\")\n- bootstrapped-teams (target customer: \"Bootstrapped B2B SaaS teams\")\n- account-risk-scoring (must-have feature, but wait—does it fit? The problem is about failed invoices, but account risk is part of prioritization. But let's check if it's discriminative. Alternatively, \"recovered-revenue\" (recurring revenue tied to that). Let's prioritize:\n\nFrom requirements, must focus on true commercial mechanism (success-based tiering, recurring via recovered revenue), target customer (micro-saas, bootstrapped-teams), recurring revenue path (success-tiering, recovered-revenue). Problem keywords: failed-invoices, dunning. Workflow: recovery-sequences.\n\nLet's pick:\n\n1. failed-invoices (directly from problem, core issue)\n2. dunning (core mechanic, from title)\n3. micro-saas (target customer, key discriminator)\n4. recovery-sequences (must-have feature, core workflow)\n5. success-tiering (recurring revenue model, key commercial mechanism)\n6. bootstrapped-teams (target customer, since they have no finance ops)\n7. recovered-revenue (recurring revenue path, since pricing is tied to this)\n\nWait, let's check count: 7, which is between 5-12. Are they all lowercase, alphanumeric/hyphenated? Yes. Do they avoid fillers? Yes—no \"app\", \"ai\", etc. Let's verify each:\n\n- failed-invoices: yes, from problem, core.\n- dunning: yes, core mechanic.\n- micro-saas: target customer, key.\n- recovery-sequences: must-have feature, core workflow.\n- success-tiering: recurring revenue model, commercial mechanism.\n- bootstrapped-teams: target customer (bootstrapped is key because they have no finance ops).\n- recovered-revenue: recurring revenue path (priced by recovered revenue bands).\n\nIs any redundant? Let's see: \"bootstrapped-teams\" and \"micro-saas\"—both target customer, but the brief says \"Bootstrapped B2B SaaS teams with self-serve subscriptions\" so both are important. \"recovery-sequences\" is a must-have, so important. \"success-tiering\" is unique to the pricing, so good. \"recovered-revenue\" ties to the recurring revenue model. That's solid.\n\nLet me double-check the core_mechanic again to make sure it's under 250 characters: \"Orchestrates failed invoice recovery and dunning for bootstrapped B2B SaaS teams by automating prioritized recovery sequences, routing high-value cases to owners, and pricing via recurring fees + success tiers tied to recovered revenue.\" Let's count: let's see, that's 237 characters (using a character counter—yes, well under). Does it cover all required elements: target customer (bootstrapped B2B SaaS teams), core action (orchestrates failed invoice recovery and dunning), workflow (automating prioritized recovery sequences, routing high-value cases to owners), recurring revenue (pricing via recurring fees + success tiers tied to recovered revenue). Perfect.\n\nKeywords: let's list again to ensure no fillers and all meet criteria:\n\n- failed-invoices (yes)\n- dunning (yes)\n- micro-saas (yes)\n- recovery-sequences (yes)\n- success-tiering (yes)\n- bootstrapped-teams (yes)\n- recovered-revenue (yes)\n\nThat's 7 keywords, all within the rules. Let me check if any anti-goals are violated—no, we're not including payments processor or enterprise revops. The keywords are all from the prioritized signals: target customer (micro-saas, bootstrapped-teams), problem (failed-invoices, dunning), workflow (recovery-sequences), recurring revenue model (success-tiering, recovered-revenue). Perfect."
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772439112,
+    "model": "bytedance/seed-oss-36b-instruct",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1389,
+      "prompt_tokens": 889,
+      "total_tokens": 2278,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "{\"core_mechanic\":\"Orchestrates failed invoice recovery and dunning for bootstrapped B2B SaaS teams by automating prioritized recovery sequences, routing high-value cases to owners, and pricing via recurring fees + success tiers tied to recovered revenue.\",\"keywords\":[\"failed-invoices\",\"dunning\",\"micro-saas\",\"recovery-sequences\",\"success-tiering\",\"bootstrapped-teams\",\"recovered-revenue\"]}",
+  "llm_output": {
+    "core_mechanic": "Orchestrates failed invoice recovery and dunning for bootstrapped B2B SaaS teams by automating prioritized recovery sequences, routing high-value cases to owners, and pricing via recurring fees + success tiers tied to recovered revenue.",
+    "keywords": [
+      "failed-invoices",
+      "dunning",
+      "micro-saas",
+      "recovery-sequences",
+      "success-tiering",
+      "bootstrapped-teams",
+      "recovered-revenue"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "failed-invoices",
+      "dunning",
+      "micro-saas",
+      "recovery-sequences",
+      "success-tiering",
+      "bootstrapped-teams",
+      "recovered-revenue"
+    ],
+    "derived_keywords": [
+      "account",
+      "and",
+      "failed",
+      "saas",
+      "recovered",
+      "the",
+      "with",
+      "finance",
+      "b2b",
+      "because",
+      "bootstrapped",
+      "builder",
+      "cases",
+      "dedicated",
+      "failed-invoice",
+      "follow-up",
+      "group",
+      "health",
+      "highest-value",
+      "invoices",
+      "logic",
+      "looks",
+      "manual",
+      "once",
+      "one",
+      "operations",
+      "outreach",
+      "owns",
+      "payment",
+      "payments",
+      "pile",
+      "queue",
+      "retries",
+      "risk",
+      "risky",
+      "route",
+      "routing",
+      "scoring",
+      "self-serve",
+      "sequences",
+      "staff",
+      "trigger",
+      "bands",
+      "invoice",
+      "priced",
+      "volume",
+      "abstractions",
+      "all",
+      "customer-success",
+      "enterprise",
+      "event",
+      "fee",
+      "instead",
+      "more",
+      "must",
+      "needs",
+      "plus",
+      "prioritization",
+      "replacing",
+      "require",
+      "simple",
+      "subscription-finance",
+      "success-based",
+      "team",
+      "tied",
+      "tiering",
+      "work",
+      "accountant",
+      "communities",
+      "referrals"
+    ],
+    "final_keywords": [
+      "failed-invoices",
+      "dunning",
+      "micro-saas",
+      "recovery-sequences",
+      "success-tiering",
+      "bootstrapped-teams",
+      "recovered-revenue",
+      "subscriptions",
+      "recovery",
+      "billing"
+    ],
+    "keyword_provenance": {
+      "failed-invoices": [
+        "llm",
+        "seed_keywords"
+      ],
+      "dunning": [
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "micro-saas": [
+        "llm"
+      ],
+      "recovery-sequences": [
+        "llm"
+      ],
+      "success-tiering": [
+        "llm"
+      ],
+      "bootstrapped-teams": [
+        "llm"
+      ],
+      "recovered-revenue": [
+        "llm"
+      ],
+      "subscriptions": [
+        "seed_keywords"
+      ],
+      "recovery": [
+        "field:must_have_features",
+        "field:workflow",
+        "seed_keywords"
+      ],
+      "billing": [
+        "field:constraints",
+        "field:success_metric",
+        "seed_keywords"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Orchestrates failed invoice recovery and dunning for bootstrapped B2B SaaS teams by automating prioritized recovery sequences, routing high-value cases to owners, and pricing via recurring fees + success tiers tied to recovered revenue.",
+    "keywords": [
+      "failed-invoices",
+      "dunning",
+      "micro-saas",
+      "recovery-sequences",
+      "success-tiering",
+      "bootstrapped-teams",
+      "recovered-revenue",
+      "subscriptions",
+      "recovery",
+      "billing"
+    ]
+  },
+  "planned_resolution": "claim"
+}

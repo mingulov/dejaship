@@ -11,12 +11,12 @@ pytestmark = pytest.mark.agent_sim
 
 
 def test_fixture_replay_directory_structure_exists():
-    paths = iter_fixture_paths(version="v1")
+    paths = iter_fixture_paths()
     assert paths == [] or all(path.suffix == ".json" for path in paths)
 
 
 def test_stored_fixtures_validate_when_present():
-    fixture_paths = iter_fixture_paths(version="v1")
+    fixture_paths = iter_fixture_paths()
     if not fixture_paths:
         pytest.skip("no stored fixtures generated yet")
 
@@ -27,7 +27,7 @@ def test_stored_fixtures_validate_when_present():
 
 
 def test_stored_fixtures_match_current_catalog_and_prompt(agent_sim_catalog):
-    fixture_paths = iter_fixture_paths(version="v1")
+    fixture_paths = iter_fixture_paths()
     if not fixture_paths:
         pytest.skip("no stored fixtures generated yet")
 

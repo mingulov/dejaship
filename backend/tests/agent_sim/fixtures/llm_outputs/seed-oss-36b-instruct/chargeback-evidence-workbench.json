@@ -1,0 +1,227 @@
+{
+  "brief_id": "chargeback-evidence-workbench",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "seed-oss-36b-instruct",
+    "model_name": "bytedance/seed-oss-36b-instruct",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "db05c25d23eae635dbf534a9b9437d14969d5ced8dcd4145584fbe6f074f05d3",
+    "prompt_hash": "f91cbf49226368a921c8c56ecb49b331a6b88d74d9aed1f1b92bd67ca792b489",
+    "generated_at": "2026-03-02T08:12:52.404948Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"chargeback-evidence-workbench\",\n  \"title\": \"Chargeback evidence workflow for indie subscription software companies\",\n  \"category\": \"subscription-finance\",\n  \"target_customer\": \"Small software companies selling subscriptions globally and handling support with small founder-led teams.\",\n  \"problem\": \"Chargeback disputes are handled too late because evidence is scattered across help desks, billing systems, and product logs.\",\n  \"workflow\": \"Build evidence packets from subscriptions, support history, and usage events so disputes can be filed quickly and patterns can be learned.\",\n  \"recurring_revenue_model\": \"Monthly subscription tied to dispute volume with a premium reporting tier.\",\n  \"pricing_shape\": \"Tiered by active subscriptions and historical chargeback count.\",\n  \"distribution_channel\": \"Payments consultants, indie SaaS communities, and support-ops operators.\",\n  \"constraints\": [\n    \"Must work with lightweight billing and support stacks.\",\n    \"Needs clear timelines because dispute windows are short.\",\n    \"Should improve future prevention, not only create paperwork.\"\n  ],\n  \"must_have_features\": [\n    \"Evidence packet builder\",\n    \"Dispute deadline tracker\",\n    \"Usage event snapshotting\",\n    \"Chargeback pattern reporting\"\n  ],\n  \"seed_keywords\": [\n    \"chargebacks\",\n    \"evidence\",\n    \"subscriptions\",\n    \"disputes\",\n    \"support\",\n    \"billing\"\n  ],\n  \"anti_goals\": [\n    \"Do not operate as a merchant of record.\",\n    \"Do not require enterprise fraud tooling first.\"\n  ],\n  \"success_metric\": \"Faster dispute filing and lower recurring revenue loss from chargebacks.\",\n  \"prompt_rendered_brief\": \"This product is a chargeback evidence workflow for indie subscription software companies that sell online but do not have a real finance-ops bench. When disputes happen, the team scrambles through support threads, billing events, and product logs to assemble evidence, often missing deadlines or learning nothing for next time. The tool should create a structured evidence packet fast, track deadlines, and highlight the behavioral patterns behind recurring disputes. The monetization should be recurring SaaS tied to dispute volume and active subscriptions because the value compounds with consistent prevention and faster wins. The experience must stay approachable for founder-led teams using lightweight billing, product analytics, and help-desk tools. The success case is a measurable reduction in revenue lost to chargebacks and panic-driven manual work.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-14adf6434e6f411fb2f5f74c4420b8d0",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-9c5174e135c547a4affa9857cbc4bfa9",
+              "function": {
+                "arguments": "{\n  \"core_mechanic\": \"A workflow for small indie subscription companies to compile chargeback evidence from support, billing, and usage data, with monthly pricing tied to dispute volume and premium reporting to enable faster filings and reduce loss.\",\n  \"keywords\": [\"chargeback-evidence\", \"indie-subscriptions\", \"monthly-subscription\", \"dispute-volume-pricing\", \"small-founder-teams\", \"dispute-prevention\"]\n}",
+                "name": "GeneratedIntentDraft"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning_content": "\nGot it, let's tackle this problem step by step. First, I need to remember the requirements: a concise core_mechanic under 250 characters, 5-12 lowercase alphanumeric/hyphenated keywords focusing on commercial mechanism, target customer, and recurring revenue path.\n\nFirst, core_mechanic. I need to pull together the key elements: target customer (small indie subscription software companies), the problem (scattered evidence leading to late chargeback handling), the solution workflow (build evidence packets from subscriptions/support/usage), and the recurring revenue model (monthly subscription tied to dispute volume + premium reporting). Let me condense that without filler. Maybe: \"A workflow tool for small subscription software companies to automatically compile chargeback evidence from support, billing, and usage data, with monthly pricing tied to dispute volume and premium reporting tiers to enable faster filings and reduce revenue loss.\" Wait, check length—let me count. Let me trim: \"A workflow for small indie subscription companies to compile chargeback evidence from support, billing, and usage data, with monthly pricing tied to dispute volume and premium reporting to enable faster filings and reduce loss.\" Better, under 250.\n\nNext, keywords. Need 5-12, lowercase, alphanumeric/hyphenated. Focus on commercial mechanism (recurring revenue model: monthly subscription, dispute volume pricing), target customer (small indie subscription companies), problem/solution (chargeback evidence, dispute handling). The seed keywords are given: chargebacks, evidence, subscriptions, disputes, support, billing. But need to make sure they're discriminative and not filler. Let's see: \"chargeback-evidence\" (combines two key terms), \"subscription-companies\" (target customer), \"dispute-volume-pricing\" (recurring revenue model), \"evidence-packet-builder\" (must-have feature, but is it commercial? Wait, the requirement says focus on true commercial mechanism, target customer, recurring revenue path. So maybe \"monthly-subscription\" (recurring model), \"dispute-prevention\" (from constraints: improve future prevention), \"small-founder-teams\" (target customer: founder-led teams). Let's list possible:\n\nFrom target customer: small-founder-teams, indie-subscription-companies (but maybe too long; \"indie-subscriptions\" is shorter). From commercial mechanism: monthly-subscription, dispute-volume-pricing. From problem/solution: chargeback-evidence, dispute-filing, evidence-compilation. From constraints: dispute-prevention.\n\nLet's pick the most critical:\n\n1. chargeback-evidence (core problem/solution)\n2. indie-subscriptions (target customer's main offering)\n3. monthly-subscription (recurring revenue model)\n4. dispute-volume-pricing (pricing shape/recurring model)\n5. small-founder-teams (target customer: founder-led support)\n6. dispute-prevention (constraint: improve future prevention, which is part of value)\n\nCheck count: 6, which is between 5-12. Are they all lowercase, alphanumeric/hyphenated? Yes. Do they focus on commercial mechanism (monthly-subscription, dispute-volume-pricing), target customer (indie-subscriptions, small-founder-teams), recurring revenue path (monthly-subscription, dispute-volume-pricing)? Yes. Avoid filler: no \"app\", \"ai\", etc. Good.\n\nWait, let's check if \"indie-subscriptions\" is better than \"subscription-companies\"—since target customer is \"Small software companies selling subscriptions globally\" and \"indie\" is in the brief (title: \"indie subscription software companies\"). So \"indie-subscriptions\" is good. \"small-founder-teams\" is directly from target customer: \"handling support with small founder-led teams\". \"dispute-volume-pricing\" is from recurring revenue model: \"Monthly subscription tied to dispute volume\". \"chargeback-evidence\" is core problem/solution. \"monthly-subscription\" is recurring revenue model. \"dispute-prevention\" is from constraints: \"Should improve future prevention, not only create paperwork\" and success metric: \"lower recurring revenue loss from chargebacks\" (so prevention is key).\n\nIs there any filler? Let's see: no. All are discriminative. Let me make sure keywords are not repeating core_mechanic but complement it. Yes.\n\nNow, final check:\n\nCore_mechanic: Does it cover target customer (small indie subscription companies), problem (scattered evidence leading to late handling), solution (compile evidence from support/billing/usage), recurring revenue (monthly tied to dispute volume + premium reporting)? Let me refine again for conciseness: \"A workflow for small indie subscription companies to compile chargeback evidence from support, billing, and usage data, with monthly pricing tied to dispute volume and premium reporting to enable faster filings and reduce loss.\" That's concise, under 250.\n\nKeywords: Let's list them again to ensure 5-12: chargeback-evidence, indie-subscriptions, monthly-subscription, dispute-volume-pricing, small-founder-teams, dispute-prevention. That's 6, perfect.\n\nWait, does \"evidence-packet-builder\" count? It's a must-have feature, but the requirement says to focus on commercial mechanism, target customer, recurring revenue path. So \"evidence-packet-builder\" is a feature, not core commercial or target. So better to skip. \"dispute-deadline-tracker\" is another must-have, but same reason—feature, not commercial mechanism. So stick to the ones tied to commercial, target, recurring revenue.\n\nAnother check: Are keywords lowercase? Yes. Hyphenated or alphanumeric? Yes, all hyphenated, no spaces. Good.\n\nFinal JSON:\n\n{\n  \"core_mechanic\": \"A workflow for small indie subscription companies to compile chargeback evidence from support, billing, and usage data, with monthly pricing tied to dispute volume and premium reporting to enable faster filings and reduce loss.\",\n  \"keywords\": [\"chargeback-evidence\", \"indie-subscriptions\", \"monthly-subscription\", \"dispute-volume-pricing\", \"small-founder-teams\", \"dispute-prevention\"]\n}"
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772439141,
+    "model": "bytedance/seed-oss-36b-instruct",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1404,
+      "prompt_tokens": 878,
+      "total_tokens": 2282,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "{\"core_mechanic\":\"A workflow for small indie subscription companies to compile chargeback evidence from support, billing, and usage data, with monthly pricing tied to dispute volume and premium reporting to enable faster filings and reduce loss.\",\"keywords\":[\"chargeback-evidence\",\"indie-subscriptions\",\"monthly-subscription\",\"dispute-volume-pricing\",\"small-founder-teams\",\"dispute-prevention\"]}",
+  "llm_output": {
+    "core_mechanic": "A workflow for small indie subscription companies to compile chargeback evidence from support, billing, and usage data, with monthly pricing tied to dispute volume and premium reporting to enable faster filings and reduce loss.",
+    "keywords": [
+      "chargeback-evidence",
+      "indie-subscriptions",
+      "monthly-subscription",
+      "dispute-volume-pricing",
+      "small-founder-teams",
+      "dispute-prevention"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "chargeback-evidence",
+      "indie-subscriptions",
+      "monthly-subscription",
+      "dispute-volume-pricing",
+      "small-founder-teams",
+      "dispute-prevention"
+    ],
+    "derived_keywords": [
+      "and",
+      "dispute",
+      "chargeback",
+      "with",
+      "can",
+      "usage",
+      "are",
+      "because",
+      "from",
+      "across",
+      "builder",
+      "deadline",
+      "desks",
+      "event",
+      "events",
+      "filed",
+      "founder-led",
+      "globally",
+      "handled",
+      "handling",
+      "help",
+      "history",
+      "late",
+      "learned",
+      "logs",
+      "packet",
+      "packets",
+      "pattern",
+      "patterns",
+      "quickly",
+      "scattered",
+      "selling",
+      "snapshotting",
+      "systems",
+      "too",
+      "tracker",
+      "premium",
+      "tied",
+      "tier",
+      "volume",
+      "active",
+      "clear",
+      "count",
+      "create",
+      "faster",
+      "filing",
+      "future",
+      "historical",
+      "improve",
+      "lightweight",
+      "loss",
+      "must",
+      "needs",
+      "not",
+      "only",
+      "paperwork",
+      "prevention",
+      "short",
+      "should",
+      "stacks",
+      "subscription-finance",
+      "tiered",
+      "timelines",
+      "windows",
+      "work",
+      "communities",
+      "consultants",
+      "indie",
+      "payments",
+      "saas",
+      "support-ops"
+    ],
+    "final_keywords": [
+      "chargeback-evidence",
+      "indie-subscriptions",
+      "monthly-subscription",
+      "dispute-volume-pricing",
+      "small-founder-teams",
+      "dispute-prevention",
+      "chargebacks",
+      "evidence",
+      "subscriptions",
+      "disputes"
+    ],
+    "keyword_provenance": {
+      "chargeback-evidence": [
+        "llm"
+      ],
+      "indie-subscriptions": [
+        "llm"
+      ],
+      "monthly-subscription": [
+        "llm"
+      ],
+      "dispute-volume-pricing": [
+        "llm"
+      ],
+      "small-founder-teams": [
+        "llm"
+      ],
+      "dispute-prevention": [
+        "llm"
+      ],
+      "chargebacks": [
+        "field:success_metric",
+        "seed_keywords"
+      ],
+      "evidence": [
+        "field:must_have_features",
+        "field:problem",
+        "field:workflow",
+        "seed_keywords"
+      ],
+      "subscriptions": [
+        "seed_keywords"
+      ],
+      "disputes": [
+        "field:problem",
+        "field:workflow",
+        "seed_keywords"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "A workflow for small indie subscription companies to compile chargeback evidence from support, billing, and usage data, with monthly pricing tied to dispute volume and premium reporting to enable faster filings and reduce loss.",
+    "keywords": [
+      "chargeback-evidence",
+      "indie-subscriptions",
+      "monthly-subscription",
+      "dispute-volume-pricing",
+      "small-founder-teams",
+      "dispute-prevention",
+      "chargebacks",
+      "evidence",
+      "subscriptions",
+      "disputes"
+    ]
+  },
+  "planned_resolution": "claim"
+}

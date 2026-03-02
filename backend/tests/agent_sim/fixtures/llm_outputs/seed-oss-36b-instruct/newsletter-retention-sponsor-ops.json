@@ -1,0 +1,250 @@
+{
+  "brief_id": "newsletter-retention-sponsor-ops",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "seed-oss-36b-instruct",
+    "model_name": "bytedance/seed-oss-36b-instruct",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "4ed2e655e9ef2fde8d680aaef6f1a74a4ccd3a7484f73a010a834557a3eed9a4",
+    "prompt_hash": "be13c85243bc305f9aa2d61dd674410a0e3d30777c8a198c33fd90a9e6b49577",
+    "generated_at": "2026-03-02T08:11:03.781397Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"newsletter-retention-sponsor-ops\",\n  \"title\": \"Retention and sponsor pipeline operating system for paid niche newsletters\",\n  \"category\": \"creator-business\",\n  \"target_customer\": \"Independent newsletter publishers with paid subscriptions, occasional sponsorships, and no dedicated operations team.\",\n  \"problem\": \"Growth looks healthy until renewals soften, sponsor follow-up slips, and the creator realizes revenue concentration is worse than expected.\",\n  \"workflow\": \"Track cohorts, renewal risk, sponsor follow-ups, and content commitments inside one operational calendar built for a solo publisher.\",\n  \"recurring_revenue_model\": \"Recurring SaaS priced for creators with one or two operators and scaled by subscriber count.\",\n  \"pricing_shape\": \"Subscription based on paid subscriber bands with a higher tier for sponsor workflow automation.\",\n  \"distribution_channel\": \"Creator communities, newsletter operators, and partnerships with media accountants.\",\n  \"constraints\": [\n    \"Must work for one-person teams with limited setup patience.\",\n    \"Needs lightweight sponsor workflow without acting like a CRM monster.\",\n    \"Should support both B2C subscriptions and B2B sponsorship revenue.\"\n  ],\n  \"must_have_features\": [\n    \"Cohort renewal dashboard\",\n    \"Sponsor follow-up tracker\",\n    \"Calendar for issue commitments\",\n    \"Revenue concentration alerts\"\n  ],\n  \"seed_keywords\": [\n    \"newsletter\",\n    \"retention\",\n    \"sponsorships\",\n    \"subscriptions\",\n    \"cohorts\",\n    \"creator\"\n  ],\n  \"anti_goals\": [\n    \"Do not replace the newsletter sending platform.\",\n    \"Do not target large media companies first.\"\n  ],\n  \"success_metric\": \"Higher renewal rates and better sponsor follow-through for solo media businesses.\",\n  \"prompt_rendered_brief\": \"The product is a retention and sponsor pipeline operating system for paid niche newsletters run by solo creators or tiny teams. The business problem is not publishing itself; it is that subscription renewals, sponsor conversations, and issue commitments live across spreadsheets and inbox searches until revenue starts slipping. The software should give a publisher one place to see at-risk cohorts, pending sponsor follow-up, and which issue slots are already promised. Pricing should be a recurring subscription that scales with paid subscribers and expands when sponsorship workflow becomes valuable enough to automate. The system must stay lightweight because the target customer will abandon anything that feels like agency software or enterprise CRM. If it works, creators preserve recurring reader revenue while building a more reliable sponsorship pipeline.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-d15801296b464944bf9a7e6fb673e37f",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-577a57114bec4ca3a8c96e66b7a3dd89",
+              "function": {
+                "arguments": "{\n  \"core_mechanic\": \"A lightweight operating system for solo newsletter publishers to unify cohort retention tracking, sponsor follow-ups, and content calendars, with recurring SaaS pricing scaling by paid subscribers and a premium tier for automated sponsor workflows.\",\n  \"keywords\": [\"newsletter\", \"retention\", \"sponsorships\", \"subscriptions\", \"cohorts\", \"solo-publishers\", \"sponsor-followup\", \"subscriber-scaling\"]\n}",
+                "name": "GeneratedIntentDraft"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning_content": "\nGot it, let's tackle this step by step. First, I need to generate the core_mechanic. The requirements say it has to be concise, under 250 characters, and focus on the true commercial mechanism, target customer, and recurring revenue path. \n\nLooking at the brief: Target customer is independent newsletter publishers with paid subs, no dedicated ops team. The problem is renewal softening, sponsor follow-up slipping, revenue concentration. The workflow is a single operational calendar tracking cohorts, renewals, sponsor follow-ups, content commitments. Recurring revenue is SaaS priced for small teams, scaled by subscriber count with a higher tier for sponsor automation.\n\nSo core_mechanic should tie together: serving solo/tiny newsletter publishers, unifying retention (cohort tracking, renewals) and sponsor pipeline ops in a lightweight calendar, with SaaS pricing scaling by subs and sponsor workflow tiers. Need to keep it under 250 chars. Let me draft: \"A lightweight operating system for solo newsletter publishers to unify cohort retention tracking, sponsor follow-ups, and content calendars, with recurring SaaS pricing scaling by paid subscribers and a premium tier for automated sponsor workflows.\" Check length—probably okay.\n\nNext, keywords: 5-12 lowercase, alphanumeric or hyphenated, focus on commercial mechanism, target customer, recurring revenue. Avoid filler like app, AI, etc. Seed keywords are given: newsletter, retention, sponsorships, subscriptions, cohorts, creator. But need to make sure they're discriminative. Let's see:\n\nTarget customer: \"solo-publishers\" (since they're independent with no dedicated team, \"solo\" is key), \"creator\" (from seed). Problem/workflow: \"cohort-retention\" (combines cohort and retention, which is a must-have feature), \"sponsor-followup\" (from workflow and must-have). Recurring revenue: \"subscriber-scaling-pricing\" (since pricing scales by subscriber count) or maybe \"subscription-pricing\"? Wait, \"subscriptions\" is a seed keyword. Also, \"sponsor-automation\" (higher tier for that). Let's list possible:\n\n- newsletter (seed, core product focus)\n- retention (seed, key problem)\n- sponsorships (seed, key revenue stream)\n- subscriptions (seed, core revenue)\n- cohorts (seed, must-have feature)\n- solo-publishers (target customer, critical)\n- sponsor-followup (workflow, must-have)\n- subscriber-scaling (pricing shape, recurring revenue)\n- creator (seed, target category)\n\nWait, need to check: 5-12. Let's pick the most critical. Target customer: solo-publishers, creator. Commercial mechanism: cohort-retention (since it's about tracking at-risk cohorts for retention), sponsor-followup (workflow), subscriptions (core revenue), sponsorships (another revenue), subscriber-scaling (pricing model). Let's count: solo-publishers, creator, cohort-retention, sponsor-followup, subscriptions, sponsorships, subscriber-scaling. That's 7, which is good. Are they all lowercase, alphanumeric/hyphenated? Yes. Do they avoid fillers? Yes. Are they focused on commercial mechanism (cohort-retention, sponsor-followup, subscriber-scaling), target customer (solo-publishers, creator), recurring revenue (subscriptions, sponsorships, subscriber-scaling)? Yes.\n\nCheck if any are redundant: \"creator\" and \"solo-publishers\" are both target, but \"creator\" is in the category and seed, so okay. \"subscriptions\" and \"sponsorships\" are the two revenue streams. \"cohort-retention\" is the key retention mechanism. \"sponsor-followup\" is the key workflow for sponsorships. \"subscriber-scaling\" is the pricing model (recurring revenue path). That works.\n\nNow, final check: core_mechanic is concise, under 250. Let me trim if needed. Maybe: \"A lightweight OS for solo newsletter publishers to unify cohort retention tracking, sponsor follow-ups, and content calendars, with SaaS pricing scaling by paid subscribers and a premium tier for automated sponsor workflows.\" Yes, that's under 250.\n\nKeywords: [\"newsletter\", \"retention\", \"sponsorships\", \"subscriptions\", \"cohorts\", \"solo-publishers\", \"sponsor-followup\", \"subscriber-scaling\"] Wait, but the seed keywords include \"newsletter\", \"retention\", \"sponsorships\", \"subscriptions\", \"cohorts\", \"creator\". The user said to prioritize signal from target customer, problem, workflow, recurring revenue. So \"creator\" is a seed, but \"solo-publishers\" is more specific target customer. Maybe replace \"creator\" with \"solo-publishers\"? Because \"solo-publishers\" is more discriminative (target customer) than \"creator\" which is broader. The target customer is \"Independent newsletter publishers with paid subscriptions... no dedicated operations team\"—so \"solo-publishers\" is better. So keywords would be: newsletter, retention, sponsorships, subscriptions, cohorts, solo-publishers, sponsor-followup, subscriber-scaling. That's 8, which is within 5-12. All lowercase, hyphenated where needed. No fillers. Perfect."
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772439036,
+    "model": "bytedance/seed-oss-36b-instruct",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1249,
+      "prompt_tokens": 896,
+      "total_tokens": 2145,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "{\"core_mechanic\":\"A lightweight operating system for solo newsletter publishers to unify cohort retention tracking, sponsor follow-ups, and content calendars, with recurring SaaS pricing scaling by paid subscribers and a premium tier for automated sponsor workflows.\",\"keywords\":[\"newsletter\",\"retention\",\"sponsorships\",\"subscriptions\",\"cohorts\",\"solo-publishers\",\"sponsor-followup\",\"subscriber-scaling\"]}",
+  "llm_output": {
+    "core_mechanic": "A lightweight operating system for solo newsletter publishers to unify cohort retention tracking, sponsor follow-ups, and content calendars, with recurring SaaS pricing scaling by paid subscribers and a premium tier for automated sponsor workflows.",
+    "keywords": [
+      "newsletter",
+      "retention",
+      "sponsorships",
+      "subscriptions",
+      "cohorts",
+      "solo-publishers",
+      "sponsor-followup",
+      "subscriber-scaling"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "newsletter",
+      "retention",
+      "sponsorships",
+      "subscriptions",
+      "cohorts",
+      "solo-publishers",
+      "sponsor-followup",
+      "subscriber-scaling"
+    ],
+    "derived_keywords": [
+      "and",
+      "sponsor",
+      "for",
+      "with",
+      "renewal",
+      "calendar",
+      "commitments",
+      "concentration",
+      "follow-up",
+      "one",
+      "paid",
+      "solo",
+      "subscriber",
+      "alerts",
+      "cohort",
+      "content",
+      "dashboard",
+      "dedicated",
+      "expected",
+      "follow-ups",
+      "healthy",
+      "independent",
+      "inside",
+      "issue",
+      "looks",
+      "occasional",
+      "operational",
+      "operations",
+      "publisher",
+      "publishers",
+      "realizes",
+      "renewals",
+      "risk",
+      "slips",
+      "soften",
+      "team",
+      "than",
+      "the",
+      "track",
+      "tracker",
+      "until",
+      "worse",
+      "count",
+      "creators",
+      "media",
+      "priced",
+      "saas",
+      "scaled",
+      "two",
+      "acting",
+      "automation",
+      "b2b",
+      "b2c",
+      "bands",
+      "based",
+      "better",
+      "both",
+      "creator-business",
+      "crm",
+      "follow-through",
+      "lightweight",
+      "like",
+      "limited",
+      "monster",
+      "must",
+      "needs",
+      "one-person",
+      "patience",
+      "rates",
+      "setup",
+      "should",
+      "sponsorship",
+      "support",
+      "tier",
+      "without",
+      "work",
+      "accountants",
+      "communities",
+      "partnerships"
+    ],
+    "final_keywords": [
+      "newsletter",
+      "retention",
+      "sponsorships",
+      "subscriptions",
+      "cohorts",
+      "solo-publishers",
+      "sponsor-followup",
+      "subscriber-scaling",
+      "creator",
+      "and"
+    ],
+    "keyword_provenance": {
+      "newsletter": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "retention": [
+        "llm",
+        "seed_keywords"
+      ],
+      "sponsorships": [
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "subscriptions": [
+        "llm",
+        "seed_keywords"
+      ],
+      "cohorts": [
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "solo-publishers": [
+        "llm"
+      ],
+      "sponsor-followup": [
+        "llm"
+      ],
+      "subscriber-scaling": [
+        "llm"
+      ],
+      "creator": [
+        "field:distribution_channel",
+        "field:problem",
+        "seed_keywords"
+      ],
+      "and": [
+        "field:constraints",
+        "field:distribution_channel",
+        "field:problem",
+        "field:recurring_revenue_model",
+        "field:success_metric",
+        "field:target_customer",
+        "field:workflow"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "A lightweight operating system for solo newsletter publishers to unify cohort retention tracking, sponsor follow-ups, and content calendars, with recurring SaaS pricing scaling by paid subscribers and a premium tier for automated sponsor workflows.",
+    "keywords": [
+      "newsletter",
+      "retention",
+      "sponsorships",
+      "subscriptions",
+      "cohorts",
+      "solo-publishers",
+      "sponsor-followup",
+      "subscriber-scaling",
+      "creator",
+      "and"
+    ]
+  },
+  "planned_resolution": "claim"
+}

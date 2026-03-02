@@ -1,68 +1,245 @@
 sets:
   smoke:
-    - nim-default
-    - nim-fast
+    - step-3-5-flash
+    - llama-3-1-8b-instruct
   default:
-    - nim-default
-    - nim-fast
-    - nim-balanced
-    - nim-reasoning
+    - step-3-5-flash
+    - llama-3-1-8b-instruct
+    - phi-4-mini-instruct
+    - qwen2-5-coder-32b-instruct
+  expanded:
+    - step-3-5-flash
+    - llama-3-1-8b-instruct
+    - phi-4-mini-instruct
+    - phi-3-5-mini-instruct
+    - gemma-2-9b-it
+    - deepseek-r1-distill-llama-8b
+    - qwq-32b
+    - magistral-small-2506
+    - ministral-14b-instruct-2512
+    - seed-oss-36b-instruct
+    - stockmark-2-100b-instruct
+    - mistral-medium-3
+    - gpt-oss-120b
+    - gpt-oss-20b
+    - qwen2-5-coder-32b-instruct
+    - llama-3-3-nemotron-super-49b-v1
+    - llama-3-3-70b-instruct
   nightly:
-    - nim-default
-    - nim-fast
-    - nim-balanced
-    - nim-reasoning
-    - nim-llama70
-    - nim-qwen72
-    - nim-mixtral
-    - nim-llama405
+    - step-3-5-flash
+    - llama-3-1-8b-instruct
+    - phi-4-mini-instruct
+    - phi-3-5-mini-instruct
+    - gemma-2-9b-it
+    - deepseek-r1-distill-llama-8b
+    - qwq-32b
+    - magistral-small-2506
+    - ministral-14b-instruct-2512
+    - seed-oss-36b-instruct
+    - stockmark-2-100b-instruct
+    - mistral-medium-3
+    - gpt-oss-120b
+    - gpt-oss-20b
+    - qwen2-5-coder-32b-instruct
+    - llama-3-3-nemotron-super-49b-v1
+    - llama-3-3-70b-instruct
 
 models:
-  nim-default:
+  step-3-5-flash:
     model: stepfun-ai/step-3.5-flash
     role: default
     weight: 5
     enabled: true
-    notes: Mirrors the local default model selection used for initial live fixture generation.
-  nim-fast:
+    notes: Fast general-purpose baseline for initial live fixture generation.
+  llama-3-1-8b-instruct:
     model: meta/llama-3.1-8b-instruct
     role: cheap
     weight: 4
     enabled: true
     notes: Fast low-cost baseline for broad fixture coverage.
-  nim-balanced:
+  mixtral-8x7b-instruct-v0-1:
     model: mistralai/mixtral-8x7b-instruct-v0.1
     role: balanced
     weight: 4
     enabled: true
     notes: General-purpose mixture model for medium-complexity briefs.
-  nim-reasoning:
+  deepseek-r1-distill-llama-70b:
     model: deepseek-ai/deepseek-r1-distill-llama-70b
     role: reasoning
     weight: 2
-    enabled: true
+    enabled: false
     notes: Higher-latency reasoning model for revisions and crowded airspace prompts.
-  nim-llama70:
-    model: meta/llama-3.1-70b-instruct
-    role: large
+  deepseek-r1-distill-llama-8b:
+    model: deepseek-ai/deepseek-r1-distill-llama-8b
+    role: reasoning
     weight: 2
     enabled: true
-    notes: Larger Llama variant for extended nightly fixture generation.
-  nim-qwen72:
-    model: qwen/qwen2.5-72b-instruct
-    role: large
+    notes: Smaller reasoning-distill model for broad observed-available coverage.
+  kimi-k2-instruct:
+    model: moonshotai/kimi-k2-instruct
+    role: reasoning
     weight: 2
-    enabled: true
-    notes: Useful contrast model with different keyword phrasing tendencies.
-  nim-mixtral:
-    model: mistralai/mixtral-8x22b-instruct-v0.1
-    role: large
-    weight: 1
-    enabled: true
-    notes: Nightly-only model for diversity in longer prompts.
-  nim-llama405:
-    model: meta/llama-3.1-405b-instruct
-    role: frontier
+    enabled: false
+    notes: Present in the catalog, but kept disabled until endpoint support is confirmed.
+  kimi-k2-instruct-0905:
+    model: moonshotai/kimi-k2-instruct-0905
+    role: reasoning
+    weight: 2
+    enabled: false
+    notes: Kept disabled until endpoint support is confirmed.
+  kimi-k2-thinking:
+    model: moonshotai/kimi-k2-thinking
+    role: reasoning
     weight: 1
     enabled: false
-    notes: Placeholder for expensive frontier runs; disabled by default.
+    notes: Shows intermittent overloads, so keep it out of automated runs.
+  minimax-m2:
+    model: minimaxai/minimax-m2
+    role: agentic
+    weight: 2
+    enabled: false
+    notes: Kept disabled until endpoint support is confirmed.
+  minimax-m2-5:
+    model: minimaxai/minimax-m2.5
+    role: agentic
+    weight: 2
+    enabled: false
+    notes: Kept disabled until endpoint support is confirmed.
+  phi-4-mini-instruct:
+    model: microsoft/phi-4-mini-instruct
+    role: cheap
+    weight: 2
+    enabled: true
+    notes: Lightweight instruct model useful for latency-sensitive coverage.
+  phi-4-mini-flash-reasoning:
+    model: microsoft/phi-4-mini-flash-reasoning
+    role: reasoning
+    weight: 1
+    enabled: true
+    notes: Useful as a small reasoning-oriented contrast model.
+  phi-3-5-mini-instruct:
+    model: microsoft/phi-3.5-mini-instruct
+    role: cheap
+    weight: 1
+    enabled: true
+    notes: Small multilingual model useful for compact-model diversity.
+  gemma-2-9b-it:
+    model: google/gemma-2-9b-it
+    role: cheap
+    weight: 1
+    enabled: true
+    notes: Compact contrast model with distinct phrasing tendencies.
+  mistral-nemotron:
+    model: mistralai/mistral-nemotron
+    role: agentic
+    weight: 1
+    enabled: false
+    notes: Kept disabled until endpoint support is confirmed.
+  qwen3-next-80b-a3b-instruct:
+    model: qwen/qwen3-next-80b-a3b-instruct
+    role: reasoning
+    weight: 1
+    enabled: false
+    notes: Kept disabled until endpoint support is confirmed.
+  qwq-32b:
+    model: qwen/qwq-32b
+    role: reasoning
+    weight: 2
+    enabled: true
+    notes: Reasoning-heavy model with good contrast against smaller instruct models.
+  magistral-small-2506:
+    model: mistralai/magistral-small-2506
+    role: reasoning
+    weight: 1
+    enabled: true
+    notes: Compact reasoning model.
+  ministral-14b-instruct-2512:
+    model: mistralai/ministral-14b-instruct-2512
+    role: cheap
+    weight: 1
+    enabled: true
+    notes: Smaller Mistral-family contrast model.
+  seed-oss-36b-instruct:
+    model: bytedance/seed-oss-36b-instruct
+    role: balanced
+    weight: 1
+    enabled: true
+    notes: Balanced contrast model for mid-sized prompts.
+  stockmark-2-100b-instruct:
+    model: stockmark/stockmark-2-100b-instruct
+    role: balanced
+    weight: 1
+    enabled: true
+    notes: Additional contrast model for longer-context enterprise-style prompts.
+  mistral-medium-3:
+    model: mistralai/mistral-medium-3
+    role: balanced
+    weight: 1
+    enabled: true
+    notes: Mid-range general-purpose model for broader prompt-style coverage.
+  gpt-oss-120b:
+    model: openai/gpt-oss-120b
+    role: reasoning
+    weight: 1
+    enabled: true
+    notes: Large reasoning-focused contrast model.
+  gpt-oss-20b:
+    model: openai/gpt-oss-20b
+    role: cheap
+    weight: 1
+    enabled: true
+    notes: Low-latency contrast model for deterministic fixture generation.
+  llama-3-3-nemotron-super-49b-v1:
+    model: nvidia/llama-3_3-nemotron-super-49b-v1
+    role: reasoning
+    weight: 1
+    enabled: true
+    notes: Large reasoning-oriented contrast model.
+  nvidia-nemotron-nano-9b-v2-dgx-spark:
+    model: nvidia/nvidia-nemotron-nano-9b-v2-dgx-spark
+    role: cheap
+    weight: 1
+    enabled: false
+    notes: Kept disabled until endpoint support is confirmed.
+  llama-3-3-70b-instruct:
+    model: meta/llama-3.3-70b-instruct
+    role: large
+    weight: 1
+    enabled: true
+    notes: Large general-purpose contrast model.
+  glm-5:
+    model: zai-org/GLM-5
+    role: reasoning
+    weight: 1
+    enabled: false
+    notes: Shows overloads, so keep it out of automated runs.
+  glm-4-5:
+    model: zai-org/GLM-4.5
+    role: reasoning
+    weight: 1
+    enabled: false
+    notes: Kept disabled until endpoint support is confirmed.
+  glm-4-5-air:
+    model: zai-org/GLM-4.5-Air
+    role: balanced
+    weight: 1
+    enabled: false
+    notes: Requested for coverage, but still disabled until the endpoint support is confirmed from the target environment.
+  qwen2-5-32b-instruct:
+    model: qwen/qwen2.5-32b-instruct
+    role: balanced
+    weight: 2
+    enabled: false
+    notes: Additional medium-large instruct model; enable when the endpoint exposes it.
+  qwen2-5-coder-32b-instruct:
+    model: qwen/qwen2.5-coder-32b-instruct
+    role: coder
+    weight: 1
+    enabled: true
+    notes: Coding-oriented contrast model.
+  qwen3-coder-480b:
+    model: qwen/qwen3-coder-480b
+    role: coder
+    weight: 1
+    enabled: false
+    notes: Inactive on the observed endpoint, so exclude it from automated runs.

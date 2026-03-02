@@ -1,0 +1,248 @@
+{
+  "brief_id": "cohort-course-save-playbooks",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "gpt-oss-120b",
+    "model_name": "openai/gpt-oss-120b",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "5f3d6fdde348fed168c396b054bda6bbe3d6d8eb40c15df3a7312d009c099261",
+    "prompt_hash": "1d5f33580b2fffb5462cdef67b8928c8fede056d10a7951a50aea4743461488f",
+    "generated_at": "2026-03-02T07:57:46.413893Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"cohort-course-save-playbooks\",\n  \"title\": \"Churn rescue and enrollment pacing for cohort course businesses\",\n  \"category\": \"creator-business\",\n  \"target_customer\": \"Small education creators selling cohort-based courses, memberships, and workshops to professionals.\",\n  \"problem\": \"Revenue spikes during launches but drops between cohorts because payment plans fail, alumni go cold, and re-enrollment is improvised.\",\n  \"workflow\": \"Track upcoming cohorts, payment-plan risk, alumni segmentation, and save campaigns that convert drop-offs into the next paid offer.\",\n  \"recurring_revenue_model\": \"Subscription with optional annual plan for education businesses that run repeated cohorts.\",\n  \"pricing_shape\": \"Flat monthly fee plus add-on for payment-plan monitoring volume.\",\n  \"distribution_channel\": \"Creator education communities, launch operators, and referrals from fractional marketers.\",\n  \"constraints\": [\n    \"Must reflect launch cycles instead of assuming daily SaaS usage.\",\n    \"Needs clear handling for alumni, waitlists, and payment-plan risk.\",\n    \"Cannot require a heavy learning management system migration.\"\n  ],\n  \"must_have_features\": [\n    \"Cohort calendar and pacing view\",\n    \"Alumni segment tracker\",\n    \"Payment-plan risk board\",\n    \"Re-enrollment campaign templates\"\n  ],\n  \"seed_keywords\": [\n    \"cohort-course\",\n    \"churn\",\n    \"reenrollment\",\n    \"payment-plans\",\n    \"alumni\",\n    \"launches\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a video hosting platform.\",\n    \"Do not target enterprise education departments first.\"\n  ],\n  \"success_metric\": \"More students rescued into future offers and fewer failed payment plans per launch cycle.\",\n  \"prompt_rendered_brief\": \"This product is a churn rescue and enrollment pacing system for cohort course businesses that live through launch spikes and long off-cycle gaps. Creators usually know how to market the next cohort, but they do not have a durable operating system for payment-plan risk, alumni reactivation, and converting drop-offs into future enrollment. The tool should show upcoming cohorts, segment alumni, surface accounts at risk, and make save campaigns easy to run without importing a giant CRM stack. The revenue model fits recurring SaaS because every launch cycle benefits from having the same playbooks, history, and risk tracking. The workflow must acknowledge that usage intensity rises around launches and reopens, rather than pretending this is an everyday transactional system. The outcome should be steadier education revenue with fewer preventable losses between cohorts.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-825899e17b5b6d82",
+    "choices": [
+      {
+        "finish_reason": "tool_calls",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": null,
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-895c8010c742d426",
+              "function": {
+                "arguments": "{\"core_mechanic\": \"A subscription service that lets cohort\\u2011based educators track launch calendars, flag payment\\u2011plan risk, segment alumni, and run reusable re\\u2011enrollment campaigns to rescue churn between cohorts.\", \"keywords\": [\"cohort-course\", \"churn-rescue\", \"payment-plan-risk\", \"alumni-segmentation\", \"re-enrollment\", \"launch-calendar\", \"subscription-revenue\"]}",
+                "name": "GeneratedIntentDraft"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning": "We need to produce JSON with core_mechanic and keywords. Must be concise core_mechanic under 250 chars. Keywords 5-12 lowercase, alphanumeric or hyphenated. Avoid filler terms like app, ai, tool, platform unless discriminative. Focus on commercial mechanism, target customer, recurring revenue path.\n\nWe need to call function GeneratedIntentDraft with core_mechanic and keywords. Use the function.",
+          "reasoning_content": "We need to produce JSON with core_mechanic and keywords. Must be concise core_mechanic under 250 chars. Keywords 5-12 lowercase, alphanumeric or hyphenated. Avoid filler terms like app, ai, tool, platform unless discriminative. Focus on commercial mechanism, target customer, recurring revenue path.\n\nWe need to call function GeneratedIntentDraft with core_mechanic and keywords. Use the function."
+        },
+        "stop_reason": 200012,
+        "token_ids": null
+      }
+    ],
+    "created": 1772438263,
+    "model": "openai/gpt-oss-120b",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 203,
+      "prompt_tokens": 846,
+      "total_tokens": 1049,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "{\"core_mechanic\":\"A subscription service that lets cohort‑based educators track launch calendars, flag payment‑plan risk, segment alumni, and run reusable re‑enrollment campaigns to rescue churn between cohorts.\",\"keywords\":[\"cohort-course\",\"churn-rescue\",\"payment-plan-risk\",\"alumni-segmentation\",\"re-enrollment\",\"launch-calendar\",\"subscription-revenue\"]}",
+  "llm_output": {
+    "core_mechanic": "A subscription service that lets cohort‑based educators track launch calendars, flag payment‑plan risk, segment alumni, and run reusable re‑enrollment campaigns to rescue churn between cohorts.",
+    "keywords": [
+      "cohort-course",
+      "churn-rescue",
+      "payment-plan-risk",
+      "alumni-segmentation",
+      "re-enrollment",
+      "launch-calendar",
+      "subscription-revenue"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "cohort-course",
+      "churn-rescue",
+      "payment-plan-risk",
+      "alumni-segmentation",
+      "re-enrollment",
+      "launch-calendar",
+      "subscription-revenue"
+    ],
+    "derived_keywords": [
+      "and",
+      "payment-plan",
+      "cohorts",
+      "risk",
+      "education",
+      "re-enrollment",
+      "for",
+      "that",
+      "into",
+      "payment",
+      "plans",
+      "launch",
+      "because",
+      "between",
+      "board",
+      "but",
+      "calendar",
+      "campaign",
+      "campaigns",
+      "cohort",
+      "cohort-based",
+      "cold",
+      "convert",
+      "courses",
+      "creators",
+      "drop-offs",
+      "drops",
+      "during",
+      "fail",
+      "improvised",
+      "memberships",
+      "next",
+      "offer",
+      "pacing",
+      "paid",
+      "professionals",
+      "save",
+      "segment",
+      "segmentation",
+      "selling",
+      "spikes",
+      "templates",
+      "the",
+      "track",
+      "tracker",
+      "upcoming",
+      "view",
+      "workshops",
+      "optional",
+      "plan",
+      "repeated",
+      "run",
+      "with",
+      "add-on",
+      "assuming",
+      "clear",
+      "creator-business",
+      "cycle",
+      "cycles",
+      "failed",
+      "fee",
+      "fewer",
+      "flat",
+      "future",
+      "handling",
+      "heavy",
+      "instead",
+      "learning",
+      "management",
+      "migration",
+      "monitoring",
+      "more",
+      "must",
+      "needs",
+      "offers",
+      "plus",
+      "reflect",
+      "require",
+      "rescued",
+      "saas",
+      "students",
+      "usage",
+      "volume",
+      "waitlists",
+      "communities",
+      "creator",
+      "fractional",
+      "from",
+      "marketers",
+      "referrals"
+    ],
+    "final_keywords": [
+      "cohort-course",
+      "churn-rescue",
+      "payment-plan-risk",
+      "alumni-segmentation",
+      "re-enrollment",
+      "launch-calendar",
+      "subscription-revenue",
+      "churn",
+      "reenrollment",
+      "payment-plans"
+    ],
+    "keyword_provenance": {
+      "cohort-course": [
+        "llm",
+        "seed_keywords"
+      ],
+      "churn-rescue": [
+        "llm"
+      ],
+      "payment-plan-risk": [
+        "llm"
+      ],
+      "alumni-segmentation": [
+        "llm"
+      ],
+      "re-enrollment": [
+        "field:must_have_features",
+        "field:problem",
+        "llm"
+      ],
+      "launch-calendar": [
+        "llm"
+      ],
+      "subscription-revenue": [
+        "llm"
+      ],
+      "churn": [
+        "seed_keywords"
+      ],
+      "reenrollment": [
+        "seed_keywords"
+      ],
+      "payment-plans": [
+        "seed_keywords"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "A subscription service that lets cohort‑based educators track launch calendars, flag payment‑plan risk, segment alumni, and run reusable re‑enrollment campaigns to rescue churn between cohorts.",
+    "keywords": [
+      "cohort-course",
+      "churn-rescue",
+      "payment-plan-risk",
+      "alumni-segmentation",
+      "re-enrollment",
+      "launch-calendar",
+      "subscription-revenue",
+      "churn",
+      "reenrollment",
+      "payment-plans"
+    ]
+  },
+  "planned_resolution": "claim"
+}

@@ -1,0 +1,259 @@
+{
+  "brief_id": "vet-clinic-reorder-expiry",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "gpt-oss-120b",
+    "model_name": "openai/gpt-oss-120b",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "1caf99641dfdb5c5593c69281c40a69d89f031e82703a6a6096fff19a356cbf7",
+    "prompt_hash": "7b5b52a94b0145aacc35f4ed0d5f012b50d511ce6a7ffa34bd73be050d63e9c6",
+    "generated_at": "2026-03-02T07:58:18.363241Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"vet-clinic-reorder-expiry\",\n  \"title\": \"Reorder timing and expiry protection for independent veterinary clinics\",\n  \"category\": \"clinical-ops\",\n  \"target_customer\": \"Independent veterinary clinics managing vaccines, medications, and treatment supplies with lean inventory habits.\",\n  \"problem\": \"Clinics either run out of critical items or overbuy products that expire because forecasting is ad hoc and based on memory.\",\n  \"workflow\": \"Track critical stock, reorder timing, expiry windows, and demand signals tied to seasonal visits and common treatment bundles.\",\n  \"recurring_revenue_model\": \"Subscription per clinic location with optional multi-site inventory rollups.\",\n  \"pricing_shape\": \"Per-location recurring fee with higher tiers for item count and additional branches.\",\n  \"distribution_channel\": \"Veterinary communities, practice consultants, and referrals from clinic-focused accountants.\",\n  \"constraints\": [\n    \"Must prioritize practical reorder decisions over full procurement suites.\",\n    \"Needs expiry visibility for regulated medications and vaccines.\",\n    \"Cannot depend on hardware changes or barcode rollouts to be useful.\"\n  ],\n  \"must_have_features\": [\n    \"Critical stock watchlist\",\n    \"Reorder recommendation queue\",\n    \"Expiry window alerts\",\n    \"Seasonal demand overlays\"\n  ],\n  \"seed_keywords\": [\n    \"veterinary\",\n    \"inventory\",\n    \"reorders\",\n    \"expiry\",\n    \"vaccines\",\n    \"clinic\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a general procurement ERP.\",\n    \"Do not focus on hospital procurement departments.\"\n  ],\n  \"success_metric\": \"Fewer stockouts and fewer expired items in routine clinical inventory.\",\n  \"prompt_rendered_brief\": \"This product is a reorder timing and expiry protection tool for independent veterinary clinics that keep just enough inventory to stay lean. The clinic team struggles because vaccine and medication demand changes with seasons, common treatment bundles are not tracked cleanly, and overbuying creates expensive expiry waste. The software should highlight critical stock, recommend reorder timing, and make expiry risk obvious before the next ordering cycle. A recurring per-location subscription is appropriate because the value shows up every week in smoother operations and less wasted inventory. The workflow needs to be practical and lightweight, not a full procurement system with enterprise implementation requirements. Success means the clinic has the right items on hand more often while throwing away less regulated stock.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-a0415eaaf03c9cfd",
+    "choices": [
+      {
+        "finish_reason": "tool_calls",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": null,
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-b60772614b0f4f81",
+              "function": {
+                "arguments": "{\"core_mechanic\": \"Subscription service that monitors clinic inventory, alerts on expiry, and generates reorder recommendations based on seasonal demand for independent veterinary practices.\", \"keywords\": [\"veterinary\", \"inventory\", \"reorder\", \"expiry\", \"clinic\", \"seasonal-demand\", \"subscription\", \"stockwatch\"]}",
+                "name": "GeneratedIntentDraft"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning": "We need to produce JSON with core_mechanic and keywords. Must be concise core_mechanic under 250 chars. Keywords 5-12 lowercase alphanumeric or hyphenated. Avoid filler terms unless discriminative. Focus on commercial mechanism, target customer, recurring revenue.\n\nCore mechanic: \"Subscription service that monitors clinic inventory, alerts on expiry, and generates reorder recommendations based on seasonal demand for independent veterinary practices.\"\n\nCheck length: let's count approx: \"Subscription service that monitors clinic inventory, alerts on expiry, and generates reorder recommendations based on seasonal demand for independent veterinary practices.\" That's about 150 characters.\n\nKeywords: need 5-12. Use from seed but maybe add: \"veterinary\", \"inventory\", \"reorder\", \"expiry\", \"clinic\", \"seasonal-demand\", \"subscription\", \"stockwatch\". All lowercase, alphanumeric/hyphen. That's 8.\n\nMake sure no filler like app, tool, platform unless discriminative. \"subscription\" is okay.\n\nReturn JSON only.\n\n",
+          "reasoning_content": "We need to produce JSON with core_mechanic and keywords. Must be concise core_mechanic under 250 chars. Keywords 5-12 lowercase alphanumeric or hyphenated. Avoid filler terms unless discriminative. Focus on commercial mechanism, target customer, recurring revenue.\n\nCore mechanic: \"Subscription service that monitors clinic inventory, alerts on expiry, and generates reorder recommendations based on seasonal demand for independent veterinary practices.\"\n\nCheck length: let's count approx: \"Subscription service that monitors clinic inventory, alerts on expiry, and generates reorder recommendations based on seasonal demand for independent veterinary practices.\" That's about 150 characters.\n\nKeywords: need 5-12. Use from seed but maybe add: \"veterinary\", \"inventory\", \"reorder\", \"expiry\", \"clinic\", \"seasonal-demand\", \"subscription\", \"stockwatch\". All lowercase, alphanumeric/hyphen. That's 8.\n\nMake sure no filler like app, tool, platform unless discriminative. \"subscription\" is okay.\n\nReturn JSON only.\n\n"
+        },
+        "stop_reason": null,
+        "token_ids": null
+      }
+    ],
+    "created": 1772438294,
+    "model": "openai/gpt-oss-120b",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 303,
+      "prompt_tokens": 814,
+      "total_tokens": 1117,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "{\"core_mechanic\":\"Subscription service that monitors clinic inventory, alerts on expiry, and generates reorder recommendations based on seasonal demand for independent veterinary practices.\",\"keywords\":[\"veterinary\",\"inventory\",\"reorder\",\"expiry\",\"clinic\",\"seasonal-demand\",\"subscription\",\"stockwatch\"]}",
+  "llm_output": {
+    "core_mechanic": "Subscription service that monitors clinic inventory, alerts on expiry, and generates reorder recommendations based on seasonal demand for independent veterinary practices.",
+    "keywords": [
+      "veterinary",
+      "inventory",
+      "reorder",
+      "expiry",
+      "clinic",
+      "seasonal-demand",
+      "subscription",
+      "stockwatch"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "veterinary",
+      "inventory",
+      "reorder",
+      "expiry",
+      "clinic",
+      "seasonal-demand",
+      "subscription",
+      "stockwatch"
+    ],
+    "derived_keywords": [
+      "and",
+      "critical",
+      "reorder",
+      "with",
+      "clinics",
+      "demand",
+      "seasonal",
+      "stock",
+      "treatment",
+      "items",
+      "medications",
+      "alerts",
+      "based",
+      "because",
+      "bundles",
+      "common",
+      "either",
+      "expire",
+      "fewer",
+      "for",
+      "forecasting",
+      "habits",
+      "hoc",
+      "independent",
+      "lean",
+      "managing",
+      "memory",
+      "out",
+      "overbuy",
+      "overlays",
+      "products",
+      "queue",
+      "recommendation",
+      "run",
+      "signals",
+      "supplies",
+      "that",
+      "tied",
+      "timing",
+      "track",
+      "visits",
+      "watchlist",
+      "window",
+      "windows",
+      "location",
+      "multi-site",
+      "optional",
+      "rollups",
+      "additional",
+      "barcode",
+      "branches",
+      "changes",
+      "clinical",
+      "clinical-ops",
+      "count",
+      "decisions",
+      "depend",
+      "expired",
+      "fee",
+      "full",
+      "hardware",
+      "item",
+      "must",
+      "needs",
+      "over",
+      "per-location",
+      "practical",
+      "prioritize",
+      "procurement",
+      "regulated",
+      "rollouts",
+      "routine",
+      "stockouts",
+      "suites",
+      "tiers",
+      "useful",
+      "visibility",
+      "accountants",
+      "clinic-focused",
+      "communities",
+      "consultants",
+      "from",
+      "practice",
+      "referrals"
+    ],
+    "final_keywords": [
+      "veterinary",
+      "inventory",
+      "reorder",
+      "expiry",
+      "clinic",
+      "seasonal-demand",
+      "subscription",
+      "stockwatch",
+      "reorders",
+      "vaccines"
+    ],
+    "keyword_provenance": {
+      "veterinary": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "inventory": [
+        "field:recurring_revenue_model",
+        "field:success_metric",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "reorder": [
+        "field:constraints",
+        "field:must_have_features",
+        "field:workflow",
+        "llm"
+      ],
+      "expiry": [
+        "field:constraints",
+        "field:must_have_features",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "clinic": [
+        "field:recurring_revenue_model",
+        "llm",
+        "seed_keywords"
+      ],
+      "seasonal-demand": [
+        "llm"
+      ],
+      "subscription": [
+        "llm"
+      ],
+      "stockwatch": [
+        "llm"
+      ],
+      "reorders": [
+        "seed_keywords"
+      ],
+      "vaccines": [
+        "field:constraints",
+        "field:target_customer",
+        "seed_keywords"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Subscription service that monitors clinic inventory, alerts on expiry, and generates reorder recommendations based on seasonal demand for independent veterinary practices.",
+    "keywords": [
+      "veterinary",
+      "inventory",
+      "reorder",
+      "expiry",
+      "clinic",
+      "seasonal-demand",
+      "subscription",
+      "stockwatch",
+      "reorders",
+      "vaccines"
+    ]
+  },
+  "planned_resolution": "claim"
+}

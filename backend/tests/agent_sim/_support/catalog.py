@@ -74,3 +74,22 @@ def resolve_model_set(model_matrix: ModelMatrix, set_name: str) -> list[tuple[st
     if not enabled:
         raise ValueError(f"model set '{set_name}' has no enabled models")
     return enabled
+
+
+def resolve_enabled_model_aliases(
+    model_matrix: ModelMatrix,
+    model_aliases: list[str],
+) -> list[tuple[str, ModelEntry]]:
+    selected: list[tuple[str, ModelEntry]] = []
+    missing: list[str] = []
+
+    for model_alias in model_aliases:
+        model = model_matrix.models.get(model_alias)
+        if model is None or not model.enabled:
+            missing.append(model_alias)
+            continue
+        selected.append((model_alias, model))
+
+    if missing:
+        raise ValueError(f"unknown or disabled model aliases: {sorted(missing)}")
+    return selected

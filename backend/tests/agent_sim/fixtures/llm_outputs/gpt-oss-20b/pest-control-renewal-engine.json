@@ -1,0 +1,259 @@
+{
+  "brief_id": "pest-control-renewal-engine",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "gpt-oss-20b",
+    "model_name": "openai/gpt-oss-20b",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "e0ddb2e2d58b1d1d96c898a135d535909e43c676dd4917420d4076e206c7110d",
+    "prompt_hash": "5bd7d9dc1ff3c43f216c97433dcf3881be99052898af760b74dbf775faa4560e",
+    "generated_at": "2026-03-02T08:03:32.289323Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"pest-control-renewal-engine\",\n  \"title\": \"Recurring contract recovery and route prep for regional pest control operators\",\n  \"category\": \"field-service\",\n  \"target_customer\": \"Regional pest control companies with recurring quarterly service contracts and small call-center teams.\",\n  \"problem\": \"Contracts lapse quietly because route managers focus on today's stops instead of upcoming renewals, cancelled cards, and high-risk accounts.\",\n  \"workflow\": \"Watch contracts and payment failures, group accounts by route geography, and push save actions to office staff before routes are finalized.\",\n  \"recurring_revenue_model\": \"Quarterly or annual pest prevention memberships that renew automatically when customers do not churn.\",\n  \"pricing_shape\": \"Monthly subscription with usage tiers based on active contract count.\",\n  \"distribution_channel\": \"Direct outbound to owner-operators and consultants serving pest control agencies.\",\n  \"constraints\": [\n    \"Must support geographically grouped follow-up instead of generic churn lists.\",\n    \"Needs clear handling for card failures and skipped visits.\",\n    \"Should avoid requiring custom mobile hardware in the field.\"\n  ],\n  \"must_have_features\": [\n    \"Renewal-at-risk queue\",\n    \"Route-aware follow-up buckets\",\n    \"Failed-payment recovery board\",\n    \"Customer save-offer logging\"\n  ],\n  \"seed_keywords\": [\n    \"pest-control\",\n    \"renewals\",\n    \"routes\",\n    \"memberships\",\n    \"failed-payments\",\n    \"churn\"\n  ],\n  \"anti_goals\": [\n    \"Do not replace technician route execution tools.\",\n    \"Do not focus on one-time termite jobs.\"\n  ],\n  \"success_metric\": \"Lower contract churn and fewer route gaps caused by preventable lapses.\",\n  \"prompt_rendered_brief\": \"This product is a recurring contract recovery and route prep engine for regional pest control operators that live on quarterly service plans. The owner already has route software, but renewal risk, failed cards, and rescue calls are hidden inside generic customer lists that nobody works in time. The system should identify expiring or broken contracts, group them by route and technician assignment, and tell office staff which households need outreach before the next calendar is locked. The revenue model is straightforward recurring SaaS tied to active membership volume because the customer's economic value comes from retaining contracts rather than booking one-time jobs. The workflow needs to feel operational and local, with route-aware follow-up and clear notes about save offers or payment recovery attempts. If the product works, the business keeps more recurring revenue and protects route density without forcing the team to adopt a giant enterprise stack.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-8ca75c5b4b324b6fa35f193b4954bfab",
+    "choices": [
+      {
+        "finish_reason": "tool_calls",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": null,
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-04f4ce9aa6a6485bb6d3947f50c540e2",
+              "function": {
+                "arguments": "{\"core_mechanic\": \"Automated route-aware renewal recovery engine for regional pest control operators, keeping quarterly memberships active by flagging at-risk contracts and guiding office staff to pre-route outreach.\", \"keywords\": [\"pest-control\", \"renewals\", \"routes\", \"memberships\", \"failed-payments\", \"churn\", \"contract-recovery\", \"route-prep\", \"subscription\", \"usage-tiers\"]}",
+                "name": "GeneratedIntentDraft"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning": "We need to produce JSON with core_mechanic and keywords. Must be concise core_mechanic under 250 characters. Keywords 5-12 lowercase alphanumeric or hyphenated. Avoid filler terms like app, ai, tool, platform unless discriminative. Focus on true commercial mechanism, target customer, recurring revenue path.\n\nBrief: recurring contract recovery and route prep for regional pest control operators. Target: regional pest control companies with recurring quarterly service contracts and small call-center teams. Problem: contracts lapse quietly because route managers focus on today's stops instead of upcoming renewals, cancelled cards, high-risk accounts. Workflow: watch contracts and payment failures, group accounts by route geography, push save actions to office staff before routes finalized. Recurring revenue: quarterly or annual pest prevention memberships that renew automatically when customers do not churn. Pricing: monthly subscription with usage tiers based on active contract count. Must have features: renewal-at-risk queue, route-aware follow-up buckets, failed-payment recovery board, customer save-offer logging.\n\nKeywords: maybe \"pest-control\", \"renewals\", \"routes\", \"memberships\", \"failed-payments\", \"churn\". But we need 5-12 lowercase keywords. They must be alphanumeric or hyphenated. So we can use \"pest-control\", \"renewals\", \"routes\", \"memberships\", \"failed-payments\", \"churn\", \"contract-recovery\", \"route-prep\", \"subscription\", \"usage-tiers\". That's 10.\n\nCore mechanic: something like \"Automated route-aware renewal recovery engine for regional pest control operators, keeping quarterly memberships active by flagging at-risk contracts and guiding office staff to pre-route outreach.\" Must be under 250 chars. Let's count: \"Automated route-aware renewal recovery engine for regional pest control operators, keeping quarterly memberships active by flagging at-risk contracts and guiding office staff to pre-route outreach.\" Count: Let's approximate: 1-10 words? Let's count characters: \"Automated\" (9) + space (1) =10, \"route-aware\" (12) =>22, space =>23, \"renewal\" (7)=>30, space=>31, \"recovery\" (9)=>40, space=>41, \"engine\" (6)=>47, space=>48, \"for\" (3)=>51, space=>52, \"regional\" (8)=>60, space=>61, \"pest\" (4)=>65, space=>66, \"control\" (7)=>73, space=>74, \"operators,\" (10)=>84, space=>85, \"keeping\" (7)=>92, space=>93, \"quarterly\" (9)=>102, space=>103, \"memberships\" (11)=>114, space=>115, \"active\" (6)=>121, space=>122, \"by\" (2)=>124, space=>125, \"flagging\" (8)=>133, space=>134, \"at-risk\" (6)=>140, space=>141, \"contracts\" (9)=>150, space=>151, \"and\" (3)=>154, space=>155, \"guiding\" (7)=>162, space=>163, \"office\" (6)=>169, space=>170, \"staff\" (5)=>175, space=>176, \"to\" (2)=>178, space=>179, \"pre-route\" (9)=>188, space=>189, \"outreach.\" (9)=>198. So 198 characters. Under 250. Good.\n\nKeywords: list of 10. Ensure lowercase, hyphenated allowed. Provide as array.\n\nReturn strict JSON with core_mechanic and keywords.\n\nLet's produce.",
+          "reasoning_content": "We need to produce JSON with core_mechanic and keywords. Must be concise core_mechanic under 250 characters. Keywords 5-12 lowercase alphanumeric or hyphenated. Avoid filler terms like app, ai, tool, platform unless discriminative. Focus on true commercial mechanism, target customer, recurring revenue path.\n\nBrief: recurring contract recovery and route prep for regional pest control operators. Target: regional pest control companies with recurring quarterly service contracts and small call-center teams. Problem: contracts lapse quietly because route managers focus on today's stops instead of upcoming renewals, cancelled cards, high-risk accounts. Workflow: watch contracts and payment failures, group accounts by route geography, push save actions to office staff before routes finalized. Recurring revenue: quarterly or annual pest prevention memberships that renew automatically when customers do not churn. Pricing: monthly subscription with usage tiers based on active contract count. Must have features: renewal-at-risk queue, route-aware follow-up buckets, failed-payment recovery board, customer save-offer logging.\n\nKeywords: maybe \"pest-control\", \"renewals\", \"routes\", \"memberships\", \"failed-payments\", \"churn\". But we need 5-12 lowercase keywords. They must be alphanumeric or hyphenated. So we can use \"pest-control\", \"renewals\", \"routes\", \"memberships\", \"failed-payments\", \"churn\", \"contract-recovery\", \"route-prep\", \"subscription\", \"usage-tiers\". That's 10.\n\nCore mechanic: something like \"Automated route-aware renewal recovery engine for regional pest control operators, keeping quarterly memberships active by flagging at-risk contracts and guiding office staff to pre-route outreach.\" Must be under 250 chars. Let's count: \"Automated route-aware renewal recovery engine for regional pest control operators, keeping quarterly memberships active by flagging at-risk contracts and guiding office staff to pre-route outreach.\" Count: Let's approximate: 1-10 words? Let's count characters: \"Automated\" (9) + space (1) =10, \"route-aware\" (12) =>22, space =>23, \"renewal\" (7)=>30, space=>31, \"recovery\" (9)=>40, space=>41, \"engine\" (6)=>47, space=>48, \"for\" (3)=>51, space=>52, \"regional\" (8)=>60, space=>61, \"pest\" (4)=>65, space=>66, \"control\" (7)=>73, space=>74, \"operators,\" (10)=>84, space=>85, \"keeping\" (7)=>92, space=>93, \"quarterly\" (9)=>102, space=>103, \"memberships\" (11)=>114, space=>115, \"active\" (6)=>121, space=>122, \"by\" (2)=>124, space=>125, \"flagging\" (8)=>133, space=>134, \"at-risk\" (6)=>140, space=>141, \"contracts\" (9)=>150, space=>151, \"and\" (3)=>154, space=>155, \"guiding\" (7)=>162, space=>163, \"office\" (6)=>169, space=>170, \"staff\" (5)=>175, space=>176, \"to\" (2)=>178, space=>179, \"pre-route\" (9)=>188, space=>189, \"outreach.\" (9)=>198. So 198 characters. Under 250. Good.\n\nKeywords: list of 10. Ensure lowercase, hyphenated allowed. Provide as array.\n\nReturn strict JSON with core_mechanic and keywords.\n\nLet's produce."
+        },
+        "stop_reason": 200012,
+        "token_ids": null
+      }
+    ],
+    "created": 1772438607,
+    "model": "openai/gpt-oss-20b",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 848,
+      "prompt_tokens": 853,
+      "total_tokens": 1701,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "{\"core_mechanic\":\"Automated route-aware renewal recovery engine for regional pest control operators, keeping quarterly memberships active by flagging at-risk contracts and guiding office staff to pre-route outreach.\",\"keywords\":[\"pest-control\",\"renewals\",\"routes\",\"memberships\",\"failed-payments\",\"churn\",\"contract-recovery\",\"route-prep\",\"subscription\",\"usage-tiers\"]}",
+  "llm_output": {
+    "core_mechanic": "Automated route-aware renewal recovery engine for regional pest control operators, keeping quarterly memberships active by flagging at-risk contracts and guiding office staff to pre-route outreach.",
+    "keywords": [
+      "pest-control",
+      "renewals",
+      "routes",
+      "memberships",
+      "failed-payments",
+      "churn",
+      "contract-recovery",
+      "route-prep",
+      "subscription",
+      "usage-tiers"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "pest-control",
+      "renewals",
+      "routes",
+      "memberships",
+      "failed-payments",
+      "churn",
+      "contract-recovery",
+      "route-prep",
+      "subscription",
+      "usage-tiers"
+    ],
+    "derived_keywords": [
+      "and",
+      "contracts",
+      "route",
+      "accounts",
+      "pest",
+      "quarterly",
+      "failures",
+      "follow-up",
+      "instead",
+      "with",
+      "control",
+      "actions",
+      "are",
+      "because",
+      "board",
+      "buckets",
+      "call-center",
+      "cancelled",
+      "cards",
+      "contract",
+      "failed-payment",
+      "finalized",
+      "geography",
+      "group",
+      "high-risk",
+      "lapse",
+      "logging",
+      "office",
+      "payment",
+      "push",
+      "queue",
+      "quietly",
+      "recovery",
+      "renewal-at-risk",
+      "route-aware",
+      "save",
+      "save-offer",
+      "staff",
+      "stops",
+      "today",
+      "upcoming",
+      "watch",
+      "automatically",
+      "not",
+      "prevention",
+      "renew",
+      "that",
+      "when",
+      "active",
+      "avoid",
+      "based",
+      "card",
+      "caused",
+      "clear",
+      "count",
+      "custom",
+      "fewer",
+      "field",
+      "field-service",
+      "for",
+      "gaps",
+      "generic",
+      "geographically",
+      "grouped",
+      "handling",
+      "hardware",
+      "lapses",
+      "lists",
+      "mobile",
+      "must",
+      "needs",
+      "preventable",
+      "requiring",
+      "should",
+      "skipped",
+      "support",
+      "the",
+      "tiers",
+      "usage",
+      "visits",
+      "agencies",
+      "consultants",
+      "direct",
+      "outbound",
+      "owner-operators",
+      "serving"
+    ],
+    "final_keywords": [
+      "pest-control",
+      "renewals",
+      "routes",
+      "memberships",
+      "failed-payments",
+      "churn",
+      "contract-recovery",
+      "route-prep",
+      "subscription",
+      "usage-tiers"
+    ],
+    "keyword_provenance": {
+      "pest-control": [
+        "llm",
+        "seed_keywords"
+      ],
+      "renewals": [
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "routes": [
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "memberships": [
+        "field:recurring_revenue_model",
+        "llm",
+        "seed_keywords"
+      ],
+      "failed-payments": [
+        "llm",
+        "seed_keywords"
+      ],
+      "churn": [
+        "field:constraints",
+        "field:recurring_revenue_model",
+        "field:success_metric",
+        "llm",
+        "seed_keywords"
+      ],
+      "contract-recovery": [
+        "llm"
+      ],
+      "route-prep": [
+        "llm"
+      ],
+      "subscription": [
+        "llm"
+      ],
+      "usage-tiers": [
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Automated route-aware renewal recovery engine for regional pest control operators, keeping quarterly memberships active by flagging at-risk contracts and guiding office staff to pre-route outreach.",
+    "keywords": [
+      "pest-control",
+      "renewals",
+      "routes",
+      "memberships",
+      "failed-payments",
+      "churn",
+      "contract-recovery",
+      "route-prep",
+      "subscription",
+      "usage-tiers"
+    ]
+  },
+  "planned_resolution": "claim"
+}

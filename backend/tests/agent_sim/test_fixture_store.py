@@ -15,13 +15,11 @@ from dejaship.schemas import IntentInput
 
 
 def test_fixture_output_path_uses_versioned_layout():
-    path = fixture_output_path("openai", "nim-fast", "hvac-service-plan-ops", version="v2")
+    path = fixture_output_path("llama-3-1-8b-instruct", "hvac-service-plan-ops")
     assert path == (
         get_agent_sim_paths().fixtures_root
         / "llm_outputs"
-        / "v2"
-        / "openai"
-        / "nim-fast"
+        / "llama-3-1-8b-instruct"
         / "hvac-service-plan-ops.json"
     )
 
@@ -33,7 +31,7 @@ def test_fixture_store_round_trip(agent_sim_catalog, tmp_path, monkeypatch):
         brief_id=brief.id,
         metadata=StoredFixtureMetadata(
             provider="openai",
-            model_alias="nim-fast",
+            model_alias="llama-3-1-8b-instruct",
             model_name="meta/llama-3.1-8b-instruct",
             prompt_name="intent-from-brief",
             prompt_version="v1",
@@ -70,7 +68,11 @@ def test_fixture_store_round_trip(agent_sim_catalog, tmp_path, monkeypatch):
 def test_build_synthetic_fixture_uses_catalog_defaults(agent_sim_catalog):
     brief = agent_sim_catalog.briefs[0]
 
-    fixture = build_synthetic_fixture(brief, model_alias="nim-fast", model_name="meta/llama-3.1-8b-instruct")
+    fixture = build_synthetic_fixture(
+        brief,
+        model_alias="llama-3-1-8b-instruct",
+        model_name="meta/llama-3.1-8b-instruct",
+    )
 
     assert fixture.metadata.provider == "synthetic"
     assert fixture.llm_output.core_mechanic == brief.title
@@ -83,7 +85,7 @@ def test_fixture_index_resolves_synthetic_fallback(agent_sim_catalog):
 
     resolved = fixture_index.resolve_or_synthesize(
         brief=brief,
-        model_alias="nim-fast",
+        model_alias="llama-3-1-8b-instruct",
         model_name="meta/llama-3.1-8b-instruct",
     )
 
@@ -103,7 +105,7 @@ def test_validate_fixture_against_catalog_accepts_matching_hashes(agent_sim_cata
         brief_id=brief.id,
         metadata=StoredFixtureMetadata(
             provider="openai",
-            model_alias="nim-fast",
+            model_alias="llama-3-1-8b-instruct",
             model_name="meta/llama-3.1-8b-instruct",
             prompt_name="intent-from-brief",
             prompt_version="v1",
@@ -126,7 +128,11 @@ def test_validate_fixture_against_catalog_accepts_matching_hashes(agent_sim_cata
 
 def test_validate_fixture_against_catalog_detects_prompt_drift(agent_sim_catalog):
     brief = agent_sim_catalog.briefs[0]
-    fixture = build_synthetic_fixture(brief, model_alias="nim-fast", model_name="meta/llama-3.1-8b-instruct")
+    fixture = build_synthetic_fixture(
+        brief,
+        model_alias="llama-3-1-8b-instruct",
+        model_name="meta/llama-3.1-8b-instruct",
+    )
     fixture.metadata.provider = "openai"
     fixture.metadata.prompt_name = "intent-from-brief"
     fixture.metadata.prompt_version = "v1"

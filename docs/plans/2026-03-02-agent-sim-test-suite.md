@@ -38,6 +38,8 @@ Additional design rules:
 - fixture files must carry enough hashes and metadata to detect prompt drift;
 - live provider code should only return typed drafts, never write files directly.
 - the offline swarm suite must have a deterministic synthetic baseline when no stored fixtures exist yet.
+- provider identity should be preserved in fixture metadata, not required in the directory layout.
+- fixture directories should be keyed by model alias only; incompatible fixture changes should be handled by regeneration, not nested version folders.
 
 ## Architecture Improvements
 
@@ -69,10 +71,8 @@ backend/tests/agent_sim/
     model_matrix.yaml
     scenario_matrix.yaml
     llm_outputs/
-      v1/
-        <provider>/
-          <model>/
-            <brief_id>.json
+      <model>/
+        <brief_id>.json
   prompts/
     intent_from_brief_v1.md
     decision_after_check_v1.md
@@ -219,7 +219,7 @@ Reason:
 - the full model inventory can grow to dozens of entries and needs metadata, weights, and comments;
 - the suite should switch between model sets without editing secrets.
 
-If the live provider is NVIDIA NIM, the generator should still treat it generically and not hardcode provider-specific behavior beyond the OpenAI-compatible API surface.
+The generator should treat live providers generically and not hardcode provider-specific behavior beyond the OpenAI-compatible API surface.
 
 ### Generator Behavior
 
@@ -288,6 +288,7 @@ Recommended named sets:
 - `reasoning`
 - `smoke`
 - `default`
+- `expanded`
 - `nightly`
 
 Example shape:
@@ -295,31 +296,32 @@ Example shape:
 ```yaml
 sets:
   smoke:
-    - nim-fast
-    - nim-balanced
+    - llama-3-1-8b-instruct
+    - mixtral-8x7b-instruct-v0-1
   default:
-    - nim-fast
-    - nim-balanced
-    - nim-reasoning
+    - step-3-5-flash
+    - llama-3-1-8b-instruct
+    - mixtral-8x7b-instruct-v0-1
+    - deepseek-r1-distill-llama-70b
   nightly:
-    - nim-fast
-    - nim-balanced
-    - nim-reasoning
-    - nim-large
-    - nim-alt-1
+    - step-3-5-flash
+    - llama-3-1-70b-instruct
+    - qwen2-5-72b-instruct
+    - mixtral-8x22b-instruct-v0-1
+    - llama-3-1-405b-instruct
 
 models:
-  nim-fast:
+  llama-3-1-8b-instruct:
     model: meta/llama-3.1-8b-instruct
     role: cheap
     weight: 3
     enabled: true
-  nim-balanced:
+  mixtral-8x7b-instruct-v0-1:
     model: mistralai/mixtral-8x7b-instruct-v0.1
     role: default
     weight: 4
     enabled: true
-  nim-reasoning:
+  deepseek-r1-distill-llama-70b:
     model: deepseek-ai/deepseek-r1-distill-llama-70b
     role: reasoning
     weight: 2

@@ -23,26 +23,26 @@ def sha256_text(value: str) -> str:
 
 
 def fixture_output_path(
-    provider: str,
     model_alias: str,
     brief_id: str,
-    *,
-    version: str = "v1",
 ) -> Path:
     paths = get_agent_sim_paths()
-    return paths.fixtures_root / "llm_outputs" / version / provider / model_alias / f"{brief_id}.json"
+    return paths.fixtures_root / "llm_outputs" / model_alias / f"{brief_id}.json"
+
+
+def fixture_exists(
+    model_alias: str,
+    brief_id: str,
+) -> bool:
+    return fixture_output_path(model_alias, brief_id).exists()
 
 
 def write_fixture(
     fixture: StoredLLMFixture,
-    *,
-    version: str = "v1",
 ) -> Path:
     path = fixture_output_path(
-        fixture.metadata.provider,
         fixture.metadata.model_alias,
         fixture.brief_id,
-        version=version,
     )
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(fixture.model_dump_json(indent=2))
@@ -53,8 +53,8 @@ def read_fixture(path: Path) -> StoredLLMFixture:
     return StoredLLMFixture.model_validate(json.loads(path.read_text()))
 
 
-def iter_fixture_paths(*, version: str = "v1") -> list[Path]:
-    root = get_agent_sim_paths().fixtures_root / "llm_outputs" / version
+def iter_fixture_paths() -> list[Path]:
+    root = get_agent_sim_paths().fixtures_root / "llm_outputs"
     if not root.exists():
         return []
     return sorted(root.rglob("*.json"))
@@ -210,5 +210,5 @@ class FixtureIndex:
         )
 
 
-def load_fixture_index(*, version: str = "v1") -> FixtureIndex:
-    return FixtureIndex([read_fixture(path) for path in iter_fixture_paths(version=version)])
+def load_fixture_index() -> FixtureIndex:
+    return FixtureIndex([read_fixture(path) for path in iter_fixture_paths()])

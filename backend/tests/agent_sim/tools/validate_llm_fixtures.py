@@ -8,13 +8,12 @@ from tests.agent_sim._support.fixture_store import read_fixture, validate_fixtur
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Validate stored LLM fixtures for agent simulation.")
-    parser.add_argument("--version", default="v1", help="Fixture output version directory.")
     return parser.parse_args()
 
 
 def main() -> None:
-    args = parse_args()
-    root = get_agent_sim_paths().fixtures_root / "llm_outputs" / args.version
+    parse_args()
+    root = get_agent_sim_paths().fixtures_root / "llm_outputs"
     if not root.exists():
         print(f"no fixture directory at {root}")
         return

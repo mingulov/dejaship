@@ -1,0 +1,249 @@
+{
+  "brief_id": "cohort-course-save-playbooks",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "gpt-oss-20b",
+    "model_name": "openai/gpt-oss-20b",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "5f3d6fdde348fed168c396b054bda6bbe3d6d8eb40c15df3a7312d009c099261",
+    "prompt_hash": "1d5f33580b2fffb5462cdef67b8928c8fede056d10a7951a50aea4743461488f",
+    "generated_at": "2026-03-02T08:03:53.551174Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"cohort-course-save-playbooks\",\n  \"title\": \"Churn rescue and enrollment pacing for cohort course businesses\",\n  \"category\": \"creator-business\",\n  \"target_customer\": \"Small education creators selling cohort-based courses, memberships, and workshops to professionals.\",\n  \"problem\": \"Revenue spikes during launches but drops between cohorts because payment plans fail, alumni go cold, and re-enrollment is improvised.\",\n  \"workflow\": \"Track upcoming cohorts, payment-plan risk, alumni segmentation, and save campaigns that convert drop-offs into the next paid offer.\",\n  \"recurring_revenue_model\": \"Subscription with optional annual plan for education businesses that run repeated cohorts.\",\n  \"pricing_shape\": \"Flat monthly fee plus add-on for payment-plan monitoring volume.\",\n  \"distribution_channel\": \"Creator education communities, launch operators, and referrals from fractional marketers.\",\n  \"constraints\": [\n    \"Must reflect launch cycles instead of assuming daily SaaS usage.\",\n    \"Needs clear handling for alumni, waitlists, and payment-plan risk.\",\n    \"Cannot require a heavy learning management system migration.\"\n  ],\n  \"must_have_features\": [\n    \"Cohort calendar and pacing view\",\n    \"Alumni segment tracker\",\n    \"Payment-plan risk board\",\n    \"Re-enrollment campaign templates\"\n  ],\n  \"seed_keywords\": [\n    \"cohort-course\",\n    \"churn\",\n    \"reenrollment\",\n    \"payment-plans\",\n    \"alumni\",\n    \"launches\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a video hosting platform.\",\n    \"Do not target enterprise education departments first.\"\n  ],\n  \"success_metric\": \"More students rescued into future offers and fewer failed payment plans per launch cycle.\",\n  \"prompt_rendered_brief\": \"This product is a churn rescue and enrollment pacing system for cohort course businesses that live through launch spikes and long off-cycle gaps. Creators usually know how to market the next cohort, but they do not have a durable operating system for payment-plan risk, alumni reactivation, and converting drop-offs into future enrollment. The tool should show upcoming cohorts, segment alumni, surface accounts at risk, and make save campaigns easy to run without importing a giant CRM stack. The revenue model fits recurring SaaS because every launch cycle benefits from having the same playbooks, history, and risk tracking. The workflow must acknowledge that usage intensity rises around launches and reopens, rather than pretending this is an everyday transactional system. The outcome should be steadier education revenue with fewer preventable losses between cohorts.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-7b51371613454fbf9ccce06078519633",
+    "choices": [
+      {
+        "finish_reason": "tool_calls",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": null,
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-2be72ea6df744b128118077d9d16588a",
+              "function": {
+                "arguments": "{\"core_mechanic\": \"Subscription-based system that tracks cohort launches, flags payment-plan risk, and runs alumni reactivation campaigns to smooth revenue between cohorts.\", \"keywords\": [\"cohort-management\", \"payment-plan-risk\", \"alumni-reactivation\", \"subscription-revenue\", \"launch-cycle\", \"education-creator\", \"re-enrollment\", \"monthly-subscription\"]}",
+                "name": "GeneratedIntentDraft"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning": "We need to produce a JSON with core_mechanic and keywords. Must be concise core_mechanic under 250 chars. Keywords 5-12 lowercase alphanumeric or hyphenated. Avoid filler terms like app, ai, tool, platform unless discriminative. Focus on true commercial mechanism, target customer, recurring revenue path.\n\nBrief: churn rescue and enrollment pacing for cohort course businesses. Target: small education creators selling cohort-based courses, memberships, workshops to professionals. Problem: revenue spikes during launches but drops between cohorts because payment plans fail, alumni go cold, re-enrollment improvised. Workflow: track upcoming cohorts, payment-plan risk, alumni segmentation, save campaigns that convert drop-offs into next paid offer. Recurring revenue model: subscription with optional annual plan. Pricing: flat monthly fee plus add-on for payment-plan monitoring volume. Must-have features: cohort calendar, alumni segment tracker, payment-plan risk board, re-enrollment campaign templates. Constraints: must reflect launch cycles, handle alumni, waitlists, payment-plan risk, no heavy LMS migration. Avoid video hosting, enterprise education departments.\n\nWe need core_mechanic: something like \"Subscription-based system that tracks cohort launches, flags payment-plan risk, and runs alumni reactivation campaigns to smooth revenue between cohorts.\" Under 250 chars.\n\nKeywords: maybe \"cohort-management\", \"payment-plan-risk\", \"alumni-reactivation\", \"subscription-revenue\", \"launch-cycle\", \"education-creator\", \"re-enrollment\", \"monthly-subscription\", \"add-on-volume\", \"campaign-templates\". Must be lowercase, alphanumeric or hyphenated. 5-12 keywords. Let's pick 8.\n\nCheck length: core_mechanic must be under 250 characters. Let's count: \"Subscription-based system that tracks cohort launches, flags payment-plan risk, and runs alumni reactivation campaigns to smooth revenue between cohorts.\" Count: Let's approximate: \"Subscription-based system that tracks cohort launches, flags payment-plan risk, and runs alumni reactivation campaigns to smooth revenue between cohorts.\" Count characters: Let's count quickly: Subscription-based (18) + space (1)=19; system (6)=25; space=26; that (4)=30; space=31; tracks (6)=37; space=38; cohort (6)=44; space=45; launches, (8)=53; space=54; flags (5)=59; space=60; payment-plan (12)=72; space=73; risk, (5)=78; space=79; and (3)=82; space=83; runs (4)=87; space=88; alumni (6)=94; space=95; reactivation (11)=106; space=107; campaigns (9)=116; space=117; to (2)=119; space=120; smooth (6)=126; space=127; revenue (7)=134; space=135; between (7)=142; space=143; cohorts. (8)=151. So 151 chars, fine.\n\nKeywords: \"cohort-management\", \"payment-plan-risk\", \"alumni-reactivation\", \"subscription-revenue\", \"launch-cycle\", \"education-creator\", \"re-enrollment\", \"monthly-subscription\". That's 8 keywords. All lowercase, hyphenated. Good.\n\nReturn strict JSON with core_mechanic and keywords. No markdown fences. Use the function? The instruction says \"Return strict JSON only. Do not wrap the answer in markdown fences.\" So just output JSON. Let's produce.",
+          "reasoning_content": "We need to produce a JSON with core_mechanic and keywords. Must be concise core_mechanic under 250 chars. Keywords 5-12 lowercase alphanumeric or hyphenated. Avoid filler terms like app, ai, tool, platform unless discriminative. Focus on true commercial mechanism, target customer, recurring revenue path.\n\nBrief: churn rescue and enrollment pacing for cohort course businesses. Target: small education creators selling cohort-based courses, memberships, workshops to professionals. Problem: revenue spikes during launches but drops between cohorts because payment plans fail, alumni go cold, re-enrollment improvised. Workflow: track upcoming cohorts, payment-plan risk, alumni segmentation, save campaigns that convert drop-offs into next paid offer. Recurring revenue model: subscription with optional annual plan. Pricing: flat monthly fee plus add-on for payment-plan monitoring volume. Must-have features: cohort calendar, alumni segment tracker, payment-plan risk board, re-enrollment campaign templates. Constraints: must reflect launch cycles, handle alumni, waitlists, payment-plan risk, no heavy LMS migration. Avoid video hosting, enterprise education departments.\n\nWe need core_mechanic: something like \"Subscription-based system that tracks cohort launches, flags payment-plan risk, and runs alumni reactivation campaigns to smooth revenue between cohorts.\" Under 250 chars.\n\nKeywords: maybe \"cohort-management\", \"payment-plan-risk\", \"alumni-reactivation\", \"subscription-revenue\", \"launch-cycle\", \"education-creator\", \"re-enrollment\", \"monthly-subscription\", \"add-on-volume\", \"campaign-templates\". Must be lowercase, alphanumeric or hyphenated. 5-12 keywords. Let's pick 8.\n\nCheck length: core_mechanic must be under 250 characters. Let's count: \"Subscription-based system that tracks cohort launches, flags payment-plan risk, and runs alumni reactivation campaigns to smooth revenue between cohorts.\" Count: Let's approximate: \"Subscription-based system that tracks cohort launches, flags payment-plan risk, and runs alumni reactivation campaigns to smooth revenue between cohorts.\" Count characters: Let's count quickly: Subscription-based (18) + space (1)=19; system (6)=25; space=26; that (4)=30; space=31; tracks (6)=37; space=38; cohort (6)=44; space=45; launches, (8)=53; space=54; flags (5)=59; space=60; payment-plan (12)=72; space=73; risk, (5)=78; space=79; and (3)=82; space=83; runs (4)=87; space=88; alumni (6)=94; space=95; reactivation (11)=106; space=107; campaigns (9)=116; space=117; to (2)=119; space=120; smooth (6)=126; space=127; revenue (7)=134; space=135; between (7)=142; space=143; cohorts. (8)=151. So 151 chars, fine.\n\nKeywords: \"cohort-management\", \"payment-plan-risk\", \"alumni-reactivation\", \"subscription-revenue\", \"launch-cycle\", \"education-creator\", \"re-enrollment\", \"monthly-subscription\". That's 8 keywords. All lowercase, hyphenated. Good.\n\nReturn strict JSON with core_mechanic and keywords. No markdown fences. Use the function? The instruction says \"Return strict JSON only. Do not wrap the answer in markdown fences.\" So just output JSON. Let's produce."
+        },
+        "stop_reason": 200012,
+        "token_ids": null
+      }
+    ],
+    "created": 1772438628,
+    "model": "openai/gpt-oss-20b",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 804,
+      "prompt_tokens": 846,
+      "total_tokens": 1650,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "{\"core_mechanic\":\"Subscription-based system that tracks cohort launches, flags payment-plan risk, and runs alumni reactivation campaigns to smooth revenue between cohorts.\",\"keywords\":[\"cohort-management\",\"payment-plan-risk\",\"alumni-reactivation\",\"subscription-revenue\",\"launch-cycle\",\"education-creator\",\"re-enrollment\",\"monthly-subscription\"]}",
+  "llm_output": {
+    "core_mechanic": "Subscription-based system that tracks cohort launches, flags payment-plan risk, and runs alumni reactivation campaigns to smooth revenue between cohorts.",
+    "keywords": [
+      "cohort-management",
+      "payment-plan-risk",
+      "alumni-reactivation",
+      "subscription-revenue",
+      "launch-cycle",
+      "education-creator",
+      "re-enrollment",
+      "monthly-subscription"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "cohort-management",
+      "payment-plan-risk",
+      "alumni-reactivation",
+      "subscription-revenue",
+      "launch-cycle",
+      "education-creator",
+      "re-enrollment",
+      "monthly-subscription"
+    ],
+    "derived_keywords": [
+      "and",
+      "payment-plan",
+      "cohorts",
+      "risk",
+      "education",
+      "re-enrollment",
+      "for",
+      "that",
+      "into",
+      "payment",
+      "plans",
+      "launch",
+      "because",
+      "between",
+      "board",
+      "but",
+      "calendar",
+      "campaign",
+      "campaigns",
+      "cohort",
+      "cohort-based",
+      "cold",
+      "convert",
+      "courses",
+      "creators",
+      "drop-offs",
+      "drops",
+      "during",
+      "fail",
+      "improvised",
+      "memberships",
+      "next",
+      "offer",
+      "pacing",
+      "paid",
+      "professionals",
+      "save",
+      "segment",
+      "segmentation",
+      "selling",
+      "spikes",
+      "templates",
+      "the",
+      "track",
+      "tracker",
+      "upcoming",
+      "view",
+      "workshops",
+      "optional",
+      "plan",
+      "repeated",
+      "run",
+      "with",
+      "add-on",
+      "assuming",
+      "clear",
+      "creator-business",
+      "cycle",
+      "cycles",
+      "failed",
+      "fee",
+      "fewer",
+      "flat",
+      "future",
+      "handling",
+      "heavy",
+      "instead",
+      "learning",
+      "management",
+      "migration",
+      "monitoring",
+      "more",
+      "must",
+      "needs",
+      "offers",
+      "plus",
+      "reflect",
+      "require",
+      "rescued",
+      "saas",
+      "students",
+      "usage",
+      "volume",
+      "waitlists",
+      "communities",
+      "creator",
+      "fractional",
+      "from",
+      "marketers",
+      "referrals"
+    ],
+    "final_keywords": [
+      "cohort-management",
+      "payment-plan-risk",
+      "alumni-reactivation",
+      "subscription-revenue",
+      "launch-cycle",
+      "education-creator",
+      "re-enrollment",
+      "monthly-subscription",
+      "cohort-course",
+      "churn"
+    ],
+    "keyword_provenance": {
+      "cohort-management": [
+        "llm"
+      ],
+      "payment-plan-risk": [
+        "llm"
+      ],
+      "alumni-reactivation": [
+        "llm"
+      ],
+      "subscription-revenue": [
+        "llm"
+      ],
+      "launch-cycle": [
+        "llm"
+      ],
+      "education-creator": [
+        "llm"
+      ],
+      "re-enrollment": [
+        "field:must_have_features",
+        "field:problem",
+        "llm"
+      ],
+      "monthly-subscription": [
+        "llm"
+      ],
+      "cohort-course": [
+        "seed_keywords"
+      ],
+      "churn": [
+        "seed_keywords"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Subscription-based system that tracks cohort launches, flags payment-plan risk, and runs alumni reactivation campaigns to smooth revenue between cohorts.",
+    "keywords": [
+      "cohort-management",
+      "payment-plan-risk",
+      "alumni-reactivation",
+      "subscription-revenue",
+      "launch-cycle",
+      "education-creator",
+      "re-enrollment",
+      "monthly-subscription",
+      "cohort-course",
+      "churn"
+    ]
+  },
+  "planned_resolution": "claim"
+}

@@ -1,0 +1,262 @@
+{
+  "brief_id": "therapy-prior-auth-tracker",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "step-3-5-flash",
+    "model_name": "stepfun-ai/step-3.5-flash",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "53604a54b0348ae6f7f3f1810f9c7ab58f6bcaf3a46005749f14ded30e9cd784",
+    "prompt_hash": "986ba02fb1f88c9cf6fd5051bf610ebd0be42b67778d0960387055013b005921",
+    "generated_at": "2026-03-02T07:23:53.523982Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"therapy-prior-auth-tracker\",\n  \"title\": \"Prior authorization queue and renewal tracker for outpatient therapy clinics\",\n  \"category\": \"healthcare-ops\",\n  \"target_customer\": \"Physical, occupational, and speech therapy clinics managing insurance-heavy visit plans across small teams.\",\n  \"problem\": \"Prior authorizations and visit approvals expire mid-plan, causing avoidable claim denials and front-desk chaos.\",\n  \"workflow\": \"Track every patient plan, renewal date, missing insurer document, and therapist follow-up needed to keep care authorized.\",\n  \"recurring_revenue_model\": \"Monthly subscription per clinic location with volume tiers based on active care plans.\",\n  \"pricing_shape\": \"Per-location fee with add-on for multi-provider clinic groups.\",\n  \"distribution_channel\": \"Therapy billing consultants, regional clinic owners, and healthcare operations communities.\",\n  \"constraints\": [\n    \"Must respect healthcare admin workflows without pretending to be an EHR.\",\n    \"Needs highly visible due dates and missing-document status.\",\n    \"Cannot depend on custom payer integrations to be valuable.\"\n  ],\n  \"must_have_features\": [\n    \"Authorization renewal board\",\n    \"Missing-document checklist\",\n    \"Visit-cap alerts\",\n    \"Therapist and front-desk handoff notes\"\n  ],\n  \"seed_keywords\": [\n    \"therapy\",\n    \"prior-auth\",\n    \"renewals\",\n    \"insurance\",\n    \"visit-caps\",\n    \"clinics\"\n  ],\n  \"anti_goals\": [\n    \"Do not build an EHR.\",\n    \"Do not start with hospital systems.\"\n  ],\n  \"success_metric\": \"Fewer denials caused by expired authorizations and smoother patient scheduling continuity.\",\n  \"prompt_rendered_brief\": \"The product is a prior authorization queue and renewal tracker for outpatient therapy clinics that live under insurance visit caps and expiring approvals. Clinic owners and front-desk coordinators lose revenue when the next renewal date is hidden or supporting documents never get chased in time, leading to preventable denials and rescheduled care. The software should show every patient plan, upcoming authorization deadline, and missing document in a way that supports both therapists and admin staff. A recurring per-location subscription makes sense because the workflow repeats constantly across active care plans. The tool must stop short of being an EHR and instead become the operational layer that keeps reimbursement moving. The result should be fewer care interruptions and fewer claims denied for administrative reasons.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-a39c70b32e6281f2",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-9583b6dee6ad584d",
+              "function": {
+                "arguments": "{\n  \"core_mechanic\": \"Prior authorization and renewal tracking for therapy clinics to prevent denials and maintain care continuity\",\n  \"keywords\": [\n    \"therapy\",\n    \"prior-auth\",\n    \"renewals\",\n    \"insurance\",\n    \"visit-caps\",\n    \"clinics\",\n    \"authorizations\",\n    \"outpatient\",\n    \"revenue\",\n    \"denials\",\n    \"tracker\",\n    \"subscription\"\n  ]\n}",
+                "name": "GeneratedIntentDraft"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning": null,
+          "reasoning_content": null
+        },
+        "stop_reason": null,
+        "token_ids": null
+      }
+    ],
+    "created": 1772436230,
+    "model": "stepfun-ai/step-3.5-flash",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 95,
+      "prompt_tokens": 992,
+      "total_tokens": 1087,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "{\"core_mechanic\":\"Prior authorization and renewal tracking for therapy clinics to prevent denials and maintain care continuity\",\"keywords\":[\"therapy\",\"prior-auth\",\"renewals\",\"insurance\",\"visit-caps\",\"clinics\",\"authorizations\",\"outpatient\",\"revenue\",\"denials\",\"tracker\",\"subscription\"]}",
+  "llm_output": {
+    "core_mechanic": "Prior authorization and renewal tracking for therapy clinics to prevent denials and maintain care continuity",
+    "keywords": [
+      "therapy",
+      "prior-auth",
+      "renewals",
+      "insurance",
+      "visit-caps",
+      "clinics",
+      "authorizations",
+      "outpatient",
+      "revenue",
+      "denials",
+      "tracker",
+      "subscription"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "therapy",
+      "prior-auth",
+      "renewals",
+      "insurance",
+      "visit-caps",
+      "clinics",
+      "authorizations",
+      "outpatient",
+      "revenue",
+      "denials",
+      "tracker",
+      "subscription"
+    ],
+    "derived_keywords": [
+      "and",
+      "front-desk",
+      "renewal",
+      "therapist",
+      "visit",
+      "care",
+      "plans",
+      "authorizations",
+      "clinic",
+      "denials",
+      "missing-document",
+      "patient",
+      "with",
+      "across",
+      "alerts",
+      "approvals",
+      "authorization",
+      "authorized",
+      "avoidable",
+      "board",
+      "causing",
+      "chaos",
+      "checklist",
+      "claim",
+      "date",
+      "document",
+      "expire",
+      "follow-up",
+      "handoff",
+      "insurance-heavy",
+      "insurer",
+      "keep",
+      "managing",
+      "mid-plan",
+      "missing",
+      "needed",
+      "notes",
+      "occupational",
+      "physical",
+      "plan",
+      "prior",
+      "speech",
+      "track",
+      "visit-cap",
+      "active",
+      "based",
+      "healthcare",
+      "location",
+      "tiers",
+      "volume",
+      "add-on",
+      "admin",
+      "caused",
+      "continuity",
+      "custom",
+      "dates",
+      "depend",
+      "due",
+      "ehr",
+      "expired",
+      "fee",
+      "fewer",
+      "for",
+      "groups",
+      "healthcare-ops",
+      "highly",
+      "integrations",
+      "multi-provider",
+      "must",
+      "needs",
+      "payer",
+      "per-location",
+      "pretending",
+      "respect",
+      "scheduling",
+      "smoother",
+      "status",
+      "valuable",
+      "visible",
+      "without",
+      "billing",
+      "communities",
+      "consultants",
+      "operations"
+    ],
+    "final_keywords": [
+      "therapy",
+      "prior-auth",
+      "renewals",
+      "insurance",
+      "visit-caps",
+      "clinics",
+      "authorizations",
+      "outpatient",
+      "revenue",
+      "denials"
+    ],
+    "keyword_provenance": {
+      "therapy": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "prior-auth": [
+        "llm",
+        "seed_keywords"
+      ],
+      "renewals": [
+        "llm",
+        "seed_keywords"
+      ],
+      "insurance": [
+        "llm",
+        "seed_keywords"
+      ],
+      "visit-caps": [
+        "llm",
+        "seed_keywords"
+      ],
+      "clinics": [
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "authorizations": [
+        "field:problem",
+        "field:success_metric",
+        "llm"
+      ],
+      "outpatient": [
+        "llm"
+      ],
+      "revenue": [
+        "llm"
+      ],
+      "denials": [
+        "field:problem",
+        "field:success_metric",
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Prior authorization and renewal tracking for therapy clinics to prevent denials and maintain care continuity",
+    "keywords": [
+      "therapy",
+      "prior-auth",
+      "renewals",
+      "insurance",
+      "visit-caps",
+      "clinics",
+      "authorizations",
+      "outpatient",
+      "revenue",
+      "denials"
+    ]
+  },
+  "planned_resolution": "claim"
+}

@@ -44,7 +44,20 @@ Provider stack for live fixture generation:
 
 - `pydantic` models define the draft and stored artifact contracts
 - `instructor` handles structured extraction and retries
-- `openai.AsyncOpenAI` is used against OpenAI-compatible endpoints such as NVIDIA NIM
+- `openai.AsyncOpenAI` is used against OpenAI-compatible endpoints
+
+Live generation behavior:
+
+- `--skip-existing` resumes partial runs without rewriting successful fixtures
+- `--model-alias` and `--brief-id` let you restart from a specific model or brief
+- `--model-failure-threshold` marks problematic models as retry-later after repeated failed briefs so one slow or rate-limited model does not block the whole batch
+
+Model inventory notes:
+
+- the fixture catalog now includes a broader mix of model families, including Llama, Mixtral, DeepSeek, Kimi, MiniMax, Phi, Qwen, and Nemotron variants
+- `smoke` and `default` stay conservative for stable local runs
+- wider coverage lives in `expanded` and `nightly`
+- models that are not yet verified on the target endpoint remain disabled in the matrix
 
 Offline replay stack:
 
@@ -53,6 +66,7 @@ Offline replay stack:
 - concurrent swarm execution uses `anyio` task groups with one MCP session per virtual agent
 - swarm assertions validate persisted DB state, terminal status transitions, and overlap pressure across claimed briefs
 - stored fixture replay also checks prompt and brief hashes so catalog or prompt drift is detected early
+- fixture directories are keyed by model alias only; provider details stay in fixture metadata
 
 Current end-to-end coverage:
 

@@ -1,0 +1,239 @@
+{
+  "brief_id": "pest-control-renewal-engine",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "seed-oss-36b-instruct",
+    "model_name": "bytedance/seed-oss-36b-instruct",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "e0ddb2e2d58b1d1d96c898a135d535909e43c676dd4917420d4076e206c7110d",
+    "prompt_hash": "5bd7d9dc1ff3c43f216c97433dcf3881be99052898af760b74dbf775faa4560e",
+    "generated_at": "2026-03-02T07:50:31.216730Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"pest-control-renewal-engine\",\n  \"title\": \"Recurring contract recovery and route prep for regional pest control operators\",\n  \"category\": \"field-service\",\n  \"target_customer\": \"Regional pest control companies with recurring quarterly service contracts and small call-center teams.\",\n  \"problem\": \"Contracts lapse quietly because route managers focus on today's stops instead of upcoming renewals, cancelled cards, and high-risk accounts.\",\n  \"workflow\": \"Watch contracts and payment failures, group accounts by route geography, and push save actions to office staff before routes are finalized.\",\n  \"recurring_revenue_model\": \"Quarterly or annual pest prevention memberships that renew automatically when customers do not churn.\",\n  \"pricing_shape\": \"Monthly subscription with usage tiers based on active contract count.\",\n  \"distribution_channel\": \"Direct outbound to owner-operators and consultants serving pest control agencies.\",\n  \"constraints\": [\n    \"Must support geographically grouped follow-up instead of generic churn lists.\",\n    \"Needs clear handling for card failures and skipped visits.\",\n    \"Should avoid requiring custom mobile hardware in the field.\"\n  ],\n  \"must_have_features\": [\n    \"Renewal-at-risk queue\",\n    \"Route-aware follow-up buckets\",\n    \"Failed-payment recovery board\",\n    \"Customer save-offer logging\"\n  ],\n  \"seed_keywords\": [\n    \"pest-control\",\n    \"renewals\",\n    \"routes\",\n    \"memberships\",\n    \"failed-payments\",\n    \"churn\"\n  ],\n  \"anti_goals\": [\n    \"Do not replace technician route execution tools.\",\n    \"Do not focus on one-time termite jobs.\"\n  ],\n  \"success_metric\": \"Lower contract churn and fewer route gaps caused by preventable lapses.\",\n  \"prompt_rendered_brief\": \"This product is a recurring contract recovery and route prep engine for regional pest control operators that live on quarterly service plans. The owner already has route software, but renewal risk, failed cards, and rescue calls are hidden inside generic customer lists that nobody works in time. The system should identify expiring or broken contracts, group them by route and technician assignment, and tell office staff which households need outreach before the next calendar is locked. The revenue model is straightforward recurring SaaS tied to active membership volume because the customer's economic value comes from retaining contracts rather than booking one-time jobs. The workflow needs to feel operational and local, with route-aware follow-up and clear notes about save offers or payment recovery attempts. If the product works, the business keeps more recurring revenue and protects route density without forcing the team to adopt a giant enterprise stack.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-42919bdb01304d9aab1635e451b694a3",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-51bd0e9288e64161849a1227206cd2dd",
+              "function": {
+                "arguments": "{\n  \"core_mechanic\": \"A system that monitors pest control contracts for renewal risk and payment issues, geographically groups at-risk accounts by route, and alerts office staff to take recovery actions before routes are finalized, preserving recurring membership revenue.\",\n  \"keywords\": [\n    \"regional-pest-control\",\n    \"contract-recovery\",\n    \"route-aware-followup\",\n    \"recurring-memberships\",\n    \"failed-payment-recovery\",\n    \"churn-prevention\"\n  ]\n}",
+                "name": "GeneratedIntentDraft"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning_content": "\nGot it, let's tackle this problem step by step. First, I need to remember the requirements: a concise core_mechanic under 250 characters, 5-12 lowercase keywords that are alphanumeric or hyphenated, focusing on commercial mechanism, target customer, recurring revenue path.\n\nFirst, core_mechanic. The brief says it's for regional pest control operators, helping recover recurring contracts and prep routes. The key points are: identifies at-risk contracts (expiring, failed payments), groups by route geography, pushes save actions to office staff before route finalization, to reduce churn and protect recurring revenue. Need to keep it under 250 chars, so concise: \"A system that monitors pest control contracts for renewal risk and payment issues, geographically groups at-risk accounts by route, and alerts office staff to take recovery actions before routes are finalized, preserving recurring membership revenue.\" Let me check length—yes, that's short enough.\n\nNext, keywords. Need 5-12, lowercase, alphanumeric/hyphenated. Focus on target customer (regional pest control), commercial mechanism (contract recovery, route prep), recurring revenue (memberships, recurring revenue), problem areas (failed payments, churn). The seed keywords are pest-control, renewals, routes, memberships, failed-payments, churn. But need to make sure they're discriminative. Let's list possible:\n\n- regional-pest-control (target customer, since it's regional operators)\n- contract-recovery (core commercial mechanism)\n- route-aware-followup (from workflow: group by route geography, route-aware buckets)\n- recurring-memberships (recurring revenue model: quarterly/annual memberships)\n- failed-payment-recovery (must-have feature: failed-payment recovery board, problem: cancelled cards)\n- churn-prevention (success metric: lower contract churn, problem: lapses)\n\nWait, check the requirements: avoid filler like \"app\", \"ai\", etc. These are all good. Let's count: regional-pest-control, contract-recovery, route-aware-followup, recurring-memberships, failed-payment-recovery, churn-prevention—that's 6, which is between 5-12. Are they all lowercase? Yes. Alphanumeric or hyphenated? Yes. Do they focus on commercial mechanism (contract-recovery, route-aware-followup), target customer (regional-pest-control), recurring revenue (recurring-memberships)? Yes. Do they avoid fillers? Yes.\n\nLet me double-check the core_mechanic again to make sure it's under 250 characters. Let's count: \"A system that monitors pest control contracts for renewal risk and payment issues, geographically groups at-risk accounts by route, and alerts office staff to take recovery actions before routes are finalized, preserving recurring membership revenue.\" Let's see—yes, way under 250.\n\nIs there any missing? Let's check the brief again: target customer is regional pest control companies with recurring quarterly contracts. Problem: contracts lapse because route managers don't focus on renewals/cancelled cards. Workflow: watch contracts/payment failures, group by route geography, push save actions before route finalization. Recurring revenue: quarterly/annual memberships auto-renew. Must-have features: renewal-at-risk queue, route-aware follow-up buckets, failed-payment recovery board. So core_mechanic covers monitoring contracts/payments, grouping by route, alerting staff before routes finalize, preserving recurring revenue. That's all key.\n\nKeywords: regional-pest-control (target), contract-recovery (core mechanism), route-aware-followup (workflow/constraint), recurring-memberships (recurring revenue), failed-payment-recovery (problem/must-have), churn-prevention (success metric/problem). Perfect.\n\nWait, should \"routes\" be there? But \"route-aware-followup\" is more specific and ties to the workflow. The seed keywords have \"routes\", but \"route-aware-followup\" is better because it's a must-have feature and part of the workflow. Also, \"regional-pest-control\" is better than just \"pest-control\" because the target is regional. The seed has \"pest-control\", but adding \"regional\" makes it more discriminative as per target customer.\n\nAnother check: keywords must be 5-12. 6 is good. All lowercase, hyphenated where needed. No fillers. Yes.\n\nCore_mechanic: Is it concise? Let's see if we can trim: \"Monitors pest control contracts for renewal risk/payment issues, groups at-risk accounts geographically by route, alerts office staff to recover before routes finalize, preserving recurring membership revenue.\" That's even shorter, but does it lose key points? Original had \"system that\"—maybe not necessary. But the first version is clear. Either way, both are under 250.\n\nFinal check: Does core_mechanic cover the true commercial mechanism (contract recovery via route-aware alerts), target customer (regional pest control), recurring revenue path (preserving memberships)? Yes. Keywords cover all three areas. Looks good."
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772437804,
+    "model": "bytedance/seed-oss-36b-instruct",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1190,
+      "prompt_tokens": 920,
+      "total_tokens": 2110,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "{\"core_mechanic\":\"A system that monitors pest control contracts for renewal risk and payment issues, geographically groups at-risk accounts by route, and alerts office staff to take recovery actions before routes are finalized, preserving recurring membership revenue.\",\"keywords\":[\"regional-pest-control\",\"contract-recovery\",\"route-aware-followup\",\"recurring-memberships\",\"failed-payment-recovery\",\"churn-prevention\"]}",
+  "llm_output": {
+    "core_mechanic": "A system that monitors pest control contracts for renewal risk and payment issues, geographically groups at-risk accounts by route, and alerts office staff to take recovery actions before routes are finalized, preserving recurring membership revenue.",
+    "keywords": [
+      "regional-pest-control",
+      "contract-recovery",
+      "route-aware-followup",
+      "recurring-memberships",
+      "failed-payment-recovery",
+      "churn-prevention"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "regional-pest-control",
+      "contract-recovery",
+      "route-aware-followup",
+      "recurring-memberships",
+      "failed-payment-recovery",
+      "churn-prevention"
+    ],
+    "derived_keywords": [
+      "and",
+      "contracts",
+      "route",
+      "accounts",
+      "pest",
+      "quarterly",
+      "failures",
+      "follow-up",
+      "instead",
+      "with",
+      "control",
+      "actions",
+      "are",
+      "because",
+      "board",
+      "buckets",
+      "call-center",
+      "cancelled",
+      "cards",
+      "contract",
+      "failed-payment",
+      "finalized",
+      "geography",
+      "group",
+      "high-risk",
+      "lapse",
+      "logging",
+      "office",
+      "payment",
+      "push",
+      "queue",
+      "quietly",
+      "recovery",
+      "renewal-at-risk",
+      "route-aware",
+      "save",
+      "save-offer",
+      "staff",
+      "stops",
+      "today",
+      "upcoming",
+      "watch",
+      "automatically",
+      "not",
+      "prevention",
+      "renew",
+      "that",
+      "when",
+      "active",
+      "avoid",
+      "based",
+      "card",
+      "caused",
+      "clear",
+      "count",
+      "custom",
+      "fewer",
+      "field",
+      "field-service",
+      "for",
+      "gaps",
+      "generic",
+      "geographically",
+      "grouped",
+      "handling",
+      "hardware",
+      "lapses",
+      "lists",
+      "mobile",
+      "must",
+      "needs",
+      "preventable",
+      "requiring",
+      "should",
+      "skipped",
+      "support",
+      "the",
+      "tiers",
+      "usage",
+      "visits",
+      "agencies",
+      "consultants",
+      "direct",
+      "outbound",
+      "owner-operators",
+      "serving"
+    ],
+    "final_keywords": [
+      "regional-pest-control",
+      "contract-recovery",
+      "route-aware-followup",
+      "recurring-memberships",
+      "failed-payment-recovery",
+      "churn-prevention",
+      "pest-control",
+      "renewals",
+      "routes",
+      "memberships"
+    ],
+    "keyword_provenance": {
+      "regional-pest-control": [
+        "llm"
+      ],
+      "contract-recovery": [
+        "llm"
+      ],
+      "route-aware-followup": [
+        "llm"
+      ],
+      "recurring-memberships": [
+        "llm"
+      ],
+      "failed-payment-recovery": [
+        "llm"
+      ],
+      "churn-prevention": [
+        "llm"
+      ],
+      "pest-control": [
+        "seed_keywords"
+      ],
+      "renewals": [
+        "field:problem",
+        "seed_keywords"
+      ],
+      "routes": [
+        "field:workflow",
+        "seed_keywords"
+      ],
+      "memberships": [
+        "field:recurring_revenue_model",
+        "seed_keywords"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "A system that monitors pest control contracts for renewal risk and payment issues, geographically groups at-risk accounts by route, and alerts office staff to take recovery actions before routes are finalized, preserving recurring membership revenue.",
+    "keywords": [
+      "regional-pest-control",
+      "contract-recovery",
+      "route-aware-followup",
+      "recurring-memberships",
+      "failed-payment-recovery",
+      "churn-prevention",
+      "pest-control",
+      "renewals",
+      "routes",
+      "memberships"
+    ]
+  },
+  "planned_resolution": "claim"
+}

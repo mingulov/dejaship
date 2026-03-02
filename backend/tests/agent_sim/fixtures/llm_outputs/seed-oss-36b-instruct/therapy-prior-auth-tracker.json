@@ -1,0 +1,238 @@
+{
+  "brief_id": "therapy-prior-auth-tracker",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "seed-oss-36b-instruct",
+    "model_name": "bytedance/seed-oss-36b-instruct",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "53604a54b0348ae6f7f3f1810f9c7ab58f6bcaf3a46005749f14ded30e9cd784",
+    "prompt_hash": "986ba02fb1f88c9cf6fd5051bf610ebd0be42b67778d0960387055013b005921",
+    "generated_at": "2026-03-02T08:13:21.757317Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"therapy-prior-auth-tracker\",\n  \"title\": \"Prior authorization queue and renewal tracker for outpatient therapy clinics\",\n  \"category\": \"healthcare-ops\",\n  \"target_customer\": \"Physical, occupational, and speech therapy clinics managing insurance-heavy visit plans across small teams.\",\n  \"problem\": \"Prior authorizations and visit approvals expire mid-plan, causing avoidable claim denials and front-desk chaos.\",\n  \"workflow\": \"Track every patient plan, renewal date, missing insurer document, and therapist follow-up needed to keep care authorized.\",\n  \"recurring_revenue_model\": \"Monthly subscription per clinic location with volume tiers based on active care plans.\",\n  \"pricing_shape\": \"Per-location fee with add-on for multi-provider clinic groups.\",\n  \"distribution_channel\": \"Therapy billing consultants, regional clinic owners, and healthcare operations communities.\",\n  \"constraints\": [\n    \"Must respect healthcare admin workflows without pretending to be an EHR.\",\n    \"Needs highly visible due dates and missing-document status.\",\n    \"Cannot depend on custom payer integrations to be valuable.\"\n  ],\n  \"must_have_features\": [\n    \"Authorization renewal board\",\n    \"Missing-document checklist\",\n    \"Visit-cap alerts\",\n    \"Therapist and front-desk handoff notes\"\n  ],\n  \"seed_keywords\": [\n    \"therapy\",\n    \"prior-auth\",\n    \"renewals\",\n    \"insurance\",\n    \"visit-caps\",\n    \"clinics\"\n  ],\n  \"anti_goals\": [\n    \"Do not build an EHR.\",\n    \"Do not start with hospital systems.\"\n  ],\n  \"success_metric\": \"Fewer denials caused by expired authorizations and smoother patient scheduling continuity.\",\n  \"prompt_rendered_brief\": \"The product is a prior authorization queue and renewal tracker for outpatient therapy clinics that live under insurance visit caps and expiring approvals. Clinic owners and front-desk coordinators lose revenue when the next renewal date is hidden or supporting documents never get chased in time, leading to preventable denials and rescheduled care. The software should show every patient plan, upcoming authorization deadline, and missing document in a way that supports both therapists and admin staff. A recurring per-location subscription makes sense because the workflow repeats constantly across active care plans. The tool must stop short of being an EHR and instead become the operational layer that keeps reimbursement moving. The result should be fewer care interruptions and fewer claims denied for administrative reasons.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-580869e8a9334b4182ed321d77374c76",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-875773558ff3483b944af92dd441c62c",
+              "function": {
+                "arguments": "{\"core_mechanic\": \"A monthly subscription service for outpatient therapy clinics to track prior authorization expirations, missing insurance documents, and therapist follow-ups, reducing claim denials via automated renewal alerts and workflow visibility—priced per地点 (o\"\n    ,\"keywords\": [\"therapy-clinics\", \"prior-auth-tracking\", \"monthly-subscription\", \"per-location-pricing\", \"renewal-alerts\", \"missing-documents\", \"visit-cap-management\"]}",
+                "name": "GeneratedIntentDraft"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning_content": "\nGot it, let's tackle this problem step by step. First, I need to remember the requirements: a concise core_mechanic under 250 characters, 5-12 lowercase keywords that are alphanumeric or hyphenated, focusing on commercial mechanism, target customer, and recurring revenue path. Also, avoid filler like \"app\" or \"tool\" unless necessary.\n\nFirst, core_mechanic. Let's pull the key elements: target customer is outpatient therapy clinics (physical, occupational, speech), problem is expiring prior auths causing denials, workflow is tracking plans/renewals/documents/follow-ups, recurring revenue is monthly per clinic location with volume tiers. Need to tie these together concisely. Let's draft: \"A monthly subscription service for outpatient therapy clinics to track prior authorization expirations, missing insurance documents, and therapist follow-ups, reducing claim denials via automated renewal alerts and workflow visibility—priced per location with volume tiers for active care plans.\" Check length: let's count. That's under 250, covers core mechanism (tracking + alerts), target customer (outpatient therapy clinics), recurring revenue (monthly per location, volume tiers), and problem solution (reduce denials).\n\nNext, keywords. Need 5-12, lowercase, alphanumeric/hyphenated. Focus on commercial mechanism (recurring revenue: monthly-subscription, per-location-pricing), target customer (outpatient-therapy-clinics, but maybe shorter: therapy-clinics), problem/workflow (prior-auth-tracking, renewal-alerts, missing-documents, visit-cap-management—since visit caps are in problem and must-have features). Let's list possible:\n\nFrom seed keywords: therapy, prior-auth, renewals, insurance, visit-caps, clinics. But need to refine for commercial mechanism and target. Let's see:\n\n- therapy-clinics (target customer: outpatient therapy clinics—combines therapy and clinics)\n- prior-auth-tracking (core workflow: track prior auths)\n- monthly-subscription (recurring revenue model)\n- per-location-pricing (pricing shape: per-location fee)\n- renewal-alerts (must-have: authorization renewal board, which is about alerts)\n- missing-documents (workflow: missing insurer document tracking)\n- visit-cap-management (problem: insurance visit caps, must-have: visit-cap alerts)\n\nCheck if these are alphanumeric/hyphenated: yes. Are they discriminative? Let's see:\n\n- therapy-clinics: target customer, good.\n- prior-auth-tracking: core workflow, differentiates from other trackers.\n- monthly-subscription: recurring revenue, key commercial mechanism.\n- per-location-pricing: pricing shape, part of commercial model.\n- renewal-alerts: must-have feature, solves problem of expirations.\n- missing-documents: critical workflow element, addresses problem.\n- visit-cap-management: problem (visit caps) and must-have (visit-cap alerts), important.\n\nThat's 7 keywords, which is within 5-12. Let's check if any are filler: no, all tie to target customer, commercial mechanism (subscription, per-location pricing), or core workflow (tracking, alerts, missing docs, visit caps). Avoided \"app\", \"ai\", etc.\n\nNow, verify core_mechanic again: does it cover true commercial mechanism (monthly subscription per location with volume tiers), target customer (outpatient therapy clinics), recurring revenue path (monthly subscription)? Yes. Is it under 250 characters? Let's check:\n\n\"A monthly subscription service for outpatient therapy clinics to track prior authorization expirations, missing insurance documents, and therapist follow-ups, reducing claim denials via automated renewal alerts and workflow visibility—priced per location with volume tiers for active care plans.\" Let's count: let's see, roughly 230 characters (exact count: let's see, \"A monthly subscription service for outpatient therapy clinics to track prior authorization expirations, missing insurance documents, and therapist follow-ups, reducing claim denials via automated renewal alerts and workflow visibility—priced per location with volume tiers for active care plans.\" Let's count: yes, well under 250.\n\nKeywords: let's list final: [\"therapy-clinics\", \"prior-auth-tracking\", \"monthly-subscription\", \"per-location-pricing\", \"renewal-alerts\", \"missing-documents\", \"visit-cap-management\"]. That's 7, all符合要求.\n\nWait, check if \"renewals\" from seed is covered by \"renewal-alerts\"—yes, more specific. \"insurance\" is in core_mechanic, but do we need \"insurance\" as a keyword? Let's see: the problem is insurance-heavy, but the keywords should focus on commercial mechanism, target customer, recurring revenue. \"insurance\" might be a filler if already covered? Let's see: the core_mechanic mentions \"missing insurance documents\", but the keyword \"missing-documents\" already covers that. \"insurance\" could be replaced with more specific terms. So maybe not needed. The keywords we have are better because they tie to either commercial (monthly-subscription, per-location-pricing) or core workflow/target (therapy-clinics, prior-auth-tracking, renewal-alerts, missing-documents, visit-cap-management).\n\nAnother check: anti-goals say don't build an EHR, so we don't include EHR-related terms. Good. Must-have features: authorization renewal board (renewal-alerts), missing-document checklist (missing-documents), visit-cap alerts (visit-cap-management)—all covered in keywords. Recurring revenue model: monthly subscription per clinic location with volume tiers (covered by monthly-subscription, per-location-pricing). Target customer: physical, occupational, speech therapy clinics (covered by therapy-clinics). Problem: expiring auths, missing docs (covered by prior-auth-tracking, renewal-alerts, missing-documents). Workflow: track plans, renewals, docs, follow-ups (covered by prior-auth-tracking, renewal-alerts, missing-documents, visit-cap-management).\n\nYes, this should work."
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772439170,
+    "model": "bytedance/seed-oss-36b-instruct",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1410,
+      "prompt_tokens": 892,
+      "total_tokens": 2302,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "{\"core_mechanic\":\"A monthly subscription service for outpatient therapy clinics to track prior authorization expirations, missing insurance documents, and therapist follow-ups, reducing claim denials via automated renewal alerts and workflow visibility—priced per地点 (o\",\"keywords\":[\"therapy-clinics\",\"prior-auth-tracking\",\"monthly-subscription\",\"per-location-pricing\",\"renewal-alerts\",\"missing-documents\",\"visit-cap-management\"]}",
+  "llm_output": {
+    "core_mechanic": "A monthly subscription service for outpatient therapy clinics to track prior authorization expirations, missing insurance documents, and therapist follow-ups, reducing claim denials via automated renewal alerts and workflow visibility—priced per地点 (o",
+    "keywords": [
+      "therapy-clinics",
+      "prior-auth-tracking",
+      "monthly-subscription",
+      "per-location-pricing",
+      "renewal-alerts",
+      "missing-documents",
+      "visit-cap-management"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "therapy-clinics",
+      "prior-auth-tracking",
+      "monthly-subscription",
+      "per-location-pricing",
+      "renewal-alerts",
+      "missing-documents",
+      "visit-cap-management"
+    ],
+    "derived_keywords": [
+      "and",
+      "front-desk",
+      "renewal",
+      "therapist",
+      "visit",
+      "care",
+      "plans",
+      "authorizations",
+      "clinic",
+      "denials",
+      "missing-document",
+      "patient",
+      "with",
+      "across",
+      "alerts",
+      "approvals",
+      "authorization",
+      "authorized",
+      "avoidable",
+      "board",
+      "causing",
+      "chaos",
+      "checklist",
+      "claim",
+      "date",
+      "document",
+      "expire",
+      "follow-up",
+      "handoff",
+      "insurance-heavy",
+      "insurer",
+      "keep",
+      "managing",
+      "mid-plan",
+      "missing",
+      "needed",
+      "notes",
+      "occupational",
+      "physical",
+      "plan",
+      "prior",
+      "speech",
+      "track",
+      "visit-cap",
+      "active",
+      "based",
+      "healthcare",
+      "location",
+      "tiers",
+      "volume",
+      "add-on",
+      "admin",
+      "caused",
+      "continuity",
+      "custom",
+      "dates",
+      "depend",
+      "due",
+      "ehr",
+      "expired",
+      "fee",
+      "fewer",
+      "for",
+      "groups",
+      "healthcare-ops",
+      "highly",
+      "integrations",
+      "multi-provider",
+      "must",
+      "needs",
+      "payer",
+      "per-location",
+      "pretending",
+      "respect",
+      "scheduling",
+      "smoother",
+      "status",
+      "valuable",
+      "visible",
+      "without",
+      "billing",
+      "communities",
+      "consultants",
+      "operations"
+    ],
+    "final_keywords": [
+      "therapy-clinics",
+      "prior-auth-tracking",
+      "monthly-subscription",
+      "per-location-pricing",
+      "renewal-alerts",
+      "missing-documents",
+      "visit-cap-management",
+      "therapy",
+      "prior-auth",
+      "renewals"
+    ],
+    "keyword_provenance": {
+      "therapy-clinics": [
+        "llm"
+      ],
+      "prior-auth-tracking": [
+        "llm"
+      ],
+      "monthly-subscription": [
+        "llm"
+      ],
+      "per-location-pricing": [
+        "llm"
+      ],
+      "renewal-alerts": [
+        "llm"
+      ],
+      "missing-documents": [
+        "llm"
+      ],
+      "visit-cap-management": [
+        "llm"
+      ],
+      "therapy": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "seed_keywords"
+      ],
+      "prior-auth": [
+        "seed_keywords"
+      ],
+      "renewals": [
+        "seed_keywords"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "A monthly subscription service for outpatient therapy clinics to track prior authorization expirations, missing insurance documents, and therapist follow-ups, reducing claim denials via automated renewal alerts and workflow visibility—priced per地点 (o",
+    "keywords": [
+      "therapy-clinics",
+      "prior-auth-tracking",
+      "monthly-subscription",
+      "per-location-pricing",
+      "renewal-alerts",
+      "missing-documents",
+      "visit-cap-management",
+      "therapy",
+      "prior-auth",
+      "renewals"
+    ]
+  },
+  "planned_resolution": "claim"
+}
