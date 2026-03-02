@@ -26,5 +26,15 @@ services:
       db:
         condition: service_healthy
 
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    command: tunnel run
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN}
+    depends_on:
+      backend:
+        condition: service_started
+    restart: unless-stopped
+
 volumes:
   pgdata:
