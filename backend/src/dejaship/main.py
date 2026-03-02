@@ -23,7 +23,7 @@ async def lifespan(app: FastAPI):
     load_model()
     if settings.ENABLE_RERANKER:
         from dejaship.reranker import load_reranker
-        load_reranker()
+        load_reranker()  # CPU-bound, same pattern as load_model() above
     # Start MCP session manager
     async with mcp.session_manager.run():
         yield
@@ -85,6 +85,14 @@ async def ready():
         get_model()
     except RuntimeError:
         checks["embeddings"] = "error"
+
+    if settings.ENABLE_RERANKER:
+        from dejaship.reranker import get_reranker
+        checks["reranker"] = "ok"
+        try:
+            get_reranker()
+        except RuntimeError:
+            checks["reranker"] = "error"
 
     status = "ok" if all(value == "ok" for value in checks.values()) else "error"
     status_code = 200 if status == "ok" else 503

@@ -1,6 +1,8 @@
 """ColBERT (late-interaction) reranker module."""
 from __future__ import annotations
 
+from typing import Any, Callable
+
 import numpy as np
 from fastembed import LateInteractionTextEmbedding
 
@@ -24,12 +26,13 @@ def get_reranker() -> LateInteractionTextEmbedding:
 def maxsim_score(query_embeddings: np.ndarray, doc_embeddings: np.ndarray) -> float:
     """Compute ColBERT MaxSim score between query and document token embeddings.
 
-    For each query token, find maximum cosine similarity with any doc token,
-    then sum across all query tokens.
+    For each query token, find the maximum dot product with any doc token,
+    then sum across all query tokens. fastembed's LateInteractionTextEmbedding
+    returns L2-normalised token embeddings, so dot product equals cosine similarity.
 
     Args:
-        query_embeddings: shape (Q, D) - query token embeddings
-        doc_embeddings: shape (T, D) - document token embeddings
+        query_embeddings: shape (Q, D) — query token embeddings (L2-normalised)
+        doc_embeddings: shape (T, D) — document token embeddings (L2-normalised)
 
     Returns:
         MaxSim score (higher = more relevant)
@@ -42,12 +45,15 @@ def maxsim_score(query_embeddings: np.ndarray, doc_embeddings: np.ndarray) -> fl
 
 def rerank(
     query_text: str,
-    candidates: list,
+    candidates: list[Any],
     *,
     threshold: float,
-    text_fn: callable,
-) -> list:
+    text_fn: Callable[[Any], str],
+) -> list[Any]:
     """Rerank candidates using ColBERT MaxSim scoring.
+
+    This function is synchronous (CPU-bound ONNX inference) and must be
+    called via run_in_threadpool in async contexts.
 
     Args:
         query_text: The query string
@@ -63,10 +69,12 @@ def rerank(
     # Encode query
     query_embs = list(model.query_embed([query_text]))[0]  # (Q, D) ndarray
 
+    # Batch-encode all documents (single ONNX forward pass per model batch)
+    doc_texts = [text_fn(c) for c in candidates]
+    doc_embs_list = list(model.passage_embed(doc_texts))
+
     scored = []
-    for candidate in candidates:
-        doc_text = text_fn(candidate)
-        doc_embs = list(model.passage_embed([doc_text]))[0]  # (T, D) ndarray
+    for candidate, doc_embs in zip(candidates, doc_embs_list):
         score = maxsim_score(query_embs, doc_embs)
         if score >= threshold:
             scored.append((score, candidate))
