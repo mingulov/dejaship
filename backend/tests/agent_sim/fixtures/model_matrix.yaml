@@ -5,11 +5,13 @@ sets:
   default:
     - step-3-5-flash
     - llama-3-1-8b-instruct
-    - phi-4-mini-instruct
+    - gpt-oss-120b
     - qwen2-5-coder-32b-instruct
   expanded:
     - step-3-5-flash
     - llama-3-1-8b-instruct
+    - kimi-k2-instruct
+    - kimi-k2-thinking
     - phi-4-mini-instruct
     - phi-3-5-mini-instruct
     - gemma-2-9b-it
@@ -19,11 +21,10 @@ sets:
     - ministral-14b-instruct-2512
     - seed-oss-36b-instruct
     - stockmark-2-100b-instruct
-    - mistral-medium-3
     - gpt-oss-120b
     - gpt-oss-20b
     - qwen2-5-coder-32b-instruct
-    - llama-3-3-nemotron-super-49b-v1
+    - nemotron-3-nano-30b-a3b
     - llama-3-3-70b-instruct
   nightly:
     - step-3-5-flash
@@ -37,11 +38,9 @@ sets:
     - ministral-14b-instruct-2512
     - seed-oss-36b-instruct
     - stockmark-2-100b-instruct
-    - mistral-medium-3
     - gpt-oss-120b
     - gpt-oss-20b
     - qwen2-5-coder-32b-instruct
-    - llama-3-3-nemotron-super-49b-v1
     - llama-3-3-70b-instruct
 
 models:
@@ -67,37 +66,43 @@ models:
     model: deepseek-ai/deepseek-r1-distill-llama-70b
     role: reasoning
     weight: 2
-    enabled: false
+    enabled: true
+    generation_mode: json_text
     notes: Higher-latency reasoning model for revisions and crowded airspace prompts.
   deepseek-r1-distill-llama-8b:
     model: deepseek-ai/deepseek-r1-distill-llama-8b
     role: reasoning
     weight: 2
     enabled: true
+    generation_mode: json_text
     notes: Smaller reasoning-distill model for broad observed-available coverage.
   kimi-k2-instruct:
     model: moonshotai/kimi-k2-instruct
     role: reasoning
     weight: 2
-    enabled: false
+    enabled: true
+    generation_mode: json_text
     notes: Present in the catalog, but kept disabled until endpoint support is confirmed.
   kimi-k2-instruct-0905:
     model: moonshotai/kimi-k2-instruct-0905
     role: reasoning
     weight: 2
-    enabled: false
+    enabled: true
+    generation_mode: json_text
     notes: Kept disabled until endpoint support is confirmed.
   kimi-k2-thinking:
     model: moonshotai/kimi-k2-thinking
     role: reasoning
     weight: 1
-    enabled: false
+    enabled: true
+    generation_mode: json_text
     notes: Shows intermittent overloads, so keep it out of automated runs.
   minimax-m2:
     model: minimaxai/minimax-m2
     role: agentic
     weight: 2
-    enabled: false
+    enabled: true
+    generation_mode: json_text
     notes: Kept disabled until endpoint support is confirmed.
   minimax-m2-5:
     model: minimaxai/minimax-m2.5
@@ -110,54 +115,64 @@ models:
     role: cheap
     weight: 2
     enabled: true
+    generation_mode: json_text
     notes: Lightweight instruct model useful for latency-sensitive coverage.
   phi-4-mini-flash-reasoning:
     model: microsoft/phi-4-mini-flash-reasoning
     role: reasoning
     weight: 1
     enabled: true
+    generation_mode: json_text
     notes: Useful as a small reasoning-oriented contrast model.
   phi-3-5-mini-instruct:
     model: microsoft/phi-3.5-mini-instruct
     role: cheap
     weight: 1
     enabled: true
+    generation_mode: json_text
     notes: Small multilingual model useful for compact-model diversity.
   gemma-2-9b-it:
     model: google/gemma-2-9b-it
     role: cheap
     weight: 1
     enabled: true
+    generation_mode: json_text
+    supports_system_role: false
     notes: Compact contrast model with distinct phrasing tendencies.
   mistral-nemotron:
     model: mistralai/mistral-nemotron
     role: agentic
     weight: 1
-    enabled: false
+    enabled: true
+    generation_mode: json_text
     notes: Kept disabled until endpoint support is confirmed.
   qwen3-next-80b-a3b-instruct:
     model: qwen/qwen3-next-80b-a3b-instruct
     role: reasoning
     weight: 1
-    enabled: false
+    enabled: true
+    generation_mode: json_text
     notes: Kept disabled until endpoint support is confirmed.
   qwq-32b:
     model: qwen/qwq-32b
     role: reasoning
     weight: 2
     enabled: true
+    generation_mode: json_text
     notes: Reasoning-heavy model with good contrast against smaller instruct models.
   magistral-small-2506:
     model: mistralai/magistral-small-2506
     role: reasoning
     weight: 1
     enabled: true
+    generation_mode: json_text
     notes: Compact reasoning model.
   ministral-14b-instruct-2512:
     model: mistralai/ministral-14b-instruct-2512
     role: cheap
     weight: 1
     enabled: true
+    generation_mode: json_text
     notes: Smaller Mistral-family contrast model.
   seed-oss-36b-instruct:
     model: bytedance/seed-oss-36b-instruct
@@ -170,13 +185,8 @@ models:
     role: balanced
     weight: 1
     enabled: true
+    generation_mode: json_text
     notes: Additional contrast model for longer-context enterprise-style prompts.
-  mistral-medium-3:
-    model: mistralai/mistral-medium-3
-    role: balanced
-    weight: 1
-    enabled: true
-    notes: Mid-range general-purpose model for broader prompt-style coverage.
   gpt-oss-120b:
     model: openai/gpt-oss-120b
     role: reasoning
@@ -189,18 +199,20 @@ models:
     weight: 1
     enabled: true
     notes: Low-latency contrast model for deterministic fixture generation.
-  llama-3-3-nemotron-super-49b-v1:
-    model: nvidia/llama-3_3-nemotron-super-49b-v1
-    role: reasoning
-    weight: 1
-    enabled: true
-    notes: Large reasoning-oriented contrast model.
   nvidia-nemotron-nano-9b-v2-dgx-spark:
     model: nvidia/nvidia-nemotron-nano-9b-v2-dgx-spark
     role: cheap
     weight: 1
-    enabled: false
+    enabled: true
+    generation_mode: json_text
     notes: Kept disabled until endpoint support is confirmed.
+  nemotron-3-nano-30b-a3b:
+    model: nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4
+    role: reasoning
+    weight: 1
+    enabled: true
+    generation_mode: json_text
+    notes: Added to the catalog for future evaluation, but kept out of active sets for now.
   llama-3-3-70b-instruct:
     model: meta/llama-3.3-70b-instruct
     role: large
@@ -211,35 +223,41 @@ models:
     model: zai-org/GLM-5
     role: reasoning
     weight: 1
-    enabled: false
+    enabled: true
+    generation_mode: json_text
     notes: Shows overloads, so keep it out of automated runs.
   glm-4-5:
     model: zai-org/GLM-4.5
     role: reasoning
     weight: 1
-    enabled: false
+    enabled: true
+    generation_mode: json_text
     notes: Kept disabled until endpoint support is confirmed.
   glm-4-5-air:
     model: zai-org/GLM-4.5-Air
     role: balanced
     weight: 1
-    enabled: false
+    enabled: true
+    generation_mode: json_text
     notes: Requested for coverage, but still disabled until the endpoint support is confirmed from the target environment.
   qwen2-5-32b-instruct:
     model: qwen/qwen2.5-32b-instruct
     role: balanced
     weight: 2
-    enabled: false
+    enabled: true
+    generation_mode: json_text
     notes: Additional medium-large instruct model; enable when the endpoint exposes it.
   qwen2-5-coder-32b-instruct:
     model: qwen/qwen2.5-coder-32b-instruct
     role: coder
     weight: 1
     enabled: true
+    generation_mode: json_text
     notes: Coding-oriented contrast model.
   qwen3-coder-480b:
     model: qwen/qwen3-coder-480b
     role: coder
     weight: 1
-    enabled: false
+    enabled: true
+    generation_mode: json_text
     notes: Inactive on the observed endpoint, so exclude it from automated runs.

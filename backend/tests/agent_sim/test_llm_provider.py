@@ -107,7 +107,8 @@ def test_provider_init_builds_client_with_instructor(monkeypatch):
         )
     )
 
-    assert provider._client == "patched"
+    assert provider._tool_client == "patched"
+    assert provider._raw_client is captured["patched_client"]
     assert captured["mode"] == "tools"
     assert captured["openai_kwargs"]["base_url"] == "https://example.test/v1"
     assert provider._hooks is not None
@@ -138,7 +139,7 @@ async def test_generate_intent_draft_falls_back_to_typed_json_when_raw_text_empt
             return GeneratedIntentDraft(core_mechanic="typed mechanic", keywords=["alpha", "bravo"])
 
     fake_hooks = FakeHooks()
-    fake_client = types.SimpleNamespace(
+    fake_tool_client = types.SimpleNamespace(
         chat=types.SimpleNamespace(
             completions=types.SimpleNamespace(create=FakeCreate(fake_hooks))
         )
@@ -147,7 +148,7 @@ async def test_generate_intent_draft_falls_back_to_typed_json_when_raw_text_empt
     monkeypatch.setattr(
         OpenAICompatibleProvider,
         "_build_client",
-        lambda self: (fake_client, fake_hooks),
+        lambda self: (types.SimpleNamespace(), fake_tool_client, fake_hooks),
     )
 
     provider = OpenAICompatibleProvider(
@@ -160,10 +161,63 @@ async def test_generate_intent_draft_falls_back_to_typed_json_when_raw_text_empt
     )
 
     draft, raw_response, response_text = await provider.generate_intent_draft(
-        model_name="test-model",
+        model_entry=types.SimpleNamespace(
+            model="test-model",
+            generation_mode="tools",
+            supports_system_role=True,
+        ),
         prompt_text="prompt",
     )
 
     assert draft.core_mechanic == "typed mechanic"
     assert raw_response["choices"][0]["message"]["content"] == ""
     assert json.loads(response_text)["core_mechanic"] == "typed mechanic"
+
+
+@pytest.mark.asyncio
+async def test_generate_intent_draft_json_text_mode_parses_response(monkeypatch):
+    class FakeCreate:
+        async def __call__(self, **_kwargs):
+            return {
+                "choices": [
+                    {
+                        "message": {
+                            "content": '```json\n{"core_mechanic":"text mode","keywords":["alpha","bravo"]}\n```'
+                        }
+                    }
+                ]
+            }
+
+    fake_raw_client = types.SimpleNamespace(
+        chat=types.SimpleNamespace(
+            completions=types.SimpleNamespace(create=FakeCreate())
+        )
+    )
+
+    monkeypatch.setattr(
+        OpenAICompatibleProvider,
+        "_build_client",
+        lambda self: (fake_raw_client, types.SimpleNamespace(), types.SimpleNamespace()),
+    )
+
+    provider = OpenAICompatibleProvider(
+        AgentSimLLMSettings(
+            provider="openai",
+            base_url="https://example.test/v1",
+            api_key="secret",
+            default_model="test-model",
+        )
+    )
+
+    draft, raw_response, response_text = await provider.generate_intent_draft(
+        model_entry=types.SimpleNamespace(
+            model="test-model",
+            generation_mode="json_text",
+            supports_system_role=False,
+        ),
+        prompt_text="prompt",
+    )
+
+    assert draft.core_mechanic == "text mode"
+    assert raw_response["choices"][0]["message"]["content"].startswith("```json")
+    assert response_text.startswith("```json")

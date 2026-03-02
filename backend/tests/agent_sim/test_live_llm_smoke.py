@@ -24,7 +24,7 @@ async def test_live_provider_generates_typed_draft(agent_sim_catalog, agent_sim_
     brief = agent_sim_catalog.briefs[0]
     prompt = render_intent_prompt(load_prompt_text("intent_from_brief_v1"), brief)
     draft, raw_response, response_text = await provider.generate_intent_draft(
-        model_name=model_entry.model,
+        model_entry=model_entry,
         prompt_text=prompt,
     )
 

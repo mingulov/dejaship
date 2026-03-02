@@ -51,5 +51,5 @@ def test_resolve_enabled_model_aliases_rejects_disabled_models(agent_sim_model_m
     with pytest.raises(ValueError, match="unknown or disabled model aliases"):
         resolve_enabled_model_aliases(
             agent_sim_model_matrix,
-            ["glm-5"],
+            ["not-a-real-model"],
         )

@@ -128,7 +128,7 @@ async def main() -> None:
             for attempt in range(1, args.max_attempts + 1):
                 try:
                     llm_output, raw_response, response_text = await provider.generate_intent_draft(
-                        model_name=model_entry.model,
+                        model_entry=model_entry,
                         prompt_text=raw_prompt,
                     )
                     break

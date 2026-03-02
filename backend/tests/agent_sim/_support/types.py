@@ -79,6 +79,8 @@ class ModelEntry(BaseModel):
     role: str = Field(min_length=3, max_length=40)
     weight: int = Field(ge=1, le=20)
     enabled: bool = True
+    generation_mode: Literal["tools", "json_text"] = "tools"
+    supports_system_role: bool = True
     notes: str | None = Field(default=None, max_length=300)
 
 

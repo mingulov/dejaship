@@ -4,7 +4,7 @@ import importlib
 import json
 from typing import Any
 
-from tests.agent_sim._support.types import AgentSimLLMSettings, GeneratedIntentDraft
+from tests.agent_sim._support.types import AgentSimLLMSettings, GeneratedIntentDraft, ModelEntry
 
 
 class LLMProviderError(RuntimeError):
@@ -65,9 +65,9 @@ class OpenAICompatibleProvider:
             raise LLMProviderError("live LLM settings are not configured")
         self._settings = settings
         self._timeout_s = timeout_s
-        self._client, self._hooks = self._build_client()
+        self._raw_client, self._tool_client, self._hooks = self._build_client()
 
-    def _build_client(self) -> tuple[Any, Any]:
+    def _build_client(self) -> tuple[Any, Any, Any]:
         instructor, openai = _load_instructor_dependencies()
         base_client = openai.AsyncOpenAI(
             api_key=self._settings.api_key,
@@ -76,7 +76,7 @@ class OpenAICompatibleProvider:
         )
         hooks = instructor.hooks.Hooks()
         patched = instructor.patch(base_client, mode=instructor.Mode.TOOLS)
-        return patched, hooks
+        return base_client, patched, hooks
 
     @staticmethod
     def _serialize_completion(completion: Any) -> dict[str, Any]:
@@ -86,11 +86,27 @@ class OpenAICompatibleProvider:
             return completion
         raise LLMProviderError("unable to serialize raw provider completion")
 
-    async def generate_intent_draft(
+    @staticmethod
+    def _build_messages(*, prompt_text: str, supports_system_role: bool) -> list[dict[str, str]]:
+        system_text = "Return strict JSON only. Do not wrap the answer in markdown fences."
+        if supports_system_role:
+            return [
+                {"role": "system", "content": system_text},
+                {"role": "user", "content": prompt_text},
+            ]
+        return [
+            {
+                "role": "user",
+                "content": f"{system_text}\n\n{prompt_text}",
+            }
+        ]
+
+    async def _generate_with_tools(
         self,
         *,
         model_name: str,
         prompt_text: str,
+        supports_system_role: bool,
     ) -> tuple[GeneratedIntentDraft, dict[str, Any], str]:
         raw_completion: Any | None = None
 
@@ -101,19 +117,16 @@ class OpenAICompatibleProvider:
         self._hooks.clear()
         self._hooks.on("completion:response", capture_completion)
 
-        draft = await self._client.chat.completions.create(
+        draft = await self._tool_client.chat.completions.create(
             model=model_name,
             temperature=0.2,
             max_retries=2,
             response_model=GeneratedIntentDraft,
             hooks=self._hooks,
-            messages=[
-                {
-                    "role": "system",
-                    "content": "Return strict JSON only. Do not wrap the answer in markdown fences.",
-                },
-                {"role": "user", "content": prompt_text},
-            ],
+            messages=self._build_messages(
+                prompt_text=prompt_text,
+                supports_system_role=supports_system_role,
+            ),
         )
         if raw_completion is None:
             raise LLMProviderError("provider did not emit a raw completion response")
@@ -125,3 +138,42 @@ class OpenAICompatibleProvider:
         if not response_text.strip():
             response_text = draft.model_dump_json()
         return draft, response_json, response_text
+
+    async def _generate_with_json_text(
+        self,
+        *,
+        model_name: str,
+        prompt_text: str,
+        supports_system_role: bool,
+    ) -> tuple[GeneratedIntentDraft, dict[str, Any], str]:
+        completion = await self._raw_client.chat.completions.create(
+            model=model_name,
+            temperature=0.2,
+            messages=self._build_messages(
+                prompt_text=prompt_text,
+                supports_system_role=supports_system_role,
+            ),
+        )
+        response_json = self._serialize_completion(completion)
+        response_text = _extract_message_text(response_json)
+        parsed = _parse_json_payload(response_text)
+        draft = GeneratedIntentDraft.model_validate(parsed)
+        return draft, response_json, response_text
+
+    async def generate_intent_draft(
+        self,
+        *,
+        model_entry: ModelEntry,
+        prompt_text: str,
+    ) -> tuple[GeneratedIntentDraft, dict[str, Any], str]:
+        if model_entry.generation_mode == "json_text":
+            return await self._generate_with_json_text(
+                model_name=model_entry.model,
+                prompt_text=prompt_text,
+                supports_system_role=model_entry.supports_system_role,
+            )
+        return await self._generate_with_tools(
+            model_name=model_entry.model,
+            prompt_text=prompt_text,
+            supports_system_role=model_entry.supports_system_role,
+        )
