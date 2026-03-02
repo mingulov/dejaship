@@ -1,0 +1,75 @@
+:root {
+  --bg: #0a0a0a;
+  --fg: #e0e0e0;
+  --accent: #4fc3f7;
+  --card-bg: #1a1a1a;
+  --border: #333;
+  --code-bg: #111;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+header { text-align: center; margin-bottom: 3rem; }
+h1 { font-size: 2.5rem; color: var(--accent); letter-spacing: -1px; }
+.tagline { color: #888; font-size: 1.1rem; margin-top: 0.5rem; }
+
+h2 { color: var(--accent); margin: 2.5rem 0 1rem; font-size: 1.3rem; }
+h3 { color: var(--fg); margin: 1.5rem 0 0.5rem; font-size: 1rem; }
+
+.hero { font-size: 1.05rem; color: #bbb; margin-bottom: 2rem; }
+
+.stats {
+  display: flex; gap: 1rem; justify-content: center;
+  margin: 2rem 0;
+}
+.stat-card {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: 1.5rem 2rem; text-align: center;
+  min-width: 120px;
+}
+.stat-number { display: block; font-size: 2rem; color: var(--accent); font-weight: bold; }
+.stat-label { display: block; font-size: 0.8rem; color: #888; margin-top: 0.3rem; }
+
+.steps { display: flex; gap: 1.5rem; margin: 1rem 0; }
+.step {
+  flex: 1; background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: 1.5rem;
+}
+.step-num {
+  display: inline-block; width: 28px; height: 28px; line-height: 28px;
+  text-align: center; background: var(--accent); color: var(--bg);
+  border-radius: 50%; font-weight: bold; font-size: 0.9rem; margin-bottom: 0.5rem;
+}
+
+pre, code {
+  background: var(--code-bg); border: 1px solid var(--border);
+  border-radius: 4px; font-size: 0.85rem;
+}
+pre { padding: 1rem; overflow-x: auto; margin: 0.5rem 0; }
+code { padding: 0.15rem 0.4rem; }
+pre code { padding: 0; border: none; background: none; }
+
+.diagram { color: var(--accent); border-color: var(--accent); }
+
+.links ul { list-style: none; }
+.links li { margin: 0.5rem 0; }
+.links a { color: var(--accent); text-decoration: none; }
+.links a:hover { text-decoration: underline; }
+
+footer { margin-top: 3rem; text-align: center; color: #555; font-size: 0.85rem; }
+
+@media (max-width: 600px) {
+  .stats, .steps { flex-direction: column; }
+  body { padding: 1rem; }
+  h1 { font-size: 1.8rem; }
+}
