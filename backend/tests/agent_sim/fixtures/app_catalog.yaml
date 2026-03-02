@@ -1,0 +1,700 @@
+briefs:
+  - id: hvac-service-plan-ops
+    title: Service plan renewals and dispatch prep for independent HVAC installers
+    category: field-service
+    target_customer: Independent HVAC installation and maintenance companies with three to twenty-five technicians.
+    problem: Owners sell maintenance plans after every install, but renewals, seasonal reminders, and technician follow-up all live in spreadsheets that get ignored during busy periods.
+    workflow: Capture every install, schedule renewal windows, queue outbound reminders, and feed daily prep lists to dispatch before technicians leave the warehouse.
+    recurring_revenue_model: Annual maintenance plans with optional monthly financing for larger equipment protection bundles.
+    pricing_shape: Base subscription plus per-technician seats once the team grows past five field staff.
+    distribution_channel: Founder-led outbound to local HVAC operators plus accountant and distributor referrals.
+    constraints:
+      - Must work well for phone-first teams who barely use desktop software during the day.
+      - Needs simple seasonal campaigns that map to spring and fall tune-up demand.
+      - Cannot require deep integrations with enterprise field-service suites.
+    must_have_features:
+      - Renewal pipeline with due-date visibility
+      - Technician-ready morning call sheets
+      - Plan upsell prompts after completed installs
+      - Contact history for homeowners and landlords
+    seed_keywords:
+      - hvac
+      - maintenance-plans
+      - renewals
+      - dispatch
+      - homeowner
+      - technician
+    expected_overlap_group: field-service-recurring
+    adjacent_overlap_groups:
+      - construction-field-ops
+    anti_goals:
+      - Do not become a full dispatch suite.
+      - Do not target national franchise operators first.
+    success_metric: More renewal revenue captured per install cohort without adding office headcount.
+    prompt_rendered_brief: |
+      The product is a service plan renewals and dispatch prep system for independent HVAC installers that already sell maintenance memberships but fail to renew them consistently. The buyer is usually the owner or office manager at a shop with a small technician team and a large seasonal backlog. They need a way to record every install, trigger the right reminder campaigns, and hand dispatch a clean list of homeowner conversations to make each morning. Revenue should come from recurring software subscriptions tied to the number of technicians and renewal volume, not from one-off setup work. The workflow must be light enough for phone-first teams that still run the business with shared inboxes, clipboards, and quick calls from the van. The ideal product increases renewal capture, smooths shoulder-season demand, and creates a repeatable service-plan process without replacing the company's existing dispatch software.
+
+  - id: pest-control-renewal-engine
+    title: Recurring contract recovery and route prep for regional pest control operators
+    category: field-service
+    target_customer: Regional pest control companies with recurring quarterly service contracts and small call-center teams.
+    problem: Contracts lapse quietly because route managers focus on today's stops instead of upcoming renewals, cancelled cards, and high-risk accounts.
+    workflow: Watch contracts and payment failures, group accounts by route geography, and push save actions to office staff before routes are finalized.
+    recurring_revenue_model: Quarterly or annual pest prevention memberships that renew automatically when customers do not churn.
+    pricing_shape: Monthly subscription with usage tiers based on active contract count.
+    distribution_channel: Direct outbound to owner-operators and consultants serving pest control agencies.
+    constraints:
+      - Must support geographically grouped follow-up instead of generic churn lists.
+      - Needs clear handling for card failures and skipped visits.
+      - Should avoid requiring custom mobile hardware in the field.
+    must_have_features:
+      - Renewal-at-risk queue
+      - Route-aware follow-up buckets
+      - Failed-payment recovery board
+      - Customer save-offer logging
+    seed_keywords:
+      - pest-control
+      - renewals
+      - routes
+      - memberships
+      - failed-payments
+      - churn
+    expected_overlap_group: field-service-recurring
+    adjacent_overlap_groups:
+      - subscription-recovery
+    anti_goals:
+      - Do not replace technician route execution tools.
+      - Do not focus on one-time termite jobs.
+    success_metric: Lower contract churn and fewer route gaps caused by preventable lapses.
+    prompt_rendered_brief: |
+      This product is a recurring contract recovery and route prep engine for regional pest control operators that live on quarterly service plans. The owner already has route software, but renewal risk, failed cards, and rescue calls are hidden inside generic customer lists that nobody works in time. The system should identify expiring or broken contracts, group them by route and technician assignment, and tell office staff which households need outreach before the next calendar is locked. The revenue model is straightforward recurring SaaS tied to active membership volume because the customer's economic value comes from retaining contracts rather than booking one-time jobs. The workflow needs to feel operational and local, with route-aware follow-up and clear notes about save offers or payment recovery attempts. If the product works, the business keeps more recurring revenue and protects route density without forcing the team to adopt a giant enterprise stack.
+
+  - id: bakery-prep-margin-planner
+    title: Prep forecasting and waste control for specialty bakery production teams
+    category: food-ops
+    target_customer: Specialty bakeries with one to four locations that juggle wholesale orders, custom cakes, and daily walk-in traffic.
+    problem: Production leads over-prep fragile items because demand changes daily, leading to margin loss from waste and rushed last-minute labor.
+    workflow: Combine standing wholesale demand, local event calendars, and custom-order windows into a prep forecast that can be adjusted before mixing starts.
+    recurring_revenue_model: Monthly subscription sold per location with optional forecasting support for seasonal holidays.
+    pricing_shape: Per-location subscription with an add-on for wholesale order complexity.
+    distribution_channel: Founder outreach, bakery association communities, and referral accountants serving food businesses.
+    constraints:
+      - Must handle fast-changing short shelf-life inventory.
+      - Needs to work before dawn for prep teams with limited training time.
+      - Cannot assume deep POS integrations at launch.
+    must_have_features:
+      - Daily prep targets by product family
+      - Waste and overage tracking
+      - Holiday demand overlays
+      - Wholesale commitment visibility
+    seed_keywords:
+      - bakery
+      - prep
+      - waste
+      - forecasting
+      - wholesale
+      - inventory
+    expected_overlap_group: food-ops-demand
+    adjacent_overlap_groups:
+      - local-demand-growth
+    anti_goals:
+      - Do not become a full restaurant POS.
+      - Do not optimize national chains first.
+    success_metric: Lower spoilage percentage while preserving sell-through on peak days.
+    prompt_rendered_brief: |
+      The product is a prep forecasting and waste control system for specialty bakery production teams that make perishable goods before sunrise. Managers currently rely on instinct when balancing wholesale commitments, custom orders, weather swings, and holiday spikes, so they either throw away margin in waste or pay overtime to recover late demand. The software should convert those signals into a daily prep plan that feels concrete enough for bakers and kitchen leads, not abstract enough for finance dashboards only. Revenue comes from recurring subscriptions per bakery location because the value compounds every day that the team avoids spoilage and labor chaos. The workflow must be fast, visual, and resilient to missing integrations because many bakeries still coordinate production with paper sheets and text threads. Success means the bakery makes the right amount of product more often and stops losing money to preventable over-prep.
+
+  - id: ghost-kitchen-demand-planner
+    title: Demand shaping and prep scheduling for ghost kitchen operators
+    category: food-ops
+    target_customer: Ghost kitchen brands running multiple menus from one facility and relying heavily on delivery marketplaces.
+    problem: Prep levels and staff timing drift because promotions, weather, and marketplace rankings change faster than kitchen managers can react.
+    workflow: Forecast order waves, recommend prep windows, and connect promo timing to labor and ingredient readiness for each menu line.
+    recurring_revenue_model: Monthly subscription per kitchen plus premium analytics for multi-brand operators.
+    pricing_shape: Base kitchen fee with add-ons for each additional menu brand.
+    distribution_channel: Outbound to multi-brand kitchen groups and delivery-operations consultants.
+    constraints:
+      - Needs useful recommendations even when marketplace data is incomplete.
+      - Must separate menu-brand behavior within the same kitchen.
+      - Cannot depend on deeply customized ERP deployments.
+    must_have_features:
+      - Order wave forecasting
+      - Prep timing recommendations
+      - Promo and labor alignment dashboard
+      - Multi-brand kitchen views
+    seed_keywords:
+      - ghost-kitchen
+      - demand
+      - prep
+      - labor
+      - promotions
+      - delivery
+    expected_overlap_group: food-ops-demand
+    adjacent_overlap_groups:
+      - local-demand-growth
+    anti_goals:
+      - Do not build a driver dispatch network.
+      - Do not focus on dine-in restaurant workflows.
+    success_metric: Higher on-time fulfillment with less over-prep during promo-driven demand swings.
+    prompt_rendered_brief: |
+      This demand shaping and prep scheduling product is for ghost kitchen operators running several virtual brands from the same production line. The pain is not generic analytics; it is the operational gap between volatile delivery demand, marketplace promotions, ingredient prep, and who should be on the line at each hour. Kitchen managers need a system that turns noisy demand signals into practical prep windows and staffing guidance before the rush starts. The software should monetize as recurring SaaS per kitchen and per menu brand because complexity rises quickly as operators stack more concepts into one facility. It also needs to stay useful when data is imperfect, since marketplace visibility is often partial or delayed. The win condition is fewer prep mistakes, better service levels, and smarter promo timing for a delivery-first kitchen business.
+
+  - id: newsletter-retention-sponsor-ops
+    title: Retention and sponsor pipeline operating system for paid niche newsletters
+    category: creator-business
+    target_customer: Independent newsletter publishers with paid subscriptions, occasional sponsorships, and no dedicated operations team.
+    problem: Growth looks healthy until renewals soften, sponsor follow-up slips, and the creator realizes revenue concentration is worse than expected.
+    workflow: Track cohorts, renewal risk, sponsor follow-ups, and content commitments inside one operational calendar built for a solo publisher.
+    recurring_revenue_model: Recurring SaaS priced for creators with one or two operators and scaled by subscriber count.
+    pricing_shape: Subscription based on paid subscriber bands with a higher tier for sponsor workflow automation.
+    distribution_channel: Creator communities, newsletter operators, and partnerships with media accountants.
+    constraints:
+      - Must work for one-person teams with limited setup patience.
+      - Needs lightweight sponsor workflow without acting like a CRM monster.
+      - Should support both B2C subscriptions and B2B sponsorship revenue.
+    must_have_features:
+      - Cohort renewal dashboard
+      - Sponsor follow-up tracker
+      - Calendar for issue commitments
+      - Revenue concentration alerts
+    seed_keywords:
+      - newsletter
+      - retention
+      - sponsorships
+      - subscriptions
+      - cohorts
+      - creator
+    expected_overlap_group: creator-retention
+    adjacent_overlap_groups:
+      - subscription-recovery
+    anti_goals:
+      - Do not replace the newsletter sending platform.
+      - Do not target large media companies first.
+    success_metric: Higher renewal rates and better sponsor follow-through for solo media businesses.
+    prompt_rendered_brief: |
+      The product is a retention and sponsor pipeline operating system for paid niche newsletters run by solo creators or tiny teams. The business problem is not publishing itself; it is that subscription renewals, sponsor conversations, and issue commitments live across spreadsheets and inbox searches until revenue starts slipping. The software should give a publisher one place to see at-risk cohorts, pending sponsor follow-up, and which issue slots are already promised. Pricing should be a recurring subscription that scales with paid subscribers and expands when sponsorship workflow becomes valuable enough to automate. The system must stay lightweight because the target customer will abandon anything that feels like agency software or enterprise CRM. If it works, creators preserve recurring reader revenue while building a more reliable sponsorship pipeline.
+
+  - id: cohort-course-save-playbooks
+    title: Churn rescue and enrollment pacing for cohort course businesses
+    category: creator-business
+    target_customer: Small education creators selling cohort-based courses, memberships, and workshops to professionals.
+    problem: Revenue spikes during launches but drops between cohorts because payment plans fail, alumni go cold, and re-enrollment is improvised.
+    workflow: Track upcoming cohorts, payment-plan risk, alumni segmentation, and save campaigns that convert drop-offs into the next paid offer.
+    recurring_revenue_model: Subscription with optional annual plan for education businesses that run repeated cohorts.
+    pricing_shape: Flat monthly fee plus add-on for payment-plan monitoring volume.
+    distribution_channel: Creator education communities, launch operators, and referrals from fractional marketers.
+    constraints:
+      - Must reflect launch cycles instead of assuming daily SaaS usage.
+      - Needs clear handling for alumni, waitlists, and payment-plan risk.
+      - Cannot require a heavy learning management system migration.
+    must_have_features:
+      - Cohort calendar and pacing view
+      - Alumni segment tracker
+      - Payment-plan risk board
+      - Re-enrollment campaign templates
+    seed_keywords:
+      - cohort-course
+      - churn
+      - reenrollment
+      - payment-plans
+      - alumni
+      - launches
+    expected_overlap_group: creator-retention
+    adjacent_overlap_groups:
+      - subscription-recovery
+    anti_goals:
+      - Do not become a video hosting platform.
+      - Do not target enterprise education departments first.
+    success_metric: More students rescued into future offers and fewer failed payment plans per launch cycle.
+    prompt_rendered_brief: |
+      This product is a churn rescue and enrollment pacing system for cohort course businesses that live through launch spikes and long off-cycle gaps. Creators usually know how to market the next cohort, but they do not have a durable operating system for payment-plan risk, alumni reactivation, and converting drop-offs into future enrollment. The tool should show upcoming cohorts, segment alumni, surface accounts at risk, and make save campaigns easy to run without importing a giant CRM stack. The revenue model fits recurring SaaS because every launch cycle benefits from having the same playbooks, history, and risk tracking. The workflow must acknowledge that usage intensity rises around launches and reopens, rather than pretending this is an everyday transactional system. The outcome should be steadier education revenue with fewer preventable losses between cohorts.
+
+  - id: failed-invoice-recovery-hub
+    title: Failed invoice recovery and dunning orchestration for micro SaaS teams
+    category: subscription-finance
+    target_customer: Bootstrapped B2B SaaS teams with self-serve subscriptions and no dedicated finance operations staff.
+    problem: Failed invoices pile up because no one owns dunning logic, payment retries, or manual outreach once a customer looks risky.
+    workflow: Group failed payments by account health, trigger recovery sequences, and route the highest-value cases to a founder or account owner.
+    recurring_revenue_model: Recurring SaaS priced by invoice volume and recovered revenue bands.
+    pricing_shape: Base monthly fee plus success-based tiering tied to recovered subscription revenue.
+    distribution_channel: Founder communities, SaaS finance operators, and accountant referrals.
+    constraints:
+      - Must work with small customer-success teams or no team at all.
+      - Needs simple prioritization instead of enterprise billing abstractions.
+      - Cannot require replacing the billing system.
+    must_have_features:
+      - Failed-invoice queue
+      - Recovery sequence builder
+      - Account risk scoring
+      - Founder follow-up routing
+    seed_keywords:
+      - failed-invoices
+      - dunning
+      - subscriptions
+      - recovery
+      - billing
+      - churn
+    expected_overlap_group: subscription-recovery
+    adjacent_overlap_groups:
+      - creator-retention
+    anti_goals:
+      - Do not become a payments processor.
+      - Do not focus on enterprise revops teams first.
+    success_metric: More recurring revenue recovered per failed billing event.
+    prompt_rendered_brief: |
+      The product is a failed invoice recovery and dunning orchestration hub for micro SaaS teams that cannot afford full-time finance operations. Founders know failed payments matter, but they usually discover the problem too late because billing retries, manual outreach, and account risk are scattered across Stripe dashboards and ad hoc reminders. The software should rank the recovery queue, automate practical dunning steps, and tell the founder which accounts deserve direct human follow-up. Revenue fits a recurring subscription model with success-weighted tiering because the value scales with recovered revenue and retained subscribers. The workflow must stay simple enough for teams that do not think of themselves as finance specialists. If it succeeds, the business loses less recurring revenue to payment friction and preventable churn.
+
+  - id: chargeback-evidence-workbench
+    title: Chargeback evidence workflow for indie subscription software companies
+    category: subscription-finance
+    target_customer: Small software companies selling subscriptions globally and handling support with small founder-led teams.
+    problem: Chargeback disputes are handled too late because evidence is scattered across help desks, billing systems, and product logs.
+    workflow: Build evidence packets from subscriptions, support history, and usage events so disputes can be filed quickly and patterns can be learned.
+    recurring_revenue_model: Monthly subscription tied to dispute volume with a premium reporting tier.
+    pricing_shape: Tiered by active subscriptions and historical chargeback count.
+    distribution_channel: Payments consultants, indie SaaS communities, and support-ops operators.
+    constraints:
+      - Must work with lightweight billing and support stacks.
+      - Needs clear timelines because dispute windows are short.
+      - Should improve future prevention, not only create paperwork.
+    must_have_features:
+      - Evidence packet builder
+      - Dispute deadline tracker
+      - Usage event snapshotting
+      - Chargeback pattern reporting
+    seed_keywords:
+      - chargebacks
+      - evidence
+      - subscriptions
+      - disputes
+      - support
+      - billing
+    expected_overlap_group: subscription-recovery
+    adjacent_overlap_groups:
+      - creator-retention
+    anti_goals:
+      - Do not operate as a merchant of record.
+      - Do not require enterprise fraud tooling first.
+    success_metric: Faster dispute filing and lower recurring revenue loss from chargebacks.
+    prompt_rendered_brief: |
+      This product is a chargeback evidence workflow for indie subscription software companies that sell online but do not have a real finance-ops bench. When disputes happen, the team scrambles through support threads, billing events, and product logs to assemble evidence, often missing deadlines or learning nothing for next time. The tool should create a structured evidence packet fast, track deadlines, and highlight the behavioral patterns behind recurring disputes. The monetization should be recurring SaaS tied to dispute volume and active subscriptions because the value compounds with consistent prevention and faster wins. The experience must stay approachable for founder-led teams using lightweight billing, product analytics, and help-desk tools. The success case is a measurable reduction in revenue lost to chargebacks and panic-driven manual work.
+
+  - id: therapy-prior-auth-tracker
+    title: Prior authorization queue and renewal tracker for outpatient therapy clinics
+    category: healthcare-ops
+    target_customer: Physical, occupational, and speech therapy clinics managing insurance-heavy visit plans across small teams.
+    problem: Prior authorizations and visit approvals expire mid-plan, causing avoidable claim denials and front-desk chaos.
+    workflow: Track every patient plan, renewal date, missing insurer document, and therapist follow-up needed to keep care authorized.
+    recurring_revenue_model: Monthly subscription per clinic location with volume tiers based on active care plans.
+    pricing_shape: Per-location fee with add-on for multi-provider clinic groups.
+    distribution_channel: Therapy billing consultants, regional clinic owners, and healthcare operations communities.
+    constraints:
+      - Must respect healthcare admin workflows without pretending to be an EHR.
+      - Needs highly visible due dates and missing-document status.
+      - Cannot depend on custom payer integrations to be valuable.
+    must_have_features:
+      - Authorization renewal board
+      - Missing-document checklist
+      - Visit-cap alerts
+      - Therapist and front-desk handoff notes
+    seed_keywords:
+      - therapy
+      - prior-auth
+      - renewals
+      - insurance
+      - visit-caps
+      - clinics
+    expected_overlap_group: therapy-revenue-cycle
+    adjacent_overlap_groups: []
+    anti_goals:
+      - Do not build an EHR.
+      - Do not start with hospital systems.
+    success_metric: Fewer denials caused by expired authorizations and smoother patient scheduling continuity.
+    prompt_rendered_brief: |
+      The product is a prior authorization queue and renewal tracker for outpatient therapy clinics that live under insurance visit caps and expiring approvals. Clinic owners and front-desk coordinators lose revenue when the next renewal date is hidden or supporting documents never get chased in time, leading to preventable denials and rescheduled care. The software should show every patient plan, upcoming authorization deadline, and missing document in a way that supports both therapists and admin staff. A recurring per-location subscription makes sense because the workflow repeats constantly across active care plans. The tool must stop short of being an EHR and instead become the operational layer that keeps reimbursement moving. The result should be fewer care interruptions and fewer claims denied for administrative reasons.
+
+  - id: solar-permit-inspection-desk
+    title: Permit, inspection, and milestone desk for residential solar installers
+    category: energy-ops
+    target_customer: Residential solar installers coordinating permit packets, utility approvals, and inspection milestones across municipalities.
+    problem: Projects stall because permit requirements and inspection status updates are tracked in inconsistent project notes instead of a visible desk.
+    workflow: Standardize jurisdiction checklists, track inspection progress, and surface blockers before installation crews or customers are rescheduled.
+    recurring_revenue_model: Recurring SaaS tied to active project volume for regional installers.
+    pricing_shape: Monthly platform fee plus project-volume tiers.
+    distribution_channel: Solar installer operators, implementation consultants, and local clean-energy networks.
+    constraints:
+      - Must account for jurisdiction-specific steps.
+      - Needs operational visibility for permit coordinators and install managers.
+      - Cannot require replacing the CRM used for lead generation.
+    must_have_features:
+      - Jurisdiction checklist templates
+      - Inspection milestone board
+      - Blocker escalation queue
+      - Utility approval tracking
+    seed_keywords:
+      - solar
+      - permits
+      - inspections
+      - utility-approval
+      - milestones
+      - installers
+    expected_overlap_group: solar-field-ops
+    adjacent_overlap_groups:
+      - construction-field-ops
+    anti_goals:
+      - Do not become a design studio for panels.
+      - Do not focus on utility-scale projects.
+    success_metric: Faster project throughput with fewer preventable schedule slips.
+    prompt_rendered_brief: |
+      This product is a permit, inspection, and milestone desk for residential solar installers that operate across multiple municipalities. The team already has a CRM for sales, but once a deal closes, permit packets, utility approvals, and inspection status updates become a fragile coordination problem spread across notes and inboxes. The software should standardize local checklists, highlight project blockers, and tell operations staff what needs attention before crews or homeowners are rescheduled. The business model is recurring SaaS because installers manage a constant flow of active projects and pay for smoother throughput. The experience must feel operational, jurisdiction-aware, and practical for permit coordinators who live in email and spreadsheets. Success means fewer projects stalling for administrative reasons and better schedule reliability for installation teams.
+
+  - id: locum-credential-renewals
+    title: Credentialing renewal calendar for locum staffing agencies
+    category: staffing-ops
+    target_customer: Small locum tenens and clinician staffing agencies juggling provider credential files across state lines.
+    problem: Provider files expire quietly, forcing last-minute scrambles that delay placements and damage recruiter credibility.
+    workflow: Track license renewals, hospital packets, payer enrollments, and document gaps for each provider and placement opportunity.
+    recurring_revenue_model: Subscription priced by active provider roster and compliance workload.
+    pricing_shape: Base monthly subscription with higher bands for multi-state provider networks.
+    distribution_channel: Staffing operators, credentialing consultants, and niche healthcare recruiters.
+    constraints:
+      - Must support many document types and expiration dates.
+      - Needs recruiter-friendly views instead of pure compliance dashboards.
+      - Cannot depend on enterprise staffing suites.
+    must_have_features:
+      - Provider renewal calendar
+      - Placement readiness checklist
+      - Missing-document queue
+      - State-specific status overview
+    seed_keywords:
+      - credentialing
+      - renewals
+      - staffing
+      - providers
+      - compliance
+      - licenses
+    expected_overlap_group: staffing-compliance
+    adjacent_overlap_groups:
+      - workforce-compliance
+    anti_goals:
+      - Do not replace full ATS workflows.
+      - Do not start with large hospital HR teams.
+    success_metric: Fewer placement delays caused by expired or incomplete provider files.
+    prompt_rendered_brief: |
+      The product is a credentialing renewal calendar for locum staffing agencies that live on provider readiness and document accuracy. Recruiters lose placements when a license, payer enrollment, or hospital packet goes stale without anyone noticing until the assignment is already urgent. The system should keep every provider file visible, flag missing or expiring items, and connect readiness status to upcoming placement opportunities. It should monetize as recurring SaaS tied to active providers because compliance work scales with roster size and placement volume. The workflow needs to feel helpful to recruiters as well as compliance coordinators, which means clear action queues rather than abstract back-office reporting. A strong result is fewer placement delays and better trust from both providers and client facilities.
+
+  - id: immigration-intake-reminders
+    title: Multilingual intake and case reminder workflow for immigration law firms
+    category: legal-ops
+    target_customer: Boutique immigration law firms handling many client documents, deadlines, and multilingual communication threads.
+    problem: Cases slow down because clients miss document requests, paralegals resend the same reminders manually, and deadlines are tracked in fragmented spreadsheets.
+    workflow: Structure intake packets, chase missing documents, and send multilingual reminder sequences tied to case stage and upcoming filing deadlines.
+    recurring_revenue_model: Monthly subscription per firm with optional messaging volume tiers.
+    pricing_shape: Seat-based subscription with add-on for high client-message volume.
+    distribution_channel: Legal operations communities, immigration practice consultants, and referrals from practice-management specialists.
+    constraints:
+      - Must support multilingual messaging and document chase workflows.
+      - Needs clear stage-based views for lawyers and paralegals.
+      - Should avoid pretending to be a complete case-management platform.
+    must_have_features:
+      - Intake packet tracker
+      - Missing-document reminder flows
+      - Deadline timeline
+      - Multilingual communication templates
+    seed_keywords:
+      - immigration
+      - intake
+      - reminders
+      - multilingual
+      - deadlines
+      - documents
+    expected_overlap_group: legal-client-ops
+    adjacent_overlap_groups: []
+    anti_goals:
+      - Do not become a full legal practice suite.
+      - Do not start with large corporate law firms.
+    success_metric: Faster document collection and fewer filing delays caused by missed client follow-up.
+    prompt_rendered_brief: |
+      This product is a multilingual intake and case reminder workflow for immigration law firms that handle document-heavy client matters. The day-to-day pain is not legal research; it is repeated follow-up for missing documents, deadline visibility, and keeping communication clear across languages and case stages. The software should help paralegals and lawyers see what is missing, what is due soon, and which reminder sequence should go out next. A recurring subscription fits because the operational burden repeats across every case and grows with firm volume. The workflow must stop short of becoming a full case-management platform and instead become the reminder and intake layer that removes repetitive admin work. The desired outcome is faster intake completion and fewer deadline risks caused by communication breakdowns.
+
+  - id: accountant-referral-pipeline
+    title: Referral relationship and renewal pipeline for boutique accounting firms
+    category: professional-services
+    target_customer: Boutique accounting and CFO advisory firms growing through referral partners and annual recurring client retainers.
+    problem: Relationship-driven growth is fragile because partner follow-up, referral source health, and renewal timing are all tracked informally.
+    workflow: Log referral relationships, monitor retainer renewal windows, and surface cross-sell or reactivation opportunities before tax season chaos takes over.
+    recurring_revenue_model: Recurring SaaS for firms with retainer clients and a small partner ecosystem.
+    pricing_shape: Monthly firm subscription with seat expansion for partners and account managers.
+    distribution_channel: Accounting communities, fractional CFO networks, and niche software advisors.
+    constraints:
+      - Must feel relationship-centric instead of like generic CRM bloat.
+      - Needs renewal timing around seasonal workload peaks.
+      - Cannot require replacing proposal and engagement software.
+    must_have_features:
+      - Referral source health board
+      - Retainer renewal calendar
+      - Cross-sell opportunity tracker
+      - Meeting follow-up prompts
+    seed_keywords:
+      - accountants
+      - referrals
+      - retainers
+      - renewals
+      - advisory
+      - partners
+    expected_overlap_group: professional-services-growth
+    adjacent_overlap_groups: []
+    anti_goals:
+      - Do not become a full sales CRM.
+      - Do not target top-tier national firms first.
+    success_metric: Better referral partner retention and more recurring client renewals.
+    prompt_rendered_brief: |
+      The product is a referral relationship and renewal pipeline for boutique accounting firms that win business through trust and annual retainers. Partners usually know which referral sources matter, but the operational reality is scattered meeting notes, forgotten follow-up, and missed renewal conversations when tax season gets busy. The software should show the health of each relationship, upcoming retainer renewals, and the best opportunities to cross-sell advisory work. The recurring SaaS model fits because relationship maintenance is constant and small firms value dependable recurring revenue. The experience must stay relationship-focused and avoid bloated CRM complexity that accountants already dislike. If the system works, firms keep more referral momentum and lose fewer recurring clients to neglect.
+
+  - id: vet-clinic-reorder-expiry
+    title: Reorder timing and expiry protection for independent veterinary clinics
+    category: clinical-ops
+    target_customer: Independent veterinary clinics managing vaccines, medications, and treatment supplies with lean inventory habits.
+    problem: Clinics either run out of critical items or overbuy products that expire because forecasting is ad hoc and based on memory.
+    workflow: Track critical stock, reorder timing, expiry windows, and demand signals tied to seasonal visits and common treatment bundles.
+    recurring_revenue_model: Subscription per clinic location with optional multi-site inventory rollups.
+    pricing_shape: Per-location recurring fee with higher tiers for item count and additional branches.
+    distribution_channel: Veterinary communities, practice consultants, and referrals from clinic-focused accountants.
+    constraints:
+      - Must prioritize practical reorder decisions over full procurement suites.
+      - Needs expiry visibility for regulated medications and vaccines.
+      - Cannot depend on hardware changes or barcode rollouts to be useful.
+    must_have_features:
+      - Critical stock watchlist
+      - Reorder recommendation queue
+      - Expiry window alerts
+      - Seasonal demand overlays
+    seed_keywords:
+      - veterinary
+      - inventory
+      - reorders
+      - expiry
+      - vaccines
+      - clinic
+    expected_overlap_group: clinical-inventory
+    adjacent_overlap_groups: []
+    anti_goals:
+      - Do not become a general procurement ERP.
+      - Do not focus on hospital procurement departments.
+    success_metric: Fewer stockouts and fewer expired items in routine clinical inventory.
+    prompt_rendered_brief: |
+      This product is a reorder timing and expiry protection tool for independent veterinary clinics that keep just enough inventory to stay lean. The clinic team struggles because vaccine and medication demand changes with seasons, common treatment bundles are not tracked cleanly, and overbuying creates expensive expiry waste. The software should highlight critical stock, recommend reorder timing, and make expiry risk obvious before the next ordering cycle. A recurring per-location subscription is appropriate because the value shows up every week in smoother operations and less wasted inventory. The workflow needs to be practical and lightweight, not a full procurement system with enterprise implementation requirements. Success means the clinic has the right items on hand more often while throwing away less regulated stock.
+
+  - id: security-training-renewals
+    title: Training and certification renewal desk for regional security guard firms
+    category: workforce-ops
+    target_customer: Regional security guard firms with rotating schedules, recurring client contracts, and frequent training expiration requirements.
+    problem: Renewals for guard certifications and site-specific training fall through the cracks, risking contract issues and staffing gaps.
+    workflow: Track each guard's training timeline, site-specific requirements, and open shifts that will be affected if a credential lapses.
+    recurring_revenue_model: Monthly subscription based on active guard roster size.
+    pricing_shape: Base subscription with workforce-size tiers and optional customer reporting add-on.
+    distribution_channel: Security operations managers, workforce compliance consultants, and staffing communities.
+    constraints:
+      - Must connect training status to real staffing coverage risk.
+      - Needs simple views for schedulers and operations managers.
+      - Cannot require replacing guard scheduling software.
+    must_have_features:
+      - Certification renewal tracker
+      - Shift risk alerts
+      - Site requirement matrix
+      - Client-ready compliance reports
+    seed_keywords:
+      - security-guards
+      - training
+      - renewals
+      - certifications
+      - staffing
+      - compliance
+    expected_overlap_group: workforce-compliance
+    adjacent_overlap_groups:
+      - staffing-compliance
+    anti_goals:
+      - Do not become a payroll system.
+      - Do not target national enterprise vendors first.
+    success_metric: Fewer shift coverage issues caused by expired training or certifications.
+    prompt_rendered_brief: |
+      The product is a training and certification renewal desk for regional security guard firms that manage recurring contracts with strict staffing rules. Operations teams often discover a compliance problem only when a shift is about to go uncovered because a guard's certification or site-specific training has expired. The software should show every guard's renewal timeline, the sites they can work, and which upcoming shifts are at risk if training is not completed in time. Recurring SaaS pricing makes sense because the workflow repeats constantly across roster changes and client contracts. The experience has to support schedulers and operations managers without replacing the software they already use for timekeeping or guard scheduling. A successful outcome is better coverage reliability and fewer contract headaches caused by credential lapses.
+
+  - id: nonprofit-donor-renewals
+    title: Donor renewal calendar and board-ready reporting for small nonprofits
+    category: nonprofit-ops
+    target_customer: Small nonprofits with recurring donors, grant cycles, and a lean fundraising team that reports regularly to the board.
+    problem: Donor lapses, campaign follow-up, and board reporting all compete for attention, so renewals are missed and fundraising narratives stay reactive.
+    workflow: Track recurring donors, renewal outreach, grant follow-up, and the metrics needed for monthly board updates in one place.
+    recurring_revenue_model: Annual or monthly subscription for small nonprofit fundraising operations.
+    pricing_shape: Flat recurring fee sized for small teams with a premium board-reporting tier.
+    distribution_channel: Nonprofit operations communities, fundraising consultants, and board member referrals.
+    constraints:
+      - Must serve very small teams with limited software budgets.
+      - Needs clear donor renewal and grant follow-up views.
+      - Cannot require enterprise nonprofit CRM implementation.
+    must_have_features:
+      - Donor renewal calendar
+      - Grant follow-up queue
+      - Board KPI snapshots
+      - Campaign cadence planner
+    seed_keywords:
+      - nonprofit
+      - donor-renewals
+      - fundraising
+      - board-reporting
+      - grants
+      - campaigns
+    expected_overlap_group: nonprofit-recurring
+    adjacent_overlap_groups:
+      - creator-retention
+    anti_goals:
+      - Do not replace the nonprofit CRM.
+      - Do not target universities first.
+    success_metric: Higher donor renewal rates and faster board reporting with less manual prep.
+    prompt_rendered_brief: |
+      This product is a donor renewal calendar and board-ready reporting tool for small nonprofits that do not have a large development operations team. The challenge is not sending one more newsletter; it is keeping recurring donors warm, following up on grant obligations, and walking into every board meeting with trustworthy metrics. The software should put donor renewals, grant follow-up, and campaign pacing into a single operating view that a tiny team can actually use. The business model should be affordable recurring SaaS because nonprofits need predictable pricing more than custom implementation projects. It must avoid becoming a full donor CRM and instead focus on the renewal and reporting layer that most small teams lack. The outcome is steadier recurring giving and far less scramble before board meetings.
+
+  - id: medspa-ad-offer-planner
+    title: Local ad offer planner and membership follow-up for med spas
+    category: local-demand
+    target_customer: Med spas running paid social campaigns, introductory offers, and recurring treatment memberships with tiny front-desk teams.
+    problem: Ad spend and intro offers create spikes of interest, but staff cannot tell which leads should convert into ongoing memberships or revisit sequences.
+    workflow: Tie campaigns, booked consultations, membership saves, and no-show follow-up into one planner for the weekly growth meeting.
+    recurring_revenue_model: Monthly subscription for local growth teams with optional multi-location rollups.
+    pricing_shape: Per-location recurring fee with add-on for ad-account reporting depth.
+    distribution_channel: Med spa marketing agencies, owner communities, and local growth operators.
+    constraints:
+      - Must connect paid acquisition to recurring treatment retention.
+      - Needs weekly decision support instead of enterprise marketing dashboards.
+      - Cannot rely on custom ad platform ETL to show value.
+    must_have_features:
+      - Campaign-to-consult tracking
+      - Membership conversion board
+      - No-show and revisit reminders
+      - Offer performance comparison
+    seed_keywords:
+      - medspa
+      - memberships
+      - offers
+      - ad-planning
+      - no-shows
+      - retention
+    expected_overlap_group: local-demand-growth
+    adjacent_overlap_groups:
+      - creator-retention
+      - subscription-recovery
+    anti_goals:
+      - Do not become a full medical record system.
+      - Do not target enterprise multi-brand chains first.
+    success_metric: Better conversion from paid acquisition into recurring treatment memberships.
+    prompt_rendered_brief: |
+      The product is a local ad offer planner and membership follow-up system for med spas that buy attention with paid social and live on repeat treatments. Owners can usually see top-line ad metrics, but they struggle to connect campaigns, intro offers, no-show recovery, and membership retention into one operating rhythm. The software should give them a practical weekly planner that ties acquisition to recurring revenue decisions and front-desk follow-up. Recurring SaaS pricing works because this is a weekly growth workflow for every location, not a one-time reporting project. The product sits in an ambiguous zone between local growth, retention, and save-offer operations, which makes it useful for future overlap simulation. A good outcome is stronger membership conversion and less wasted ad spend on leads that quietly disappear.
+
+  - id: fence-install-handoff-ops
+    title: Quote-to-install handoff and scheduling readiness for fence contractors
+    category: construction-ops
+    target_customer: Small fence contractors juggling estimates, permits, materials, and crew scheduling across residential projects.
+    problem: Jobs slip after the sale because material readiness, permit status, and customer approvals are scattered across estimator notes.
+    workflow: Turn accepted quotes into a visible handoff board that shows readiness blockers before the crew calendar is committed.
+    recurring_revenue_model: Monthly subscription for owner-led contractors managing a steady project pipeline.
+    pricing_shape: Base platform fee with add-on for multiple crews or estimators.
+    distribution_channel: Contractor communities, local implementation consultants, and construction accountants.
+    constraints:
+      - Must support owner-operator firms with messy estimate-to-install handoffs.
+      - Needs permit and material blocker visibility without becoming an ERP.
+      - Cannot depend on municipal integrations to be useful.
+    must_have_features:
+      - Quote acceptance to install board
+      - Material readiness checklist
+      - Permit blocker tracker
+      - Crew scheduling handoff notes
+    seed_keywords:
+      - fence-contractors
+      - handoff
+      - permits
+      - materials
+      - scheduling
+      - crews
+    expected_overlap_group: construction-field-ops
+    adjacent_overlap_groups:
+      - field-service-recurring
+      - solar-field-ops
+    anti_goals:
+      - Do not become a construction ERP.
+      - Do not target national home builders first.
+    success_metric: More installs start on time after a quote is accepted.
+    prompt_rendered_brief: |
+      This product is a quote-to-install handoff and scheduling readiness system for fence contractors that close work quickly but struggle to coordinate the next operational steps. Once a proposal is accepted, crews still need permits, material availability, and customer approvals, yet those blockers are usually buried inside estimator notes and text threads. The software should turn each accepted quote into a visible readiness board so owners know when the crew calendar is actually safe to lock. A recurring SaaS model makes sense because the same handoff problem repeats for every project in a busy contractor business. The product also sits near adjacent field-service and construction workflows, which makes it valuable for overlap testing later. The benefit should be fewer schedule slips and cleaner coordination between estimators, office staff, and crews.
+
+  - id: boutique-gym-pause-rescue
+    title: Pause rescue and upsell sequencing for boutique gym memberships
+    category: subscription-growth
+    target_customer: Boutique gyms and fitness studios selling monthly memberships, class packs, and premium training add-ons.
+    problem: Members request pauses or downgrade quietly, and staff have no structured way to rescue recurring revenue without sounding pushy.
+    workflow: Track pause requests, at-risk members, trainer touchpoints, and upsell offers that match attendance and member goals.
+    recurring_revenue_model: Monthly SaaS subscription per studio location tied to member count bands.
+    pricing_shape: Per-location fee with higher tiers for larger member rosters and trainer seats.
+    distribution_channel: Boutique fitness operators, studio consultants, and gym marketing communities.
+    constraints:
+      - Must connect front-desk actions with trainer-led save moments.
+      - Needs practical scripts and workflows instead of generic CRM tasks.
+      - Cannot assume enterprise club-management integrations.
+    must_have_features:
+      - Pause request rescue queue
+      - Attendance-based at-risk scoring
+      - Trainer follow-up prompts
+      - Upsell offer sequencing
+    seed_keywords:
+      - gym-memberships
+      - pauses
+      - rescue
+      - upsells
+      - attendance
+      - retention
+    expected_overlap_group: subscription-recovery
+    adjacent_overlap_groups:
+      - creator-retention
+      - local-demand-growth
+    anti_goals:
+      - Do not become a booking platform.
+      - Do not target national gym chains first.
+    success_metric: Fewer pauses turning into cancellations and more member upgrades.
+    prompt_rendered_brief: |
+      The product is a pause rescue and upsell sequencing system for boutique gym memberships where recurring revenue depends on saving at-risk members before they drift away. Studios already have attendance data and membership billing, but they rarely have a disciplined workflow for pauses, trainer outreach, and next-best offers. The software should surface who is slipping, what kind of outreach is appropriate, and when to ask for an upgrade instead of accepting a downgrade or churn. Revenue should come from recurring SaaS per location because member saves and upgrades are ongoing operational work. This brief intentionally overlaps subscription recovery, local growth, and creator-style retention patterns, which makes it useful for DejaShip simulation. The result should be more recurring revenue kept inside the membership base and less guesswork from staff.
+
+  - id: ecommerce-return-reducer
+    title: Return reason clustering and save-offer workflow for specialty ecommerce brands
+    category: commerce-ops
+    target_customer: Specialty ecommerce brands with premium products, rising return rates, and small post-purchase support teams.
+    problem: Brands collect return reasons, but they do not convert that data into save offers, product fixes, or recurring retention actions fast enough.
+    workflow: Cluster return reasons, propose recovery playbooks, and route the right save offer before a return becomes a lost customer.
+    recurring_revenue_model: Monthly subscription priced by order volume and saved revenue.
+    pricing_shape: Base subscription with usage tiers tied to monthly return cases.
+    distribution_channel: Ecommerce operators, retention agencies, and post-purchase optimization communities.
+    constraints:
+      - Must help support teams act before the refund is final.
+      - Needs enough structure to compare product and offer patterns over time.
+      - Cannot require replacing help desk or order systems.
+    must_have_features:
+      - Return reason clustering
+      - Save-offer recommendation queue
+      - Product issue pattern reporting
+      - Refund prevention workflow
+    seed_keywords:
+      - ecommerce
+      - returns
+      - save-offers
+      - retention
+      - refunds
+      - support
+    expected_overlap_group: commerce-retention
+    adjacent_overlap_groups:
+      - subscription-recovery
+      - creator-retention
+    anti_goals:
+      - Do not become a warehouse returns platform.
+      - Do not focus on giant retail enterprises first.
+    success_metric: More orders saved before refund completion and clearer insight into recurring return causes.
+    prompt_rendered_brief: |
+      This product is a return reason clustering and save-offer workflow for specialty ecommerce brands that care about margin and customer lifetime value. Teams usually collect return tickets, but they do not turn that signal into immediate save offers, product fixes, or recurring retention decisions while the customer is still reachable. The software should cluster reasons, suggest recovery playbooks, and tell support which offer to try before the refund becomes final. A recurring subscription works well because brands face this workflow every week and the value comes from both immediate saves and pattern learning over time. The brief intentionally sits near subscription recovery and retention concepts so it can create ambiguous neighborhoods in simulation. A win means fewer preventable refunds and better learning from post-purchase friction.

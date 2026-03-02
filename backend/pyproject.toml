@@ -18,9 +18,13 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
+    "anyio>=4.0.0",
     "pytest>=8.0.0",
     "pytest-asyncio>=0.24.0",
+    "pyyaml>=6.0.0",
     "httpx>=0.27.0",
+    "instructor>=1.0.0",
+    "openai>=1.0.0",
     "testcontainers[postgres]>=4.0.0",
 ]
 
@@ -34,3 +38,8 @@ packages = ["src/dejaship"]
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 testpaths = ["tests"]
+markers = [
+    "agent_sim: deterministic agent simulation and fixture replay tests",
+    "live_llm: tests that call a real external LLM provider",
+    "slow: intentionally slower end-to-end simulations",
+]

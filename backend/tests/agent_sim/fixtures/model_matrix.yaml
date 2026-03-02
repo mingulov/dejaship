@@ -1,0 +1,68 @@
+sets:
+  smoke:
+    - nim-default
+    - nim-fast
+  default:
+    - nim-default
+    - nim-fast
+    - nim-balanced
+    - nim-reasoning
+  nightly:
+    - nim-default
+    - nim-fast
+    - nim-balanced
+    - nim-reasoning
+    - nim-llama70
+    - nim-qwen72
+    - nim-mixtral
+    - nim-llama405
+
+models:
+  nim-default:
+    model: stepfun-ai/step-3.5-flash
+    role: default
+    weight: 5
+    enabled: true
+    notes: Mirrors the local default model selection used for initial live fixture generation.
+  nim-fast:
+    model: meta/llama-3.1-8b-instruct
+    role: cheap
+    weight: 4
+    enabled: true
+    notes: Fast low-cost baseline for broad fixture coverage.
+  nim-balanced:
+    model: mistralai/mixtral-8x7b-instruct-v0.1
+    role: balanced
+    weight: 4
+    enabled: true
+    notes: General-purpose mixture model for medium-complexity briefs.
+  nim-reasoning:
+    model: deepseek-ai/deepseek-r1-distill-llama-70b
+    role: reasoning
+    weight: 2
+    enabled: true
+    notes: Higher-latency reasoning model for revisions and crowded airspace prompts.
+  nim-llama70:
+    model: meta/llama-3.1-70b-instruct
+    role: large
+    weight: 2
+    enabled: true
+    notes: Larger Llama variant for extended nightly fixture generation.
+  nim-qwen72:
+    model: qwen/qwen2.5-72b-instruct
+    role: large
+    weight: 2
+    enabled: true
+    notes: Useful contrast model with different keyword phrasing tendencies.
+  nim-mixtral:
+    model: mistralai/mixtral-8x22b-instruct-v0.1
+    role: large
+    weight: 1
+    enabled: true
+    notes: Nightly-only model for diversity in longer prompts.
+  nim-llama405:
+    model: meta/llama-3.1-405b-instruct
+    role: frontier
+    weight: 1
+    enabled: false
+    notes: Placeholder for expensive frontier runs; disabled by default.

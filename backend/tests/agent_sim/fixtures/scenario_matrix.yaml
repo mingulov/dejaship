@@ -1,0 +1,76 @@
+scenarios:
+  smoke:
+    agent_count: 4
+    total_calls_target: 60
+    model_set: smoke
+    persona_mix:
+      cautious: 1
+      aggressive: 1
+      reviser: 1
+      shipper: 1
+    brief_selection_strategy: balanced
+    requires_live_llm: false
+    description: Quick deterministic replay for local development.
+  local:
+    agent_count: 10
+    total_calls_target: 300
+    model_set: default
+    persona_mix:
+      cautious: 1
+      aggressive: 1
+      overlap-averse: 1
+      overlap-tolerant: 1
+      reviser: 1
+      shipper: 1
+      abandoner: 1
+      monitor-first: 1
+      noisy-prompter: 1
+      duplicate-prone: 1
+    brief_selection_strategy: mixed-with-overlap
+    requires_live_llm: false
+    description: Default multi-agent replay with deliberate overlap pressure.
+  extended:
+    agent_count: 12
+    total_calls_target: 500
+    model_set: default
+    persona_mix:
+      cautious: 2
+      aggressive: 1
+      overlap-averse: 1
+      overlap-tolerant: 1
+      reviser: 2
+      shipper: 2
+      abandoner: 1
+      monitor-first: 1
+      duplicate-prone: 1
+    brief_selection_strategy: overlap-heavy
+    requires_live_llm: false
+    description: Larger deterministic run intended for pre-merge confidence.
+  stress:
+    agent_count: 20
+    total_calls_target: 1000
+    model_set: nightly
+    persona_mix:
+      cautious: 3
+      aggressive: 2
+      overlap-averse: 2
+      overlap-tolerant: 2
+      reviser: 3
+      shipper: 3
+      abandoner: 2
+      monitor-first: 1
+      noisy-prompter: 1
+      duplicate-prone: 1
+    brief_selection_strategy: weighted-mixed
+    requires_live_llm: false
+    description: Stress simulation for concurrency, repeated checks, and heavy MCP traffic.
+  live-smoke:
+    agent_count: 2
+    total_calls_target: 20
+    model_set: smoke
+    persona_mix:
+      cautious: 1
+      reviser: 1
+    brief_selection_strategy: overlap-focused
+    requires_live_llm: true
+    description: Minimal live-provider smoke test for prompt contract validation.
