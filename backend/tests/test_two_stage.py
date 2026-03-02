@@ -1,8 +1,6 @@
 """Unit tests for two-stage retrieval logic (no Docker required)."""
 import math
 
-import pytest
-
 from dejaship.embeddings import cosine_similarity
 
 
@@ -34,3 +32,10 @@ def test_cosine_similarity_longer_vector():
     dims = 768
     v = [1.0 / dims**0.5] * dims  # unit vector
     assert abs(cosine_similarity(v, v) - 1.0) < 1e-6
+
+
+def test_cosine_similarity_dimension_mismatch_raises():
+    """Mismatched dimensions raise ValueError — no silent truncation."""
+    import pytest
+    with pytest.raises(ValueError, match="dimension mismatch"):
+        cosine_similarity([1.0, 0.0, 0.0], [1.0, 0.0])

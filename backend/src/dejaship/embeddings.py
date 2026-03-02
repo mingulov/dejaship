@@ -61,5 +61,10 @@ def embed_text(text: str) -> list[float]:
 
 
 def cosine_similarity(vec_a: list[float], vec_b: list[float]) -> float:
-    """Compute cosine similarity between two unit-norm vectors (dot product)."""
+    """Compute cosine similarity between two unit-norm vectors (dot product).
+
+    Raises ValueError if vectors have different dimensions.
+    """
+    if len(vec_a) != len(vec_b):
+        raise ValueError(f"Vector dimension mismatch: {len(vec_a)} vs {len(vec_b)}")
     return sum(a * b for a, b in zip(vec_a, vec_b))

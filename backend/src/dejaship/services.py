@@ -30,14 +30,17 @@ async def _check_airspace_two_stage(
     input: IntentInput,
     session: AsyncSession,
     *,
+    combined_vector: list[float],
     stage1_threshold: float,
     stage2_threshold: float,
     candidate_multiplier: int,
     top_k: int,
 ) -> list[AgentIntent]:
-    """Stage 1: broad retrieval; Stage 2: rerank by mechanic embedding."""
-    text = build_embedding_text(input.core_mechanic, input.keywords)
-    combined_vector = await run_in_threadpool(embed_text, text)
+    """Stage 1: broad retrieval; Stage 2: rerank by mechanic embedding.
+
+    Candidates without mechanic_embedding (pre-migration rows) are included
+    with a neutral score so they are not silently dropped.
+    """
     mechanic_vector = await run_in_threadpool(embed_text, input.core_mechanic)
 
     distance_expr = AgentIntent.embedding.cosine_distance(combined_vector)
@@ -53,10 +56,13 @@ async def _check_airspace_two_stage(
     result = await session.execute(candidates_query)
     candidates = list(result.scalars())
 
-    # Stage 2: rerank by mechanic similarity, filter at stage2_threshold
+    # Stage 2: rerank by mechanic similarity, filter at stage2_threshold.
+    # Claims with no mechanic_embedding (pre-migration) pass through with score 0.0
+    # so they are not silently dropped during rollout.
     scored = []
     for claim in candidates:
         if claim.mechanic_embedding is None:
+            scored.append((0.0, claim))
             continue
         sim = cosine_similarity(mechanic_vector, list(claim.mechanic_embedding))
         if sim >= stage2_threshold:
@@ -101,6 +107,7 @@ async def check_airspace(input: IntentInput, session: AsyncSession) -> CheckResp
     if settings.ENABLE_TWO_STAGE_RETRIEVAL:
         intents = await _check_airspace_two_stage(
             input, session,
+            combined_vector=vector,
             stage1_threshold=settings.STAGE1_THRESHOLD,
             stage2_threshold=settings.STAGE2_THRESHOLD,
             candidate_multiplier=settings.STAGE2_CANDIDATE_MULTIPLIER,
