@@ -92,6 +92,10 @@ class TestCheckAirspaceAnnotations:
         tool = _get_tool("dejaship_check_airspace")
         assert tool.annotations.idempotentHint is True
 
+    def test_open_world_hint(self):
+        tool = _get_tool("dejaship_check_airspace")
+        assert tool.annotations.openWorldHint is True
+
 
 class TestClaimIntentAnnotations:
     def test_annotations_not_none(self):
@@ -110,6 +114,10 @@ class TestClaimIntentAnnotations:
         tool = _get_tool("dejaship_claim_intent")
         assert tool.annotations.idempotentHint is False
 
+    def test_open_world_hint(self):
+        tool = _get_tool("dejaship_claim_intent")
+        assert tool.annotations.openWorldHint is True
+
 
 class TestUpdateClaimAnnotations:
     def test_annotations_not_none(self):
@@ -127,6 +135,10 @@ class TestUpdateClaimAnnotations:
     def test_idempotent_hint(self):
         tool = _get_tool("dejaship_update_claim")
         assert tool.annotations.idempotentHint is False
+
+    def test_open_world_hint(self):
+        tool = _get_tool("dejaship_update_claim")
+        assert tool.annotations.openWorldHint is True
 
 
 # ---------------------------------------------------------------------------

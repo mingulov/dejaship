@@ -44,7 +44,7 @@ def _validation_error_response(e: ValidationError) -> dict:
     }
 
 
-@mcp.tool(annotations=ToolAnnotations(readOnlyHint=True, destructiveHint=False, idempotentHint=True))
+@mcp.tool(annotations=ToolAnnotations(readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=True))
 async def dejaship_check_airspace(
     core_mechanic: Annotated[
         str,
@@ -88,7 +88,7 @@ async def dejaship_check_airspace(
     return result.model_dump()
 
 
-@mcp.tool(annotations=ToolAnnotations(readOnlyHint=False, destructiveHint=False, idempotentHint=False))
+@mcp.tool(annotations=ToolAnnotations(readOnlyHint=False, destructiveHint=False, idempotentHint=False, openWorldHint=True))
 async def dejaship_claim_intent(
     core_mechanic: Annotated[
         str,
@@ -132,7 +132,7 @@ async def dejaship_claim_intent(
     return result.model_dump(mode="json")
 
 
-@mcp.tool(annotations=ToolAnnotations(readOnlyHint=False, destructiveHint=True, idempotentHint=False))
+@mcp.tool(annotations=ToolAnnotations(readOnlyHint=False, destructiveHint=True, idempotentHint=False, openWorldHint=True))
 async def dejaship_update_claim(
     claim_id: Annotated[str, Field(description="The claim_id UUID returned from dejaship_claim_intent")],
     edit_token: Annotated[str, Field(description="The secret edit_token returned from dejaship_claim_intent")],
