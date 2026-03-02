@@ -30,11 +30,14 @@ def upgrade() -> None:
         ['search_tsvector'],
         postgresql_using='gin'
     )
-    # Populate existing rows (for rows already in the DB before this migration)
+    # Populate existing rows (keywords is JSONB, so use jsonb_array_elements_text)
     op.execute("""
         UPDATE agent_intents
         SET search_tsvector = to_tsvector('english',
-            core_mechanic || ' ' || array_to_string(keywords, ' '))
+            core_mechanic || ' ' || (
+                SELECT coalesce(string_agg(elem, ' '), '')
+                FROM jsonb_array_elements_text(keywords) AS t(elem)
+            ))
     """)
 
 

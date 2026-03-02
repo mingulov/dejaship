@@ -168,7 +168,7 @@ async def check_airspace(input: IntentInput, session: AsyncSession) -> CheckResp
 async def claim_intent(input: IntentInput, session: AsyncSession) -> ClaimResponse:
     text = build_embedding_text(input.core_mechanic, input.keywords)
     vector = await run_in_threadpool(embed_text, text)
-    mechanic_vector = await run_in_threadpool(embed_text, input.core_mechanic)  # NEW
+    mechanic_vector = await run_in_threadpool(embed_text, input.core_mechanic)
 
     edit_token = secrets.token_urlsafe(32)
 

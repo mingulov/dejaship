@@ -82,12 +82,12 @@ async def hybrid_search(
     default_rank = top_n * 5 + 1
 
     # Build id -> object map
-    id_to_claim: dict = {}
+    id_to_claim: dict[object, AgentIntent] = {}
     for c in vector_candidates + fts_candidates:
         id_to_claim[c.id] = c
 
     # Compute RRF scores for all candidates
-    scored = []
+    scored: list[tuple[float, AgentIntent]] = []
     for claim_id in all_ids:
         vrank = vector_rank_map.get(claim_id, default_rank)
         frank = fts_rank_map.get(claim_id, default_rank)
