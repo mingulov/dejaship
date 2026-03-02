@@ -46,6 +46,13 @@ class Settings(BaseSettings):
     TRUST_PROXY_HEADERS: bool = False
     TRUSTED_PROXY_CIDRS: str = ""
 
+    # Keyword Jaccard post-filter
+    # Filters vector search results by keyword set overlap.
+    # See docs/search-quality/improvement-approaches.md
+    ENABLE_JACCARD_FILTER: bool = False
+    JACCARD_THRESHOLD: float = 0.15
+    JACCARD_MIN_KEYWORDS: int = 3
+
     model_config = {"env_prefix": "DEJASHIP_"}
 
 

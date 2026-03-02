@@ -9,6 +9,7 @@ from starlette.concurrency import run_in_threadpool
 
 from dejaship.config import settings
 from dejaship.embeddings import build_embedding_text, embed_text
+from dejaship.filters import apply_jaccard_filter
 from dejaship.models import AgentIntent, IntentStatus
 from dejaship.schemas import (
     ActiveClaim,
@@ -62,8 +63,16 @@ async def check_airspace(input: IntentInput, session: AsyncSession) -> CheckResp
         .limit(settings.MAX_CLOSEST_RESULTS)
     )
     result = await session.execute(closest_query)
+    intents = list(result.scalars())
+    if settings.ENABLE_JACCARD_FILTER:
+        intents = apply_jaccard_filter(
+            query_keywords=input.keywords,
+            candidates=intents,
+            threshold=settings.JACCARD_THRESHOLD,
+            min_keywords=settings.JACCARD_MIN_KEYWORDS,
+        )
     closest = []
-    for intent in result.scalars():
+    for intent in intents:
         age_hours = (now - intent.created_at.astimezone(timezone.utc)).total_seconds() / 3600
         closest.append(
             ActiveClaim(
