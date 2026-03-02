@@ -65,6 +65,32 @@ node build/index.js            # Run locally
 All prefixed with `DEJASHIP_`. See `.env.example` for full list.
 Key: `DATABASE_URL`, `EMBEDDING_MODEL`, `SIMILARITY_THRESHOLD`.
 
+Experiment flags (all default to off):
+- `EMBEDDING_INCLUDE_CORE_MECHANIC` — toggle core_mechanic in embedding text
+- `ENABLE_JACCARD_FILTER`, `ENABLE_TWO_STAGE_RETRIEVAL`, `ENABLE_CROSS_ENCODER`, etc.
+
+## Search Quality
+
+Current state (2026-03-02, coverage-max corpus):
+- FPR: 0.72, recall: 0.73, exact_top1: 1.0, balanced_score: 2.36
+- Main blocker: generic SaaS vocabulary inflates cross-domain similarity
+
+Key docs:
+- `docs/search-quality/false-positive-root-cause.md` — why FPR is 72%
+- `docs/search-quality/improvement-approaches.md` — 11 ranked solutions with config flags
+- `docs/search-quality/model-comparison.md` — fastembed 768-dim model analysis
+- `docs/decisions/2026-03-02-embedding-text-strategy.md` — keywords-only experiment & revert
+- `docs/agent-sim-coverage-max-status.md` — measured quality metrics & next steps
+- `docs/plans/2026-03-02-search-quality-improvement-plan.md` — implementation plan
+
+Evaluation commands:
+```bash
+cd backend
+uv run python -m tests.agent_sim.tools.evaluate_cross_model_retrieval --model-set coverage-max
+uv run python -m tests.agent_sim.tools.evaluate_similarity_thresholds --model-set coverage-max
+uv run python -m tests.agent_sim.tools.run_quality_suite --scenario smoke --model-set coverage-max
+```
+
 ## Rules Sync (multi-agent)
 
 ```bash
