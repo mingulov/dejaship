@@ -116,18 +116,40 @@ Why the lab was misleading: in the real corpus, 17 models generate different key
 
 See: `docs/decisions/2026-03-02-embedding-text-strategy.md` for full analysis.
 
-## Next Product Work
+## Feature Ablation Results (2026-03-02)
 
-The next work should target DejaShip search quality, not more test scaffolding.
+All post-retrieval features were tested against the coverage-max corpus using the in-memory ablation framework (`evaluate_feature_ablation.py`):
+
+| Feature | Verdict | Detail |
+|---------|---------|--------|
+| Jaccard keyword filter | **Harmful** | At threshold=0.05 (lowest): -52% recall, -28% FPR (ratio 1.86:1) |
+| Mechanic-vector rerank | **Mediocre** | Every threshold loses recall faster than FPR. Best ratio at mechanic_70: 1.4:1 |
+| ColBERT reranker | Unvalidated | Not yet measured in ablation framework |
+| Hybrid FTS | Unvalidated | Not yet measured in ablation framework |
+| Stopword cleanup | Unvalidated | Not yet measured in ablation framework |
+
+**Decision**: All post-retrieval features remain DISABLED. See `docs/decisions/2026-03-02-production-config.md`.
+
+## Full-Stack Integration Test (2026-03-02)
+
+A full-stack test using testcontainers pgvector (1 fixture per brief, real `/v1/claim` + `/v1/check`):
+
+- Recall@k: **0.697**
+- FPR: **0.476**
+- Much better than cross-model in-memory eval (FPR=0.722) because real usage is single-query, not 17-model cross-product
+
+This confirms the structural FPR problem is less severe in real-world single-agent usage.
+
+## Next Product Work
 
 Priority order:
 
-1. **Two-stage retrieval** (highest expected impact — see decision doc):
-   - Stage 1: broad candidate retrieval at threshold 0.55 using current combined embedding
-   - Stage 2: rerank candidates by `core_mechanic`-only vector similarity at threshold 0.65
-   - Requires schema migration to store a second `mechanic_embedding` vector per claim
-2. Keep tuning against `coverage-max`, not `smoke` alone.
-3. Avoid further single-metric optimization (FPR alone) without checking the balanced score.
+1. **Validate unvalidated features in ablation framework**: ColBERT reranker, Hybrid FTS, stopword cleanup — measure before enabling.
+2. **Explore non-post-filter approaches**: Category pre-filter (requires client changes), query-time embedding improvements, domain-adaptive fine-tuning.
+3. Keep tuning against `coverage-max`, not `smoke` alone.
+4. Avoid further single-metric optimization (FPR alone) without checking the balanced score.
+
+Two-stage retrieval was the #1 priority but in-memory mechanic rerank ablation shows mediocre results. The production two-stage implementation (broad stage1 → narrow stage2) might outperform the in-memory simulation, but enabling it without empirical validation through the full-stack test risks degrading quality.
 
 ## Bottom Line
 

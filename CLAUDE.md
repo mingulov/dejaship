@@ -68,6 +68,12 @@ node build/index.js            # Run locally
 - **Rate limits in tests**: SlowAPI limits share in-memory state per IP key
   (`"testclient"` for all test requests). 60/min is safe for the current suite but
   watch if tests grow significantly.
+- **Pyright dict invariance**: `dict[str, int]` is NOT a subtype of `dict[str, int | float]`.
+  Use `cast(dict[str, int | float], {...})` to widen literal-inferred dict types.
+- **Pydantic `model_construct()`**: Use in tests to bypass validation for `AppBrief`/`AppCatalog`
+  fixtures that don't satisfy min-length or field-count constraints.
+- **`/v1/claim` returns 200**, not 201 — FastAPI default for `@router.post`. Test assertions
+  should use `status_code == 200`.
 - **rulesync**: `GEMINI.md`, `AGENTS.md`, `.agent/rules/claude.md`, etc. are generated.
   Edit `.rulesync/rules/CLAUDE.md`, then run `rulesync generate`.
 
@@ -90,23 +96,36 @@ Experiment flags (all default `False`):
 
 Baseline (2026-03-02, coverage-max corpus): FPR=0.72, recall=0.73, exact_top1=1.0
 Root cause: generic SaaS vocabulary ("renewals", "subscription") inflates cross-domain similarity.
-All 8 improvement flags are implemented — enable and evaluate with commands below.
+All 8 improvement flags are implemented but ALL DISABLED by default (empirically validated).
+Feature ablation (2026-03-02): Jaccard filter harmful, mechanic rerank mediocre — no post-filter
+improves FPR without disproportionate recall loss. Full-stack FPR=0.48 (much better than
+cross-model benchmark 0.72). See `docs/decisions/2026-03-02-production-config.md`.
 Model comparison result: BGE (default) outperforms snowflake and nomic on coverage-max.
 
 Key docs:
 - `docs/search-quality/false-positive-root-cause.md` — why FPR is 72%
 - `docs/search-quality/improvement-approaches.md` — 11 ranked solutions with config flags
 - `docs/search-quality/model-comparison.md` — fastembed 768-dim model analysis
+- `docs/search-quality/feature-ablation.md` — Jaccard + mechanic rerank ablation results
 - `docs/decisions/2026-03-02-embedding-text-strategy.md` — keywords-only experiment & revert
+- `docs/decisions/2026-03-02-production-config.md` — validated production config (all defaults)
 - `docs/agent-sim-coverage-max-status.md` — measured quality metrics & next steps
 - `docs/plans/2026-03-02-search-quality-improvement-plan.md` — implementation plan
+- `docs/plans/2026-03-02-feature-ablation-evaluation.md` — ablation harness plan (5 tasks)
 
 Evaluation commands (no Docker needed — runs in-memory against pre-computed fixtures):
 ```bash
 cd backend
 uv run python -m tests.agent_sim.tools.evaluate_cross_model_retrieval --model-set coverage-max
 uv run python -m tests.agent_sim.tools.evaluate_similarity_thresholds --model-set coverage-max
+uv run python -m tests.agent_sim.tools.evaluate_feature_ablation --model-set coverage-max
 uv run python -m tests.agent_sim.tools.run_quality_suite --scenario smoke --model-set coverage-max
+```
+
+Full-stack integration test (requires Docker — uses testcontainers pgvector):
+```bash
+cd backend
+uv run pytest tests/agent_sim/test_coverage_max_fullstack.py -v -m slow
 ```
 
 ## Rules Sync (multi-agent)

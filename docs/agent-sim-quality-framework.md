@@ -249,6 +249,23 @@ uv run python -m tests.agent_sim.tools.evaluate_embedding_ablation \
   --output-md /tmp/agent-sim-ablation.md
 ```
 
+Evaluate feature ablation (Jaccard filter, mechanic rerank):
+
+```bash
+cd backend
+uv run python -m tests.agent_sim.tools.evaluate_feature_ablation \
+  --model-set coverage-max \
+  --output-json agent-sim-feature-ablation.json \
+  --output-md agent-sim-feature-ablation.md
+```
+
+Full-stack integration test (requires Docker — testcontainers pgvector):
+
+```bash
+cd backend
+uv run pytest tests/agent_sim/test_coverage_max_fullstack.py -v -m slow
+```
+
 Run the full quality bundle:
 
 ```bash
