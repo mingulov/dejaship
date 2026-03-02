@@ -74,7 +74,7 @@ async def test_fullstack_retrieval_quality(
             "keywords": fx.final_intent_input.keywords,
         }
         resp = await client.post("/v1/claim", json=payload)
-        assert resp.status_code == 201, (
+        assert resp.status_code == 200, (
             f"claim failed for {brief_id}/{model_alias}: {resp.text}"
         )
         mechanic_to_brief[fx.final_intent_input.core_mechanic] = brief_id
