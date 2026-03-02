@@ -9,6 +9,7 @@ from starlette.routing import Mount
 
 from dejaship.api.check import router as check_router
 from dejaship.api.claim import router as claim_router
+from dejaship.api.stats import router as stats_router
 from dejaship.api.update import router as update_router
 from dejaship.config import settings
 from dejaship.db import engine
@@ -61,6 +62,7 @@ async def enforce_mcp_rate_limit(request: Request, call_next):
 app.include_router(check_router, prefix="/v1")
 app.include_router(claim_router, prefix="/v1")
 app.include_router(update_router, prefix="/v1")
+app.include_router(stats_router, prefix="/v1")
 
 # MCP endpoint
 app.router.routes.append(Mount("/mcp", app=mcp.streamable_http_app()))

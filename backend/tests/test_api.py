@@ -1,6 +1,7 @@
 import uuid
 
 import pytest
+from httpx import AsyncClient
 from starlette.requests import Request
 
 from dejaship.config import settings
@@ -631,3 +632,41 @@ def test_get_client_ip_uses_trusted_proxy_headers(monkeypatch):
     })
 
     assert get_client_ip(request) == "198.51.100.1"
+
+
+# --- Stats Endpoint ---
+
+
+@pytest.mark.anyio
+async def test_stats_empty_db(client: AsyncClient):
+    resp = await client.get("/v1/stats")
+    assert resp.status_code == 200
+    data = resp.json()
+    assert data["total_claims"] == 0
+    assert data["active"] == 0
+    assert data["shipped"] == 0
+    assert data["abandoned"] == 0
+
+
+@pytest.mark.anyio
+async def test_stats_counts_claims(client: AsyncClient):
+    keywords = ["saas", "billing", "invoicing", "payments", "recurring"]
+    r1 = await client.post("/v1/claim", json={"core_mechanic": "Invoice tracking", "keywords": keywords})
+    r2 = await client.post("/v1/claim", json={"core_mechanic": "Payment processing", "keywords": keywords})
+    assert r1.status_code == 200
+    assert r2.status_code == 200
+
+    claim = r1.json()
+    await client.post("/v1/update", json={
+        "claim_id": claim["claim_id"],
+        "edit_token": claim["edit_token"],
+        "status": "shipped",
+    })
+
+    resp = await client.get("/v1/stats")
+    assert resp.status_code == 200
+    data = resp.json()
+    assert data["total_claims"] == 2
+    assert data["active"] == 1
+    assert data["shipped"] == 1
+    assert data["abandoned"] == 0

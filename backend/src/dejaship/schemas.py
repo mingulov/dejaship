@@ -61,3 +61,10 @@ class UpdateInput(BaseModel):
 
 class UpdateResponse(BaseModel):
     success: bool
+
+
+class StatsResponse(BaseModel):
+    total_claims: int
+    active: int
+    shipped: int
+    abandoned: int
