@@ -1,0 +1,269 @@
+{
+  "brief_id": "hvac-service-plan-ops",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "magistral-small-2506",
+    "model_name": "mistralai/magistral-small-2506",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "3d38917840b8c4b74a5ee33221af3266efa61f080303c55101d546d3f2c6ac07",
+    "prompt_hash": "f1d9f94aad4c84a2c898eb508dac598755ae265dcc8b0037c51a6bd85175d978",
+    "generated_at": "2026-03-02T09:35:45.385507Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"hvac-service-plan-ops\",\n  \"title\": \"Service plan renewals and dispatch prep for independent HVAC installers\",\n  \"category\": \"field-service\",\n  \"target_customer\": \"Independent HVAC installation and maintenance companies with three to twenty-five technicians.\",\n  \"problem\": \"Owners sell maintenance plans after every install, but renewals, seasonal reminders, and technician follow-up all live in spreadsheets that get ignored during busy periods.\",\n  \"workflow\": \"Capture every install, schedule renewal windows, queue outbound reminders, and feed daily prep lists to dispatch before technicians leave the warehouse.\",\n  \"recurring_revenue_model\": \"Annual maintenance plans with optional monthly financing for larger equipment protection bundles.\",\n  \"pricing_shape\": \"Base subscription plus per-technician seats once the team grows past five field staff.\",\n  \"distribution_channel\": \"Founder-led outbound to local HVAC operators plus accountant and distributor referrals.\",\n  \"constraints\": [\n    \"Must work well for phone-first teams who barely use desktop software during the day.\",\n    \"Needs simple seasonal campaigns that map to spring and fall tune-up demand.\",\n    \"Cannot require deep integrations with enterprise field-service suites.\"\n  ],\n  \"must_have_features\": [\n    \"Renewal pipeline with due-date visibility\",\n    \"Technician-ready morning call sheets\",\n    \"Plan upsell prompts after completed installs\",\n    \"Contact history for homeowners and landlords\"\n  ],\n  \"seed_keywords\": [\n    \"hvac\",\n    \"maintenance-plans\",\n    \"renewals\",\n    \"dispatch\",\n    \"homeowner\",\n    \"technician\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a full dispatch suite.\",\n    \"Do not target national franchise operators first.\"\n  ],\n  \"success_metric\": \"More renewal revenue captured per install cohort without adding office headcount.\",\n  \"prompt_rendered_brief\": \"The product is a service plan renewals and dispatch prep system for independent HVAC installers that already sell maintenance memberships but fail to renew them consistently. The buyer is usually the owner or office manager at a shop with a small technician team and a large seasonal backlog. They need a way to record every install, trigger the right reminder campaigns, and hand dispatch a clean list of homeowner conversations to make each morning. Revenue should come from recurring software subscriptions tied to the number of technicians and renewal volume, not from one-off setup work. The workflow must be light enough for phone-first teams that still run the business with shared inboxes, clipboards, and quick calls from the van. The ideal product increases renewal capture, smooths shoulder-season demand, and creates a repeatable service-plan process without replacing the company's existing dispatch software.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-a53f1e5a67274e7595be1da2828501dc",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "\n\n```json\n{\n  \"core_mechanic\": \"Automate HVAC service plan renewals and dispatch prep by capturing installs, scheduling renewals, and sending reminders.\",\n  \"keywords\": [\n    \"hvac\",\n    \"maintenance-plans\",\n    \"renewals\",\n    \"dispatch\",\n    \"technician\",\n    \"homeowner\",\n    \"recurring-revenue\",\n    \"per-technician\",\n    \"call-sheets\",\n    \"upsell\",\n    \"contact-history\",\n    \"due-date\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [],
+          "reasoning_content": "\nOkay, I have this product brief about a service plan renewals and dispatch prep system for independent HVAC installers. Let me break it down and figure out the core mechanic and keywords.\n\nFirst, the target customer is independent HVAC installation and maintenance companies with 3 to 25 technicians. So, they're small to medium-sized businesses in the HVAC space.\n\nThe problem is that these companies sell maintenance plans after every install, but renewals, seasonal reminders, and technician follow-up all live in spreadsheets that get ignored during busy periods. So, the main issue is the lack of a systematic way to manage service plan renewals and dispatch preparation.\n\nThe workflow involves capturing every install, scheduling renewal windows, queuing outbound reminders, and feeding daily prep lists to dispatch before technicians leave the warehouse. So, the system needs to handle the entire lifecycle from installation to renewal and dispatch.\n\nThe recurring revenue model is annual maintenance plans with optional monthly financing for larger equipment protection bundles. So, the main revenue comes from these plans, and the software should facilitate this.\n\nThe pricing shape is a base subscription plus per-technician seats once the team grows past five field staff. So, the pricing is based on the number of technicians, which makes sense for scaling.\n\nThe constraints are:\n1. Must work well for phone-first teams who barely use desktop software during the day.\n2. Needs simple seasonal campaigns that map to spring and fall tune-up demand.\n3. Cannot require deep integrations with enterprise field-service suites.\n\nThe must-have features are:\n1. Renewal pipeline with due-date visibility\n2. Technician-ready morning call sheets\n3. Plan upsell prompts after completed installs\n4. Contact history for homeowners and landlords\n\nThe seed keywords are:\n- hvac\n- maintenance-plans\n- renewals\n- dispatch\n- homeowner\n- technician\n\nThe anti-goals are:\n1. Do not become a full dispatch suite.\n2. Do not target national franchise operators first.\n\nThe success metric is more renewal revenue captured per install cohort without adding office headcount.\n\nNow, let's think about the core mechanic. The main problem is the lack of a systematic way to manage service plan renewals and dispatch preparation. The core mechanic should focus on automating and streamlining this process to increase renewal revenue and reduce manual work.\n\nFor the keywords, we need to focus on the true commercial mechanism, target customer, and recurring revenue path. The keywords should be alphanumeric or hyphenated and under 250 characters in total.\n\nFrom the brief, the key aspects are:\n- HVAC service plans\n- Renewals and dispatch\n- Technician and homeowner management\n- Seasonal campaigns\n- Pricing based on technician count\n\nLet's list potential keywords:\n1. hvac\n2. service-plans\n3. renewals\n4. dispatch\n5. technician\n6. homeowner\n7. seasonal\n8. maintenance\n9. recurring-revenue\n10. per-technician-pricing\n\nBut we need to keep it to 5-12 keywords. Let's refine:\n- hvac\n- service-plans\n- renewals\n- dispatch\n- technician\n- homeowner\n- seasonal\n- maintenance\n- recurring-revenue\n- per-technician\n\nBut we need to make sure they are discriminative and not filler terms. Let's see:\n- hvac: yes, specific to the industry\n- service-plans: yes, core offering\n- renewals: yes, key problem\n- dispatch: yes, part of the workflow\n- technician: yes, key user\n- homeowner: yes, customer segment\n- seasonal: yes, important for the workflow\n- maintenance: yes, part of the service plans\n- recurring-revenue: yes, business model\n- per-technician: yes, pricing model\n\nBut we need to keep it under 250 characters. Let's count:\n\"hvac service-plans renewals dispatch technician homeowner seasonal maintenance recurring-revenue per-technician\" is about 100 characters, so we can add more if needed.\n\nBut the brief says 5 to 12 keywords. Let's see if we can add more:\n- call-sheets: from must-have features\n- upsell: from must-have features\n- contact-history: from must-have features\n- due-date: from must-have features\n\nBut we might be overcomplicating it. Let's stick to the most essential ones:\n1. hvac\n2. service-plans\n3. renewals\n4. dispatch\n5. technician\n6. homeowner\n7. seasonal\n8. maintenance\n9. recurring-revenue\n10. per-technician\n\nBut we need to ensure they are all alphanumeric or hyphenated, which they are.\n\nNow, the core mechanic needs to be concise under 250 characters. The core mechanic is about automating the service plan renewals and dispatch preparation for HVAC companies. It's about capturing installs, scheduling renewals, sending reminders, and preparing daily dispatch lists.\n\nLet me try to summarize:\n\"Automate service plan renewals and dispatch prep for HVAC companies by capturing installs, scheduling renewals, sending reminders, and preparing daily dispatch lists.\"\n\nLet's count characters: 120 characters, which is under 250.\n\nNow, let's see if we can make it more concise:\n\"Automate HVAC service plan renewals and dispatch prep by capturing installs, scheduling renewals, and sending reminders.\"\n\nThis is 90 characters.\n\nBut does it capture the essence? Yes, it mentions the core functionality and the target customer.\n\nFor keywords, let's pick the most essential ones:\n1. hvac\n2. service-plans\n3. renewals\n4. dispatch\n5. technician\n6. homeowner\n7. seasonal\n8. maintenance\n9. recurring-revenue\n10. per-technician\n\nBut we need to keep it to 5-12. Let's see if we can reduce:\n- hvac\n- service-plans\n- renewals\n- dispatch\n- technician\n- homeowner\n- seasonal\n- maintenance\n- recurring-revenue\n- per-technician\n\nThat's 10 keywords, which is within the range.\n\nBut looking back at the brief, the must-have features include \"renewal pipeline with due-date visibility\", \"technician-ready morning call sheets\", \"plan upsell prompts after completed installs\", and \"contact history for homeowners and landlords\".\n\nSo, maybe we can add:\n- call-sheets\n- upsell\n- contact-history\n- due-date\n\nBut that would exceed 12 keywords. Let's see:\n\nOriginal 10:\n1. hvac\n2. service-plans\n3. renewals\n4. dispatch\n5. technician\n6. homeowner\n7. seasonal\n8. maintenance\n9. recurring-revenue\n10. per-technician\n\nAdditional from must-have features:\n- call-sheets\n- upsell\n- contact-history\n- due-date\n\nBut we can only have up to 12. So, let's see which ones are most important. The must-have features are critical, so maybe we should include them and remove some others.\n\nLet's try:\n1. hvac\n2. service-plans\n3. renewals\n4. dispatch\n5. technician\n6. homeowner\n7. call-sheets\n8. upsell\n9. contact-history\n10. due-date\n11. seasonal\n12. maintenance\n\nBut we might be missing recurring-revenue and per-technician, which are important for the business model.\n\nAlternatively, maybe we can combine some:\n- service-plans and maintenance could be combined as maintenance-plans (already in seed keywords)\n- recurring-revenue is important for the business model\n- per-technician is about pricing\n\nLet's try to keep the most essential:\n1. hvac\n2. maintenance-plans\n3. renewals\n4. dispatch\n5. technician\n6. homeowner\n7. seasonal\n8. recurring-revenue\n9. per-technician\n10. call-sheets\n11. upsell\n12. contact-history\n\nBut that's 12 keywords. Let's see if we can remove any. Maybe 'seasonal' is covered by 'maintenance-plans' and 'renewals'. But seasonal campaigns are a specific constraint, so maybe keep it.\n\nAlternatively, maybe 'due-date' is covered by 'renewals'. But 'renewal pipeline with due-date visibility' is a must-have feature, so maybe keep 'due-date'.\n\nBut we're at 12 keywords already. Maybe we can remove 'seasonal' since it's more of a constraint than a core feature.\n\nSo, revised list:\n1. hvac\n2. maintenance-plans\n3. renewals\n4. dispatch\n5. technician\n6. homeowner\n7. recurring-revenue\n8. per-technician\n9. call-sheets\n10. upsell\n11. contact-history\n12. due-date\n\nBut that's still 12. Maybe we can combine some or remove less critical ones.\n\nLooking back at the seed keywords:\n- hvac\n- maintenance-plans\n- renewals\n- dispatch\n- homeowner\n- technician\n\nThese are all in our list. The additional ones are:\n- seasonal\n- recurring-revenue\n- per-technician\n- call-sheets\n- upsell\n- contact-history\n- due-date\n\nBut the seed keywords are already given, and we can add up to 12. So, let's see:\n\nFrom seed keywords (6):\n1. hvac\n2. maintenance-plans\n3. renewals\n4. dispatch\n5. homeowner\n6. technician\n\nAdditional keywords (up to 6 more to make 12):\n7. seasonal\n8. recurring-revenue\n9. per-technician\n10. call-sheets\n11. upsell\n12. contact-history\n\nBut 'due-date' is also important. Maybe replace 'seasonal' with 'due-date' since due-date visibility is a must-have feature.\n\nSo, final list:\n1. hvac\n2. maintenance-plans\n3. renewals\n4. dispatch\n5. technician\n6. homeowner\n7. recurring-revenue\n8. per-technician\n9. call-sheets\n10. upsell\n11. contact-history\n12. due-date\n\nNow, let's check the length of the core mechanic:\n\"Automate HVAC service plan renewals and dispatch prep by capturing installs, scheduling renewals, and sending reminders.\"\n\nThis is 90 characters, which is under 250.\n\nBut does it capture the essence? It mentions automating renewals and dispatch prep, capturing installs, scheduling renewals, and sending reminders. That seems to cover the core functionality.\n\nFor keywords, we have 12, which is within the limit. They are all alphanumeric or hyphenated (maintenance-plans has a hyphen, but that's allowed).\n\nNow, let's format this into the required JSON structure.\n\n"
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772444034,
+    "model": "mistralai/magistral-small-2506",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2510,
+      "prompt_tokens": 939,
+      "total_tokens": 3449,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "\n\n```json\n{\n  \"core_mechanic\": \"Automate HVAC service plan renewals and dispatch prep by capturing installs, scheduling renewals, and sending reminders.\",\n  \"keywords\": [\n    \"hvac\",\n    \"maintenance-plans\",\n    \"renewals\",\n    \"dispatch\",\n    \"technician\",\n    \"homeowner\",\n    \"recurring-revenue\",\n    \"per-technician\",\n    \"call-sheets\",\n    \"upsell\",\n    \"contact-history\",\n    \"due-date\"\n  ]\n}\n```",
+  "llm_output": {
+    "core_mechanic": "Automate HVAC service plan renewals and dispatch prep by capturing installs, scheduling renewals, and sending reminders.",
+    "keywords": [
+      "hvac",
+      "maintenance-plans",
+      "renewals",
+      "dispatch",
+      "technician",
+      "homeowner",
+      "recurring-revenue",
+      "per-technician",
+      "call-sheets",
+      "upsell",
+      "contact-history",
+      "due-date"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "hvac",
+      "maintenance-plans",
+      "renewals",
+      "dispatch",
+      "technician",
+      "homeowner",
+      "recurring-revenue",
+      "per-technician",
+      "call-sheets",
+      "upsell",
+      "contact-history",
+      "due-date"
+    ],
+    "derived_keywords": [
+      "and",
+      "with",
+      "maintenance",
+      "install",
+      "renewal",
+      "for",
+      "reminders",
+      "technicians",
+      "the",
+      "plans",
+      "during",
+      "seasonal",
+      "that",
+      "outbound",
+      "all",
+      "busy",
+      "but",
+      "call",
+      "capture",
+      "completed",
+      "contact",
+      "due-date",
+      "feed",
+      "field-service",
+      "follow-up",
+      "get",
+      "history",
+      "homeowners",
+      "ignored",
+      "independent",
+      "installation",
+      "installs",
+      "landlords",
+      "leave",
+      "lists",
+      "live",
+      "morning",
+      "periods",
+      "pipeline",
+      "plan",
+      "prep",
+      "prompts",
+      "queue",
+      "schedule",
+      "sell",
+      "sheets",
+      "spreadsheets",
+      "technician-ready",
+      "three",
+      "twenty-five",
+      "upsell",
+      "visibility",
+      "warehouse",
+      "windows",
+      "bundles",
+      "equipment",
+      "financing",
+      "larger",
+      "optional",
+      "plus",
+      "protection",
+      "adding",
+      "barely",
+      "campaigns",
+      "captured",
+      "cohort",
+      "day",
+      "deep",
+      "demand",
+      "desktop",
+      "enterprise",
+      "fall",
+      "field",
+      "five",
+      "grows",
+      "headcount",
+      "integrations",
+      "map",
+      "more",
+      "must",
+      "needs",
+      "office",
+      "once",
+      "past",
+      "per-technician",
+      "phone-first",
+      "require",
+      "seats",
+      "simple",
+      "spring",
+      "staff",
+      "suites",
+      "team",
+      "tune-up",
+      "use",
+      "well",
+      "who",
+      "without",
+      "work",
+      "accountant",
+      "distributor",
+      "founder-led",
+      "referrals"
+    ],
+    "final_keywords": [
+      "hvac",
+      "maintenance-plans",
+      "renewals",
+      "dispatch",
+      "technician",
+      "homeowner",
+      "recurring-revenue",
+      "per-technician",
+      "call-sheets",
+      "upsell"
+    ],
+    "keyword_provenance": {
+      "hvac": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "maintenance-plans": [
+        "llm",
+        "seed_keywords"
+      ],
+      "renewals": [
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "dispatch": [
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "technician": [
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "homeowner": [
+        "llm",
+        "seed_keywords"
+      ],
+      "recurring-revenue": [
+        "llm"
+      ],
+      "per-technician": [
+        "field:pricing_shape",
+        "llm"
+      ],
+      "call-sheets": [
+        "llm"
+      ],
+      "upsell": [
+        "field:must_have_features",
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Automate HVAC service plan renewals and dispatch prep by capturing installs, scheduling renewals, and sending reminders.",
+    "keywords": [
+      "hvac",
+      "maintenance-plans",
+      "renewals",
+      "dispatch",
+      "technician",
+      "homeowner",
+      "recurring-revenue",
+      "per-technician",
+      "call-sheets",
+      "upsell"
+    ]
+  },
+  "planned_resolution": "claim"
+}

@@ -1,0 +1,249 @@
+{
+  "brief_id": "vet-clinic-reorder-expiry",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "deepseek-r1-distill-llama-8b",
+    "model_name": "deepseek-ai/deepseek-r1-distill-llama-8b",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "1caf99641dfdb5c5593c69281c40a69d89f031e82703a6a6096fff19a356cbf7",
+    "prompt_hash": "7b5b52a94b0145aacc35f4ed0d5f012b50d511ce6a7ffa34bd73be050d63e9c6",
+    "generated_at": "2026-03-02T08:49:27.938881Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"vet-clinic-reorder-expiry\",\n  \"title\": \"Reorder timing and expiry protection for independent veterinary clinics\",\n  \"category\": \"clinical-ops\",\n  \"target_customer\": \"Independent veterinary clinics managing vaccines, medications, and treatment supplies with lean inventory habits.\",\n  \"problem\": \"Clinics either run out of critical items or overbuy products that expire because forecasting is ad hoc and based on memory.\",\n  \"workflow\": \"Track critical stock, reorder timing, expiry windows, and demand signals tied to seasonal visits and common treatment bundles.\",\n  \"recurring_revenue_model\": \"Subscription per clinic location with optional multi-site inventory rollups.\",\n  \"pricing_shape\": \"Per-location recurring fee with higher tiers for item count and additional branches.\",\n  \"distribution_channel\": \"Veterinary communities, practice consultants, and referrals from clinic-focused accountants.\",\n  \"constraints\": [\n    \"Must prioritize practical reorder decisions over full procurement suites.\",\n    \"Needs expiry visibility for regulated medications and vaccines.\",\n    \"Cannot depend on hardware changes or barcode rollouts to be useful.\"\n  ],\n  \"must_have_features\": [\n    \"Critical stock watchlist\",\n    \"Reorder recommendation queue\",\n    \"Expiry window alerts\",\n    \"Seasonal demand overlays\"\n  ],\n  \"seed_keywords\": [\n    \"veterinary\",\n    \"inventory\",\n    \"reorders\",\n    \"expiry\",\n    \"vaccines\",\n    \"clinic\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a general procurement ERP.\",\n    \"Do not focus on hospital procurement departments.\"\n  ],\n  \"success_metric\": \"Fewer stockouts and fewer expired items in routine clinical inventory.\",\n  \"prompt_rendered_brief\": \"This product is a reorder timing and expiry protection tool for independent veterinary clinics that keep just enough inventory to stay lean. The clinic team struggles because vaccine and medication demand changes with seasons, common treatment bundles are not tracked cleanly, and overbuying creates expensive expiry waste. The software should highlight critical stock, recommend reorder timing, and make expiry risk obvious before the next ordering cycle. A recurring per-location subscription is appropriate because the value shows up every week in smoother operations and less wasted inventory. The workflow needs to be practical and lightweight, not a full procurement system with enterprise implementation requirements. Success means the clinic has the right items on hand more often while throwing away less regulated stock.\\n\"\n}",
+  "raw_response": {
+    "id": "chat-e2433f30922b4390ae1ab36f7d0779d4",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "<think>\nAlright, I need to create a DejaShip intent payload based on the provided brief. Let me start by understanding the requirements.\n\nFirst, the core_mechanic needs to be concise, under 250 characters. It should focus on the true commercial mechanism, targeting independent veterinary clinics and their recurring revenue model. The keywords should be 5-12, lowercase, alphanumeric or hyphenated, avoiding filler terms unless necessary.\n\nLooking at the brief, the target customer is independent veterinary clinics managing vaccines and medications. The problem is that they either run out of critical items or overbuy, causing expiry issues due to poor forecasting. The workflow involves tracking stock, reorder timing, expiry windows, and demand signals tied to seasonal visits.\n\nThe recurring revenue model is a subscription per clinic location with optional multi-site rollups. Pricing is per location with tiers for item count and branches. Distribution channels include veterinary communities, practice consultants, and accountants.\n\nConstraints mention no full procurement suites, need for expiry visibility, and no reliance on hardware changes. Must-have features include critical stock watchlist, reorder recommendations, expiry alerts, and seasonal overlays.\n\nSeed keywords are veterinary, inventory, reorders, expiry, vaccines, clinic. Anti-goals are not becoming a procurement ERP or focusing on hospital departments.\n\nSuccess metric is fewer stockouts and expired items. The prompt mentions a tool for lean inventory, practical and lightweight, not a full procurement system.\n\nNow, focusing on the core_mechanic, it should capture the essence: helping clinics manage inventory to reduce waste and improve efficiency. The keywords should reflect the main functions: inventory, reorders, expiry, veterinary, clinic.\n\nPutting it together, the core_mechanic is \"Inventory and reorder management for veterinary clinics to reduce waste and improve efficiency.\" The keywords are inventory, reorders, expiry, veterinary, clinic.\n\nI need to ensure the core_mechanic is under 250 characters and keywords are correct. Let me check: yes, it's concise and meets all criteria.\n</think>\n\n```json\n{\n  \"core_mechanic\": \"Independent veterinary clinics manage inventory with reorder and expiry tracking to reduce waste and improve efficiency.\",\n  \"keywords\": [\"inventory\", \"reorders\", \"expiry\", \"veterinary\", \"clinic\"]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772441360,
+    "model": "deepseek-ai/deepseek-r1-distill-llama-8b",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 460,
+      "prompt_tokens": 664,
+      "total_tokens": 1124,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null
+  },
+  "response_text": "<think>\nAlright, I need to create a DejaShip intent payload based on the provided brief. Let me start by understanding the requirements.\n\nFirst, the core_mechanic needs to be concise, under 250 characters. It should focus on the true commercial mechanism, targeting independent veterinary clinics and their recurring revenue model. The keywords should be 5-12, lowercase, alphanumeric or hyphenated, avoiding filler terms unless necessary.\n\nLooking at the brief, the target customer is independent veterinary clinics managing vaccines and medications. The problem is that they either run out of critical items or overbuy, causing expiry issues due to poor forecasting. The workflow involves tracking stock, reorder timing, expiry windows, and demand signals tied to seasonal visits.\n\nThe recurring revenue model is a subscription per clinic location with optional multi-site rollups. Pricing is per location with tiers for item count and branches. Distribution channels include veterinary communities, practice consultants, and accountants.\n\nConstraints mention no full procurement suites, need for expiry visibility, and no reliance on hardware changes. Must-have features include critical stock watchlist, reorder recommendations, expiry alerts, and seasonal overlays.\n\nSeed keywords are veterinary, inventory, reorders, expiry, vaccines, clinic. Anti-goals are not becoming a procurement ERP or focusing on hospital departments.\n\nSuccess metric is fewer stockouts and expired items. The prompt mentions a tool for lean inventory, practical and lightweight, not a full procurement system.\n\nNow, focusing on the core_mechanic, it should capture the essence: helping clinics manage inventory to reduce waste and improve efficiency. The keywords should reflect the main functions: inventory, reorders, expiry, veterinary, clinic.\n\nPutting it together, the core_mechanic is \"Inventory and reorder management for veterinary clinics to reduce waste and improve efficiency.\" The keywords are inventory, reorders, expiry, veterinary, clinic.\n\nI need to ensure the core_mechanic is under 250 characters and keywords are correct. Let me check: yes, it's concise and meets all criteria.\n</think>\n\n```json\n{\n  \"core_mechanic\": \"Independent veterinary clinics manage inventory with reorder and expiry tracking to reduce waste and improve efficiency.\",\n  \"keywords\": [\"inventory\", \"reorders\", \"expiry\", \"veterinary\", \"clinic\"]\n}\n```",
+  "llm_output": {
+    "core_mechanic": "Independent veterinary clinics manage inventory with reorder and expiry tracking to reduce waste and improve efficiency.",
+    "keywords": [
+      "inventory",
+      "reorders",
+      "expiry",
+      "veterinary",
+      "clinic"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "inventory",
+      "reorders",
+      "expiry",
+      "veterinary",
+      "clinic"
+    ],
+    "derived_keywords": [
+      "and",
+      "critical",
+      "reorder",
+      "with",
+      "clinics",
+      "demand",
+      "seasonal",
+      "stock",
+      "treatment",
+      "items",
+      "medications",
+      "alerts",
+      "based",
+      "because",
+      "bundles",
+      "common",
+      "either",
+      "expire",
+      "fewer",
+      "for",
+      "forecasting",
+      "habits",
+      "hoc",
+      "independent",
+      "lean",
+      "managing",
+      "memory",
+      "out",
+      "overbuy",
+      "overlays",
+      "products",
+      "queue",
+      "recommendation",
+      "run",
+      "signals",
+      "supplies",
+      "that",
+      "tied",
+      "timing",
+      "track",
+      "visits",
+      "watchlist",
+      "window",
+      "windows",
+      "location",
+      "multi-site",
+      "optional",
+      "rollups",
+      "additional",
+      "barcode",
+      "branches",
+      "changes",
+      "clinical",
+      "clinical-ops",
+      "count",
+      "decisions",
+      "depend",
+      "expired",
+      "fee",
+      "full",
+      "hardware",
+      "item",
+      "must",
+      "needs",
+      "over",
+      "per-location",
+      "practical",
+      "prioritize",
+      "procurement",
+      "regulated",
+      "rollouts",
+      "routine",
+      "stockouts",
+      "suites",
+      "tiers",
+      "useful",
+      "visibility",
+      "accountants",
+      "clinic-focused",
+      "communities",
+      "consultants",
+      "from",
+      "practice",
+      "referrals"
+    ],
+    "final_keywords": [
+      "inventory",
+      "reorders",
+      "expiry",
+      "veterinary",
+      "clinic",
+      "vaccines",
+      "and",
+      "critical",
+      "reorder",
+      "with"
+    ],
+    "keyword_provenance": {
+      "inventory": [
+        "field:recurring_revenue_model",
+        "field:success_metric",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "reorders": [
+        "llm",
+        "seed_keywords"
+      ],
+      "expiry": [
+        "field:constraints",
+        "field:must_have_features",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "veterinary": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "clinic": [
+        "field:recurring_revenue_model",
+        "llm",
+        "seed_keywords"
+      ],
+      "vaccines": [
+        "field:constraints",
+        "field:target_customer",
+        "seed_keywords"
+      ],
+      "and": [
+        "field:constraints",
+        "field:distribution_channel",
+        "field:pricing_shape",
+        "field:problem",
+        "field:success_metric",
+        "field:target_customer",
+        "field:workflow"
+      ],
+      "critical": [
+        "field:must_have_features",
+        "field:problem",
+        "field:workflow"
+      ],
+      "reorder": [
+        "field:constraints",
+        "field:must_have_features",
+        "field:workflow"
+      ],
+      "with": [
+        "field:pricing_shape",
+        "field:recurring_revenue_model",
+        "field:target_customer"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Independent veterinary clinics manage inventory with reorder and expiry tracking to reduce waste and improve efficiency.",
+    "keywords": [
+      "inventory",
+      "reorders",
+      "expiry",
+      "veterinary",
+      "clinic",
+      "vaccines",
+      "and",
+      "critical",
+      "reorder",
+      "with"
+    ]
+  },
+  "planned_resolution": "claim"
+}

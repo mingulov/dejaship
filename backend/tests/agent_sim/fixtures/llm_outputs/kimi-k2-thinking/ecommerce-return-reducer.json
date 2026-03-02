@@ -1,0 +1,235 @@
+{
+  "brief_id": "ecommerce-return-reducer",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "kimi-k2-thinking",
+    "model_name": "moonshotai/kimi-k2-thinking",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "189912381d05d39c75260f53d9e2c431ba9aa4d52de2c10c385ca97305515b4f",
+    "prompt_hash": "e325b25b0d9044a4b77ce16704b31116497f097f8be251357ba560cce29c5e82",
+    "generated_at": "2026-03-02T09:19:07.400797Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"ecommerce-return-reducer\",\n  \"title\": \"Return reason clustering and save-offer workflow for specialty ecommerce brands\",\n  \"category\": \"commerce-ops\",\n  \"target_customer\": \"Specialty ecommerce brands with premium products, rising return rates, and small post-purchase support teams.\",\n  \"problem\": \"Brands collect return reasons, but they do not convert that data into save offers, product fixes, or recurring retention actions fast enough.\",\n  \"workflow\": \"Cluster return reasons, propose recovery playbooks, and route the right save offer before a return becomes a lost customer.\",\n  \"recurring_revenue_model\": \"Monthly subscription priced by order volume and saved revenue.\",\n  \"pricing_shape\": \"Base subscription with usage tiers tied to monthly return cases.\",\n  \"distribution_channel\": \"Ecommerce operators, retention agencies, and post-purchase optimization communities.\",\n  \"constraints\": [\n    \"Must help support teams act before the refund is final.\",\n    \"Needs enough structure to compare product and offer patterns over time.\",\n    \"Cannot require replacing help desk or order systems.\"\n  ],\n  \"must_have_features\": [\n    \"Return reason clustering\",\n    \"Save-offer recommendation queue\",\n    \"Product issue pattern reporting\",\n    \"Refund prevention workflow\"\n  ],\n  \"seed_keywords\": [\n    \"ecommerce\",\n    \"returns\",\n    \"save-offers\",\n    \"retention\",\n    \"refunds\",\n    \"support\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a warehouse returns platform.\",\n    \"Do not focus on giant retail enterprises first.\"\n  ],\n  \"success_metric\": \"More orders saved before refund completion and clearer insight into recurring return causes.\",\n  \"prompt_rendered_brief\": \"This product is a return reason clustering and save-offer workflow for specialty ecommerce brands that care about margin and customer lifetime value. Teams usually collect return tickets, but they do not turn that signal into immediate save offers, product fixes, or recurring retention decisions while the customer is still reachable. The software should cluster reasons, suggest recovery playbooks, and tell support which offer to try before the refund becomes final. A recurring subscription works well because brands face this workflow every week and the value comes from both immediate saves and pattern learning over time. The brief intentionally sits near subscription recovery and retention concepts so it can create ambiguous neighborhoods in simulation. A win means fewer preventable refunds and better learning from post-purchase friction.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-a1d3f187916099c2",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": " {\"core_mechanic\":\"Subscription service clustering ecommerce return reasons into save-offer workflows for specialty brands before refunds finalize.\",\"keywords\":[\"specialty-ecommerce\",\"returns\",\"refund-prevention\",\"save-offers\",\"clustering\",\"retention\",\"post-purchase\",\"subscription\",\"usage-based\",\"support-teams\"]}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [],
+          "reasoning": " The user wants me to evaluate a product brief and produce a DejaShip intent payload. The payload must be strict JSON with two fields: `core_mechanic` and `keywords`.\n\nLet me analyze the brief carefully to extract the essential information:\n\n**Key elements from the brief:**\n- **Target customer**: Specialty ecommerce brands with premium products, rising return rates, small post-purchase support teams\n- **Problem**: Brands collect return reasons but don't convert that data into save offers, product fixes, or retention actions fast enough\n- **Workflow**: Cluster return reasons → propose recovery playbooks → route the right save offer before return becomes a lost customer\n- **Recurring revenue model**: Monthly subscription priced by order volume and saved revenue\n- **Pricing shape**: Base subscription with usage tiers tied to monthly return cases\n- **Must-have features**: Return reason clustering, Save-offer recommendation queue, Product issue pattern reporting, Refund prevention workflow\n- **Constraints**: Must act before refund is final, needs structure for pattern comparison, cannot replace help desk/order systems\n- **Success metric**: More orders saved before refund completion, clearer insight into recurring return causes\n- **Anti-goals**: Not a warehouse returns platform, not for giant retail enterprises\n\n**What I need to produce:**\n1. `core_mechanic`: Under 250 characters, concise description of the commercial mechanism\n2. `keywords`: 5-12 lowercase, alphanumeric/hyphenated terms focusing on true commercial mechanism, target customer, and recurring revenue path\n\n**Guidelines:**\n- Avoid filler terms like `app`, `ai`, `tool`, `platform` unless genuinely discriminative\n- Focus on: target customer, problem, workflow, recurring revenue model, pricing shape, must-have features, operational constraints\n\nLet me craft the `core_mechanic`:\nThe core mechanism is about clustering return reasons and triggering save-offer workflows for specialty ecommerce brands. It's a subscription-based service that helps small support teams prevent refunds by acting on return data quickly. The key is the \"before refund finalization\" timing and the clustering-to-offer workflow.\n\nSomething like: \"Subscription service that clusters ecommerce return reasons and triggers save-offer workflows for premium brands before refunds finalize.\"\n\nLet me count characters: \"Subscription service that clusters ecommerce return reasons and triggers save-offer workflows for premium brands before refunds finalize.\" = 130 characters. That's well under 250.\n\nNow for keywords:\nI need 5-12 lowercase keywords that are alphanumeric or hyphenated. They should capture:\n- Target customer: specialty-ecommerce, premium-brands\n- Problem: returns, refunds, return-rates\n- Mechanism: clustering, save-offers, retention, refund-prevention\n- Workflow: post-purchase, support-teams\n- Revenue: subscription, usage-based\n\nLet me list potential keywords:\n- specialty-ecommerce\n- returns\n- refund-prevention\n- save-offers\n- clustering\n- retention\n- post-purchase\n- support-teams\n- subscription\n- usage-based\n- premium-brands\n- return-rates\n\nI need to select the most discriminative ones and avoid filler. Let me filter:\n- \"ecommerce\" is in seed keywords but might be too generic? But \"specialty-ecommerce\" is more specific.\n- \"returns\" is core to the problem\n- \"refund-prevention\" captures the must-have workflow\n- \"save-offers\" is a key feature\n- \"clustering\" is a key feature\n- \"retention\" is part of the goal\n- \"post-purchase\" describes the timing/context\n- \"subscription\" is the revenue model\n- \"usage-based\" or \"volume-based\" relates to pricing\n- \"premium-brands\" targets the specific customer type\n- \"support-teams\" identifies the user\n\nLet me select the best 5-12:\n1. specialty-ecommerce (target customer)\n2. returns (core problem)\n3. refund-prevention (key outcome)\n4. save-offers (key mechanism)\n5. clustering (key mechanism)\n6. retention (goal)\n7. post-purchase (context)\n8. subscription (revenue model)\n9. usage-based (pricing shape)\n10. premium-brands (target customer qualifier)\n\nThat's 10 keywords. Let me check if any are redundant or could be combined. \"specialty-ecommerce\" and \"premium-brands\" both target customer - maybe keep both as they add specificity. \"returns\" and \"refund-prevention\" are related but distinct - returns is the problem, refund-prevention is the solution. Good.\n\nLet me verify they meet requirements:\n- All lowercase: yes\n- Alphanumeric or hyphenated: yes (all are hyphenated or single words)\n- 5-12 keywords: yes (10 keywords)\n- Focus on commercial mechanism, target customer, recurring revenue: yes\n- Avoid filler: yes, none are \"app\", \"ai\", \"tool\", \"platform\"\n\nFinal check on core_mechanic:\n\"Subscription service that clusters ecommerce return reasons and triggers save-offer workflows for premium brands before refunds finalize.\"\n\nThis captures:\n- Recurring revenue model: Subscription service\n- Mechanism: clusters return reasons and triggers save-offer workflows\n- Target customer: premium brands\n- Critical constraint: before refunds finalize\n- It's concise and under 250 characters\n\nActually, let me refine it slightly to be even more precise:\n\"Subscription service clustering ecommerce return reasons into save-offer workflows for premium brands before refunds finalize.\"\n\nEven shorter and more direct. Character count: 118. Good.\n\nOr maybe: \"Clusters ecommerce returns into save-offer workflows for premium brands via subscription, acting before refunds finalize.\"\n\nLet me think about the most important aspects:\n1. It's a subscription (recurring revenue)\n2. It clusters return reasons\n3. It triggers save-offer workflows\n4. For specialty/premium ecommerce brands\n5. Before refunds finalize (critical timing)\n\nThe best version might be: \"Subscription service clustering ecommerce return reasons into save-offer workflows for premium brands before refunds finalize.\"\n\nLet me double-check the brief for any other crucial elements I might have missed:\n- \"small post-purchase support teams\" - maybe include \"support-teams\" in keywords\n- \"product issue pattern reporting\" - maybe \"pattern-reporting\"\n- \"cannot require replacing help desk or order systems\" - integration-light?\n\nBut the keywords should be the most discriminative. I think my list is good. Let me finalize:\n\nKeywords:\n1. specialty-ecommerce\n2. premium-brands\n3. returns\n4. refund-prevention\n5. save-offers\n6. clustering\n7. retention\n8. post-purchase\n9. subscription\n10. usage-based\n\nThat's 10 keywords. All are lowercase, hyphenated where needed, and focus on the core elements.\n\nWait, let me reconsider \"premium-brands\" vs \"specialty-ecommerce\". The target is \"Specialty ecommerce brands with premium products\". So maybe:\n- specialty-ecommerce (captures the type)\n- premium-products (captures the product type)\n\nBut \"premium-brands\" is more concise. Let me check the exact wording: \"Specialty ecommerce brands with premium products\". So the customer is \"specialty ecommerce brands\", and they have \"premium products\". \n\nMaybe:\n1. specialty-ecommerce\n2. returns\n3. refund-prevention\n4. save-offers\n5. clustering\n6. retention\n7. post-purchase\n8. subscription\n9. usage-based\n10. support-teams (since they have small teams)\n\nThat's also good. Let me think about which is more discriminative. \"support-teams\" is important because the workflow is designed for them. But \"premium-brands\" or \"premium-products\" also adds specificity.\n\nLooking at the anti-goals: \"Do not focus on giant retail enterprises first\" - so emphasizing \"specialty\" or \"premium\" is important to show it's for smaller, specialized brands.\n\nI'll go with:\n1. specialty-ecommerce\n2. returns\n3. refund-prevention\n4. save-offers\n5. clustering\n6. retention\n7. post-purchase\n8. subscription\n9. usage-based\n10. support-teams\n\nThis captures target customer (specialty-ecommerce, support-teams), problem (returns), mechanism (clustering, save-offers, refund-prevention, post-purchase), goal (retention), and revenue model (subscription, usage-based).\n\nActually, let me reconsider the core_mechanic one more time. The brief says \"recurring revenue model: Monthly subscription priced by order volume and saved revenue.\" So \"usage-based\" is accurate but maybe \"volume-based\" is more precise? But \"usage-based\" is more general and fits the pricing shape description.\n\nLet me finalize the JSON structure. It must be strict JSON, no markdown fences.\n\n```json\n{\n  \"core_mechanic\": \"Subscription service clustering ecommerce return reasons into save-offer workflows for premium brands before refunds finalize.\",\n  \"keywords\": [\"specialty-ecommerce\", \"returns\", \"refund-prevention\", \"save-offers\", \"clustering\", \"retention\", \"post-purchase\", \"subscription\", \"usage-based\", \"support-teams\"]\n}\n```\n\nWait, I need to recount the keywords. I have 10, which is within 5-12. Good.\n\nLet me verify each keyword:\n- specialty-ecommerce: alphanumeric + hyphen, lowercase ✓\n- returns: alphanumeric, lowercase ✓\n- refund-prevention: alphanumeric + hyphen, lowercase ✓\n- save-offers: alphanumeric + hyphen, lowercase ✓\n- clustering: alphanumeric, lowercase ✓\n- retention: alphanumeric, lowercase ✓\n- post-purchase: alphanumeric + hyphen, lowercase ✓\n- subscription: alphanumeric, lowercase ✓\n- usage-based: alphanumeric + hyphen, lowercase ✓\n- support-teams: alphanumeric + hyphen, lowercase ✓\n\nAll good.\n\nCore mechanic length: \"Subscription service clustering ecommerce return reasons into save-offer workflows for premium brands before refunds finalize.\" = 118 characters. Under 250. ✓\n\nDoes it capture the true commercial mechanism? Yes - it's a subscription service that does clustering and triggers workflows. Does it mention target customer? Yes - premium brands. Does it mention the recurring revenue path? Yes - subscription service. Does it capture the timing constraint? Yes - before refunds finalize.\n\nI think this is good. But wait, the brief says \"specialty ecommerce brands with premium products\" not necessarily \"premium brands\". Let me adjust slightly:\n\n\"Subscription service clustering ecommerce return reasons into save-offer workflows for specialty brands before refunds finalize.\"\n\nThat's 115 characters. It uses \"specialty brands\" which is more direct from the brief. But \"specialty ecommerce brands\" is the full term. Let me try:\n\n\"Subscription service clustering ecommerce return reasons into save-offer workflows for specialty ecommerce brands before refunds finalize.\"\n\nThat's 125 characters. Better and more accurate.\n\nActually, let me think about the most critical elements again:\n- The clustering of return reasons\n- The save-offer workflow\n- The timing (before refund finalization)\n- The subscription model\n- The target customer\n\nThe current version covers all these. I think it's good.\n\nOne final check on keywords. Should I include \"premium\"? The brief mentions \"premium products\" but the target is \"specialty ecommerce brands\". I think \"specialty-ecommerce\" is sufficient and more accurate. The \"premium\" aspect is more about product quality, not the core mechanism.\n\nLet me finalize my answer. ",
+          "reasoning_content": " The user wants me to evaluate a product brief and produce a DejaShip intent payload. The payload must be strict JSON with two fields: `core_mechanic` and `keywords`.\n\nLet me analyze the brief carefully to extract the essential information:\n\n**Key elements from the brief:**\n- **Target customer**: Specialty ecommerce brands with premium products, rising return rates, small post-purchase support teams\n- **Problem**: Brands collect return reasons but don't convert that data into save offers, product fixes, or retention actions fast enough\n- **Workflow**: Cluster return reasons → propose recovery playbooks → route the right save offer before return becomes a lost customer\n- **Recurring revenue model**: Monthly subscription priced by order volume and saved revenue\n- **Pricing shape**: Base subscription with usage tiers tied to monthly return cases\n- **Must-have features**: Return reason clustering, Save-offer recommendation queue, Product issue pattern reporting, Refund prevention workflow\n- **Constraints**: Must act before refund is final, needs structure for pattern comparison, cannot replace help desk/order systems\n- **Success metric**: More orders saved before refund completion, clearer insight into recurring return causes\n- **Anti-goals**: Not a warehouse returns platform, not for giant retail enterprises\n\n**What I need to produce:**\n1. `core_mechanic`: Under 250 characters, concise description of the commercial mechanism\n2. `keywords`: 5-12 lowercase, alphanumeric/hyphenated terms focusing on true commercial mechanism, target customer, and recurring revenue path\n\n**Guidelines:**\n- Avoid filler terms like `app`, `ai`, `tool`, `platform` unless genuinely discriminative\n- Focus on: target customer, problem, workflow, recurring revenue model, pricing shape, must-have features, operational constraints\n\nLet me craft the `core_mechanic`:\nThe core mechanism is about clustering return reasons and triggering save-offer workflows for specialty ecommerce brands. It's a subscription-based service that helps small support teams prevent refunds by acting on return data quickly. The key is the \"before refund finalization\" timing and the clustering-to-offer workflow.\n\nSomething like: \"Subscription service that clusters ecommerce return reasons and triggers save-offer workflows for premium brands before refunds finalize.\"\n\nLet me count characters: \"Subscription service that clusters ecommerce return reasons and triggers save-offer workflows for premium brands before refunds finalize.\" = 130 characters. That's well under 250.\n\nNow for keywords:\nI need 5-12 lowercase keywords that are alphanumeric or hyphenated. They should capture:\n- Target customer: specialty-ecommerce, premium-brands\n- Problem: returns, refunds, return-rates\n- Mechanism: clustering, save-offers, retention, refund-prevention\n- Workflow: post-purchase, support-teams\n- Revenue: subscription, usage-based\n\nLet me list potential keywords:\n- specialty-ecommerce\n- returns\n- refund-prevention\n- save-offers\n- clustering\n- retention\n- post-purchase\n- support-teams\n- subscription\n- usage-based\n- premium-brands\n- return-rates\n\nI need to select the most discriminative ones and avoid filler. Let me filter:\n- \"ecommerce\" is in seed keywords but might be too generic? But \"specialty-ecommerce\" is more specific.\n- \"returns\" is core to the problem\n- \"refund-prevention\" captures the must-have workflow\n- \"save-offers\" is a key feature\n- \"clustering\" is a key feature\n- \"retention\" is part of the goal\n- \"post-purchase\" describes the timing/context\n- \"subscription\" is the revenue model\n- \"usage-based\" or \"volume-based\" relates to pricing\n- \"premium-brands\" targets the specific customer type\n- \"support-teams\" identifies the user\n\nLet me select the best 5-12:\n1. specialty-ecommerce (target customer)\n2. returns (core problem)\n3. refund-prevention (key outcome)\n4. save-offers (key mechanism)\n5. clustering (key mechanism)\n6. retention (goal)\n7. post-purchase (context)\n8. subscription (revenue model)\n9. usage-based (pricing shape)\n10. premium-brands (target customer qualifier)\n\nThat's 10 keywords. Let me check if any are redundant or could be combined. \"specialty-ecommerce\" and \"premium-brands\" both target customer - maybe keep both as they add specificity. \"returns\" and \"refund-prevention\" are related but distinct - returns is the problem, refund-prevention is the solution. Good.\n\nLet me verify they meet requirements:\n- All lowercase: yes\n- Alphanumeric or hyphenated: yes (all are hyphenated or single words)\n- 5-12 keywords: yes (10 keywords)\n- Focus on commercial mechanism, target customer, recurring revenue: yes\n- Avoid filler: yes, none are \"app\", \"ai\", \"tool\", \"platform\"\n\nFinal check on core_mechanic:\n\"Subscription service that clusters ecommerce return reasons and triggers save-offer workflows for premium brands before refunds finalize.\"\n\nThis captures:\n- Recurring revenue model: Subscription service\n- Mechanism: clusters return reasons and triggers save-offer workflows\n- Target customer: premium brands\n- Critical constraint: before refunds finalize\n- It's concise and under 250 characters\n\nActually, let me refine it slightly to be even more precise:\n\"Subscription service clustering ecommerce return reasons into save-offer workflows for premium brands before refunds finalize.\"\n\nEven shorter and more direct. Character count: 118. Good.\n\nOr maybe: \"Clusters ecommerce returns into save-offer workflows for premium brands via subscription, acting before refunds finalize.\"\n\nLet me think about the most important aspects:\n1. It's a subscription (recurring revenue)\n2. It clusters return reasons\n3. It triggers save-offer workflows\n4. For specialty/premium ecommerce brands\n5. Before refunds finalize (critical timing)\n\nThe best version might be: \"Subscription service clustering ecommerce return reasons into save-offer workflows for premium brands before refunds finalize.\"\n\nLet me double-check the brief for any other crucial elements I might have missed:\n- \"small post-purchase support teams\" - maybe include \"support-teams\" in keywords\n- \"product issue pattern reporting\" - maybe \"pattern-reporting\"\n- \"cannot require replacing help desk or order systems\" - integration-light?\n\nBut the keywords should be the most discriminative. I think my list is good. Let me finalize:\n\nKeywords:\n1. specialty-ecommerce\n2. premium-brands\n3. returns\n4. refund-prevention\n5. save-offers\n6. clustering\n7. retention\n8. post-purchase\n9. subscription\n10. usage-based\n\nThat's 10 keywords. All are lowercase, hyphenated where needed, and focus on the core elements.\n\nWait, let me reconsider \"premium-brands\" vs \"specialty-ecommerce\". The target is \"Specialty ecommerce brands with premium products\". So maybe:\n- specialty-ecommerce (captures the type)\n- premium-products (captures the product type)\n\nBut \"premium-brands\" is more concise. Let me check the exact wording: \"Specialty ecommerce brands with premium products\". So the customer is \"specialty ecommerce brands\", and they have \"premium products\". \n\nMaybe:\n1. specialty-ecommerce\n2. returns\n3. refund-prevention\n4. save-offers\n5. clustering\n6. retention\n7. post-purchase\n8. subscription\n9. usage-based\n10. support-teams (since they have small teams)\n\nThat's also good. Let me think about which is more discriminative. \"support-teams\" is important because the workflow is designed for them. But \"premium-brands\" or \"premium-products\" also adds specificity.\n\nLooking at the anti-goals: \"Do not focus on giant retail enterprises first\" - so emphasizing \"specialty\" or \"premium\" is important to show it's for smaller, specialized brands.\n\nI'll go with:\n1. specialty-ecommerce\n2. returns\n3. refund-prevention\n4. save-offers\n5. clustering\n6. retention\n7. post-purchase\n8. subscription\n9. usage-based\n10. support-teams\n\nThis captures target customer (specialty-ecommerce, support-teams), problem (returns), mechanism (clustering, save-offers, refund-prevention, post-purchase), goal (retention), and revenue model (subscription, usage-based).\n\nActually, let me reconsider the core_mechanic one more time. The brief says \"recurring revenue model: Monthly subscription priced by order volume and saved revenue.\" So \"usage-based\" is accurate but maybe \"volume-based\" is more precise? But \"usage-based\" is more general and fits the pricing shape description.\n\nLet me finalize the JSON structure. It must be strict JSON, no markdown fences.\n\n```json\n{\n  \"core_mechanic\": \"Subscription service clustering ecommerce return reasons into save-offer workflows for premium brands before refunds finalize.\",\n  \"keywords\": [\"specialty-ecommerce\", \"returns\", \"refund-prevention\", \"save-offers\", \"clustering\", \"retention\", \"post-purchase\", \"subscription\", \"usage-based\", \"support-teams\"]\n}\n```\n\nWait, I need to recount the keywords. I have 10, which is within 5-12. Good.\n\nLet me verify each keyword:\n- specialty-ecommerce: alphanumeric + hyphen, lowercase ✓\n- returns: alphanumeric, lowercase ✓\n- refund-prevention: alphanumeric + hyphen, lowercase ✓\n- save-offers: alphanumeric + hyphen, lowercase ✓\n- clustering: alphanumeric, lowercase ✓\n- retention: alphanumeric, lowercase ✓\n- post-purchase: alphanumeric + hyphen, lowercase ✓\n- subscription: alphanumeric, lowercase ✓\n- usage-based: alphanumeric + hyphen, lowercase ✓\n- support-teams: alphanumeric + hyphen, lowercase ✓\n\nAll good.\n\nCore mechanic length: \"Subscription service clustering ecommerce return reasons into save-offer workflows for premium brands before refunds finalize.\" = 118 characters. Under 250. ✓\n\nDoes it capture the true commercial mechanism? Yes - it's a subscription service that does clustering and triggers workflows. Does it mention target customer? Yes - premium brands. Does it mention the recurring revenue path? Yes - subscription service. Does it capture the timing constraint? Yes - before refunds finalize.\n\nI think this is good. But wait, the brief says \"specialty ecommerce brands with premium products\" not necessarily \"premium brands\". Let me adjust slightly:\n\n\"Subscription service clustering ecommerce return reasons into save-offer workflows for specialty brands before refunds finalize.\"\n\nThat's 115 characters. It uses \"specialty brands\" which is more direct from the brief. But \"specialty ecommerce brands\" is the full term. Let me try:\n\n\"Subscription service clustering ecommerce return reasons into save-offer workflows for specialty ecommerce brands before refunds finalize.\"\n\nThat's 125 characters. Better and more accurate.\n\nActually, let me think about the most critical elements again:\n- The clustering of return reasons\n- The save-offer workflow\n- The timing (before refund finalization)\n- The subscription model\n- The target customer\n\nThe current version covers all these. I think it's good.\n\nOne final check on keywords. Should I include \"premium\"? The brief mentions \"premium products\" but the target is \"specialty ecommerce brands\". I think \"specialty-ecommerce\" is sufficient and more accurate. The \"premium\" aspect is more about product quality, not the core mechanism.\n\nLet me finalize my answer. "
+        },
+        "stop_reason": 163586,
+        "token_ids": null
+      }
+    ],
+    "created": 1772443124,
+    "model": "moonshotai/kimi-k2-thinking",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2453,
+      "prompt_tokens": 680,
+      "total_tokens": 3133,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": " {\"core_mechanic\":\"Subscription service clustering ecommerce return reasons into save-offer workflows for specialty brands before refunds finalize.\",\"keywords\":[\"specialty-ecommerce\",\"returns\",\"refund-prevention\",\"save-offers\",\"clustering\",\"retention\",\"post-purchase\",\"subscription\",\"usage-based\",\"support-teams\"]}",
+  "llm_output": {
+    "core_mechanic": "Subscription service clustering ecommerce return reasons into save-offer workflows for specialty brands before refunds finalize.",
+    "keywords": [
+      "specialty-ecommerce",
+      "returns",
+      "refund-prevention",
+      "save-offers",
+      "clustering",
+      "retention",
+      "post-purchase",
+      "subscription",
+      "usage-based",
+      "support-teams"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "specialty-ecommerce",
+      "returns",
+      "refund-prevention",
+      "save-offers",
+      "clustering",
+      "retention",
+      "post-purchase",
+      "subscription",
+      "usage-based",
+      "support-teams"
+    ],
+    "derived_keywords": [
+      "return",
+      "and",
+      "brands",
+      "reasons",
+      "refund",
+      "save",
+      "enough",
+      "into",
+      "offer",
+      "the",
+      "with",
+      "order",
+      "post-purchase",
+      "saved",
+      "actions",
+      "becomes",
+      "but",
+      "cluster",
+      "clustering",
+      "collect",
+      "convert",
+      "data",
+      "fast",
+      "fixes",
+      "help",
+      "issue",
+      "lost",
+      "not",
+      "offers",
+      "pattern",
+      "playbooks",
+      "premium",
+      "prevention",
+      "products",
+      "propose",
+      "queue",
+      "rates",
+      "reason",
+      "recommendation",
+      "recovery",
+      "right",
+      "rising",
+      "route",
+      "save-offer",
+      "specialty",
+      "that",
+      "priced",
+      "volume",
+      "act",
+      "cases",
+      "causes",
+      "clearer",
+      "commerce-ops",
+      "compare",
+      "completion",
+      "desk",
+      "final",
+      "insight",
+      "more",
+      "must",
+      "needs",
+      "orders",
+      "over",
+      "patterns",
+      "replacing",
+      "require",
+      "structure",
+      "systems",
+      "tied",
+      "tiers",
+      "time",
+      "usage",
+      "agencies",
+      "communities",
+      "optimization"
+    ],
+    "final_keywords": [
+      "specialty-ecommerce",
+      "returns",
+      "refund-prevention",
+      "save-offers",
+      "clustering",
+      "retention",
+      "post-purchase",
+      "subscription",
+      "usage-based",
+      "support-teams"
+    ],
+    "keyword_provenance": {
+      "specialty-ecommerce": [
+        "llm"
+      ],
+      "returns": [
+        "llm",
+        "seed_keywords"
+      ],
+      "refund-prevention": [
+        "llm"
+      ],
+      "save-offers": [
+        "llm",
+        "seed_keywords"
+      ],
+      "clustering": [
+        "field:must_have_features",
+        "llm"
+      ],
+      "retention": [
+        "field:distribution_channel",
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "post-purchase": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "llm"
+      ],
+      "subscription": [
+        "llm"
+      ],
+      "usage-based": [
+        "llm"
+      ],
+      "support-teams": [
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Subscription service clustering ecommerce return reasons into save-offer workflows for specialty brands before refunds finalize.",
+    "keywords": [
+      "specialty-ecommerce",
+      "returns",
+      "refund-prevention",
+      "save-offers",
+      "clustering",
+      "retention",
+      "post-purchase",
+      "subscription",
+      "usage-based",
+      "support-teams"
+    ]
+  },
+  "planned_resolution": "claim"
+}

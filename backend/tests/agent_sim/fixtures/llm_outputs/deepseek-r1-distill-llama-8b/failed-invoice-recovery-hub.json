@@ -1,0 +1,236 @@
+{
+  "brief_id": "failed-invoice-recovery-hub",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "deepseek-r1-distill-llama-8b",
+    "model_name": "deepseek-ai/deepseek-r1-distill-llama-8b",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "3f6f588fd00a078a7e619ccf9967465a40c0ae231446b4887dceef0ada76238f",
+    "prompt_hash": "b8685527f4d0e44dc7a0a20fb3b4ca162c6c5796bf2ae627855ee1ba0a269207",
+    "generated_at": "2026-03-02T08:48:48.318797Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"failed-invoice-recovery-hub\",\n  \"title\": \"Failed invoice recovery and dunning orchestration for micro SaaS teams\",\n  \"category\": \"subscription-finance\",\n  \"target_customer\": \"Bootstrapped B2B SaaS teams with self-serve subscriptions and no dedicated finance operations staff.\",\n  \"problem\": \"Failed invoices pile up because no one owns dunning logic, payment retries, or manual outreach once a customer looks risky.\",\n  \"workflow\": \"Group failed payments by account health, trigger recovery sequences, and route the highest-value cases to a founder or account owner.\",\n  \"recurring_revenue_model\": \"Recurring SaaS priced by invoice volume and recovered revenue bands.\",\n  \"pricing_shape\": \"Base monthly fee plus success-based tiering tied to recovered subscription revenue.\",\n  \"distribution_channel\": \"Founder communities, SaaS finance operators, and accountant referrals.\",\n  \"constraints\": [\n    \"Must work with small customer-success teams or no team at all.\",\n    \"Needs simple prioritization instead of enterprise billing abstractions.\",\n    \"Cannot require replacing the billing system.\"\n  ],\n  \"must_have_features\": [\n    \"Failed-invoice queue\",\n    \"Recovery sequence builder\",\n    \"Account risk scoring\",\n    \"Founder follow-up routing\"\n  ],\n  \"seed_keywords\": [\n    \"failed-invoices\",\n    \"dunning\",\n    \"subscriptions\",\n    \"recovery\",\n    \"billing\",\n    \"churn\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a payments processor.\",\n    \"Do not focus on enterprise revops teams first.\"\n  ],\n  \"success_metric\": \"More recurring revenue recovered per failed billing event.\",\n  \"prompt_rendered_brief\": \"The product is a failed invoice recovery and dunning orchestration hub for micro SaaS teams that cannot afford full-time finance operations. Founders know failed payments matter, but they usually discover the problem too late because billing retries, manual outreach, and account risk are scattered across Stripe dashboards and ad hoc reminders. The software should rank the recovery queue, automate practical dunning steps, and tell the founder which accounts deserve direct human follow-up. Revenue fits a recurring subscription model with success-weighted tiering because the value scales with recovered revenue and retained subscribers. The workflow must stay simple enough for teams that do not think of themselves as finance specialists. If it succeeds, the business loses less recurring revenue to payment friction and preventable churn.\\n\"\n}",
+  "raw_response": {
+    "id": "chat-174e6e6b62f14ee082b309e37d5420c9",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "<think>\nAlright, I need to create a DejaShip intent payload based on the provided brief. Let me start by understanding the requirements.\n\nFirst, the core_mechanic needs to be concise and under 250 characters. It should focus on the true commercial mechanism, targeting the customer and outlining the recurring revenue path. I should avoid filler terms unless they're necessary.\n\nLooking at the brief, the target customer is bootstrapped B2B SaaS teams with self-serve subscriptions and no dedicated finance ops. The problem is failed invoices piling up because of lack of ownership over dunning logic. The workflow involves grouping failed payments, triggering recovery sequences, and routing high-value cases to founders.\n\nThe recurring revenue model is based on invoice volume and recovered revenue bands, with a pricing shape that includes a base fee plus tiered pricing tied to recovered revenue. Distribution channels are founder communities, SaaS finance operators, and accountant referrals.\n\nMust-have features include a failed-invoice queue, recovery sequence builder, account risk scoring, and founder follow-up routing. Constraints mention working with small teams, simple prioritization, and no system replacement.\n\nSeed keywords are failed-invoices, dunning, subscriptions, recovery, billing, churn. Anti-goals are not becoming a payments processor and not focusing on enterprise revops teams first.\n\nSuccess metric is recovering more recurring revenue per failed billing event.\n\nNow, to form the core_mechanic: It should be a platform that automates dunning and recovery for micro SaaS teams, focusing on failed invoices. It groups payments, triggers sequences, and routes high cases to founders. Pricing is based on recovered revenue, with a subscription model. The value is in reducing lost revenue and churn.\n\nFor keywords, extract the main elements: failed-invoices, dunning, recovery, subscription, billing, automation, orchestration, micro SaaS, recurring revenue, payment recovery, founder routing, account risk, subscription finance, tiered pricing, revenue retention.\n\nI need to ensure all keywords are lowercase, alphanumeric, or hyphenated, and between 5 to 12. Let me list them:\n\nfailed-invoices, dunning, recovery, subscription, billing, automation, orchestration, micro-saaS, recurring-revenue, payment-recovery, founder-routing, account-risk, subscription-finance, tiered-pricing, revenue-retention.\n\nThat's 15 keywords, which is within the limit. Now, the core_mechanic should be concise, so I'll phrase it as an automation platform for dunning and recovery in micro SaaS, focusing on failed invoices, grouped and prioritized, with tiered pricing based on recovered revenue, and value in reducing lost revenue and churn.\n\nPutting it all together, the JSON should have core_mechanic and keywords as specified.\n</think>\n\n```json\n{\n  \"core_mechanic\": \"An automation platform for dunning and payment recovery orchestration in micro SaaS, focusing on failed invoices, grouped by account health, with tiered pricing based on recovered revenue and value in reducing lost revenue and churn.\",\n  \"keywords\": [\n    \"failed-invoices\",\n    \"dunning\",\n    \"recovery\",\n    \"subscription\",\n    \"billing\",\n    \"automation\",\n    \"orchestration\",\n    \"micro-saaS\",\n    \"recurring-revenue\",\n    \"payment-recovery\",\n    \"founder-routing\",\n    \"account-risk\",\n    \"subscription-finance\",\n    \"tiered-pricing\",\n    \"revenue-retention\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772441317,
+    "model": "deepseek-ai/deepseek-r1-distill-llama-8b",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 713,
+      "prompt_tokens": 679,
+      "total_tokens": 1392,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null
+  },
+  "response_text": "<think>\nAlright, I need to create a DejaShip intent payload based on the provided brief. Let me start by understanding the requirements.\n\nFirst, the core_mechanic needs to be concise and under 250 characters. It should focus on the true commercial mechanism, targeting the customer and outlining the recurring revenue path. I should avoid filler terms unless they're necessary.\n\nLooking at the brief, the target customer is bootstrapped B2B SaaS teams with self-serve subscriptions and no dedicated finance ops. The problem is failed invoices piling up because of lack of ownership over dunning logic. The workflow involves grouping failed payments, triggering recovery sequences, and routing high-value cases to founders.\n\nThe recurring revenue model is based on invoice volume and recovered revenue bands, with a pricing shape that includes a base fee plus tiered pricing tied to recovered revenue. Distribution channels are founder communities, SaaS finance operators, and accountant referrals.\n\nMust-have features include a failed-invoice queue, recovery sequence builder, account risk scoring, and founder follow-up routing. Constraints mention working with small teams, simple prioritization, and no system replacement.\n\nSeed keywords are failed-invoices, dunning, subscriptions, recovery, billing, churn. Anti-goals are not becoming a payments processor and not focusing on enterprise revops teams first.\n\nSuccess metric is recovering more recurring revenue per failed billing event.\n\nNow, to form the core_mechanic: It should be a platform that automates dunning and recovery for micro SaaS teams, focusing on failed invoices. It groups payments, triggers sequences, and routes high cases to founders. Pricing is based on recovered revenue, with a subscription model. The value is in reducing lost revenue and churn.\n\nFor keywords, extract the main elements: failed-invoices, dunning, recovery, subscription, billing, automation, orchestration, micro SaaS, recurring revenue, payment recovery, founder routing, account risk, subscription finance, tiered pricing, revenue retention.\n\nI need to ensure all keywords are lowercase, alphanumeric, or hyphenated, and between 5 to 12. Let me list them:\n\nfailed-invoices, dunning, recovery, subscription, billing, automation, orchestration, micro-saaS, recurring-revenue, payment-recovery, founder-routing, account-risk, subscription-finance, tiered-pricing, revenue-retention.\n\nThat's 15 keywords, which is within the limit. Now, the core_mechanic should be concise, so I'll phrase it as an automation platform for dunning and recovery in micro SaaS, focusing on failed invoices, grouped and prioritized, with tiered pricing based on recovered revenue, and value in reducing lost revenue and churn.\n\nPutting it all together, the JSON should have core_mechanic and keywords as specified.\n</think>\n\n```json\n{\n  \"core_mechanic\": \"An automation platform for dunning and payment recovery orchestration in micro SaaS, focusing on failed invoices, grouped by account health, with tiered pricing based on recovered revenue and value in reducing lost revenue and churn.\",\n  \"keywords\": [\n    \"failed-invoices\",\n    \"dunning\",\n    \"recovery\",\n    \"subscription\",\n    \"billing\",\n    \"automation\",\n    \"orchestration\",\n    \"micro-saaS\",\n    \"recurring-revenue\",\n    \"payment-recovery\",\n    \"founder-routing\",\n    \"account-risk\",\n    \"subscription-finance\",\n    \"tiered-pricing\",\n    \"revenue-retention\"\n  ]\n}\n```",
+  "llm_output": {
+    "core_mechanic": "An automation platform for dunning and payment recovery orchestration in micro SaaS, focusing on failed invoices, grouped by account health, with tiered pricing based on recovered revenue and value in reducing lost revenue and churn.",
+    "keywords": [
+      "failed-invoices",
+      "dunning",
+      "recovery",
+      "subscription",
+      "billing",
+      "automation",
+      "orchestration",
+      "micro-saaS",
+      "recurring-revenue",
+      "payment-recovery",
+      "founder-routing",
+      "account-risk",
+      "subscription-finance",
+      "tiered-pricing",
+      "revenue-retention"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "failed-invoices",
+      "dunning",
+      "recovery",
+      "subscription",
+      "billing",
+      "automation",
+      "orchestration",
+      "micro-saas",
+      "recurring-revenue",
+      "payment-recovery",
+      "founder-routing",
+      "account-risk",
+      "subscription-finance",
+      "tiered-pricing",
+      "revenue-retention"
+    ],
+    "derived_keywords": [
+      "account",
+      "and",
+      "failed",
+      "saas",
+      "recovered",
+      "the",
+      "with",
+      "finance",
+      "b2b",
+      "because",
+      "bootstrapped",
+      "builder",
+      "cases",
+      "dedicated",
+      "failed-invoice",
+      "follow-up",
+      "group",
+      "health",
+      "highest-value",
+      "invoices",
+      "logic",
+      "looks",
+      "manual",
+      "once",
+      "one",
+      "operations",
+      "outreach",
+      "owns",
+      "payment",
+      "payments",
+      "pile",
+      "queue",
+      "retries",
+      "risk",
+      "risky",
+      "route",
+      "routing",
+      "scoring",
+      "self-serve",
+      "sequences",
+      "staff",
+      "trigger",
+      "bands",
+      "invoice",
+      "priced",
+      "volume",
+      "abstractions",
+      "all",
+      "customer-success",
+      "enterprise",
+      "event",
+      "fee",
+      "instead",
+      "more",
+      "must",
+      "needs",
+      "plus",
+      "prioritization",
+      "replacing",
+      "require",
+      "simple",
+      "subscription-finance",
+      "success-based",
+      "team",
+      "tied",
+      "tiering",
+      "work",
+      "accountant",
+      "communities",
+      "referrals"
+    ],
+    "final_keywords": [
+      "failed-invoices",
+      "dunning",
+      "recovery",
+      "subscription",
+      "billing",
+      "automation",
+      "orchestration",
+      "micro-saas",
+      "recurring-revenue",
+      "payment-recovery"
+    ],
+    "keyword_provenance": {
+      "failed-invoices": [
+        "llm",
+        "seed_keywords"
+      ],
+      "dunning": [
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "recovery": [
+        "field:must_have_features",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "subscription": [
+        "llm"
+      ],
+      "billing": [
+        "field:constraints",
+        "field:success_metric",
+        "llm",
+        "seed_keywords"
+      ],
+      "automation": [
+        "llm"
+      ],
+      "orchestration": [
+        "llm"
+      ],
+      "micro-saas": [
+        "llm"
+      ],
+      "recurring-revenue": [
+        "llm"
+      ],
+      "payment-recovery": [
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "An automation platform for dunning and payment recovery orchestration in micro SaaS, focusing on failed invoices, grouped by account health, with tiered pricing based on recovered revenue and value in reducing lost revenue and churn.",
+    "keywords": [
+      "failed-invoices",
+      "dunning",
+      "recovery",
+      "subscription",
+      "billing",
+      "automation",
+      "orchestration",
+      "micro-saas",
+      "recurring-revenue",
+      "payment-recovery"
+    ]
+  },
+  "planned_resolution": "claim"
+}

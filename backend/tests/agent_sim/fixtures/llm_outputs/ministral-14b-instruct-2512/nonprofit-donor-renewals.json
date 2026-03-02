@@ -1,0 +1,221 @@
+{
+  "brief_id": "nonprofit-donor-renewals",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "ministral-14b-instruct-2512",
+    "model_name": "mistralai/ministral-14b-instruct-2512",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "d0c54a39d9e039b13036fe9e81c9a0ca05d3469c8097ff6274c89b5edaaa64ae",
+    "prompt_hash": "eaa0e39c62b6b5058d63e67353e2a090477b17f865fa3e66f745a4343616bc1e",
+    "generated_at": "2026-03-02T08:58:08.008794Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"nonprofit-donor-renewals\",\n  \"title\": \"Donor renewal calendar and board-ready reporting for small nonprofits\",\n  \"category\": \"nonprofit-ops\",\n  \"target_customer\": \"Small nonprofits with recurring donors, grant cycles, and a lean fundraising team that reports regularly to the board.\",\n  \"problem\": \"Donor lapses, campaign follow-up, and board reporting all compete for attention, so renewals are missed and fundraising narratives stay reactive.\",\n  \"workflow\": \"Track recurring donors, renewal outreach, grant follow-up, and the metrics needed for monthly board updates in one place.\",\n  \"recurring_revenue_model\": \"Annual or monthly subscription for small nonprofit fundraising operations.\",\n  \"pricing_shape\": \"Flat recurring fee sized for small teams with a premium board-reporting tier.\",\n  \"distribution_channel\": \"Nonprofit operations communities, fundraising consultants, and board member referrals.\",\n  \"constraints\": [\n    \"Must serve very small teams with limited software budgets.\",\n    \"Needs clear donor renewal and grant follow-up views.\",\n    \"Cannot require enterprise nonprofit CRM implementation.\"\n  ],\n  \"must_have_features\": [\n    \"Donor renewal calendar\",\n    \"Grant follow-up queue\",\n    \"Board KPI snapshots\",\n    \"Campaign cadence planner\"\n  ],\n  \"seed_keywords\": [\n    \"nonprofit\",\n    \"donor-renewals\",\n    \"fundraising\",\n    \"board-reporting\",\n    \"grants\",\n    \"campaigns\"\n  ],\n  \"anti_goals\": [\n    \"Do not replace the nonprofit CRM.\",\n    \"Do not target universities first.\"\n  ],\n  \"success_metric\": \"Higher donor renewal rates and faster board reporting with less manual prep.\",\n  \"prompt_rendered_brief\": \"This product is a donor renewal calendar and board-ready reporting tool for small nonprofits that do not have a large development operations team. The challenge is not sending one more newsletter; it is keeping recurring donors warm, following up on grant obligations, and walking into every board meeting with trustworthy metrics. The software should put donor renewals, grant follow-up, and campaign pacing into a single operating view that a tiny team can actually use. The business model should be affordable recurring SaaS because nonprofits need predictable pricing more than custom implementation projects. It must avoid becoming a full donor CRM and instead focus on the renewal and reporting layer that most small teams lack. The outcome is steadier recurring giving and far less scramble before board meetings.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-960a8a07d49b546e",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"core_mechanic\": \"Automated donor renewal tracking + board-ready KPI dashboards for lean nonprofits, priced as affordable SaaS to reduce lapses and manual reporting burden\",\n\n  \"keywords\": [\n    \"nonprofit-donor-renewals\",\n    \"board-kpi-automation\",\n    \"grant-followup-tracking\",\n    \"lean-fundraising-ops\",\n    \"subscription-saas\",\n    \"campaign-cadence\",\n    \"small-team-ops\",\n    \"recurring-giving\",\n    \"non-crm-solution\",\n    \"predictable-pricing\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [],
+          "reasoning": null,
+          "reasoning_content": null
+        },
+        "stop_reason": null,
+        "token_ids": null
+      }
+    ],
+    "created": 1772441884,
+    "model": "stg/mistralai/ministral-14b-instruct-2512",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 135,
+      "prompt_tokens": 719,
+      "total_tokens": 854,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "```json\n{\n  \"core_mechanic\": \"Automated donor renewal tracking + board-ready KPI dashboards for lean nonprofits, priced as affordable SaaS to reduce lapses and manual reporting burden\",\n\n  \"keywords\": [\n    \"nonprofit-donor-renewals\",\n    \"board-kpi-automation\",\n    \"grant-followup-tracking\",\n    \"lean-fundraising-ops\",\n    \"subscription-saas\",\n    \"campaign-cadence\",\n    \"small-team-ops\",\n    \"recurring-giving\",\n    \"non-crm-solution\",\n    \"predictable-pricing\"\n  ]\n}\n```",
+  "llm_output": {
+    "core_mechanic": "Automated donor renewal tracking + board-ready KPI dashboards for lean nonprofits, priced as affordable SaaS to reduce lapses and manual reporting burden",
+    "keywords": [
+      "nonprofit-donor-renewals",
+      "board-kpi-automation",
+      "grant-followup-tracking",
+      "lean-fundraising-ops",
+      "subscription-saas",
+      "campaign-cadence",
+      "small-team-ops",
+      "recurring-giving",
+      "non-crm-solution",
+      "predictable-pricing"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "nonprofit-donor-renewals",
+      "board-kpi-automation",
+      "grant-followup-tracking",
+      "lean-fundraising-ops",
+      "subscription-saas",
+      "campaign-cadence",
+      "small-team-ops",
+      "recurring-giving",
+      "non-crm-solution",
+      "predictable-pricing"
+    ],
+    "derived_keywords": [
+      "and",
+      "board",
+      "follow-up",
+      "grant",
+      "for",
+      "donor",
+      "renewal",
+      "with",
+      "campaign",
+      "donors",
+      "the",
+      "all",
+      "are",
+      "attention",
+      "cadence",
+      "calendar",
+      "compete",
+      "cycles",
+      "kpi",
+      "lapses",
+      "lean",
+      "metrics",
+      "missed",
+      "narratives",
+      "needed",
+      "nonprofits",
+      "one",
+      "operations",
+      "outreach",
+      "place",
+      "planner",
+      "queue",
+      "reactive",
+      "regularly",
+      "renewals",
+      "reports",
+      "snapshots",
+      "stay",
+      "team",
+      "that",
+      "track",
+      "updates",
+      "budgets",
+      "clear",
+      "crm",
+      "enterprise",
+      "faster",
+      "fee",
+      "flat",
+      "implementation",
+      "less",
+      "limited",
+      "manual",
+      "must",
+      "needs",
+      "nonprofit-ops",
+      "premium",
+      "prep",
+      "rates",
+      "require",
+      "serve",
+      "sized",
+      "tier",
+      "very",
+      "views",
+      "communities",
+      "consultants",
+      "member",
+      "referrals"
+    ],
+    "final_keywords": [
+      "nonprofit-donor-renewals",
+      "board-kpi-automation",
+      "grant-followup-tracking",
+      "lean-fundraising-ops",
+      "subscription-saas",
+      "campaign-cadence",
+      "small-team-ops",
+      "recurring-giving",
+      "non-crm-solution",
+      "predictable-pricing"
+    ],
+    "keyword_provenance": {
+      "nonprofit-donor-renewals": [
+        "llm"
+      ],
+      "board-kpi-automation": [
+        "llm"
+      ],
+      "grant-followup-tracking": [
+        "llm"
+      ],
+      "lean-fundraising-ops": [
+        "llm"
+      ],
+      "subscription-saas": [
+        "llm"
+      ],
+      "campaign-cadence": [
+        "llm"
+      ],
+      "small-team-ops": [
+        "llm"
+      ],
+      "recurring-giving": [
+        "llm"
+      ],
+      "non-crm-solution": [
+        "llm"
+      ],
+      "predictable-pricing": [
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Automated donor renewal tracking + board-ready KPI dashboards for lean nonprofits, priced as affordable SaaS to reduce lapses and manual reporting burden",
+    "keywords": [
+      "nonprofit-donor-renewals",
+      "board-kpi-automation",
+      "grant-followup-tracking",
+      "lean-fundraising-ops",
+      "subscription-saas",
+      "campaign-cadence",
+      "small-team-ops",
+      "recurring-giving",
+      "non-crm-solution",
+      "predictable-pricing"
+    ]
+  },
+  "planned_resolution": "claim"
+}

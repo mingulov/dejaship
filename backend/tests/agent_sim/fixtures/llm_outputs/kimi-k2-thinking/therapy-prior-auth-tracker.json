@@ -1,0 +1,246 @@
+{
+  "brief_id": "therapy-prior-auth-tracker",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "kimi-k2-thinking",
+    "model_name": "moonshotai/kimi-k2-thinking",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "53604a54b0348ae6f7f3f1810f9c7ab58f6bcaf3a46005749f14ded30e9cd784",
+    "prompt_hash": "986ba02fb1f88c9cf6fd5051bf610ebd0be42b67778d0960387055013b005921",
+    "generated_at": "2026-03-02T09:01:15.896444Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"therapy-prior-auth-tracker\",\n  \"title\": \"Prior authorization queue and renewal tracker for outpatient therapy clinics\",\n  \"category\": \"healthcare-ops\",\n  \"target_customer\": \"Physical, occupational, and speech therapy clinics managing insurance-heavy visit plans across small teams.\",\n  \"problem\": \"Prior authorizations and visit approvals expire mid-plan, causing avoidable claim denials and front-desk chaos.\",\n  \"workflow\": \"Track every patient plan, renewal date, missing insurer document, and therapist follow-up needed to keep care authorized.\",\n  \"recurring_revenue_model\": \"Monthly subscription per clinic location with volume tiers based on active care plans.\",\n  \"pricing_shape\": \"Per-location fee with add-on for multi-provider clinic groups.\",\n  \"distribution_channel\": \"Therapy billing consultants, regional clinic owners, and healthcare operations communities.\",\n  \"constraints\": [\n    \"Must respect healthcare admin workflows without pretending to be an EHR.\",\n    \"Needs highly visible due dates and missing-document status.\",\n    \"Cannot depend on custom payer integrations to be valuable.\"\n  ],\n  \"must_have_features\": [\n    \"Authorization renewal board\",\n    \"Missing-document checklist\",\n    \"Visit-cap alerts\",\n    \"Therapist and front-desk handoff notes\"\n  ],\n  \"seed_keywords\": [\n    \"therapy\",\n    \"prior-auth\",\n    \"renewals\",\n    \"insurance\",\n    \"visit-caps\",\n    \"clinics\"\n  ],\n  \"anti_goals\": [\n    \"Do not build an EHR.\",\n    \"Do not start with hospital systems.\"\n  ],\n  \"success_metric\": \"Fewer denials caused by expired authorizations and smoother patient scheduling continuity.\",\n  \"prompt_rendered_brief\": \"The product is a prior authorization queue and renewal tracker for outpatient therapy clinics that live under insurance visit caps and expiring approvals. Clinic owners and front-desk coordinators lose revenue when the next renewal date is hidden or supporting documents never get chased in time, leading to preventable denials and rescheduled care. The software should show every patient plan, upcoming authorization deadline, and missing document in a way that supports both therapists and admin staff. A recurring per-location subscription makes sense because the workflow repeats constantly across active care plans. The tool must stop short of being an EHR and instead become the operational layer that keeps reimbursement moving. The result should be fewer care interruptions and fewer claims denied for administrative reasons.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-ae2960a49c581f5c",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": " {\"core_mechanic\":\"Monthly per-location subscription for outpatient therapy clinics to track prior authorization renewals, missing insurer documents, and visit caps, preventing claim denials and front-desk chaos.\",\"keywords\":[\"therapy\",\"prior-auth\",\"renewals\",\"insurance\",\"visit-caps\",\"outpatient\",\"claim-denials\",\"front-desk\",\"missing-documents\",\"per-location\"]}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [],
+          "reasoning": " The user wants me to evaluate a product brief and produce a DejaShip intent payload. The payload should be strict JSON with two fields: `core_mechanic` and `keywords`.\n\nLet me break down the requirements:\n\n1. `core_mechanic`: concise, under 250 characters\n2. `keywords`: 5 to 12 lowercase keywords, alphanumeric or hyphenated\n3. Focus on: true commercial mechanism, target customer, recurring revenue path\n4. Avoid filler terms: `app`, `ai`, `tool`, `platform` unless genuinely discriminative\n5. Prioritize signal from: target customer, problem, workflow, recurring revenue model, pricing shape, must-have features, operational constraints\n\nNow let me analyze the brief:\n\n**Target customer**: \"Physical, occupational, and speech therapy clinics managing insurance-heavy visit plans across small teams.\"\n- Key aspects: therapy clinics, insurance-heavy, small teams, outpatient\n\n**Problem**: \"Prior authorizations and visit approvals expire mid-plan, causing avoidable claim denials and front-desk chaos.\"\n- Key aspects: prior auth expiration, claim denials, front-desk chaos\n\n**Workflow**: \"Track every patient plan, renewal date, missing insurer document, and therapist follow-up needed to keep care authorized.\"\n- Key aspects: track patient plans, renewal dates, missing documents, therapist follow-up\n\n**Recurring revenue model**: \"Monthly subscription per clinic location with volume tiers based on active care plans.\"\n- Key aspects: monthly subscription, per-location, volume tiers, active care plans\n\n**Pricing shape**: \"Per-location fee with add-on for multi-provider clinic groups.\"\n- Key aspects: per-location, multi-provider add-on\n\n**Must-have features**:\n- \"Authorization renewal board\"\n- \"Missing-document checklist\"\n- \"Visit-cap alerts\"\n- \"Therapist and front-desk handoff notes\"\n\n**Constraints**:\n- \"Must respect healthcare admin workflows without pretending to be an EHR.\"\n- \"Needs highly visible due dates and missing-document status.\"\n- \"Cannot depend on custom payer integrations to be valuable.\"\n\n**Seed keywords**: [\"therapy\", \"prior-auth\", \"renewals\", \"insurance\", \"visit-caps\", \"clinics\"]\n\n**Anti-goals**: \"Do not build an EHR.\", \"Do not start with hospital systems.\"\n\n**Success metric**: \"Fewer denials caused by expired authorizations and smoother patient scheduling continuity.\"\n\nNow I need to craft the `core_mechanic` and `keywords`.\n\n**Core_mechanic**: Should capture the essence of the business model and value proposition. It needs to be under 250 characters.\n\nLet me think about what this product really is:\n- It's a tracking system for prior authorizations in therapy clinics\n- It prevents revenue loss from expired authorizations\n- It's a subscription per clinic location\n- It focuses on operational workflow, not clinical records\n\nA good core_mechanic might be something like:\n\"Per-location subscription for therapy clinics to track authorization renewals, missing documents, and visit caps, preventing claim denials and front-desk chaos without being an EHR.\"\n\nLet me count characters: 159 characters. That's under 250. Good.\n\nLet me refine it to be more concise and focused on the commercial mechanism:\n\"Monthly per-location subscription for therapy clinics to track authorization renewals and missing documents, preventing claim denials.\"\n\nThat's 108 characters. But maybe I can make it more descriptive while staying under 250.\n\n\"Per-location monthly subscription for outpatient therapy clinics to track prior authorization renewals, missing insurer documents, and visit caps, preventing claim denials and scheduling chaos.\"\n\nLet me count: 149 characters. Still good.\n\nLet me try another version focusing on the mechanism:\n\"Subscription-based authorization tracker for therapy clinics that prevents revenue loss from expired prior auths and missing documents.\"\n\nThat's 97 characters. A bit too vague maybe.\n\nLet me try to capture the essence more precisely:\n\"Per-location monthly subscription for therapy clinics to track authorization renewals, missing documents, and visit caps, preventing claim denials.\"\n\nThat's 118 characters. Good.\n\nBut I should include more of the unique value proposition. Let me try:\n\"Monthly per-location subscription for outpatient therapy clinics to track prior authorization renewals, missing insurer documents, and visit caps, preventing claim denials and front-desk chaos.\"\n\nCount: 149 characters. This seems good. It mentions:\n- Recurring revenue model (monthly per-location subscription)\n- Target customer (outpatient therapy clinics)\n- Core value (track prior auth renewals, missing docs, visit caps)\n- Outcome (prevent claim denials and front-desk chaos)\n\nNow for **keywords**: I need 5-12 lowercase, alphanumeric or hyphenated keywords.\n\nFrom the seed keywords: therapy, prior-auth, renewals, insurance, visit-caps, clinics\n\nI should add more based on the brief:\n- authorization (or auth-tracking)\n- claim-denials\n- outpatient\n- front-desk\n- workflow\n- subscription\n- per-location\n- missing-documents\n\nLet me compile a list:\n1. therapy\n2. prior-auth\n3. renewals\n4. insurance\n5. visit-caps\n6. clinics\n7. outpatient\n8. claim-denials\n9. front-desk\n10. workflow\n11. subscription\n12. per-location\n\nThat's 12 keywords. Let me check if they meet the criteria:\n- All lowercase: yes\n- Alphanumeric or hyphenated: yes (prior-auth, visit-caps, claim-denials, front-desk, per-location are hyphenated)\n- 5-12 keywords: exactly 12\n\nBut I should be more selective and focus on the most discriminative ones. Let me remove some that might be filler:\n\n- \"workflow\" is a bit generic\n- \"subscription\" is important for revenue model but maybe not as discriminative for the product itself\n- \"per-location\" is important for pricing shape\n\nLet me refine:\n1. therapy\n2. prior-auth\n3. renewals\n4. insurance\n5. visit-caps\n6. outpatient\n7. claim-denials\n8. front-desk\n9. missing-documents\n10. per-location\n\nThat's 10 keywords. Good.\n\nWait, I should also consider \"authorization-board\" or \"handoff-notes\" from must-have features. But those might be too specific.\n\nLet me think about what truly distinguishes this product:\n- It's for therapy clinics (therapy, outpatient, clinics)\n- It's about prior authorizations (prior-auth, renewals)\n- It's about insurance limits (insurance, visit-caps)\n- It prevents specific problems (claim-denials)\n- It supports specific staff (front-desk)\n- It tracks specific items (missing-documents)\n- It has a specific pricing model (per-location)\n\nSo my final keyword list:\n1. therapy\n2. prior-auth\n3. renewals\n4. insurance\n5. visit-caps\n6. outpatient\n7. claim-denials\n8. front-desk\n9. missing-documents\n10. per-location\n\nThat's 10 keywords. All are lowercase, alphanumeric/hyphenated, and discriminative.\n\nLet me double-check the core_mechanic again. The requirement says \"focus on the true commercial mechanism, target customer, and recurring revenue path\".\n\nMy proposed core_mechanic: \"Monthly per-location subscription for outpatient therapy clinics to track prior authorization renewals, missing insurer documents, and visit caps, preventing claim denials and front-desk chaos.\"\n\nThis captures:\n- Commercial mechanism: monthly per-location subscription\n- Target customer: outpatient therapy clinics\n- Recurring revenue path: monthly per-location subscription (explicit)\n- Value proposition: track prior auth renewals, missing docs, visit caps, preventing claim denials and chaos\n\nIt's 149 characters, well under 250.\n\nI think this is good. Let me format it as strict JSON.\n\n```json\n{\n  \"core_mechanic\": \"Monthly per-location subscription for outpatient therapy clinics to track prior authorization renewals, missing insurer documents, and visit caps, preventing claim denials and front-desk chaos.\",\n  \"keywords\": [\"therapy\",\"prior-auth\",\"renewals\",\"insurance\",\"visit-caps\",\"outpatient\",\"claim-denials\",\"front-desk\",\"missing-documents\",\"per-location\"]\n}\n```\n\nWait, I should check if any of these keywords are too generic. \"therapy\" is necessary. \"prior-auth\" is specific. \"renewals\" is specific. \"insurance\" is broad but necessary context. \"visit-caps\" is specific. \"outpatient\" is important to distinguish from hospital systems (anti-goal). \"claim-denials\" is specific outcome. \"front-desk\" is specific user role. \"missing-documents\" is specific feature. \"per-location\" is specific pricing model.\n\nAll seem discriminative and not filler. Good.\n\nThe JSON looks correct. Let me make sure it's strict JSON - no extra whitespace, no comments, no markdown fences. ",
+          "reasoning_content": " The user wants me to evaluate a product brief and produce a DejaShip intent payload. The payload should be strict JSON with two fields: `core_mechanic` and `keywords`.\n\nLet me break down the requirements:\n\n1. `core_mechanic`: concise, under 250 characters\n2. `keywords`: 5 to 12 lowercase keywords, alphanumeric or hyphenated\n3. Focus on: true commercial mechanism, target customer, recurring revenue path\n4. Avoid filler terms: `app`, `ai`, `tool`, `platform` unless genuinely discriminative\n5. Prioritize signal from: target customer, problem, workflow, recurring revenue model, pricing shape, must-have features, operational constraints\n\nNow let me analyze the brief:\n\n**Target customer**: \"Physical, occupational, and speech therapy clinics managing insurance-heavy visit plans across small teams.\"\n- Key aspects: therapy clinics, insurance-heavy, small teams, outpatient\n\n**Problem**: \"Prior authorizations and visit approvals expire mid-plan, causing avoidable claim denials and front-desk chaos.\"\n- Key aspects: prior auth expiration, claim denials, front-desk chaos\n\n**Workflow**: \"Track every patient plan, renewal date, missing insurer document, and therapist follow-up needed to keep care authorized.\"\n- Key aspects: track patient plans, renewal dates, missing documents, therapist follow-up\n\n**Recurring revenue model**: \"Monthly subscription per clinic location with volume tiers based on active care plans.\"\n- Key aspects: monthly subscription, per-location, volume tiers, active care plans\n\n**Pricing shape**: \"Per-location fee with add-on for multi-provider clinic groups.\"\n- Key aspects: per-location, multi-provider add-on\n\n**Must-have features**:\n- \"Authorization renewal board\"\n- \"Missing-document checklist\"\n- \"Visit-cap alerts\"\n- \"Therapist and front-desk handoff notes\"\n\n**Constraints**:\n- \"Must respect healthcare admin workflows without pretending to be an EHR.\"\n- \"Needs highly visible due dates and missing-document status.\"\n- \"Cannot depend on custom payer integrations to be valuable.\"\n\n**Seed keywords**: [\"therapy\", \"prior-auth\", \"renewals\", \"insurance\", \"visit-caps\", \"clinics\"]\n\n**Anti-goals**: \"Do not build an EHR.\", \"Do not start with hospital systems.\"\n\n**Success metric**: \"Fewer denials caused by expired authorizations and smoother patient scheduling continuity.\"\n\nNow I need to craft the `core_mechanic` and `keywords`.\n\n**Core_mechanic**: Should capture the essence of the business model and value proposition. It needs to be under 250 characters.\n\nLet me think about what this product really is:\n- It's a tracking system for prior authorizations in therapy clinics\n- It prevents revenue loss from expired authorizations\n- It's a subscription per clinic location\n- It focuses on operational workflow, not clinical records\n\nA good core_mechanic might be something like:\n\"Per-location subscription for therapy clinics to track authorization renewals, missing documents, and visit caps, preventing claim denials and front-desk chaos without being an EHR.\"\n\nLet me count characters: 159 characters. That's under 250. Good.\n\nLet me refine it to be more concise and focused on the commercial mechanism:\n\"Monthly per-location subscription for therapy clinics to track authorization renewals and missing documents, preventing claim denials.\"\n\nThat's 108 characters. But maybe I can make it more descriptive while staying under 250.\n\n\"Per-location monthly subscription for outpatient therapy clinics to track prior authorization renewals, missing insurer documents, and visit caps, preventing claim denials and scheduling chaos.\"\n\nLet me count: 149 characters. Still good.\n\nLet me try another version focusing on the mechanism:\n\"Subscription-based authorization tracker for therapy clinics that prevents revenue loss from expired prior auths and missing documents.\"\n\nThat's 97 characters. A bit too vague maybe.\n\nLet me try to capture the essence more precisely:\n\"Per-location monthly subscription for therapy clinics to track authorization renewals, missing documents, and visit caps, preventing claim denials.\"\n\nThat's 118 characters. Good.\n\nBut I should include more of the unique value proposition. Let me try:\n\"Monthly per-location subscription for outpatient therapy clinics to track prior authorization renewals, missing insurer documents, and visit caps, preventing claim denials and front-desk chaos.\"\n\nCount: 149 characters. This seems good. It mentions:\n- Recurring revenue model (monthly per-location subscription)\n- Target customer (outpatient therapy clinics)\n- Core value (track prior auth renewals, missing docs, visit caps)\n- Outcome (prevent claim denials and front-desk chaos)\n\nNow for **keywords**: I need 5-12 lowercase, alphanumeric or hyphenated keywords.\n\nFrom the seed keywords: therapy, prior-auth, renewals, insurance, visit-caps, clinics\n\nI should add more based on the brief:\n- authorization (or auth-tracking)\n- claim-denials\n- outpatient\n- front-desk\n- workflow\n- subscription\n- per-location\n- missing-documents\n\nLet me compile a list:\n1. therapy\n2. prior-auth\n3. renewals\n4. insurance\n5. visit-caps\n6. clinics\n7. outpatient\n8. claim-denials\n9. front-desk\n10. workflow\n11. subscription\n12. per-location\n\nThat's 12 keywords. Let me check if they meet the criteria:\n- All lowercase: yes\n- Alphanumeric or hyphenated: yes (prior-auth, visit-caps, claim-denials, front-desk, per-location are hyphenated)\n- 5-12 keywords: exactly 12\n\nBut I should be more selective and focus on the most discriminative ones. Let me remove some that might be filler:\n\n- \"workflow\" is a bit generic\n- \"subscription\" is important for revenue model but maybe not as discriminative for the product itself\n- \"per-location\" is important for pricing shape\n\nLet me refine:\n1. therapy\n2. prior-auth\n3. renewals\n4. insurance\n5. visit-caps\n6. outpatient\n7. claim-denials\n8. front-desk\n9. missing-documents\n10. per-location\n\nThat's 10 keywords. Good.\n\nWait, I should also consider \"authorization-board\" or \"handoff-notes\" from must-have features. But those might be too specific.\n\nLet me think about what truly distinguishes this product:\n- It's for therapy clinics (therapy, outpatient, clinics)\n- It's about prior authorizations (prior-auth, renewals)\n- It's about insurance limits (insurance, visit-caps)\n- It prevents specific problems (claim-denials)\n- It supports specific staff (front-desk)\n- It tracks specific items (missing-documents)\n- It has a specific pricing model (per-location)\n\nSo my final keyword list:\n1. therapy\n2. prior-auth\n3. renewals\n4. insurance\n5. visit-caps\n6. outpatient\n7. claim-denials\n8. front-desk\n9. missing-documents\n10. per-location\n\nThat's 10 keywords. All are lowercase, alphanumeric/hyphenated, and discriminative.\n\nLet me double-check the core_mechanic again. The requirement says \"focus on the true commercial mechanism, target customer, and recurring revenue path\".\n\nMy proposed core_mechanic: \"Monthly per-location subscription for outpatient therapy clinics to track prior authorization renewals, missing insurer documents, and visit caps, preventing claim denials and front-desk chaos.\"\n\nThis captures:\n- Commercial mechanism: monthly per-location subscription\n- Target customer: outpatient therapy clinics\n- Recurring revenue path: monthly per-location subscription (explicit)\n- Value proposition: track prior auth renewals, missing docs, visit caps, preventing claim denials and chaos\n\nIt's 149 characters, well under 250.\n\nI think this is good. Let me format it as strict JSON.\n\n```json\n{\n  \"core_mechanic\": \"Monthly per-location subscription for outpatient therapy clinics to track prior authorization renewals, missing insurer documents, and visit caps, preventing claim denials and front-desk chaos.\",\n  \"keywords\": [\"therapy\",\"prior-auth\",\"renewals\",\"insurance\",\"visit-caps\",\"outpatient\",\"claim-denials\",\"front-desk\",\"missing-documents\",\"per-location\"]\n}\n```\n\nWait, I should check if any of these keywords are too generic. \"therapy\" is necessary. \"prior-auth\" is specific. \"renewals\" is specific. \"insurance\" is broad but necessary context. \"visit-caps\" is specific. \"outpatient\" is important to distinguish from hospital systems (anti-goal). \"claim-denials\" is specific outcome. \"front-desk\" is specific user role. \"missing-documents\" is specific feature. \"per-location\" is specific pricing model.\n\nAll seem discriminative and not filler. Good.\n\nThe JSON looks correct. Let me make sure it's strict JSON - no extra whitespace, no comments, no markdown fences. "
+        },
+        "stop_reason": 163586,
+        "token_ids": null
+      }
+    ],
+    "created": 1772442052,
+    "model": "moonshotai/kimi-k2-thinking",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1937,
+      "prompt_tokens": 678,
+      "total_tokens": 2615,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": " {\"core_mechanic\":\"Monthly per-location subscription for outpatient therapy clinics to track prior authorization renewals, missing insurer documents, and visit caps, preventing claim denials and front-desk chaos.\",\"keywords\":[\"therapy\",\"prior-auth\",\"renewals\",\"insurance\",\"visit-caps\",\"outpatient\",\"claim-denials\",\"front-desk\",\"missing-documents\",\"per-location\"]}",
+  "llm_output": {
+    "core_mechanic": "Monthly per-location subscription for outpatient therapy clinics to track prior authorization renewals, missing insurer documents, and visit caps, preventing claim denials and front-desk chaos.",
+    "keywords": [
+      "therapy",
+      "prior-auth",
+      "renewals",
+      "insurance",
+      "visit-caps",
+      "outpatient",
+      "claim-denials",
+      "front-desk",
+      "missing-documents",
+      "per-location"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "therapy",
+      "prior-auth",
+      "renewals",
+      "insurance",
+      "visit-caps",
+      "outpatient",
+      "claim-denials",
+      "front-desk",
+      "missing-documents",
+      "per-location"
+    ],
+    "derived_keywords": [
+      "and",
+      "front-desk",
+      "renewal",
+      "therapist",
+      "visit",
+      "care",
+      "plans",
+      "authorizations",
+      "clinic",
+      "denials",
+      "missing-document",
+      "patient",
+      "with",
+      "across",
+      "alerts",
+      "approvals",
+      "authorization",
+      "authorized",
+      "avoidable",
+      "board",
+      "causing",
+      "chaos",
+      "checklist",
+      "claim",
+      "date",
+      "document",
+      "expire",
+      "follow-up",
+      "handoff",
+      "insurance-heavy",
+      "insurer",
+      "keep",
+      "managing",
+      "mid-plan",
+      "missing",
+      "needed",
+      "notes",
+      "occupational",
+      "physical",
+      "plan",
+      "prior",
+      "speech",
+      "track",
+      "visit-cap",
+      "active",
+      "based",
+      "healthcare",
+      "location",
+      "tiers",
+      "volume",
+      "add-on",
+      "admin",
+      "caused",
+      "continuity",
+      "custom",
+      "dates",
+      "depend",
+      "due",
+      "ehr",
+      "expired",
+      "fee",
+      "fewer",
+      "for",
+      "groups",
+      "healthcare-ops",
+      "highly",
+      "integrations",
+      "multi-provider",
+      "must",
+      "needs",
+      "payer",
+      "per-location",
+      "pretending",
+      "respect",
+      "scheduling",
+      "smoother",
+      "status",
+      "valuable",
+      "visible",
+      "without",
+      "billing",
+      "communities",
+      "consultants",
+      "operations"
+    ],
+    "final_keywords": [
+      "therapy",
+      "prior-auth",
+      "renewals",
+      "insurance",
+      "visit-caps",
+      "outpatient",
+      "claim-denials",
+      "front-desk",
+      "missing-documents",
+      "per-location"
+    ],
+    "keyword_provenance": {
+      "therapy": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "prior-auth": [
+        "llm",
+        "seed_keywords"
+      ],
+      "renewals": [
+        "llm",
+        "seed_keywords"
+      ],
+      "insurance": [
+        "llm",
+        "seed_keywords"
+      ],
+      "visit-caps": [
+        "llm",
+        "seed_keywords"
+      ],
+      "outpatient": [
+        "llm"
+      ],
+      "claim-denials": [
+        "llm"
+      ],
+      "front-desk": [
+        "field:must_have_features",
+        "field:problem",
+        "llm"
+      ],
+      "missing-documents": [
+        "llm"
+      ],
+      "per-location": [
+        "field:pricing_shape",
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Monthly per-location subscription for outpatient therapy clinics to track prior authorization renewals, missing insurer documents, and visit caps, preventing claim denials and front-desk chaos.",
+    "keywords": [
+      "therapy",
+      "prior-auth",
+      "renewals",
+      "insurance",
+      "visit-caps",
+      "outpatient",
+      "claim-denials",
+      "front-desk",
+      "missing-documents",
+      "per-location"
+    ]
+  },
+  "planned_resolution": "claim"
+}

@@ -1,0 +1,248 @@
+{
+  "brief_id": "ghost-kitchen-demand-planner",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "magistral-small-2506",
+    "model_name": "mistralai/magistral-small-2506",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "25ae2df8279e6a76705775ff598159458b729a1568e98a00aee1cac6a25f8024",
+    "prompt_hash": "0e82fc780ba4ef822c1ea7c5eb82da1f6f636487aaf696e15950944832a5364b",
+    "generated_at": "2026-03-02T10:19:41.156445Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"ghost-kitchen-demand-planner\",\n  \"title\": \"Demand shaping and prep scheduling for ghost kitchen operators\",\n  \"category\": \"food-ops\",\n  \"target_customer\": \"Ghost kitchen brands running multiple menus from one facility and relying heavily on delivery marketplaces.\",\n  \"problem\": \"Prep levels and staff timing drift because promotions, weather, and marketplace rankings change faster than kitchen managers can react.\",\n  \"workflow\": \"Forecast order waves, recommend prep windows, and connect promo timing to labor and ingredient readiness for each menu line.\",\n  \"recurring_revenue_model\": \"Monthly subscription per kitchen plus premium analytics for multi-brand operators.\",\n  \"pricing_shape\": \"Base kitchen fee with add-ons for each additional menu brand.\",\n  \"distribution_channel\": \"Outbound to multi-brand kitchen groups and delivery-operations consultants.\",\n  \"constraints\": [\n    \"Needs useful recommendations even when marketplace data is incomplete.\",\n    \"Must separate menu-brand behavior within the same kitchen.\",\n    \"Cannot depend on deeply customized ERP deployments.\"\n  ],\n  \"must_have_features\": [\n    \"Order wave forecasting\",\n    \"Prep timing recommendations\",\n    \"Promo and labor alignment dashboard\",\n    \"Multi-brand kitchen views\"\n  ],\n  \"seed_keywords\": [\n    \"ghost-kitchen\",\n    \"demand\",\n    \"prep\",\n    \"labor\",\n    \"promotions\",\n    \"delivery\"\n  ],\n  \"anti_goals\": [\n    \"Do not build a driver dispatch network.\",\n    \"Do not focus on dine-in restaurant workflows.\"\n  ],\n  \"success_metric\": \"Higher on-time fulfillment with less over-prep during promo-driven demand swings.\",\n  \"prompt_rendered_brief\": \"This demand shaping and prep scheduling product is for ghost kitchen operators running several virtual brands from the same production line. The pain is not generic analytics; it is the operational gap between volatile delivery demand, marketplace promotions, ingredient prep, and who should be on the line at each hour. Kitchen managers need a system that turns noisy demand signals into practical prep windows and staffing guidance before the rush starts. The software should monetize as recurring SaaS per kitchen and per menu brand because complexity rises quickly as operators stack more concepts into one facility. It also needs to stay useful when data is imperfect, since marketplace visibility is often partial or delayed. The win condition is fewer prep mistakes, better service levels, and smarter promo timing for a delivery-first kitchen business.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-766536c3e4a4418bb5f0e601e0abac14",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "\n\n```json\n{\n  \"core_mechanic\": \"Demand forecasting and prep/labor alignment for ghost kitchens\",\n  \"keywords\": [\n    \"ghost-kitchen\",\n    \"demand\",\n    \"prep\",\n    \"labor\",\n    \"promotions\",\n    \"delivery\",\n    \"order-waves\",\n    \"operational-alignment\",\n    \"add-on-pricing\",\n    \"data-resilience\",\n    \"multi-brand\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [],
+          "reasoning_content": "\nOkay, I have this product brief about a demand planning tool for ghost kitchens. First, I need to understand the core mechanic. The problem is about aligning prep and labor with demand fluctuations caused by promotions, weather, and marketplace rankings. The solution seems to be about forecasting order waves and recommending prep windows and staffing based on that.\n\nFor the core mechanic, I need to capture the essence of the solution. It's about predicting demand and optimizing prep and labor accordingly. So, something like \"forecast-driven prep and labor scheduling for ghost kitchens\" might work. But it needs to be under 250 characters. Let me try to make it more concise: \"Predictive demand shaping for ghost kitchens, aligning prep and labor with order waves.\"\n\nNow, for the keywords. The target customer is ghost kitchen brands, and the problem is about demand fluctuations and operational alignment. The workflow involves forecasting, prep timing, and promo alignment. The revenue model is a monthly subscription with add-ons for additional menu brands.\n\nFrom the brief, the must-have features are order wave forecasting, prep timing recommendations, promo and labor alignment dashboard, and multi-brand kitchen views. The constraints mention handling incomplete data and separating menu-brand behavior.\n\nLooking at the seed keywords: ghost-kitchen, demand, prep, labor, promotions, delivery. I need to add more keywords based on the other aspects. The problem involves order waves and operational gaps, so maybe \"order-waves\" and \"operational-alignment\". The workflow mentions a dashboard, but since \"dashboard\" is a filler term, I might skip it unless it's discriminative. The revenue model is subscription-based, but that's a common term, so perhaps not needed. The pricing shape mentions base kitchen fee and add-ons, so maybe \"add-on-pricing\". The constraints mention handling incomplete data, so perhaps \"data-resilience\". The must-have features include multi-brand views, so \"multi-brand\" is important.\n\nLet me list potential keywords:\n1. ghost-kitchen (from seed)\n2. demand (from seed)\n3. prep (from seed)\n4. labor (from seed)\n5. promotions (from seed)\n6. delivery (from seed)\n7. order-waves (from problem)\n8. operational-alignment (from problem)\n9. add-on-pricing (from pricing shape)\n10. data-resilience (from constraints)\n11. multi-brand (from must-have features)\n\nI need between 5 and 12 keywords. The above gives me 11 keywords. I think these cover the main aspects: target customer (ghost-kitchen), problem (demand, order-waves, operational-alignment), workflow (prep, labor, promotions, delivery), and revenue model (add-on-pricing). The constraints and must-have features are covered by data-resilience and multi-brand.\n\nNow, I need to ensure all keywords are alphanumeric or hyphenated. Looking at the list:\n- ghost-kitchen (hyphenated)\n- demand (alphanumeric)\n- prep (alphanumeric)\n- labor (alphanumeric)\n- promotions (alphanumeric)\n- delivery (alphanumeric)\n- order-waves (hyphenated)\n- operational-alignment (hyphenated)\n- add-on-pricing (hyphenated)\n- data-resilience (hyphenated)\n- multi-brand (hyphenated)\n\nAll keywords meet the criteria.\n\nFor the core mechanic, I think \"Predictive demand shaping for ghost kitchens, aligning prep and labor with order waves\" is concise and captures the essence. But it's 98 characters, which is under 250. But I wonder if it's too long. Maybe I can shorten it: \"Demand forecasting for ghost kitchens, optimizing prep and labor for order waves.\" That's 70 characters.\n\nBut does it capture the core mechanic? The core is about predicting demand and aligning prep and labor. So, \"Demand forecasting and prep/labor alignment for ghost kitchens\" is 60 characters and seems to capture it well.\n\nNow, I need to ensure that the keywords and core mechanic align with the prioritized signals:\n- Target customer: ghost-kitchen\n- Problem: demand fluctuations, operational gaps (covered by demand, order-waves, operational-alignment)\n- Workflow: prep, labor, promotions, delivery\n- Recurring revenue model: implied by subscription, but not directly in keywords (but add-on-pricing covers the pricing shape)\n- Pricing shape: add-on-pricing\n- Must-have features: order wave forecasting, prep timing, promo alignment, multi-brand views (covered by order-waves, prep, promotions, multi-brand)\n- Operational constraints: data-resilience\n\nI think this covers all the critical aspects.\n\nNow, I need to format this as strict JSON. The structure should be:\n```json\n{\n  \"core_mechanic\": \"Demand forecasting and prep/labor alignment for ghost kitchens\",\n  \"keywords\": [\n    \"ghost-kitchen\",\n    \"demand\",\n    \"prep\",\n    \"labor\",\n    \"promotions\",\n    \"delivery\",\n    \"order-waves\",\n    \"operational-alignment\",\n    \"add-on-pricing\",\n    \"data-resilience\",\n    \"multi-brand\"\n  ]\n}\n```\n\nBut I need to ensure that the core mechanic is under 250 characters. The current one is 60 characters, so it's fine.\n\nLet me double-check the keywords:\n- All are lowercase and alphanumeric or hyphenated.\n- Number of keywords is 11, which is within the 5-12 range.\n- They cover the target customer, problem, workflow, revenue model, and constraints.\n\nI think this is good to go.\n"
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772446733,
+    "model": "mistralai/magistral-small-2506",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1298,
+      "prompt_tokens": 872,
+      "total_tokens": 2170,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "\n\n```json\n{\n  \"core_mechanic\": \"Demand forecasting and prep/labor alignment for ghost kitchens\",\n  \"keywords\": [\n    \"ghost-kitchen\",\n    \"demand\",\n    \"prep\",\n    \"labor\",\n    \"promotions\",\n    \"delivery\",\n    \"order-waves\",\n    \"operational-alignment\",\n    \"add-on-pricing\",\n    \"data-resilience\",\n    \"multi-brand\"\n  ]\n}\n```",
+  "llm_output": {
+    "core_mechanic": "Demand forecasting and prep/labor alignment for ghost kitchens",
+    "keywords": [
+      "ghost-kitchen",
+      "demand",
+      "prep",
+      "labor",
+      "promotions",
+      "delivery",
+      "order-waves",
+      "operational-alignment",
+      "add-on-pricing",
+      "data-resilience",
+      "multi-brand"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "ghost-kitchen",
+      "demand",
+      "prep",
+      "labor",
+      "promotions",
+      "delivery",
+      "order-waves",
+      "operational-alignment",
+      "add-on-pricing",
+      "data-resilience",
+      "multi-brand"
+    ],
+    "derived_keywords": [
+      "and",
+      "kitchen",
+      "timing",
+      "for",
+      "multi-brand",
+      "order",
+      "promo",
+      "each",
+      "marketplace",
+      "menu",
+      "recommendations",
+      "alignment",
+      "because",
+      "brands",
+      "can",
+      "change",
+      "connect",
+      "dashboard",
+      "drift",
+      "facility",
+      "faster",
+      "forecast",
+      "forecasting",
+      "from",
+      "ghost",
+      "heavily",
+      "ingredient",
+      "levels",
+      "line",
+      "marketplaces",
+      "menus",
+      "one",
+      "rankings",
+      "react",
+      "readiness",
+      "recommend",
+      "relying",
+      "running",
+      "staff",
+      "than",
+      "views",
+      "wave",
+      "waves",
+      "weather",
+      "windows",
+      "with",
+      "analytics",
+      "plus",
+      "premium",
+      "add-ons",
+      "additional",
+      "behavior",
+      "brand",
+      "customized",
+      "data",
+      "deeply",
+      "depend",
+      "deployments",
+      "during",
+      "erp",
+      "even",
+      "fee",
+      "food-ops",
+      "fulfillment",
+      "incomplete",
+      "less",
+      "menu-brand",
+      "must",
+      "needs",
+      "on-time",
+      "over-prep",
+      "promo-driven",
+      "same",
+      "separate",
+      "swings",
+      "the",
+      "useful",
+      "when",
+      "within",
+      "consultants",
+      "delivery-operations",
+      "groups",
+      "outbound"
+    ],
+    "final_keywords": [
+      "ghost-kitchen",
+      "demand",
+      "prep",
+      "labor",
+      "promotions",
+      "delivery",
+      "order-waves",
+      "operational-alignment",
+      "add-on-pricing",
+      "data-resilience"
+    ],
+    "keyword_provenance": {
+      "ghost-kitchen": [
+        "llm",
+        "seed_keywords"
+      ],
+      "demand": [
+        "field:success_metric",
+        "llm",
+        "seed_keywords"
+      ],
+      "prep": [
+        "field:must_have_features",
+        "field:problem",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "labor": [
+        "field:must_have_features",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "promotions": [
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "delivery": [
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "order-waves": [
+        "llm"
+      ],
+      "operational-alignment": [
+        "llm"
+      ],
+      "add-on-pricing": [
+        "llm"
+      ],
+      "data-resilience": [
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Demand forecasting and prep/labor alignment for ghost kitchens",
+    "keywords": [
+      "ghost-kitchen",
+      "demand",
+      "prep",
+      "labor",
+      "promotions",
+      "delivery",
+      "order-waves",
+      "operational-alignment",
+      "add-on-pricing",
+      "data-resilience"
+    ]
+  },
+  "planned_resolution": "claim"
+}

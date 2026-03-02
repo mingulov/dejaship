@@ -1,0 +1,220 @@
+{
+  "brief_id": "accountant-referral-pipeline",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "kimi-k2-instruct",
+    "model_name": "moonshotai/kimi-k2-instruct",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "67a76bdf72c3451ad6a39a101b60be5b263a9eafbbb980affda56a5d7f1eb59f",
+    "prompt_hash": "321f5a6d9cd1f2f7f1849a9c4b20b84174e6f22f4204afdefc4817f80fe35870",
+    "generated_at": "2026-03-02T08:40:16.482944Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"accountant-referral-pipeline\",\n  \"title\": \"Referral relationship and renewal pipeline for boutique accounting firms\",\n  \"category\": \"professional-services\",\n  \"target_customer\": \"Boutique accounting and CFO advisory firms growing through referral partners and annual recurring client retainers.\",\n  \"problem\": \"Relationship-driven growth is fragile because partner follow-up, referral source health, and renewal timing are all tracked informally.\",\n  \"workflow\": \"Log referral relationships, monitor retainer renewal windows, and surface cross-sell or reactivation opportunities before tax season chaos takes over.\",\n  \"recurring_revenue_model\": \"Recurring SaaS for firms with retainer clients and a small partner ecosystem.\",\n  \"pricing_shape\": \"Monthly firm subscription with seat expansion for partners and account managers.\",\n  \"distribution_channel\": \"Accounting communities, fractional CFO networks, and niche software advisors.\",\n  \"constraints\": [\n    \"Must feel relationship-centric instead of like generic CRM bloat.\",\n    \"Needs renewal timing around seasonal workload peaks.\",\n    \"Cannot require replacing proposal and engagement software.\"\n  ],\n  \"must_have_features\": [\n    \"Referral source health board\",\n    \"Retainer renewal calendar\",\n    \"Cross-sell opportunity tracker\",\n    \"Meeting follow-up prompts\"\n  ],\n  \"seed_keywords\": [\n    \"accountants\",\n    \"referrals\",\n    \"retainers\",\n    \"renewals\",\n    \"advisory\",\n    \"partners\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a full sales CRM.\",\n    \"Do not target top-tier national firms first.\"\n  ],\n  \"success_metric\": \"Better referral partner retention and more recurring client renewals.\",\n  \"prompt_rendered_brief\": \"The product is a referral relationship and renewal pipeline for boutique accounting firms that win business through trust and annual retainers. Partners usually know which referral sources matter, but the operational reality is scattered meeting notes, forgotten follow-up, and missed renewal conversations when tax season gets busy. The software should show the health of each relationship, upcoming retainer renewals, and the best opportunities to cross-sell advisory work. The recurring SaaS model fits because relationship maintenance is constant and small firms value dependable recurring revenue. The experience must stay relationship-focused and avoid bloated CRM complexity that accountants already dislike. If the system works, firms keep more referral momentum and lose fewer recurring clients to neglect.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-af6ac06a9bba3fc2",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\"core_mechanic\":\"relationship-centric renewal pipeline that alerts boutique accounting firms when referral partners or retainer clients need attention before tax season\",\"keywords\":[\"boutique-accountants\",\"referral-partners\",\"retainer-renewals\",\"relationship-health\",\"tax-season-alerts\",\"cross-sell-opportunities\",\"recurring-revenue\"]}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [],
+          "reasoning": null,
+          "reasoning_content": null
+        },
+        "stop_reason": 163586,
+        "token_ids": null
+      }
+    ],
+    "created": 1772440813,
+    "model": "moonshotai/kimi-k2-instruct",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 68,
+      "prompt_tokens": 632,
+      "total_tokens": 700,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "{\"core_mechanic\":\"relationship-centric renewal pipeline that alerts boutique accounting firms when referral partners or retainer clients need attention before tax season\",\"keywords\":[\"boutique-accountants\",\"referral-partners\",\"retainer-renewals\",\"relationship-health\",\"tax-season-alerts\",\"cross-sell-opportunities\",\"recurring-revenue\"]}",
+  "llm_output": {
+    "core_mechanic": "relationship-centric renewal pipeline that alerts boutique accounting firms when referral partners or retainer clients need attention before tax season",
+    "keywords": [
+      "boutique-accountants",
+      "referral-partners",
+      "retainer-renewals",
+      "relationship-health",
+      "tax-season-alerts",
+      "cross-sell-opportunities",
+      "recurring-revenue"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "boutique-accountants",
+      "referral-partners",
+      "retainer-renewals",
+      "relationship-health",
+      "tax-season-alerts",
+      "cross-sell-opportunities",
+      "recurring-revenue"
+    ],
+    "derived_keywords": [
+      "and",
+      "referral",
+      "renewal",
+      "retainer",
+      "partner",
+      "cross-sell",
+      "follow-up",
+      "health",
+      "source",
+      "client",
+      "timing",
+      "accounting",
+      "cfo",
+      "for",
+      "with",
+      "all",
+      "are",
+      "because",
+      "board",
+      "boutique",
+      "calendar",
+      "chaos",
+      "fragile",
+      "growing",
+      "informally",
+      "log",
+      "monitor",
+      "opportunities",
+      "opportunity",
+      "over",
+      "prompts",
+      "reactivation",
+      "relationship-driven",
+      "relationships",
+      "season",
+      "surface",
+      "takes",
+      "tax",
+      "through",
+      "tracked",
+      "tracker",
+      "windows",
+      "ecosystem",
+      "saas",
+      "account",
+      "around",
+      "better",
+      "bloat",
+      "crm",
+      "engagement",
+      "expansion",
+      "feel",
+      "generic",
+      "instead",
+      "like",
+      "more",
+      "must",
+      "needs",
+      "peaks",
+      "professional-services",
+      "proposal",
+      "relationship-centric",
+      "replacing",
+      "require",
+      "retention",
+      "seasonal",
+      "seat",
+      "workload",
+      "advisors",
+      "communities",
+      "fractional",
+      "networks",
+      "niche"
+    ],
+    "final_keywords": [
+      "boutique-accountants",
+      "referral-partners",
+      "retainer-renewals",
+      "relationship-health",
+      "tax-season-alerts",
+      "cross-sell-opportunities",
+      "recurring-revenue",
+      "accountants",
+      "referrals",
+      "retainers"
+    ],
+    "keyword_provenance": {
+      "boutique-accountants": [
+        "llm"
+      ],
+      "referral-partners": [
+        "llm"
+      ],
+      "retainer-renewals": [
+        "llm"
+      ],
+      "relationship-health": [
+        "llm"
+      ],
+      "tax-season-alerts": [
+        "llm"
+      ],
+      "cross-sell-opportunities": [
+        "llm"
+      ],
+      "recurring-revenue": [
+        "llm"
+      ],
+      "accountants": [
+        "seed_keywords"
+      ],
+      "referrals": [
+        "seed_keywords"
+      ],
+      "retainers": [
+        "field:target_customer",
+        "seed_keywords"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "relationship-centric renewal pipeline that alerts boutique accounting firms when referral partners or retainer clients need attention before tax season",
+    "keywords": [
+      "boutique-accountants",
+      "referral-partners",
+      "retainer-renewals",
+      "relationship-health",
+      "tax-season-alerts",
+      "cross-sell-opportunities",
+      "recurring-revenue",
+      "accountants",
+      "referrals",
+      "retainers"
+    ]
+  },
+  "planned_resolution": "claim"
+}

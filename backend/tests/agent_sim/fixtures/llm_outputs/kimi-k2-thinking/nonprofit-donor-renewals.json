@@ -1,0 +1,225 @@
+{
+  "brief_id": "nonprofit-donor-renewals",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "kimi-k2-thinking",
+    "model_name": "moonshotai/kimi-k2-thinking",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "d0c54a39d9e039b13036fe9e81c9a0ca05d3469c8097ff6274c89b5edaaa64ae",
+    "prompt_hash": "eaa0e39c62b6b5058d63e67353e2a090477b17f865fa3e66f745a4343616bc1e",
+    "generated_at": "2026-03-02T09:06:17.867600Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"nonprofit-donor-renewals\",\n  \"title\": \"Donor renewal calendar and board-ready reporting for small nonprofits\",\n  \"category\": \"nonprofit-ops\",\n  \"target_customer\": \"Small nonprofits with recurring donors, grant cycles, and a lean fundraising team that reports regularly to the board.\",\n  \"problem\": \"Donor lapses, campaign follow-up, and board reporting all compete for attention, so renewals are missed and fundraising narratives stay reactive.\",\n  \"workflow\": \"Track recurring donors, renewal outreach, grant follow-up, and the metrics needed for monthly board updates in one place.\",\n  \"recurring_revenue_model\": \"Annual or monthly subscription for small nonprofit fundraising operations.\",\n  \"pricing_shape\": \"Flat recurring fee sized for small teams with a premium board-reporting tier.\",\n  \"distribution_channel\": \"Nonprofit operations communities, fundraising consultants, and board member referrals.\",\n  \"constraints\": [\n    \"Must serve very small teams with limited software budgets.\",\n    \"Needs clear donor renewal and grant follow-up views.\",\n    \"Cannot require enterprise nonprofit CRM implementation.\"\n  ],\n  \"must_have_features\": [\n    \"Donor renewal calendar\",\n    \"Grant follow-up queue\",\n    \"Board KPI snapshots\",\n    \"Campaign cadence planner\"\n  ],\n  \"seed_keywords\": [\n    \"nonprofit\",\n    \"donor-renewals\",\n    \"fundraising\",\n    \"board-reporting\",\n    \"grants\",\n    \"campaigns\"\n  ],\n  \"anti_goals\": [\n    \"Do not replace the nonprofit CRM.\",\n    \"Do not target universities first.\"\n  ],\n  \"success_metric\": \"Higher donor renewal rates and faster board reporting with less manual prep.\",\n  \"prompt_rendered_brief\": \"This product is a donor renewal calendar and board-ready reporting tool for small nonprofits that do not have a large development operations team. The challenge is not sending one more newsletter; it is keeping recurring donors warm, following up on grant obligations, and walking into every board meeting with trustworthy metrics. The software should put donor renewals, grant follow-up, and campaign pacing into a single operating view that a tiny team can actually use. The business model should be affordable recurring SaaS because nonprofits need predictable pricing more than custom implementation projects. It must avoid becoming a full donor CRM and instead focus on the renewal and reporting layer that most small teams lack. The outcome is steadier recurring giving and far less scramble before board meetings.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-b4e50389bf64d706",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": " {\"core_mechanic\":\"Subscription-based donor renewal calendar and board-reporting layer for small nonprofits that prevents lapses without replacing existing CRM.\",\"keywords\":[\"nonprofit\",\"small-team\",\"donor-renewal\",\"board-reporting\",\"grant-follow-up\",\"subscription\",\"renewal-calendar\",\"kpi-snapshots\",\"campaign-cadence\"]}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [],
+          "reasoning": " The user wants me to evaluate a product brief and produce a DejaShip intent payload.\n\nKey requirements:\n- `core_mechanic` under 250 characters\n- 5-12 lowercase keywords\n- Keywords must be alphanumeric or hyphenated\n- Focus on commercial mechanism, target customer, recurring revenue path\n- Avoid filler terms like `app`, `ai`, `tool`, `platform` unless genuinely discriminative\n- Prioritize signal from: target customer, problem, workflow, recurring revenue model, pricing shape, must-have features, operational constraints\n\nThe brief is about a donor renewal calendar and board-ready reporting tool for small nonprofits.\n\nLet me extract the key elements:\n\n**Target customer**: Small nonprofits with recurring donors, grant cycles, lean fundraising team, reports to board regularly. Very small teams with limited software budgets.\n\n**Problem**: Donor lapses, campaign follow-up, and board reporting compete for attention, causing missed renewals and reactive fundraising narratives.\n\n**Workflow**: Track recurring donors, renewal outreach, grant follow-up, and metrics for monthly board updates in one place.\n\n**Recurring revenue model**: Annual or monthly subscription for small nonprofit fundraising operations.\n\n**Pricing shape**: Flat recurring fee sized for small teams with a premium board-reporting tier.\n\n**Must-have features**: Donor renewal calendar, Grant follow-up queue, Board KPI snapshots, Campaign cadence planner\n\n**Constraints**: Must serve very small teams with limited budgets; needs clear donor renewal and grant follow-up views; cannot require enterprise nonprofit CRM implementation.\n\n**Anti-goals**: Do not replace the nonprofit CRM; do not target universities first.\n\n**Success metric**: Higher donor renewal rates and faster board reporting with less manual prep.\n\nNow I need to craft the `core_mechanic` and `keywords`.\n\n**Core mechanic**: This should capture the essence of the commercial mechanism. It's about helping small nonprofits manage donor renewals and board reporting through a subscription-based tool that integrates with (but doesn't replace) their existing CRM. The key is the \"renewal and reporting layer\" for small teams.\n\nLet me draft a core mechanic:\n\"Subscription-based donor renewal calendar and board reporting layer for small nonprofits that integrates with existing CRMs to prevent lapses and accelerate board prep.\"\n\nLet me count characters: \"Subscription-based donor renewal calendar and board reporting layer for small nonprofits that integrates with existing CRMs to prevent lapses and accelerate board prep.\"\nThat's about 170 characters. Good, under 250.\n\nBut maybe I can make it more concise and focused on the mechanism:\n\"Recurring subscription for small nonprofits to track donor renewals, grant follow-ups, and board KPIs in one lightweight layer atop existing CRM.\"\n\nCount: \"Recurring subscription for small nonprofits to track donor renewals, grant follow-ups, and board KPIs in one lightweight layer atop existing CRM.\"\nThat's about 130 characters. Better.\n\nOr even more concise:\n\"Subscription-based renewal calendar and board-reporting layer for small nonprofits that prevents donor lapses without replacing CRM.\"\n\nCount: ~110 characters. This captures the key elements: subscription model, target customer (small nonprofits), core value (renewal calendar + board reporting), and key constraint (doesn't replace CRM).\n\nLet me refine it slightly:\n\"Subscription-based donor renewal calendar and board-reporting layer for small nonprofits that prevents lapses without replacing existing CRM.\"\n\nCount: ~115 characters. This is good.\n\n**Keywords**: I need 5-12 lowercase, alphanumeric or hyphenated keywords. They should focus on the true commercial mechanism, target customer, and recurring revenue path. Avoid filler terms.\n\nFrom the seed keywords: nonprofit, donor-renewals, fundraising, board-reporting, grants, campaigns\n\nBut I need to be more specific and avoid filler terms. Let me think about what truly describes this product:\n\n- `nonprofit` - target customer, essential\n- `donor-renewal` - core function (singular is better)\n- `board-reporting` - core function\n- `grant-follow-up` - important feature\n- `subscription` - revenue model\n- `small-team` - target customer characteristic\n- `calendar` - key UI pattern\n- `kpi-snapshots` - feature\n- `campaign-cadence` - feature\n\nLet me check the constraints: must be lowercase, alphanumeric or hyphenated. All these fit.\n\nI should avoid: `app`, `tool`, `platform`, `ai` (none are discriminative here)\n\nThe most important keywords should reflect:\n1. Target customer: nonprofit, small-team\n2. Core mechanism: donor-renewal, board-reporting, grant-follow-up\n3. Revenue model: subscription\n4. Key features: calendar, kpi-snapshots, campaign-cadence\n\nLet me select the best 5-12:\n\n1. `nonprofit` - essential target\n2. `donor-renewal` - core mechanic\n3. `board-reporting` - core mechanic\n4. `grant-follow-up` - important workflow\n5. `subscription` - revenue model\n6. `small-team` - target characteristic\n7. `calendar` - key interface pattern\n8. `kpi-snapshots` - must-have feature\n9. `campaign-cadence` - must-have feature\n\nThat's 9 keywords. Let me review them:\n- All lowercase: yes\n- Alphanumeric or hyphenated: yes\n- 5-12 count: yes (9)\n- Focus on commercial mechanism, target customer, recurring revenue: yes\n- Avoid filler terms: yes\n\nI could potentially add `fundraising` but it's a bit generic. `renewal-calendar` might be more specific than just `calendar`. Let me reconsider:\n\nAlternative set:\n1. `nonprofit`\n2. `donor-renewal`\n3. `board-reporting`\n4. `grant-follow-up`\n5. `subscription`\n6. `small-team`\n7. `renewal-calendar`\n8. `kpi-snapshots`\n9. `campaign-cadence`\n\nThis is better. `renewal-calendar` is more specific than just `calendar`.\n\nOr maybe even more specific:\n1. `nonprofit`\n2. `donor-renewal-calendar`\n3. `board-reporting`\n4. `grant-follow-up`\n5. `subscription`\n6. `small-team`\n7. `kpi-snapshots`\n8. `campaign-cadence`\n\nThat's 8 keywords. But `donor-renewal-calendar` might be too specific and combine concepts. The seed keywords had them separate. Let me stick with the previous set.\n\nActually, looking at the must-have features:\n- \"Donor renewal calendar\"\n- \"Grant follow-up queue\"\n- \"Board KPI snapshots\"\n- \"Campaign cadence planner\"\n\nSo the keywords should reflect these:\n- `donor-renewal-calendar` (or `donor-renewal` + `calendar`)\n- `grant-follow-up`\n- `board-kpi-snapshots` (or `board-reporting`)\n- `campaign-cadence`\n\nI think `board-reporting` is more concise than `board-kpi-snapshots` and captures the essence.\n\nLet me finalize my keyword list:\n1. `nonprofit` - target customer\n2. `small-team` - target customer characteristic\n3. `donor-renewal` - core function\n4. `board-reporting` - core function\n5. `grant-follow-up` - key workflow\n6. `subscription` - revenue model\n7. `renewal-calendar` - key feature/UI\n8. `kpi-snapshots` - key feature\n9. `campaign-cadence` - key feature\n\nThat's 9 keywords. All are lowercase, hyphenated where needed, and avoid filler terms.\n\nWait, should I include `saas`? The brief mentions \"affordable recurring SaaS\". But `subscription` already captures the revenue model, and `saas` is a bit generic. I'll stick with `subscription`.\n\nLet me double-check the core mechanic one more time. It should be concise and capture:\n- Revenue model: subscription\n- Target: small nonprofits\n- Mechanism: donor renewal calendar + board reporting\n- Constraint: doesn't replace CRM\n- Value: prevents lapses, faster board prep\n\nMy current version: \"Subscription-based donor renewal calendar and board-reporting layer for small nonprofits that prevents lapses without replacing existing CRM.\"\n\nThis seems solid. It's 115 characters, well under 250.\n\nFinal check on keywords:\n- `nonprofit` ✓\n- `small-team` ✓\n- `donor-renewal` ✓\n- `board-reporting` ✓\n- `grant-follow-up` ✓\n- `subscription` ✓\n- `renewal-calendar` ✓\n- `kpi-snapshots` ✓\n- `campaign-cadence` ✓\n\nAll lowercase, alphanumeric/hyphenated, 9 keywords (within 5-12 range), no filler terms.\n\nI think I'm ready to produce the JSON payload. ",
+          "reasoning_content": " The user wants me to evaluate a product brief and produce a DejaShip intent payload.\n\nKey requirements:\n- `core_mechanic` under 250 characters\n- 5-12 lowercase keywords\n- Keywords must be alphanumeric or hyphenated\n- Focus on commercial mechanism, target customer, recurring revenue path\n- Avoid filler terms like `app`, `ai`, `tool`, `platform` unless genuinely discriminative\n- Prioritize signal from: target customer, problem, workflow, recurring revenue model, pricing shape, must-have features, operational constraints\n\nThe brief is about a donor renewal calendar and board-ready reporting tool for small nonprofits.\n\nLet me extract the key elements:\n\n**Target customer**: Small nonprofits with recurring donors, grant cycles, lean fundraising team, reports to board regularly. Very small teams with limited software budgets.\n\n**Problem**: Donor lapses, campaign follow-up, and board reporting compete for attention, causing missed renewals and reactive fundraising narratives.\n\n**Workflow**: Track recurring donors, renewal outreach, grant follow-up, and metrics for monthly board updates in one place.\n\n**Recurring revenue model**: Annual or monthly subscription for small nonprofit fundraising operations.\n\n**Pricing shape**: Flat recurring fee sized for small teams with a premium board-reporting tier.\n\n**Must-have features**: Donor renewal calendar, Grant follow-up queue, Board KPI snapshots, Campaign cadence planner\n\n**Constraints**: Must serve very small teams with limited budgets; needs clear donor renewal and grant follow-up views; cannot require enterprise nonprofit CRM implementation.\n\n**Anti-goals**: Do not replace the nonprofit CRM; do not target universities first.\n\n**Success metric**: Higher donor renewal rates and faster board reporting with less manual prep.\n\nNow I need to craft the `core_mechanic` and `keywords`.\n\n**Core mechanic**: This should capture the essence of the commercial mechanism. It's about helping small nonprofits manage donor renewals and board reporting through a subscription-based tool that integrates with (but doesn't replace) their existing CRM. The key is the \"renewal and reporting layer\" for small teams.\n\nLet me draft a core mechanic:\n\"Subscription-based donor renewal calendar and board reporting layer for small nonprofits that integrates with existing CRMs to prevent lapses and accelerate board prep.\"\n\nLet me count characters: \"Subscription-based donor renewal calendar and board reporting layer for small nonprofits that integrates with existing CRMs to prevent lapses and accelerate board prep.\"\nThat's about 170 characters. Good, under 250.\n\nBut maybe I can make it more concise and focused on the mechanism:\n\"Recurring subscription for small nonprofits to track donor renewals, grant follow-ups, and board KPIs in one lightweight layer atop existing CRM.\"\n\nCount: \"Recurring subscription for small nonprofits to track donor renewals, grant follow-ups, and board KPIs in one lightweight layer atop existing CRM.\"\nThat's about 130 characters. Better.\n\nOr even more concise:\n\"Subscription-based renewal calendar and board-reporting layer for small nonprofits that prevents donor lapses without replacing CRM.\"\n\nCount: ~110 characters. This captures the key elements: subscription model, target customer (small nonprofits), core value (renewal calendar + board reporting), and key constraint (doesn't replace CRM).\n\nLet me refine it slightly:\n\"Subscription-based donor renewal calendar and board-reporting layer for small nonprofits that prevents lapses without replacing existing CRM.\"\n\nCount: ~115 characters. This is good.\n\n**Keywords**: I need 5-12 lowercase, alphanumeric or hyphenated keywords. They should focus on the true commercial mechanism, target customer, and recurring revenue path. Avoid filler terms.\n\nFrom the seed keywords: nonprofit, donor-renewals, fundraising, board-reporting, grants, campaigns\n\nBut I need to be more specific and avoid filler terms. Let me think about what truly describes this product:\n\n- `nonprofit` - target customer, essential\n- `donor-renewal` - core function (singular is better)\n- `board-reporting` - core function\n- `grant-follow-up` - important feature\n- `subscription` - revenue model\n- `small-team` - target customer characteristic\n- `calendar` - key UI pattern\n- `kpi-snapshots` - feature\n- `campaign-cadence` - feature\n\nLet me check the constraints: must be lowercase, alphanumeric or hyphenated. All these fit.\n\nI should avoid: `app`, `tool`, `platform`, `ai` (none are discriminative here)\n\nThe most important keywords should reflect:\n1. Target customer: nonprofit, small-team\n2. Core mechanism: donor-renewal, board-reporting, grant-follow-up\n3. Revenue model: subscription\n4. Key features: calendar, kpi-snapshots, campaign-cadence\n\nLet me select the best 5-12:\n\n1. `nonprofit` - essential target\n2. `donor-renewal` - core mechanic\n3. `board-reporting` - core mechanic\n4. `grant-follow-up` - important workflow\n5. `subscription` - revenue model\n6. `small-team` - target characteristic\n7. `calendar` - key interface pattern\n8. `kpi-snapshots` - must-have feature\n9. `campaign-cadence` - must-have feature\n\nThat's 9 keywords. Let me review them:\n- All lowercase: yes\n- Alphanumeric or hyphenated: yes\n- 5-12 count: yes (9)\n- Focus on commercial mechanism, target customer, recurring revenue: yes\n- Avoid filler terms: yes\n\nI could potentially add `fundraising` but it's a bit generic. `renewal-calendar` might be more specific than just `calendar`. Let me reconsider:\n\nAlternative set:\n1. `nonprofit`\n2. `donor-renewal`\n3. `board-reporting`\n4. `grant-follow-up`\n5. `subscription`\n6. `small-team`\n7. `renewal-calendar`\n8. `kpi-snapshots`\n9. `campaign-cadence`\n\nThis is better. `renewal-calendar` is more specific than just `calendar`.\n\nOr maybe even more specific:\n1. `nonprofit`\n2. `donor-renewal-calendar`\n3. `board-reporting`\n4. `grant-follow-up`\n5. `subscription`\n6. `small-team`\n7. `kpi-snapshots`\n8. `campaign-cadence`\n\nThat's 8 keywords. But `donor-renewal-calendar` might be too specific and combine concepts. The seed keywords had them separate. Let me stick with the previous set.\n\nActually, looking at the must-have features:\n- \"Donor renewal calendar\"\n- \"Grant follow-up queue\"\n- \"Board KPI snapshots\"\n- \"Campaign cadence planner\"\n\nSo the keywords should reflect these:\n- `donor-renewal-calendar` (or `donor-renewal` + `calendar`)\n- `grant-follow-up`\n- `board-kpi-snapshots` (or `board-reporting`)\n- `campaign-cadence`\n\nI think `board-reporting` is more concise than `board-kpi-snapshots` and captures the essence.\n\nLet me finalize my keyword list:\n1. `nonprofit` - target customer\n2. `small-team` - target customer characteristic\n3. `donor-renewal` - core function\n4. `board-reporting` - core function\n5. `grant-follow-up` - key workflow\n6. `subscription` - revenue model\n7. `renewal-calendar` - key feature/UI\n8. `kpi-snapshots` - key feature\n9. `campaign-cadence` - key feature\n\nThat's 9 keywords. All are lowercase, hyphenated where needed, and avoid filler terms.\n\nWait, should I include `saas`? The brief mentions \"affordable recurring SaaS\". But `subscription` already captures the revenue model, and `saas` is a bit generic. I'll stick with `subscription`.\n\nLet me double-check the core mechanic one more time. It should be concise and capture:\n- Revenue model: subscription\n- Target: small nonprofits\n- Mechanism: donor renewal calendar + board reporting\n- Constraint: doesn't replace CRM\n- Value: prevents lapses, faster board prep\n\nMy current version: \"Subscription-based donor renewal calendar and board-reporting layer for small nonprofits that prevents lapses without replacing existing CRM.\"\n\nThis seems solid. It's 115 characters, well under 250.\n\nFinal check on keywords:\n- `nonprofit` ✓\n- `small-team` ✓\n- `donor-renewal` ✓\n- `board-reporting` ✓\n- `grant-follow-up` ✓\n- `subscription` ✓\n- `renewal-calendar` ✓\n- `kpi-snapshots` ✓\n- `campaign-cadence` ✓\n\nAll lowercase, alphanumeric/hyphenated, 9 keywords (within 5-12 range), no filler terms.\n\nI think I'm ready to produce the JSON payload. "
+        },
+        "stop_reason": 163586,
+        "token_ids": null
+      }
+    ],
+    "created": 1772442348,
+    "model": "moonshotai/kimi-k2-thinking",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1931,
+      "prompt_tokens": 685,
+      "total_tokens": 2616,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": " {\"core_mechanic\":\"Subscription-based donor renewal calendar and board-reporting layer for small nonprofits that prevents lapses without replacing existing CRM.\",\"keywords\":[\"nonprofit\",\"small-team\",\"donor-renewal\",\"board-reporting\",\"grant-follow-up\",\"subscription\",\"renewal-calendar\",\"kpi-snapshots\",\"campaign-cadence\"]}",
+  "llm_output": {
+    "core_mechanic": "Subscription-based donor renewal calendar and board-reporting layer for small nonprofits that prevents lapses without replacing existing CRM.",
+    "keywords": [
+      "nonprofit",
+      "small-team",
+      "donor-renewal",
+      "board-reporting",
+      "grant-follow-up",
+      "subscription",
+      "renewal-calendar",
+      "kpi-snapshots",
+      "campaign-cadence"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "nonprofit",
+      "small-team",
+      "donor-renewal",
+      "board-reporting",
+      "grant-follow-up",
+      "subscription",
+      "renewal-calendar",
+      "kpi-snapshots",
+      "campaign-cadence"
+    ],
+    "derived_keywords": [
+      "and",
+      "board",
+      "follow-up",
+      "grant",
+      "for",
+      "donor",
+      "renewal",
+      "with",
+      "campaign",
+      "donors",
+      "the",
+      "all",
+      "are",
+      "attention",
+      "cadence",
+      "calendar",
+      "compete",
+      "cycles",
+      "kpi",
+      "lapses",
+      "lean",
+      "metrics",
+      "missed",
+      "narratives",
+      "needed",
+      "nonprofits",
+      "one",
+      "operations",
+      "outreach",
+      "place",
+      "planner",
+      "queue",
+      "reactive",
+      "regularly",
+      "renewals",
+      "reports",
+      "snapshots",
+      "stay",
+      "team",
+      "that",
+      "track",
+      "updates",
+      "budgets",
+      "clear",
+      "crm",
+      "enterprise",
+      "faster",
+      "fee",
+      "flat",
+      "implementation",
+      "less",
+      "limited",
+      "manual",
+      "must",
+      "needs",
+      "nonprofit-ops",
+      "premium",
+      "prep",
+      "rates",
+      "require",
+      "serve",
+      "sized",
+      "tier",
+      "very",
+      "views",
+      "communities",
+      "consultants",
+      "member",
+      "referrals"
+    ],
+    "final_keywords": [
+      "nonprofit",
+      "small-team",
+      "donor-renewal",
+      "board-reporting",
+      "grant-follow-up",
+      "subscription",
+      "renewal-calendar",
+      "kpi-snapshots",
+      "campaign-cadence",
+      "donor-renewals"
+    ],
+    "keyword_provenance": {
+      "nonprofit": [
+        "field:constraints",
+        "field:distribution_channel",
+        "field:recurring_revenue_model",
+        "llm",
+        "seed_keywords"
+      ],
+      "small-team": [
+        "llm"
+      ],
+      "donor-renewal": [
+        "llm"
+      ],
+      "board-reporting": [
+        "field:pricing_shape",
+        "llm",
+        "seed_keywords"
+      ],
+      "grant-follow-up": [
+        "llm"
+      ],
+      "subscription": [
+        "llm"
+      ],
+      "renewal-calendar": [
+        "llm"
+      ],
+      "kpi-snapshots": [
+        "llm"
+      ],
+      "campaign-cadence": [
+        "llm"
+      ],
+      "donor-renewals": [
+        "seed_keywords"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Subscription-based donor renewal calendar and board-reporting layer for small nonprofits that prevents lapses without replacing existing CRM.",
+    "keywords": [
+      "nonprofit",
+      "small-team",
+      "donor-renewal",
+      "board-reporting",
+      "grant-follow-up",
+      "subscription",
+      "renewal-calendar",
+      "kpi-snapshots",
+      "campaign-cadence",
+      "donor-renewals"
+    ]
+  },
+  "planned_resolution": "claim"
+}

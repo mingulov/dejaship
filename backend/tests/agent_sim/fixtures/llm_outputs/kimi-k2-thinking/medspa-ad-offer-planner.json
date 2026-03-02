@@ -1,0 +1,239 @@
+{
+  "brief_id": "medspa-ad-offer-planner",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "kimi-k2-thinking",
+    "model_name": "moonshotai/kimi-k2-thinking",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "08dd90e0fbbffbbeb265c9b7cd188097059dd18186590808299cd2d77321bcff",
+    "prompt_hash": "9fcd56e6f3f8aa7dd63a19a6df01370036c43814d09b69d96f8f3b2fbe1227ef",
+    "generated_at": "2026-03-02T09:06:41.913039Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"medspa-ad-offer-planner\",\n  \"title\": \"Local ad offer planner and membership follow-up for med spas\",\n  \"category\": \"local-demand\",\n  \"target_customer\": \"Med spas running paid social campaigns, introductory offers, and recurring treatment memberships with tiny front-desk teams.\",\n  \"problem\": \"Ad spend and intro offers create spikes of interest, but staff cannot tell which leads should convert into ongoing memberships or revisit sequences.\",\n  \"workflow\": \"Tie campaigns, booked consultations, membership saves, and no-show follow-up into one planner for the weekly growth meeting.\",\n  \"recurring_revenue_model\": \"Monthly subscription for local growth teams with optional multi-location rollups.\",\n  \"pricing_shape\": \"Per-location recurring fee with add-on for ad-account reporting depth.\",\n  \"distribution_channel\": \"Med spa marketing agencies, owner communities, and local growth operators.\",\n  \"constraints\": [\n    \"Must connect paid acquisition to recurring treatment retention.\",\n    \"Needs weekly decision support instead of enterprise marketing dashboards.\",\n    \"Cannot rely on custom ad platform ETL to show value.\"\n  ],\n  \"must_have_features\": [\n    \"Campaign-to-consult tracking\",\n    \"Membership conversion board\",\n    \"No-show and revisit reminders\",\n    \"Offer performance comparison\"\n  ],\n  \"seed_keywords\": [\n    \"medspa\",\n    \"memberships\",\n    \"offers\",\n    \"ad-planning\",\n    \"no-shows\",\n    \"retention\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a full medical record system.\",\n    \"Do not target enterprise multi-brand chains first.\"\n  ],\n  \"success_metric\": \"Better conversion from paid acquisition into recurring treatment memberships.\",\n  \"prompt_rendered_brief\": \"The product is a local ad offer planner and membership follow-up system for med spas that buy attention with paid social and live on repeat treatments. Owners can usually see top-line ad metrics, but they struggle to connect campaigns, intro offers, no-show recovery, and membership retention into one operating rhythm. The software should give them a practical weekly planner that ties acquisition to recurring revenue decisions and front-desk follow-up. Recurring SaaS pricing works because this is a weekly growth workflow for every location, not a one-time reporting project. The product sits in an ambiguous zone between local growth, retention, and save-offer operations, which makes it useful for future overlap simulation. A good outcome is stronger membership conversion and less wasted ad spend on leads that quietly disappear.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-81674f1ae7d14a87",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": " {\"core_mechanic\":\"Per-location SaaS linking med spa ad campaigns to membership retention via weekly front-desk planner for consults, no-shows, and conversion.\",\"keywords\":[\"medspa\",\"memberships\",\"ad-campaigns\",\"retention\",\"no-shows\",\"consult-tracking\",\"weekly-planner\",\"front-desk\",\"local-growth\",\"subscription\",\"per-location\"]}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [],
+          "reasoning": " The user wants me to act as an autonomous software agent evaluating a product brief and produce a DejaShip intent payload.\n\nThe requirements are:\n- `core_mechanic`: concise, under 250 characters\n- `keywords`: 5 to 12 lowercase keywords, alphanumeric or hyphenated\n- Focus on: true commercial mechanism, target customer, recurring revenue path\n- Avoid filler terms: `app`, `ai`, `tool`, `platform` unless genuinely discriminative\n- Prioritize signal from: target customer, problem, workflow, recurring revenue model, pricing shape, must-have features, operational constraints\n\nThe brief is about \"medspa-ad-offer-planner\".\n\nLet me break down the key elements:\n\n**Target customer**: \"Med spas running paid social campaigns, introductory offers, and recurring treatment memberships with tiny front-desk teams.\"\n\n**Problem**: \"Ad spend and intro offers create spikes of interest, but staff cannot tell which leads should convert into ongoing memberships or revisit sequences.\"\n\n**Workflow**: \"Tie campaigns, booked consultations, membership saves, and no-show follow-up into one planner for the weekly growth meeting.\"\n\n**Recurring revenue model**: \"Monthly subscription for local growth teams with optional multi-location rollups.\"\n\n**Pricing shape**: \"Per-location recurring fee with add-on for ad-account reporting depth.\"\n\n**Must-have features**:\n- Campaign-to-consult tracking\n- Membership conversion board\n- No-show and revisit reminders\n- Offer performance comparison\n\n**Constraints**:\n- Must connect paid acquisition to recurring treatment retention.\n- Needs weekly decision support instead of enterprise marketing dashboards.\n- Cannot rely on custom ad platform ETL to show value.\n\n**Success metric**: \"Better conversion from paid acquisition into recurring treatment memberships.\"\n\n**Seed keywords**: medspa, memberships, offers, ad-planning, no-shows, retention\n\n**Anti-goals**: Not a full medical record system, not targeting enterprise multi-brand chains first.\n\nNow I need to synthesize this into a `core_mechanic` and `keywords`.\n\n**Core_mechanic**: This should capture the essence of the commercial mechanism. It's about connecting paid ad campaigns to membership retention for med spas, specifically focusing on weekly planning and front-desk follow-up. It's a SaaS that helps small teams convert ad leads into recurring memberships.\n\nLet me draft the core_mechanic:\n\"Per-location SaaS that connects paid social campaigns to med spa membership retention via a weekly planner for front-desk follow-up and conversion tracking.\"\n\nLet me count characters: \"Per-location SaaS that connects paid social campaigns to med spa membership retention via a weekly planner for front-desk follow-up and conversion tracking.\"\nThat's 144 characters. Under 250, good.\n\nBut I should make it more concise and focused on the mechanism. Let me try again:\n\"Med spa SaaS linking paid ads to membership retention through a weekly planner that prioritizes front-desk follow-up for consultations, no-shows, and conversions.\"\n\nCount: 138 characters. Good.\n\nAnother version:\n\"Per-location subscription that ties med spa ad campaigns to membership conversion via weekly front-desk planner for consults, no-shows, and retention.\"\n\nCount: 128 characters. This is good and hits the key points: per-location subscription (pricing), med spa ad campaigns (target/problem), membership conversion (goal), weekly front-desk planner (workflow), consults/no-shows/retention (features).\n\nLet me refine it slightly to be more direct about the mechanism:\n\"Per-location SaaS linking med spa paid ads to membership retention via a weekly front-desk planner for consults, no-shows, and conversion tracking.\"\n\nCount: 126 characters. This is clear and concise.\n\n**Keywords**: I need 5-12 lowercase, alphanumeric or hyphenated keywords. They should focus on the commercial mechanism, target customer, and recurring revenue path. Avoid filler terms.\n\nFrom seed keywords: medspa, memberships, offers, ad-planning, no-shows, retention\n\nI should add more based on the brief:\n- medspa (or med-spa? seed has medspa, so keep that)\n- memberships\n- paid-ads (or ad-campaigns)\n- retention\n- no-shows\n- consult-tracking\n- weekly-planner\n- front-desk\n- local-growth\n- subscription\n- conversion\n- recurring-revenue\n\nLet me select the best ones, avoiding filler:\n1. medspa (target customer)\n2. memberships (core offering)\n3. paid-ads (problem area)\n4. retention (goal)\n5. no-shows (feature/problem)\n6. consult-tracking (feature)\n7. weekly-planner (workflow)\n8. front-desk (target user/constraint)\n9. local-growth (distribution/segment)\n10. subscription (revenue model)\n11. conversion (success metric)\n12. per-location (pricing shape)\n\nThat's 12 keywords. Let me check if any are filler: \"app\", \"ai\", \"tool\", \"platform\" - none of these are present. Good.\n\nAll are lowercase and hyphenated where needed for multi-word concepts. Alphanumeric or hyphenated - yes.\n\nLet me prioritize the most discriminative ones:\n- medspa (essential target)\n- memberships (essential mechanism)\n- paid-ads (essential problem)\n- retention (essential outcome)\n- no-shows (critical feature)\n- consult-tracking (critical feature)\n- weekly-planner (unique workflow)\n- front-desk (unique user focus)\n- local-growth (go-to-market)\n- subscription (revenue model)\n- per-location (pricing)\n\nThat's 11. I could drop one or keep them all. The range is 5-12, so 11 is fine.\n\nLet me make sure they're all lowercase:\nmedspa, memberships, paid-ads, retention, no-shows, consult-tracking, weekly-planner, front-desk, local-growth, subscription, per-location\n\nWait, I should check if \"paid-ads\" is better than \"ad-campaigns\" or just \"ads\". The brief says \"paid social campaigns\" and \"ad spend\". \"paid-ads\" is a bit redundant but clear. \"ad-campaigns\" might be better. Let me think.\n\n\"ad-campaigns\" is more specific to the brief language. Let me use that instead of \"paid-ads\".\n\nAlso \"consult-tracking\" vs \"consultation-tracking\". The brief says \"Campaign-to-consult tracking\". So \"consult-tracking\" is more direct.\n\nLet me finalize the list:\n1. medspa\n2. memberships\n3. ad-campaigns\n4. retention\n5. no-shows\n6. consult-tracking\n7. weekly-planner\n8. front-desk\n9. local-growth\n10. subscription\n11. per-location\n\nThat's 11 keywords. Good.\n\nNow for the core_mechanic final version. Let me re-read the requirements: \"focus on the true commercial mechanism, target customer, and recurring revenue path\".\n\nMy draft: \"Per-location SaaS linking med spa paid ads to membership retention via a weekly front-desk planner for consults, no-shows, and conversion tracking.\"\n\nThis covers:\n- Commercial mechanism: SaaS linking paid ads to membership retention\n- Target customer: med spa (front-desk)\n- Recurring revenue path: Per-location SaaS (implies subscription)\n\nIt's concise (126 chars) and clear.\n\nAlternative: \"Per-location subscription connecting med spa ad campaigns to membership retention through a weekly front-desk planner.\"\n\nThat's shorter (108 chars) but loses some specificity about consults, no-shows, and conversion tracking which are key features.\n\nI think the longer version is better because it includes the key features that define the workflow.\n\nLet me do one more polish:\n\"Per-location SaaS linking med spa ad campaigns to membership retention via a weekly front-desk planner for consults, no-shows, and conversion tracking.\"\n\nCount: 124 characters. Perfect.\n\nActually, let me check the exact wording from the brief again:\n- \"paid social campaigns\" -> I can use \"ad-campaigns\" or \"paid-ads\". Let me use \"ad-campaigns\" to be more general than just paid social but keep it concise.\n- \"membership retention\" -> \"membership-retention\" could be a keyword, but I have \"retention\" already.\n\nLet me refine the core_mechanic one last time to be as tight as possible:\n\"Per-location SaaS linking med spa ad campaigns to membership retention via weekly front-desk planner for consults, no-shows, and conversion.\"\n\nCount: 115 characters. This is good. It captures all the key elements.\n\nFinal keywords list:\n- medspa\n- memberships\n- ad-campaigns\n- retention\n- no-shows\n- consult-tracking\n- weekly-planner\n- front-desk\n- local-growth\n- subscription\n- per-location\n\nWait, I should double-check the hyphenation rules. \"alphanumeric or hyphenated\" - so hyphens are allowed. Good.\n\nAll keywords are lowercase. Good.\n\nCount: 11 keywords, which is within 5-12 range. Good.\n\nLet me review the core_mechanic again for any filler words. \"SaaS\" is necessary here to indicate the model. \"linking\" is descriptive. \"via\" is a connector. \"for\" is a connector. These are not the filler terms to avoid (app, ai, tool, platform). So it's fine.\n\nThe core_mechanic is under 250 characters. Good.\n\nNow I need to output strict JSON only, no markdown fences.\n\n```json\n{\n  \"core_mechanic\": \"Per-location SaaS linking med spa ad campaigns to membership retention via weekly front-desk planner for consults, no-shows, and conversion.\",\n  \"keywords\": [\"medspa\",\"memberships\",\"ad-campaigns\",\"retention\",\"no-shows\",\"consult-tracking\",\"weekly-planner\",\"front-desk\",\"local-growth\",\"subscription\",\"per-location\"]\n}\n```\n\nThis looks correct. Let me verify the character count one more time:\n\"Per-location SaaS linking med spa ad campaigns to membership retention via weekly front-desk planner for consults, no-shows, and conversion.\"\nLet me count: P-e-r- -l-o-c-a-t-i-o-n- -S-a-a-S- -l-i-n-k-i-n-g- -m-e-d- -s-p-a- -a-d- -c-a-m-p-a-i-g-n-s- -t-o- -m-e-m-b-e-r-s-h-i-p- -r-e-t-e-n-t-i-o-n- -v-i-a- -w-e-e-k-l-y- -f-r-o-n-t- -d-e-s-k- -p-l-a-n-n-e-r- -f-o-r- -c-o-n-s-u-l-t-s- -n-o- -s-h-o-w-s- -a-n-d- -c-o-n-v-e-r-s-i-o-n-.\nThat's 115 characters. Perfect.\n\nKeywords are all lowercase and hyphenated appropriately. The list has 11 items, which is within the 5-12 range.\n\nThe JSON is valid. I should not include any markdown fences. ",
+          "reasoning_content": " The user wants me to act as an autonomous software agent evaluating a product brief and produce a DejaShip intent payload.\n\nThe requirements are:\n- `core_mechanic`: concise, under 250 characters\n- `keywords`: 5 to 12 lowercase keywords, alphanumeric or hyphenated\n- Focus on: true commercial mechanism, target customer, recurring revenue path\n- Avoid filler terms: `app`, `ai`, `tool`, `platform` unless genuinely discriminative\n- Prioritize signal from: target customer, problem, workflow, recurring revenue model, pricing shape, must-have features, operational constraints\n\nThe brief is about \"medspa-ad-offer-planner\".\n\nLet me break down the key elements:\n\n**Target customer**: \"Med spas running paid social campaigns, introductory offers, and recurring treatment memberships with tiny front-desk teams.\"\n\n**Problem**: \"Ad spend and intro offers create spikes of interest, but staff cannot tell which leads should convert into ongoing memberships or revisit sequences.\"\n\n**Workflow**: \"Tie campaigns, booked consultations, membership saves, and no-show follow-up into one planner for the weekly growth meeting.\"\n\n**Recurring revenue model**: \"Monthly subscription for local growth teams with optional multi-location rollups.\"\n\n**Pricing shape**: \"Per-location recurring fee with add-on for ad-account reporting depth.\"\n\n**Must-have features**:\n- Campaign-to-consult tracking\n- Membership conversion board\n- No-show and revisit reminders\n- Offer performance comparison\n\n**Constraints**:\n- Must connect paid acquisition to recurring treatment retention.\n- Needs weekly decision support instead of enterprise marketing dashboards.\n- Cannot rely on custom ad platform ETL to show value.\n\n**Success metric**: \"Better conversion from paid acquisition into recurring treatment memberships.\"\n\n**Seed keywords**: medspa, memberships, offers, ad-planning, no-shows, retention\n\n**Anti-goals**: Not a full medical record system, not targeting enterprise multi-brand chains first.\n\nNow I need to synthesize this into a `core_mechanic` and `keywords`.\n\n**Core_mechanic**: This should capture the essence of the commercial mechanism. It's about connecting paid ad campaigns to membership retention for med spas, specifically focusing on weekly planning and front-desk follow-up. It's a SaaS that helps small teams convert ad leads into recurring memberships.\n\nLet me draft the core_mechanic:\n\"Per-location SaaS that connects paid social campaigns to med spa membership retention via a weekly planner for front-desk follow-up and conversion tracking.\"\n\nLet me count characters: \"Per-location SaaS that connects paid social campaigns to med spa membership retention via a weekly planner for front-desk follow-up and conversion tracking.\"\nThat's 144 characters. Under 250, good.\n\nBut I should make it more concise and focused on the mechanism. Let me try again:\n\"Med spa SaaS linking paid ads to membership retention through a weekly planner that prioritizes front-desk follow-up for consultations, no-shows, and conversions.\"\n\nCount: 138 characters. Good.\n\nAnother version:\n\"Per-location subscription that ties med spa ad campaigns to membership conversion via weekly front-desk planner for consults, no-shows, and retention.\"\n\nCount: 128 characters. This is good and hits the key points: per-location subscription (pricing), med spa ad campaigns (target/problem), membership conversion (goal), weekly front-desk planner (workflow), consults/no-shows/retention (features).\n\nLet me refine it slightly to be more direct about the mechanism:\n\"Per-location SaaS linking med spa paid ads to membership retention via a weekly front-desk planner for consults, no-shows, and conversion tracking.\"\n\nCount: 126 characters. This is clear and concise.\n\n**Keywords**: I need 5-12 lowercase, alphanumeric or hyphenated keywords. They should focus on the commercial mechanism, target customer, and recurring revenue path. Avoid filler terms.\n\nFrom seed keywords: medspa, memberships, offers, ad-planning, no-shows, retention\n\nI should add more based on the brief:\n- medspa (or med-spa? seed has medspa, so keep that)\n- memberships\n- paid-ads (or ad-campaigns)\n- retention\n- no-shows\n- consult-tracking\n- weekly-planner\n- front-desk\n- local-growth\n- subscription\n- conversion\n- recurring-revenue\n\nLet me select the best ones, avoiding filler:\n1. medspa (target customer)\n2. memberships (core offering)\n3. paid-ads (problem area)\n4. retention (goal)\n5. no-shows (feature/problem)\n6. consult-tracking (feature)\n7. weekly-planner (workflow)\n8. front-desk (target user/constraint)\n9. local-growth (distribution/segment)\n10. subscription (revenue model)\n11. conversion (success metric)\n12. per-location (pricing shape)\n\nThat's 12 keywords. Let me check if any are filler: \"app\", \"ai\", \"tool\", \"platform\" - none of these are present. Good.\n\nAll are lowercase and hyphenated where needed for multi-word concepts. Alphanumeric or hyphenated - yes.\n\nLet me prioritize the most discriminative ones:\n- medspa (essential target)\n- memberships (essential mechanism)\n- paid-ads (essential problem)\n- retention (essential outcome)\n- no-shows (critical feature)\n- consult-tracking (critical feature)\n- weekly-planner (unique workflow)\n- front-desk (unique user focus)\n- local-growth (go-to-market)\n- subscription (revenue model)\n- per-location (pricing)\n\nThat's 11. I could drop one or keep them all. The range is 5-12, so 11 is fine.\n\nLet me make sure they're all lowercase:\nmedspa, memberships, paid-ads, retention, no-shows, consult-tracking, weekly-planner, front-desk, local-growth, subscription, per-location\n\nWait, I should check if \"paid-ads\" is better than \"ad-campaigns\" or just \"ads\". The brief says \"paid social campaigns\" and \"ad spend\". \"paid-ads\" is a bit redundant but clear. \"ad-campaigns\" might be better. Let me think.\n\n\"ad-campaigns\" is more specific to the brief language. Let me use that instead of \"paid-ads\".\n\nAlso \"consult-tracking\" vs \"consultation-tracking\". The brief says \"Campaign-to-consult tracking\". So \"consult-tracking\" is more direct.\n\nLet me finalize the list:\n1. medspa\n2. memberships\n3. ad-campaigns\n4. retention\n5. no-shows\n6. consult-tracking\n7. weekly-planner\n8. front-desk\n9. local-growth\n10. subscription\n11. per-location\n\nThat's 11 keywords. Good.\n\nNow for the core_mechanic final version. Let me re-read the requirements: \"focus on the true commercial mechanism, target customer, and recurring revenue path\".\n\nMy draft: \"Per-location SaaS linking med spa paid ads to membership retention via a weekly front-desk planner for consults, no-shows, and conversion tracking.\"\n\nThis covers:\n- Commercial mechanism: SaaS linking paid ads to membership retention\n- Target customer: med spa (front-desk)\n- Recurring revenue path: Per-location SaaS (implies subscription)\n\nIt's concise (126 chars) and clear.\n\nAlternative: \"Per-location subscription connecting med spa ad campaigns to membership retention through a weekly front-desk planner.\"\n\nThat's shorter (108 chars) but loses some specificity about consults, no-shows, and conversion tracking which are key features.\n\nI think the longer version is better because it includes the key features that define the workflow.\n\nLet me do one more polish:\n\"Per-location SaaS linking med spa ad campaigns to membership retention via a weekly front-desk planner for consults, no-shows, and conversion tracking.\"\n\nCount: 124 characters. Perfect.\n\nActually, let me check the exact wording from the brief again:\n- \"paid social campaigns\" -> I can use \"ad-campaigns\" or \"paid-ads\". Let me use \"ad-campaigns\" to be more general than just paid social but keep it concise.\n- \"membership retention\" -> \"membership-retention\" could be a keyword, but I have \"retention\" already.\n\nLet me refine the core_mechanic one last time to be as tight as possible:\n\"Per-location SaaS linking med spa ad campaigns to membership retention via weekly front-desk planner for consults, no-shows, and conversion.\"\n\nCount: 115 characters. This is good. It captures all the key elements.\n\nFinal keywords list:\n- medspa\n- memberships\n- ad-campaigns\n- retention\n- no-shows\n- consult-tracking\n- weekly-planner\n- front-desk\n- local-growth\n- subscription\n- per-location\n\nWait, I should double-check the hyphenation rules. \"alphanumeric or hyphenated\" - so hyphens are allowed. Good.\n\nAll keywords are lowercase. Good.\n\nCount: 11 keywords, which is within 5-12 range. Good.\n\nLet me review the core_mechanic again for any filler words. \"SaaS\" is necessary here to indicate the model. \"linking\" is descriptive. \"via\" is a connector. \"for\" is a connector. These are not the filler terms to avoid (app, ai, tool, platform). So it's fine.\n\nThe core_mechanic is under 250 characters. Good.\n\nNow I need to output strict JSON only, no markdown fences.\n\n```json\n{\n  \"core_mechanic\": \"Per-location SaaS linking med spa ad campaigns to membership retention via weekly front-desk planner for consults, no-shows, and conversion.\",\n  \"keywords\": [\"medspa\",\"memberships\",\"ad-campaigns\",\"retention\",\"no-shows\",\"consult-tracking\",\"weekly-planner\",\"front-desk\",\"local-growth\",\"subscription\",\"per-location\"]\n}\n```\n\nThis looks correct. Let me verify the character count one more time:\n\"Per-location SaaS linking med spa ad campaigns to membership retention via weekly front-desk planner for consults, no-shows, and conversion.\"\nLet me count: P-e-r- -l-o-c-a-t-i-o-n- -S-a-a-S- -l-i-n-k-i-n-g- -m-e-d- -s-p-a- -a-d- -c-a-m-p-a-i-g-n-s- -t-o- -m-e-m-b-e-r-s-h-i-p- -r-e-t-e-n-t-i-o-n- -v-i-a- -w-e-e-k-l-y- -f-r-o-n-t- -d-e-s-k- -p-l-a-n-n-e-r- -f-o-r- -c-o-n-s-u-l-t-s- -n-o- -s-h-o-w-s- -a-n-d- -c-o-n-v-e-r-s-i-o-n-.\nThat's 115 characters. Perfect.\n\nKeywords are all lowercase and hyphenated appropriately. The list has 11 items, which is within the 5-12 range.\n\nThe JSON is valid. I should not include any markdown fences. "
+        },
+        "stop_reason": 163586,
+        "token_ids": null
+      }
+    ],
+    "created": 1772442376,
+    "model": "moonshotai/kimi-k2-thinking",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2397,
+      "prompt_tokens": 695,
+      "total_tokens": 3092,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": " {\"core_mechanic\":\"Per-location SaaS linking med spa ad campaigns to membership retention via weekly front-desk planner for consults, no-shows, and conversion.\",\"keywords\":[\"medspa\",\"memberships\",\"ad-campaigns\",\"retention\",\"no-shows\",\"consult-tracking\",\"weekly-planner\",\"front-desk\",\"local-growth\",\"subscription\",\"per-location\"]}",
+  "llm_output": {
+    "core_mechanic": "Per-location SaaS linking med spa ad campaigns to membership retention via weekly front-desk planner for consults, no-shows, and conversion.",
+    "keywords": [
+      "medspa",
+      "memberships",
+      "ad-campaigns",
+      "retention",
+      "no-shows",
+      "consult-tracking",
+      "weekly-planner",
+      "front-desk",
+      "local-growth",
+      "subscription",
+      "per-location"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "medspa",
+      "memberships",
+      "ad-campaigns",
+      "retention",
+      "no-shows",
+      "consult-tracking",
+      "weekly-planner",
+      "front-desk",
+      "local-growth",
+      "subscription",
+      "per-location"
+    ],
+    "derived_keywords": [
+      "and",
+      "into",
+      "for",
+      "with",
+      "campaigns",
+      "membership",
+      "no-show",
+      "paid",
+      "revisit",
+      "treatment",
+      "conversion",
+      "med",
+      "acquisition",
+      "board",
+      "booked",
+      "but",
+      "campaign-to-consult",
+      "comparison",
+      "consultations",
+      "convert",
+      "create",
+      "follow-up",
+      "front-desk",
+      "interest",
+      "intro",
+      "introductory",
+      "leads",
+      "offer",
+      "one",
+      "ongoing",
+      "performance",
+      "planner",
+      "reminders",
+      "running",
+      "saves",
+      "sequences",
+      "should",
+      "social",
+      "spas",
+      "spend",
+      "spikes",
+      "staff",
+      "tell",
+      "the",
+      "tie",
+      "tiny",
+      "tracking",
+      "which",
+      "marketing",
+      "multi-location",
+      "optional",
+      "rollups",
+      "ad-account",
+      "add-on",
+      "better",
+      "connect",
+      "custom",
+      "dashboards",
+      "decision",
+      "depth",
+      "enterprise",
+      "etl",
+      "fee",
+      "from",
+      "instead",
+      "local-demand",
+      "must",
+      "needs",
+      "per-location",
+      "rely",
+      "show",
+      "support",
+      "value",
+      "agencies",
+      "communities",
+      "spa"
+    ],
+    "final_keywords": [
+      "medspa",
+      "memberships",
+      "ad-campaigns",
+      "retention",
+      "no-shows",
+      "consult-tracking",
+      "weekly-planner",
+      "front-desk",
+      "local-growth",
+      "subscription"
+    ],
+    "keyword_provenance": {
+      "medspa": [
+        "llm",
+        "seed_keywords"
+      ],
+      "memberships": [
+        "field:problem",
+        "field:success_metric",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "ad-campaigns": [
+        "llm"
+      ],
+      "retention": [
+        "field:constraints",
+        "llm",
+        "seed_keywords"
+      ],
+      "no-shows": [
+        "llm",
+        "seed_keywords"
+      ],
+      "consult-tracking": [
+        "llm"
+      ],
+      "weekly-planner": [
+        "llm"
+      ],
+      "front-desk": [
+        "field:target_customer",
+        "llm"
+      ],
+      "local-growth": [
+        "llm"
+      ],
+      "subscription": [
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Per-location SaaS linking med spa ad campaigns to membership retention via weekly front-desk planner for consults, no-shows, and conversion.",
+    "keywords": [
+      "medspa",
+      "memberships",
+      "ad-campaigns",
+      "retention",
+      "no-shows",
+      "consult-tracking",
+      "weekly-planner",
+      "front-desk",
+      "local-growth",
+      "subscription"
+    ]
+  },
+  "planned_resolution": "claim"
+}

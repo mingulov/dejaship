@@ -1,0 +1,254 @@
+{
+  "brief_id": "immigration-intake-reminders",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "qwen3-next-80b-a3b-instruct",
+    "model_name": "qwen/qwen3-next-80b-a3b-instruct",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "b00d59145d7beda2ec909b871001901426ceff09f77d1af80a157acf4dfb38d3",
+    "prompt_hash": "0200a057f29869e1661dbeb6cdce931801341a6ab40a7600fc70986a6a3749e7",
+    "generated_at": "2026-03-02T10:26:39.011389Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"immigration-intake-reminders\",\n  \"title\": \"Multilingual intake and case reminder workflow for immigration law firms\",\n  \"category\": \"legal-ops\",\n  \"target_customer\": \"Boutique immigration law firms handling many client documents, deadlines, and multilingual communication threads.\",\n  \"problem\": \"Cases slow down because clients miss document requests, paralegals resend the same reminders manually, and deadlines are tracked in fragmented spreadsheets.\",\n  \"workflow\": \"Structure intake packets, chase missing documents, and send multilingual reminder sequences tied to case stage and upcoming filing deadlines.\",\n  \"recurring_revenue_model\": \"Monthly subscription per firm with optional messaging volume tiers.\",\n  \"pricing_shape\": \"Seat-based subscription with add-on for high client-message volume.\",\n  \"distribution_channel\": \"Legal operations communities, immigration practice consultants, and referrals from practice-management specialists.\",\n  \"constraints\": [\n    \"Must support multilingual messaging and document chase workflows.\",\n    \"Needs clear stage-based views for lawyers and paralegals.\",\n    \"Should avoid pretending to be a complete case-management platform.\"\n  ],\n  \"must_have_features\": [\n    \"Intake packet tracker\",\n    \"Missing-document reminder flows\",\n    \"Deadline timeline\",\n    \"Multilingual communication templates\"\n  ],\n  \"seed_keywords\": [\n    \"immigration\",\n    \"intake\",\n    \"reminders\",\n    \"multilingual\",\n    \"deadlines\",\n    \"documents\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a full legal practice suite.\",\n    \"Do not start with large corporate law firms.\"\n  ],\n  \"success_metric\": \"Faster document collection and fewer filing delays caused by missed client follow-up.\",\n  \"prompt_rendered_brief\": \"This product is a multilingual intake and case reminder workflow for immigration law firms that handle document-heavy client matters. The day-to-day pain is not legal research; it is repeated follow-up for missing documents, deadline visibility, and keeping communication clear across languages and case stages. The software should help paralegals and lawyers see what is missing, what is due soon, and which reminder sequence should go out next. A recurring subscription fits because the operational burden repeats across every case and grows with firm volume. The workflow must stop short of becoming a full case-management platform and instead become the reminder and intake layer that removes repetitive admin work. The desired outcome is faster intake completion and fewer deadline risks caused by communication breakdowns.\\n\"\n}",
+  "raw_response": {
+    "id": "fa0ed65953d9496ebd369a8582ba1dff",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"core_mechanic\": \"Automated multilingual reminder sequences tied to case stages and filing deadlines, helping boutique immigration firms reduce document delays by automating follow-ups without becoming a full case management system.\",\n  \"keywords\": [\n    \"immigration\",\n    \"intake\",\n    \"reminders\",\n    \"multilingual\",\n    \"deadlines\",\n    \"documents\",\n    \"case-stages\",\n    \"paralegal\",\n    \"client-followup\",\n    \"document-chase\",\n    \"subscription\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": null
+        },
+        "matched_stop": 151645
+      }
+    ],
+    "created": 1772447198,
+    "model": "qwen/qwen3-next-80b-a3b-instruct",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 109,
+      "prompt_tokens": 695,
+      "total_tokens": 804,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "metadata": {
+      "weight_version": "default"
+    }
+  },
+  "response_text": "{\n  \"core_mechanic\": \"Automated multilingual reminder sequences tied to case stages and filing deadlines, helping boutique immigration firms reduce document delays by automating follow-ups without becoming a full case management system.\",\n  \"keywords\": [\n    \"immigration\",\n    \"intake\",\n    \"reminders\",\n    \"multilingual\",\n    \"deadlines\",\n    \"documents\",\n    \"case-stages\",\n    \"paralegal\",\n    \"client-followup\",\n    \"document-chase\",\n    \"subscription\"\n  ]\n}",
+  "llm_output": {
+    "core_mechanic": "Automated multilingual reminder sequences tied to case stages and filing deadlines, helping boutique immigration firms reduce document delays by automating follow-ups without becoming a full case management system.",
+    "keywords": [
+      "immigration",
+      "intake",
+      "reminders",
+      "multilingual",
+      "deadlines",
+      "documents",
+      "case-stages",
+      "paralegal",
+      "client-followup",
+      "document-chase",
+      "subscription"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "immigration",
+      "intake",
+      "reminders",
+      "multilingual",
+      "deadlines",
+      "documents",
+      "case-stages",
+      "paralegal",
+      "client-followup",
+      "document-chase",
+      "subscription"
+    ],
+    "derived_keywords": [
+      "and",
+      "communication",
+      "document",
+      "reminder",
+      "chase",
+      "client",
+      "filing",
+      "paralegals",
+      "messaging",
+      "volume",
+      "with",
+      "are",
+      "because",
+      "boutique",
+      "case",
+      "cases",
+      "deadline",
+      "down",
+      "flows",
+      "for",
+      "fragmented",
+      "handling",
+      "law",
+      "manually",
+      "many",
+      "miss",
+      "missing",
+      "missing-document",
+      "packet",
+      "packets",
+      "requests",
+      "resend",
+      "same",
+      "send",
+      "sequences",
+      "slow",
+      "spreadsheets",
+      "stage",
+      "structure",
+      "templates",
+      "the",
+      "threads",
+      "tied",
+      "timeline",
+      "tracked",
+      "tracker",
+      "upcoming",
+      "optional",
+      "tiers",
+      "add-on",
+      "avoid",
+      "case-management",
+      "caused",
+      "clear",
+      "client-message",
+      "collection",
+      "complete",
+      "delays",
+      "faster",
+      "fewer",
+      "follow-up",
+      "high",
+      "lawyers",
+      "legal-ops",
+      "missed",
+      "must",
+      "needs",
+      "pretending",
+      "seat-based",
+      "should",
+      "stage-based",
+      "support",
+      "views",
+      "communities",
+      "consultants",
+      "from",
+      "legal",
+      "operations",
+      "practice",
+      "practice-management",
+      "referrals",
+      "specialists"
+    ],
+    "final_keywords": [
+      "immigration",
+      "intake",
+      "reminders",
+      "multilingual",
+      "deadlines",
+      "documents",
+      "case-stages",
+      "paralegal",
+      "client-followup",
+      "document-chase"
+    ],
+    "keyword_provenance": {
+      "immigration": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "intake": [
+        "field:must_have_features",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "reminders": [
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "multilingual": [
+        "field:constraints",
+        "field:must_have_features",
+        "field:target_customer",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "deadlines": [
+        "field:problem",
+        "field:target_customer",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "documents": [
+        "field:target_customer",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "case-stages": [
+        "llm"
+      ],
+      "paralegal": [
+        "llm"
+      ],
+      "client-followup": [
+        "llm"
+      ],
+      "document-chase": [
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Automated multilingual reminder sequences tied to case stages and filing deadlines, helping boutique immigration firms reduce document delays by automating follow-ups without becoming a full case management system.",
+    "keywords": [
+      "immigration",
+      "intake",
+      "reminders",
+      "multilingual",
+      "deadlines",
+      "documents",
+      "case-stages",
+      "paralegal",
+      "client-followup",
+      "document-chase"
+    ]
+  },
+  "planned_resolution": "claim"
+}

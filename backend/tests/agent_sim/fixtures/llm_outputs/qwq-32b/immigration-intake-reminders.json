@@ -1,0 +1,237 @@
+{
+  "brief_id": "immigration-intake-reminders",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "qwq-32b",
+    "model_name": "qwen/qwq-32b",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "b00d59145d7beda2ec909b871001901426ceff09f77d1af80a157acf4dfb38d3",
+    "prompt_hash": "0200a057f29869e1661dbeb6cdce931801341a6ab40a7600fc70986a6a3749e7",
+    "generated_at": "2026-03-02T09:13:07.493605Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"immigration-intake-reminders\",\n  \"title\": \"Multilingual intake and case reminder workflow for immigration law firms\",\n  \"category\": \"legal-ops\",\n  \"target_customer\": \"Boutique immigration law firms handling many client documents, deadlines, and multilingual communication threads.\",\n  \"problem\": \"Cases slow down because clients miss document requests, paralegals resend the same reminders manually, and deadlines are tracked in fragmented spreadsheets.\",\n  \"workflow\": \"Structure intake packets, chase missing documents, and send multilingual reminder sequences tied to case stage and upcoming filing deadlines.\",\n  \"recurring_revenue_model\": \"Monthly subscription per firm with optional messaging volume tiers.\",\n  \"pricing_shape\": \"Seat-based subscription with add-on for high client-message volume.\",\n  \"distribution_channel\": \"Legal operations communities, immigration practice consultants, and referrals from practice-management specialists.\",\n  \"constraints\": [\n    \"Must support multilingual messaging and document chase workflows.\",\n    \"Needs clear stage-based views for lawyers and paralegals.\",\n    \"Should avoid pretending to be a complete case-management platform.\"\n  ],\n  \"must_have_features\": [\n    \"Intake packet tracker\",\n    \"Missing-document reminder flows\",\n    \"Deadline timeline\",\n    \"Multilingual communication templates\"\n  ],\n  \"seed_keywords\": [\n    \"immigration\",\n    \"intake\",\n    \"reminders\",\n    \"multilingual\",\n    \"deadlines\",\n    \"documents\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a full legal practice suite.\",\n    \"Do not start with large corporate law firms.\"\n  ],\n  \"success_metric\": \"Faster document collection and fewer filing delays caused by missed client follow-up.\",\n  \"prompt_rendered_brief\": \"This product is a multilingual intake and case reminder workflow for immigration law firms that handle document-heavy client matters. The day-to-day pain is not legal research; it is repeated follow-up for missing documents, deadline visibility, and keeping communication clear across languages and case stages. The software should help paralegals and lawyers see what is missing, what is due soon, and which reminder sequence should go out next. A recurring subscription fits because the operational burden repeats across every case and grows with firm volume. The workflow must stop short of becoming a full case-management platform and instead become the reminder and intake layer that removes repetitive admin work. The desired outcome is faster intake completion and fewer deadline risks caused by communication breakdowns.\\n\"\n}",
+  "raw_response": {
+    "id": "chat-7e46ae7b4f1946edac3eb6c4d28328d5",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "Okay, let's tackle this. The user wants me to create a DejaShip intent payload based on the provided product brief. The key points are the core_mechanic and keywords. \n\nFirst, the core_mechanic needs to be under 250 characters and focus on the commercial mechanism, target customer, and recurring revenue. The target customer is boutique immigration law firms dealing with lots of documents and multilingual communication. The problem is missed documents and manual reminders leading to delays. The workflow involves structured intake, chasing docs, and sending reminders tied to case stages and deadlines. The revenue model is a monthly subscription per firm with optional messaging tiers.\n\nSo, the core_mechanic should encapsulate the main function that solves the problem and fits the revenue model. Maybe something like automating reminders and tracking to reduce delays, with subscription pricing based on seats and message volume. \n\nNow for the keywords. They need to be 5-12 lowercase, alphanumeric or hyphenated, avoiding filler terms. The seed keywords include immigration, intake, reminders, multilingual, deadlines, documents. But I should also consider the target customer (boutique firms), recurring revenue (subscription), and features like document tracking and stage-based views. \n\nPossible keywords: immigration-law, intake-tracker, document-chase, deadline-reminders, multilingual-templates, subscription-based, paralegal-tools. Wait, \"paralegal\" might be okay. Also, \"stage-based\" could be a keyword. Need to check if they fit the requirements. Avoid \"app\" or \"tool\" unless necessary. \n\nWait, the must-have features include intake packet tracker, missing-document reminders, deadline timeline, multilingual templates. So maybe \"intake-packet\", \"deadline-timeline\", but those might be too specific. The keywords should be broader but still precise. \n\nLooking at the anti-goals, they don't want to be a full platform, so terms like \"case-management\" should be excluded. Focus on the specific functions: reminders, intake, multilingual, deadlines, documents. \n\nPutting it all together, the keywords could be: immigration, intake, document-chase, deadline-reminders, multilingual-templates, subscription-based, boutique-law-firms, stage-based. That's 8 keywords. Let me count again: immigration, intake, document-chase, deadline-reminders, multilingual-templates, subscription-based, boutique-law-firms, stage-based. Eight, which is within 5-12. \n\nWait, \"boutique-law-firms\" is a bit long but acceptable. Alternatively, maybe \"boutique-law\" or \"law-firms\". Hmm. The target customer is boutique immigration law firms, so \"boutique-law-firms\" is accurate. \n\nCore_mechanic: \"Automates multilingual document tracking and deadline-driven reminders for immigration law firms, with subscription pricing scaling by paralegal seats and client message volume.\" Let me check the character count. That's 165 characters. Good. It mentions the automation, multilingual, document tracking, reminders, subscription model, scaling with seats and message volume. That hits the target customer (law firms), problem (document tracking and reminders), and revenue (subscription based on seats and volume). \n\nI think that works. Let me double-check the requirements. Core_mechanic is concise, under 250. Keywords are all lowercase, alphanumeric or hyphenated, no filler terms. The keywords include the main elements: immigration, intake, document-chase, deadlines, multilingual, subscription model, target customer (boutique law firms), and stage-based workflow. That should cover it.\n</think>\n\n{\n  \"core_mechanic\": \"Automates multilingual document tracking and deadline-driven reminders for immigration law firms, with subscription pricing scaling by paralegal seats and client message volume.\",\n  \"keywords\": [\n    \"immigration\",\n    \"intake\",\n    \"document-chase\",\n    \"deadline-reminders\",\n    \"multilingual-templates\",\n    \"subscription-based\",\n    \"boutique-law-firms\",\n    \"stage-based\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772442758,
+    "model": "qwen/qwq-32b",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 846,
+      "prompt_tokens": 697,
+      "total_tokens": 1543,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null
+  },
+  "response_text": "Okay, let's tackle this. The user wants me to create a DejaShip intent payload based on the provided product brief. The key points are the core_mechanic and keywords. \n\nFirst, the core_mechanic needs to be under 250 characters and focus on the commercial mechanism, target customer, and recurring revenue. The target customer is boutique immigration law firms dealing with lots of documents and multilingual communication. The problem is missed documents and manual reminders leading to delays. The workflow involves structured intake, chasing docs, and sending reminders tied to case stages and deadlines. The revenue model is a monthly subscription per firm with optional messaging tiers.\n\nSo, the core_mechanic should encapsulate the main function that solves the problem and fits the revenue model. Maybe something like automating reminders and tracking to reduce delays, with subscription pricing based on seats and message volume. \n\nNow for the keywords. They need to be 5-12 lowercase, alphanumeric or hyphenated, avoiding filler terms. The seed keywords include immigration, intake, reminders, multilingual, deadlines, documents. But I should also consider the target customer (boutique firms), recurring revenue (subscription), and features like document tracking and stage-based views. \n\nPossible keywords: immigration-law, intake-tracker, document-chase, deadline-reminders, multilingual-templates, subscription-based, paralegal-tools. Wait, \"paralegal\" might be okay. Also, \"stage-based\" could be a keyword. Need to check if they fit the requirements. Avoid \"app\" or \"tool\" unless necessary. \n\nWait, the must-have features include intake packet tracker, missing-document reminders, deadline timeline, multilingual templates. So maybe \"intake-packet\", \"deadline-timeline\", but those might be too specific. The keywords should be broader but still precise. \n\nLooking at the anti-goals, they don't want to be a full platform, so terms like \"case-management\" should be excluded. Focus on the specific functions: reminders, intake, multilingual, deadlines, documents. \n\nPutting it all together, the keywords could be: immigration, intake, document-chase, deadline-reminders, multilingual-templates, subscription-based, boutique-law-firms, stage-based. That's 8 keywords. Let me count again: immigration, intake, document-chase, deadline-reminders, multilingual-templates, subscription-based, boutique-law-firms, stage-based. Eight, which is within 5-12. \n\nWait, \"boutique-law-firms\" is a bit long but acceptable. Alternatively, maybe \"boutique-law\" or \"law-firms\". Hmm. The target customer is boutique immigration law firms, so \"boutique-law-firms\" is accurate. \n\nCore_mechanic: \"Automates multilingual document tracking and deadline-driven reminders for immigration law firms, with subscription pricing scaling by paralegal seats and client message volume.\" Let me check the character count. That's 165 characters. Good. It mentions the automation, multilingual, document tracking, reminders, subscription model, scaling with seats and message volume. That hits the target customer (law firms), problem (document tracking and reminders), and revenue (subscription based on seats and volume). \n\nI think that works. Let me double-check the requirements. Core_mechanic is concise, under 250. Keywords are all lowercase, alphanumeric or hyphenated, no filler terms. The keywords include the main elements: immigration, intake, document-chase, deadlines, multilingual, subscription model, target customer (boutique law firms), and stage-based workflow. That should cover it.\n</think>\n\n{\n  \"core_mechanic\": \"Automates multilingual document tracking and deadline-driven reminders for immigration law firms, with subscription pricing scaling by paralegal seats and client message volume.\",\n  \"keywords\": [\n    \"immigration\",\n    \"intake\",\n    \"document-chase\",\n    \"deadline-reminders\",\n    \"multilingual-templates\",\n    \"subscription-based\",\n    \"boutique-law-firms\",\n    \"stage-based\"\n  ]\n}",
+  "llm_output": {
+    "core_mechanic": "Automates multilingual document tracking and deadline-driven reminders for immigration law firms, with subscription pricing scaling by paralegal seats and client message volume.",
+    "keywords": [
+      "immigration",
+      "intake",
+      "document-chase",
+      "deadline-reminders",
+      "multilingual-templates",
+      "subscription-based",
+      "boutique-law-firms",
+      "stage-based"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "immigration",
+      "intake",
+      "document-chase",
+      "deadline-reminders",
+      "multilingual-templates",
+      "subscription-based",
+      "boutique-law-firms",
+      "stage-based"
+    ],
+    "derived_keywords": [
+      "and",
+      "communication",
+      "document",
+      "reminder",
+      "chase",
+      "client",
+      "filing",
+      "paralegals",
+      "messaging",
+      "volume",
+      "with",
+      "are",
+      "because",
+      "boutique",
+      "case",
+      "cases",
+      "deadline",
+      "down",
+      "flows",
+      "for",
+      "fragmented",
+      "handling",
+      "law",
+      "manually",
+      "many",
+      "miss",
+      "missing",
+      "missing-document",
+      "packet",
+      "packets",
+      "requests",
+      "resend",
+      "same",
+      "send",
+      "sequences",
+      "slow",
+      "spreadsheets",
+      "stage",
+      "structure",
+      "templates",
+      "the",
+      "threads",
+      "tied",
+      "timeline",
+      "tracked",
+      "tracker",
+      "upcoming",
+      "optional",
+      "tiers",
+      "add-on",
+      "avoid",
+      "case-management",
+      "caused",
+      "clear",
+      "client-message",
+      "collection",
+      "complete",
+      "delays",
+      "faster",
+      "fewer",
+      "follow-up",
+      "high",
+      "lawyers",
+      "legal-ops",
+      "missed",
+      "must",
+      "needs",
+      "pretending",
+      "seat-based",
+      "should",
+      "stage-based",
+      "support",
+      "views",
+      "communities",
+      "consultants",
+      "from",
+      "legal",
+      "operations",
+      "practice",
+      "practice-management",
+      "referrals",
+      "specialists"
+    ],
+    "final_keywords": [
+      "immigration",
+      "intake",
+      "document-chase",
+      "deadline-reminders",
+      "multilingual-templates",
+      "subscription-based",
+      "boutique-law-firms",
+      "stage-based",
+      "reminders",
+      "multilingual"
+    ],
+    "keyword_provenance": {
+      "immigration": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "intake": [
+        "field:must_have_features",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "document-chase": [
+        "llm"
+      ],
+      "deadline-reminders": [
+        "llm"
+      ],
+      "multilingual-templates": [
+        "llm"
+      ],
+      "subscription-based": [
+        "llm"
+      ],
+      "boutique-law-firms": [
+        "llm"
+      ],
+      "stage-based": [
+        "field:constraints",
+        "llm"
+      ],
+      "reminders": [
+        "field:problem",
+        "seed_keywords"
+      ],
+      "multilingual": [
+        "field:constraints",
+        "field:must_have_features",
+        "field:target_customer",
+        "field:workflow",
+        "seed_keywords"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Automates multilingual document tracking and deadline-driven reminders for immigration law firms, with subscription pricing scaling by paralegal seats and client message volume.",
+    "keywords": [
+      "immigration",
+      "intake",
+      "document-chase",
+      "deadline-reminders",
+      "multilingual-templates",
+      "subscription-based",
+      "boutique-law-firms",
+      "stage-based",
+      "reminders",
+      "multilingual"
+    ]
+  },
+  "planned_resolution": "claim"
+}

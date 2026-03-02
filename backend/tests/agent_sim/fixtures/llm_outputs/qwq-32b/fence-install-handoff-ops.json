@@ -1,0 +1,233 @@
+{
+  "brief_id": "fence-install-handoff-ops",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "qwq-32b",
+    "model_name": "qwen/qwq-32b",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "ced836edf872d64f45632f45ccec667afe946189c99fd092cc61348ffb34c1f1",
+    "prompt_hash": "15579606149ec282b4b8e47bd4123ea607b718e5408d64576818bff6a8faa71e",
+    "generated_at": "2026-03-02T10:15:13.231847Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"fence-install-handoff-ops\",\n  \"title\": \"Quote-to-install handoff and scheduling readiness for fence contractors\",\n  \"category\": \"construction-ops\",\n  \"target_customer\": \"Small fence contractors juggling estimates, permits, materials, and crew scheduling across residential projects.\",\n  \"problem\": \"Jobs slip after the sale because material readiness, permit status, and customer approvals are scattered across estimator notes.\",\n  \"workflow\": \"Turn accepted quotes into a visible handoff board that shows readiness blockers before the crew calendar is committed.\",\n  \"recurring_revenue_model\": \"Monthly subscription for owner-led contractors managing a steady project pipeline.\",\n  \"pricing_shape\": \"Base platform fee with add-on for multiple crews or estimators.\",\n  \"distribution_channel\": \"Contractor communities, local implementation consultants, and construction accountants.\",\n  \"constraints\": [\n    \"Must support owner-operator firms with messy estimate-to-install handoffs.\",\n    \"Needs permit and material blocker visibility without becoming an ERP.\",\n    \"Cannot depend on municipal integrations to be useful.\"\n  ],\n  \"must_have_features\": [\n    \"Quote acceptance to install board\",\n    \"Material readiness checklist\",\n    \"Permit blocker tracker\",\n    \"Crew scheduling handoff notes\"\n  ],\n  \"seed_keywords\": [\n    \"fence-contractors\",\n    \"handoff\",\n    \"permits\",\n    \"materials\",\n    \"scheduling\",\n    \"crews\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a construction ERP.\",\n    \"Do not target national home builders first.\"\n  ],\n  \"success_metric\": \"More installs start on time after a quote is accepted.\",\n  \"prompt_rendered_brief\": \"This product is a quote-to-install handoff and scheduling readiness system for fence contractors that close work quickly but struggle to coordinate the next operational steps. Once a proposal is accepted, crews still need permits, material availability, and customer approvals, yet those blockers are usually buried inside estimator notes and text threads. The software should turn each accepted quote into a visible readiness board so owners know when the crew calendar is actually safe to lock. A recurring SaaS model makes sense because the same handoff problem repeats for every project in a busy contractor business. The product also sits near adjacent field-service and construction workflows, which makes it valuable for overlap testing later. The benefit should be fewer schedule slips and cleaner coordination between estimators, office staff, and crews.\\n\"\n}",
+  "raw_response": {
+    "id": "chat-50564a403fd445b692ff8b1705962de2",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "Okay, let's tackle this. The user wants a DejaShip intent payload based on the product brief provided. The key here is to extract the core mechanic and keywords following their strict guidelines.\n\nFirst, the core_mechanic needs to be under 250 characters and focus on the commercial mechanism, target customer, and recurring revenue. The target customer is small fence contractors dealing with handoffs from quotes to installation. The problem is that after a sale, they face delays due to scattered info on materials, permits, etc. The workflow involves a handoff board that shows readiness before scheduling. The revenue model is a monthly subscription for owner-led contractors. \n\nSo, the core mechanic should encapsulate turning quotes into a readiness board to prevent delays, targeting those contractors, and the subscription model. Let me phrase that concisely.\n\nFor keywords, they need to be 5-12 lowercase, alphanumeric or hyphenated, avoiding filler terms. The seed keywords include fence-contractors, handoff, permits, materials, scheduling, crews. But I should also consider the problem areas and the solution. The must-have features are quote acceptance to install board, material checklist, permit tracker, crew notes. The constraints mention avoiding ERP and municipal integrations. \n\nSo combining the target customer (fence-contractors), the main actions (handoff, scheduling-readiness), blockers (permits, materials), and the recurring aspect (monthly-subscription). Maybe include \"owner-led\" as a keyword since the revenue model targets them. Also \"crew-scheduling\" instead of just crews? Wait, the seed has \"scheduling\" and \"crews\". Let me check the requirements again. Keywords must be discriminative, so maybe \"owner-led\" is better than \"crews\". Also \"monthly-subscription\" as part of the revenue model. But the user said to focus on commercial mechanism, target customer, and recurring revenue. \n\nWait, the anti-goals say not to become an ERP, so we shouldn't include terms like that. The keywords should be from the problem, workflow, and revenue. Let me list possible keywords: fence-contractors, handoff, permits, materials, scheduling, crew-scheduling, readiness-board, owner-led, monthly-subscription. But need to keep it between 5-12. The seed gives six, but maybe add a couple more from the must-haves. The permit blocker tracker could be \"permit-blockers\", but \"permits\" is already there. Maybe \"material-readiness\" instead of materials? Or stick to the seed's terms. The core mechanic mentions \"readiness board\" so including \"readiness-board\" as a keyword might be good. Also \"owner-led\" to target the customer. Let me count: fence-contractors, handoff, permits, materials, scheduling, crew-scheduling, readiness-board, owner-led, monthly-subscription. That's nine. Maybe trim to 8? Or check if some can be combined. Alternatively, \"monthly-subscription\" might be redundant if the revenue model is covered by the core mechanic. The keywords should be concise. Let me see the example. The user's example in the prompt might have similar. Let me finalize:\n\nCore mechanic: \"Transform accepted quotes into a visibility-driven readiness board for fence contractors, ensuring material, permit, and approval status is coordinated before crew scheduling, with a monthly subscription model for recurring project pipelines.\"\n\nKeywords: fence-contractors, handoff, permits, materials, scheduling, readiness-board, owner-led, monthly-subscription. That's eight, which fits the 5-12 requirement. \"Crew-scheduling\" could be included but maybe \"scheduling\" is sufficient. Alternatively, \"crew-notes\" but that's a feature. The must-have features include crew scheduling handoff notes, but the keyword should be broader. I think the selected keywords capture the main points without filler.\n</think>\n\n{\n  \"core_mechanic\": \"Transform accepted quotes into a visibility-driven readiness board for fence contractors, ensuring material, permit, and approval status is coordinated before crew scheduling, with a monthly subscription model for recurring project pipelines.\",\n  \"keywords\": [\n    \"fence-contractors\",\n    \"handoff\",\n    \"permits\",\n    \"materials\",\n    \"scheduling\",\n    \"readiness-board\",\n    \"owner-led\",\n    \"monthly-subscription\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772446483,
+    "model": "qwen/qwq-32b",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 900,
+      "prompt_tokens": 692,
+      "total_tokens": 1592,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null
+  },
+  "response_text": "Okay, let's tackle this. The user wants a DejaShip intent payload based on the product brief provided. The key here is to extract the core mechanic and keywords following their strict guidelines.\n\nFirst, the core_mechanic needs to be under 250 characters and focus on the commercial mechanism, target customer, and recurring revenue. The target customer is small fence contractors dealing with handoffs from quotes to installation. The problem is that after a sale, they face delays due to scattered info on materials, permits, etc. The workflow involves a handoff board that shows readiness before scheduling. The revenue model is a monthly subscription for owner-led contractors. \n\nSo, the core mechanic should encapsulate turning quotes into a readiness board to prevent delays, targeting those contractors, and the subscription model. Let me phrase that concisely.\n\nFor keywords, they need to be 5-12 lowercase, alphanumeric or hyphenated, avoiding filler terms. The seed keywords include fence-contractors, handoff, permits, materials, scheduling, crews. But I should also consider the problem areas and the solution. The must-have features are quote acceptance to install board, material checklist, permit tracker, crew notes. The constraints mention avoiding ERP and municipal integrations. \n\nSo combining the target customer (fence-contractors), the main actions (handoff, scheduling-readiness), blockers (permits, materials), and the recurring aspect (monthly-subscription). Maybe include \"owner-led\" as a keyword since the revenue model targets them. Also \"crew-scheduling\" instead of just crews? Wait, the seed has \"scheduling\" and \"crews\". Let me check the requirements again. Keywords must be discriminative, so maybe \"owner-led\" is better than \"crews\". Also \"monthly-subscription\" as part of the revenue model. But the user said to focus on commercial mechanism, target customer, and recurring revenue. \n\nWait, the anti-goals say not to become an ERP, so we shouldn't include terms like that. The keywords should be from the problem, workflow, and revenue. Let me list possible keywords: fence-contractors, handoff, permits, materials, scheduling, crew-scheduling, readiness-board, owner-led, monthly-subscription. But need to keep it between 5-12. The seed gives six, but maybe add a couple more from the must-haves. The permit blocker tracker could be \"permit-blockers\", but \"permits\" is already there. Maybe \"material-readiness\" instead of materials? Or stick to the seed's terms. The core mechanic mentions \"readiness board\" so including \"readiness-board\" as a keyword might be good. Also \"owner-led\" to target the customer. Let me count: fence-contractors, handoff, permits, materials, scheduling, crew-scheduling, readiness-board, owner-led, monthly-subscription. That's nine. Maybe trim to 8? Or check if some can be combined. Alternatively, \"monthly-subscription\" might be redundant if the revenue model is covered by the core mechanic. The keywords should be concise. Let me see the example. The user's example in the prompt might have similar. Let me finalize:\n\nCore mechanic: \"Transform accepted quotes into a visibility-driven readiness board for fence contractors, ensuring material, permit, and approval status is coordinated before crew scheduling, with a monthly subscription model for recurring project pipelines.\"\n\nKeywords: fence-contractors, handoff, permits, materials, scheduling, readiness-board, owner-led, monthly-subscription. That's eight, which fits the 5-12 requirement. \"Crew-scheduling\" could be included but maybe \"scheduling\" is sufficient. Alternatively, \"crew-notes\" but that's a feature. The must-have features include crew scheduling handoff notes, but the keyword should be broader. I think the selected keywords capture the main points without filler.\n</think>\n\n{\n  \"core_mechanic\": \"Transform accepted quotes into a visibility-driven readiness board for fence contractors, ensuring material, permit, and approval status is coordinated before crew scheduling, with a monthly subscription model for recurring project pipelines.\",\n  \"keywords\": [\n    \"fence-contractors\",\n    \"handoff\",\n    \"permits\",\n    \"materials\",\n    \"scheduling\",\n    \"readiness-board\",\n    \"owner-led\",\n    \"monthly-subscription\"\n  ]\n}",
+  "llm_output": {
+    "core_mechanic": "Transform accepted quotes into a visibility-driven readiness board for fence contractors, ensuring material, permit, and approval status is coordinated before crew scheduling, with a monthly subscription model for recurring project pipelines.",
+    "keywords": [
+      "fence-contractors",
+      "handoff",
+      "permits",
+      "materials",
+      "scheduling",
+      "readiness-board",
+      "owner-led",
+      "monthly-subscription"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "fence-contractors",
+      "handoff",
+      "permits",
+      "materials",
+      "scheduling",
+      "readiness-board",
+      "owner-led",
+      "monthly-subscription"
+    ],
+    "derived_keywords": [
+      "crew",
+      "readiness",
+      "and",
+      "material",
+      "permit",
+      "across",
+      "board",
+      "notes",
+      "the",
+      "contractors",
+      "accepted",
+      "blocker",
+      "quote",
+      "for",
+      "acceptance",
+      "approvals",
+      "are",
+      "because",
+      "blockers",
+      "calendar",
+      "checklist",
+      "committed",
+      "estimates",
+      "estimator",
+      "fence",
+      "install",
+      "into",
+      "jobs",
+      "juggling",
+      "quotes",
+      "residential",
+      "sale",
+      "scattered",
+      "shows",
+      "slip",
+      "status",
+      "that",
+      "tracker",
+      "turn",
+      "visible",
+      "with",
+      "managing",
+      "owner-led",
+      "pipeline",
+      "project",
+      "steady",
+      "add-on",
+      "becoming",
+      "construction-ops",
+      "depend",
+      "erp",
+      "estimate-to-install",
+      "estimators",
+      "fee",
+      "handoffs",
+      "installs",
+      "integrations",
+      "messy",
+      "more",
+      "municipal",
+      "must",
+      "needs",
+      "owner-operator",
+      "start",
+      "support",
+      "time",
+      "useful",
+      "visibility",
+      "without",
+      "accountants",
+      "communities",
+      "construction",
+      "consultants",
+      "contractor",
+      "implementation"
+    ],
+    "final_keywords": [
+      "fence-contractors",
+      "handoff",
+      "permits",
+      "materials",
+      "scheduling",
+      "readiness-board",
+      "owner-led",
+      "monthly-subscription",
+      "crews",
+      "crew"
+    ],
+    "keyword_provenance": {
+      "fence-contractors": [
+        "llm",
+        "seed_keywords"
+      ],
+      "handoff": [
+        "field:must_have_features",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "permits": [
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "materials": [
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "scheduling": [
+        "field:must_have_features",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "readiness-board": [
+        "llm"
+      ],
+      "owner-led": [
+        "field:recurring_revenue_model",
+        "llm"
+      ],
+      "monthly-subscription": [
+        "llm"
+      ],
+      "crews": [
+        "field:pricing_shape",
+        "seed_keywords"
+      ],
+      "crew": [
+        "field:must_have_features",
+        "field:target_customer",
+        "field:workflow"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Transform accepted quotes into a visibility-driven readiness board for fence contractors, ensuring material, permit, and approval status is coordinated before crew scheduling, with a monthly subscription model for recurring project pipelines.",
+    "keywords": [
+      "fence-contractors",
+      "handoff",
+      "permits",
+      "materials",
+      "scheduling",
+      "readiness-board",
+      "owner-led",
+      "monthly-subscription",
+      "crews",
+      "crew"
+    ]
+  },
+  "planned_resolution": "claim"
+}

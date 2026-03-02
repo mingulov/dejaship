@@ -1,0 +1,233 @@
+{
+  "brief_id": "solar-permit-inspection-desk",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "kimi-k2-thinking",
+    "model_name": "moonshotai/kimi-k2-thinking",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "84e30b397f27cb0332b3b0ee75e2b4c8e3aaa8e720ffde68b2df284e14ff1c25",
+    "prompt_hash": "65396aa09bbad63f286001da80896f735021e393508c2957a218a77bfc06f0e6",
+    "generated_at": "2026-03-02T09:01:38.384401Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"solar-permit-inspection-desk\",\n  \"title\": \"Permit, inspection, and milestone desk for residential solar installers\",\n  \"category\": \"energy-ops\",\n  \"target_customer\": \"Residential solar installers coordinating permit packets, utility approvals, and inspection milestones across municipalities.\",\n  \"problem\": \"Projects stall because permit requirements and inspection status updates are tracked in inconsistent project notes instead of a visible desk.\",\n  \"workflow\": \"Standardize jurisdiction checklists, track inspection progress, and surface blockers before installation crews or customers are rescheduled.\",\n  \"recurring_revenue_model\": \"Recurring SaaS tied to active project volume for regional installers.\",\n  \"pricing_shape\": \"Monthly platform fee plus project-volume tiers.\",\n  \"distribution_channel\": \"Solar installer operators, implementation consultants, and local clean-energy networks.\",\n  \"constraints\": [\n    \"Must account for jurisdiction-specific steps.\",\n    \"Needs operational visibility for permit coordinators and install managers.\",\n    \"Cannot require replacing the CRM used for lead generation.\"\n  ],\n  \"must_have_features\": [\n    \"Jurisdiction checklist templates\",\n    \"Inspection milestone board\",\n    \"Blocker escalation queue\",\n    \"Utility approval tracking\"\n  ],\n  \"seed_keywords\": [\n    \"solar\",\n    \"permits\",\n    \"inspections\",\n    \"utility-approval\",\n    \"milestones\",\n    \"installers\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a design studio for panels.\",\n    \"Do not focus on utility-scale projects.\"\n  ],\n  \"success_metric\": \"Faster project throughput with fewer preventable schedule slips.\",\n  \"prompt_rendered_brief\": \"This product is a permit, inspection, and milestone desk for residential solar installers that operate across multiple municipalities. The team already has a CRM for sales, but once a deal closes, permit packets, utility approvals, and inspection status updates become a fragile coordination problem spread across notes and inboxes. The software should standardize local checklists, highlight project blockers, and tell operations staff what needs attention before crews or homeowners are rescheduled. The business model is recurring SaaS because installers manage a constant flow of active projects and pay for smoother throughput. The experience must feel operational, jurisdiction-aware, and practical for permit coordinators who live in email and spreadsheets. Success means fewer projects stalling for administrative reasons and better schedule reliability for installation teams.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-a93b7824af418e7e",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": " {\n  \"core_mechanic\": \"Recurring SaaS for residential solar installers to coordinate jurisdiction-specific permits, inspections, and utility approvals via milestone boards and blocker queues, priced by active project volume.\",\n  \"keywords\": [\n    \"solar-installers\",\n    \"permit-coordination\",\n    \"inspection-tracking\",\n    \"utility-approval\",\n    \"milestone-board\",\n    \"blocker-queue\",\n    \"jurisdiction-templates\",\n    \"project-volume-pricing\",\n    \"recurring-saas\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [],
+          "reasoning": " The user wants me to act as an autonomous software agent evaluating a product brief and produce a DejaShip intent payload. The requirements are:\n\n1. Return a concise `core_mechanic` under 250 characters\n2. Return 5 to 12 lowercase keywords\n3. Keywords must be alphanumeric or hyphenated\n4. Focus on the true commercial mechanism, target customer, and recurring revenue path\n5. Avoid filler terms like `app`, `ai`, `tool`, or `platform` unless genuinely discriminative\n\nI need to prioritize signal from:\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nThe output must be strict JSON with `core_mechanic` and `keywords` fields.\n\nLet me analyze the brief:\n\n**Target Customer**: \"Residential solar installers coordinating permit packets, utility approvals, and inspection milestones across municipalities.\"\n\n**Problem**: \"Projects stall because permit requirements and inspection status updates are tracked in inconsistent project notes instead of a visible desk.\"\n\n**Workflow**: \"Standardize jurisdiction checklists, track inspection progress, and surface blockers before installation crews or customers are rescheduled.\"\n\n**Recurring Revenue Model**: \"Recurring SaaS tied to active project volume for regional installers.\"\n\n**Pricing Shape**: \"Monthly platform fee plus project-volume tiers.\"\n\n**Must-have Features**:\n- Jurisdiction checklist templates\n- Inspection milestone board\n- Blocker escalation queue\n- Utility approval tracking\n\n**Constraints**:\n- Must account for jurisdiction-specific steps\n- Needs operational visibility for permit coordinators and install managers\n- Cannot require replacing the CRM used for lead generation\n\n**Seed Keywords**: solar, permits, inspections, utility-approval, milestones, installers\n\nNow I need to craft the `core_mechanic`:\n\nThe core mechanism is about operational coordination for solar installers. It's a SaaS product that provides a \"desk\" (board/queue) for managing permits, inspections, and milestones across jurisdictions. The key is that it's volume-based recurring revenue tied to active projects.\n\nLet me think about the essence: It's a workflow management system specifically for solar installation operations, focusing on permit and inspection coordination across multiple jurisdictions, with a recurring SaaS model based on project volume.\n\nI need to keep it under 250 characters. Let me try:\n\n\"Recurring SaaS for residential solar installers to coordinate jurisdiction-specific permits, inspections, and utility approvals via milestone boards and blocker queues, priced by active project volume.\"\n\nLet me count: 175 characters. That's good.\n\nNow for keywords. I need 5-12 lowercase, alphanumeric or hyphenated keywords. I should avoid filler terms.\n\nFrom seed keywords: solar, permits, inspections, utility-approval, milestones, installers\n\nI can expand based on the brief:\n- solar-installers (more specific)\n- permit-coordination\n- inspection-tracking\n- utility-approvals\n- milestone-board\n- blocker-escalation\n- jurisdiction-checklists\n- project-volume\n- recurring-saas\n- ops-workflow\n\nLet me select the most discriminative ones that capture the core mechanism:\n\n1. solar-installers (target customer)\n2. permit-coordination (core function)\n3. inspection-tracking (core function)\n4. utility-approvals (core function)\n5. milestone-board (key feature)\n6. blocker-escalation (key feature)\n7. jurisdiction-aware (constraint/feature)\n8. project-volume (pricing model)\n9. recurring-saas (revenue model)\n\nThat's 9 keywords. Let me check if they meet the criteria:\n- All lowercase: yes\n- Alphanumeric or hyphenated: yes\n- No filler terms: yes (app, ai, tool, platform are not used)\n- Focus on commercial mechanism, target customer, recurring revenue: yes\n\nLet me refine them slightly to be more precise:\n\n- solar-installers\n- permit-coordination\n- inspection-tracking\n- utility-approval\n- milestone-board\n- blocker-queue\n- jurisdiction-templates\n- project-volume-pricing\n- recurring-saas\n\nThat's 9 keywords. They capture:\n- Target customer: solar-installers\n- Problem/Workflow: permit-coordination, inspection-tracking, utility-approval, milestone-board, blocker-queue\n- Must-have features: jurisdiction-templates (from jurisdiction checklist templates)\n- Recurring revenue/pricing: recurring-saas, project-volume-pricing\n\nThis seems good. Let me make sure they're all under 250 characters total (they are individual keywords, so this is fine).\n\nFinal check on core_mechanic: \"Recurring SaaS for residential solar installers to coordinate jurisdiction-specific permits, inspections, and utility approvals via milestone boards and blocker queues, priced by active project volume.\"\n\nCount: 175 characters. Under 250. Good.\n\nIt captures:\n- Recurring revenue model: \"Recurring SaaS\"\n- Target customer: \"residential solar installers\"\n- Problem/Workflow: \"coordinate jurisdiction-specific permits, inspections, and utility approvals\"\n- Must-have features: \"milestone boards and blocker queues\"\n- Pricing shape: \"priced by active project volume\"\n\nPerfect. Now I need to output strict JSON only, no markdown fences.\n\n```json\n{\n  \"core_mechanic\": \"Recurring SaaS for residential solar installers to coordinate jurisdiction-specific permits, inspections, and utility approvals via milestone boards and blocker queues, priced by active project volume.\",\n  \"keywords\": [\n    \"solar-installers\",\n    \"permit-coordination\",\n    \"inspection-tracking\",\n    \"utility-approval\",\n    \"milestone-board\",\n    \"blocker-queue\",\n    \"jurisdiction-templates\",\n    \"project-volume-pricing\",\n    \"recurring-saas\"\n  ]\n}\n```\n\nWait, the user said \"Return strict JSON only. Do not wrap the answer in markdown fences.\" So I should not include the ```json block. Just the raw JSON.\n\nLet me double-check the keyword count: 9 keywords, which is between 5-12. Good.\n\nAll keywords are lowercase and hyphenated where needed. No spaces, which is correct for hyphenated or single words.\n\nLet me review the brief one more time to ensure I haven't missed anything critical:\n\n- Target customer: Residential solar installers - captured in \"solar-installers\"\n- Problem: Projects stall due to inconsistent tracking - captured in the coordination aspect\n- Workflow: Standardize checklists, track progress, surface blockers - captured in \"permit-coordination\", \"inspection-tracking\", \"milestone-board\", \"blocker-queue\", \"jurisdiction-templates\"\n- Recurring revenue model: Recurring SaaS tied to active project volume - captured in \"recurring-saas\" and \"project-volume-pricing\"\n- Pricing shape: Monthly platform fee plus project-volume tiers - captured in \"project-volume-pricing\"\n- Must-have features: Jurisdiction checklist templates, Inspection milestone board, Blocker escalation queue, Utility approval tracking - captured in \"jurisdiction-templates\", \"milestone-board\", \"blocker-queue\", \"utility-approval\"\n- Operational constraints: Jurisdiction-specific steps, operational visibility, no CRM replacement - captured in \"jurisdiction-templates\" and the overall coordination focus\n\nThe core_mechanic also captures all these elements concisely.\n\nI think this is ready. I will output raw JSON without markdown. ",
+          "reasoning_content": " The user wants me to act as an autonomous software agent evaluating a product brief and produce a DejaShip intent payload. The requirements are:\n\n1. Return a concise `core_mechanic` under 250 characters\n2. Return 5 to 12 lowercase keywords\n3. Keywords must be alphanumeric or hyphenated\n4. Focus on the true commercial mechanism, target customer, and recurring revenue path\n5. Avoid filler terms like `app`, `ai`, `tool`, or `platform` unless genuinely discriminative\n\nI need to prioritize signal from:\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nThe output must be strict JSON with `core_mechanic` and `keywords` fields.\n\nLet me analyze the brief:\n\n**Target Customer**: \"Residential solar installers coordinating permit packets, utility approvals, and inspection milestones across municipalities.\"\n\n**Problem**: \"Projects stall because permit requirements and inspection status updates are tracked in inconsistent project notes instead of a visible desk.\"\n\n**Workflow**: \"Standardize jurisdiction checklists, track inspection progress, and surface blockers before installation crews or customers are rescheduled.\"\n\n**Recurring Revenue Model**: \"Recurring SaaS tied to active project volume for regional installers.\"\n\n**Pricing Shape**: \"Monthly platform fee plus project-volume tiers.\"\n\n**Must-have Features**:\n- Jurisdiction checklist templates\n- Inspection milestone board\n- Blocker escalation queue\n- Utility approval tracking\n\n**Constraints**:\n- Must account for jurisdiction-specific steps\n- Needs operational visibility for permit coordinators and install managers\n- Cannot require replacing the CRM used for lead generation\n\n**Seed Keywords**: solar, permits, inspections, utility-approval, milestones, installers\n\nNow I need to craft the `core_mechanic`:\n\nThe core mechanism is about operational coordination for solar installers. It's a SaaS product that provides a \"desk\" (board/queue) for managing permits, inspections, and milestones across jurisdictions. The key is that it's volume-based recurring revenue tied to active projects.\n\nLet me think about the essence: It's a workflow management system specifically for solar installation operations, focusing on permit and inspection coordination across multiple jurisdictions, with a recurring SaaS model based on project volume.\n\nI need to keep it under 250 characters. Let me try:\n\n\"Recurring SaaS for residential solar installers to coordinate jurisdiction-specific permits, inspections, and utility approvals via milestone boards and blocker queues, priced by active project volume.\"\n\nLet me count: 175 characters. That's good.\n\nNow for keywords. I need 5-12 lowercase, alphanumeric or hyphenated keywords. I should avoid filler terms.\n\nFrom seed keywords: solar, permits, inspections, utility-approval, milestones, installers\n\nI can expand based on the brief:\n- solar-installers (more specific)\n- permit-coordination\n- inspection-tracking\n- utility-approvals\n- milestone-board\n- blocker-escalation\n- jurisdiction-checklists\n- project-volume\n- recurring-saas\n- ops-workflow\n\nLet me select the most discriminative ones that capture the core mechanism:\n\n1. solar-installers (target customer)\n2. permit-coordination (core function)\n3. inspection-tracking (core function)\n4. utility-approvals (core function)\n5. milestone-board (key feature)\n6. blocker-escalation (key feature)\n7. jurisdiction-aware (constraint/feature)\n8. project-volume (pricing model)\n9. recurring-saas (revenue model)\n\nThat's 9 keywords. Let me check if they meet the criteria:\n- All lowercase: yes\n- Alphanumeric or hyphenated: yes\n- No filler terms: yes (app, ai, tool, platform are not used)\n- Focus on commercial mechanism, target customer, recurring revenue: yes\n\nLet me refine them slightly to be more precise:\n\n- solar-installers\n- permit-coordination\n- inspection-tracking\n- utility-approval\n- milestone-board\n- blocker-queue\n- jurisdiction-templates\n- project-volume-pricing\n- recurring-saas\n\nThat's 9 keywords. They capture:\n- Target customer: solar-installers\n- Problem/Workflow: permit-coordination, inspection-tracking, utility-approval, milestone-board, blocker-queue\n- Must-have features: jurisdiction-templates (from jurisdiction checklist templates)\n- Recurring revenue/pricing: recurring-saas, project-volume-pricing\n\nThis seems good. Let me make sure they're all under 250 characters total (they are individual keywords, so this is fine).\n\nFinal check on core_mechanic: \"Recurring SaaS for residential solar installers to coordinate jurisdiction-specific permits, inspections, and utility approvals via milestone boards and blocker queues, priced by active project volume.\"\n\nCount: 175 characters. Under 250. Good.\n\nIt captures:\n- Recurring revenue model: \"Recurring SaaS\"\n- Target customer: \"residential solar installers\"\n- Problem/Workflow: \"coordinate jurisdiction-specific permits, inspections, and utility approvals\"\n- Must-have features: \"milestone boards and blocker queues\"\n- Pricing shape: \"priced by active project volume\"\n\nPerfect. Now I need to output strict JSON only, no markdown fences.\n\n```json\n{\n  \"core_mechanic\": \"Recurring SaaS for residential solar installers to coordinate jurisdiction-specific permits, inspections, and utility approvals via milestone boards and blocker queues, priced by active project volume.\",\n  \"keywords\": [\n    \"solar-installers\",\n    \"permit-coordination\",\n    \"inspection-tracking\",\n    \"utility-approval\",\n    \"milestone-board\",\n    \"blocker-queue\",\n    \"jurisdiction-templates\",\n    \"project-volume-pricing\",\n    \"recurring-saas\"\n  ]\n}\n```\n\nWait, the user said \"Return strict JSON only. Do not wrap the answer in markdown fences.\" So I should not include the ```json block. Just the raw JSON.\n\nLet me double-check the keyword count: 9 keywords, which is between 5-12. Good.\n\nAll keywords are lowercase and hyphenated where needed. No spaces, which is correct for hyphenated or single words.\n\nLet me review the brief one more time to ensure I haven't missed anything critical:\n\n- Target customer: Residential solar installers - captured in \"solar-installers\"\n- Problem: Projects stall due to inconsistent tracking - captured in the coordination aspect\n- Workflow: Standardize checklists, track progress, surface blockers - captured in \"permit-coordination\", \"inspection-tracking\", \"milestone-board\", \"blocker-queue\", \"jurisdiction-templates\"\n- Recurring revenue model: Recurring SaaS tied to active project volume - captured in \"recurring-saas\" and \"project-volume-pricing\"\n- Pricing shape: Monthly platform fee plus project-volume tiers - captured in \"project-volume-pricing\"\n- Must-have features: Jurisdiction checklist templates, Inspection milestone board, Blocker escalation queue, Utility approval tracking - captured in \"jurisdiction-templates\", \"milestone-board\", \"blocker-queue\", \"utility-approval\"\n- Operational constraints: Jurisdiction-specific steps, operational visibility, no CRM replacement - captured in \"jurisdiction-templates\" and the overall coordination focus\n\nThe core_mechanic also captures all these elements concisely.\n\nI think this is ready. I will output raw JSON without markdown. "
+        },
+        "stop_reason": 163586,
+        "token_ids": null
+      }
+    ],
+    "created": 1772442074,
+    "model": "moonshotai/kimi-k2-thinking",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1603,
+      "prompt_tokens": 671,
+      "total_tokens": 2274,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": " {\n  \"core_mechanic\": \"Recurring SaaS for residential solar installers to coordinate jurisdiction-specific permits, inspections, and utility approvals via milestone boards and blocker queues, priced by active project volume.\",\n  \"keywords\": [\n    \"solar-installers\",\n    \"permit-coordination\",\n    \"inspection-tracking\",\n    \"utility-approval\",\n    \"milestone-board\",\n    \"blocker-queue\",\n    \"jurisdiction-templates\",\n    \"project-volume-pricing\",\n    \"recurring-saas\"\n  ]\n}",
+  "llm_output": {
+    "core_mechanic": "Recurring SaaS for residential solar installers to coordinate jurisdiction-specific permits, inspections, and utility approvals via milestone boards and blocker queues, priced by active project volume.",
+    "keywords": [
+      "solar-installers",
+      "permit-coordination",
+      "inspection-tracking",
+      "utility-approval",
+      "milestone-board",
+      "blocker-queue",
+      "jurisdiction-templates",
+      "project-volume-pricing",
+      "recurring-saas"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "solar-installers",
+      "permit-coordination",
+      "inspection-tracking",
+      "utility-approval",
+      "milestone-board",
+      "blocker-queue",
+      "jurisdiction-templates",
+      "project-volume-pricing",
+      "recurring-saas"
+    ],
+    "derived_keywords": [
+      "inspection",
+      "and",
+      "permit",
+      "for",
+      "project",
+      "are",
+      "jurisdiction",
+      "utility",
+      "across",
+      "approval",
+      "approvals",
+      "because",
+      "blocker",
+      "blockers",
+      "board",
+      "checklist",
+      "checklists",
+      "coordinating",
+      "crews",
+      "desk",
+      "escalation",
+      "inconsistent",
+      "installation",
+      "instead",
+      "milestone",
+      "municipalities",
+      "notes",
+      "packets",
+      "progress",
+      "queue",
+      "requirements",
+      "rescheduled",
+      "residential",
+      "stall",
+      "standardize",
+      "status",
+      "surface",
+      "templates",
+      "track",
+      "tracked",
+      "tracking",
+      "updates",
+      "visible",
+      "active",
+      "saas",
+      "tied",
+      "volume",
+      "account",
+      "coordinators",
+      "crm",
+      "energy-ops",
+      "faster",
+      "fee",
+      "fewer",
+      "generation",
+      "install",
+      "jurisdiction-specific",
+      "lead",
+      "must",
+      "needs",
+      "operational",
+      "plus",
+      "preventable",
+      "project-volume",
+      "replacing",
+      "require",
+      "schedule",
+      "slips",
+      "steps",
+      "the",
+      "throughput",
+      "tiers",
+      "used",
+      "visibility",
+      "with",
+      "clean-energy",
+      "consultants",
+      "implementation",
+      "installer",
+      "networks"
+    ],
+    "final_keywords": [
+      "solar-installers",
+      "permit-coordination",
+      "inspection-tracking",
+      "utility-approval",
+      "milestone-board",
+      "blocker-queue",
+      "jurisdiction-templates",
+      "project-volume-pricing",
+      "recurring-saas",
+      "solar"
+    ],
+    "keyword_provenance": {
+      "solar-installers": [
+        "llm"
+      ],
+      "permit-coordination": [
+        "llm"
+      ],
+      "inspection-tracking": [
+        "llm"
+      ],
+      "utility-approval": [
+        "llm",
+        "seed_keywords"
+      ],
+      "milestone-board": [
+        "llm"
+      ],
+      "blocker-queue": [
+        "llm"
+      ],
+      "jurisdiction-templates": [
+        "llm"
+      ],
+      "project-volume-pricing": [
+        "llm"
+      ],
+      "recurring-saas": [
+        "llm"
+      ],
+      "solar": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "seed_keywords"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Recurring SaaS for residential solar installers to coordinate jurisdiction-specific permits, inspections, and utility approvals via milestone boards and blocker queues, priced by active project volume.",
+    "keywords": [
+      "solar-installers",
+      "permit-coordination",
+      "inspection-tracking",
+      "utility-approval",
+      "milestone-board",
+      "blocker-queue",
+      "jurisdiction-templates",
+      "project-volume-pricing",
+      "recurring-saas",
+      "solar"
+    ]
+  },
+  "planned_resolution": "claim"
+}

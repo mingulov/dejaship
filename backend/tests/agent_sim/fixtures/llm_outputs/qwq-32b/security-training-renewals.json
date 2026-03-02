@@ -1,0 +1,233 @@
+{
+  "brief_id": "security-training-renewals",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "qwq-32b",
+    "model_name": "qwen/qwq-32b",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "3dca546fb50e2cb8243788618b2547b44e6c50276f66510a269fdf872fd84278",
+    "prompt_hash": "99dbe92d609a66271573474199d373e80a2433c1f04597adbb0c129cffe773ed",
+    "generated_at": "2026-03-02T09:31:09.814611Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"security-training-renewals\",\n  \"title\": \"Training and certification renewal desk for regional security guard firms\",\n  \"category\": \"workforce-ops\",\n  \"target_customer\": \"Regional security guard firms with rotating schedules, recurring client contracts, and frequent training expiration requirements.\",\n  \"problem\": \"Renewals for guard certifications and site-specific training fall through the cracks, risking contract issues and staffing gaps.\",\n  \"workflow\": \"Track each guard's training timeline, site-specific requirements, and open shifts that will be affected if a credential lapses.\",\n  \"recurring_revenue_model\": \"Monthly subscription based on active guard roster size.\",\n  \"pricing_shape\": \"Base subscription with workforce-size tiers and optional customer reporting add-on.\",\n  \"distribution_channel\": \"Security operations managers, workforce compliance consultants, and staffing communities.\",\n  \"constraints\": [\n    \"Must connect training status to real staffing coverage risk.\",\n    \"Needs simple views for schedulers and operations managers.\",\n    \"Cannot require replacing guard scheduling software.\"\n  ],\n  \"must_have_features\": [\n    \"Certification renewal tracker\",\n    \"Shift risk alerts\",\n    \"Site requirement matrix\",\n    \"Client-ready compliance reports\"\n  ],\n  \"seed_keywords\": [\n    \"security-guards\",\n    \"training\",\n    \"renewals\",\n    \"certifications\",\n    \"staffing\",\n    \"compliance\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a payroll system.\",\n    \"Do not target national enterprise vendors first.\"\n  ],\n  \"success_metric\": \"Fewer shift coverage issues caused by expired training or certifications.\",\n  \"prompt_rendered_brief\": \"The product is a training and certification renewal desk for regional security guard firms that manage recurring contracts with strict staffing rules. Operations teams often discover a compliance problem only when a shift is about to go uncovered because a guard's certification or site-specific training has expired. The software should show every guard's renewal timeline, the sites they can work, and which upcoming shifts are at risk if training is not completed in time. Recurring SaaS pricing makes sense because the workflow repeats constantly across roster changes and client contracts. The experience has to support schedulers and operations managers without replacing the software they already use for timekeeping or guard scheduling. A successful outcome is better coverage reliability and fewer contract headaches caused by credential lapses.\\n\"\n}",
+  "raw_response": {
+    "id": "chat-06697d94526646b48c28303ce0d60010",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "Okay, let's tackle this. The user wants me to create a DejaShip intent payload based on the provided product brief. The requirements are to generate a concise core_mechanic under 250 characters and 5-12 keywords that focus on the commercial mechanism, target customer, and recurring revenue. Also, avoid filler terms like app or AI unless necessary.\n\nFirst, I need to parse the brief thoroughly. The target customer is regional security guard firms dealing with rotating schedules and frequent training renewals. The problem is that renewals are falling through, leading to staffing issues. The workflow involves tracking timelines, site requirements, and shift risks. The revenue model is a monthly subscription based on the number of guards, with tiers and add-ons for reporting.\n\nLooking at the must-have features: renewal tracker, risk alerts, site matrix, compliance reports. The constraints mention connecting training to staffing risk and simple views without replacing existing scheduling software.\n\nFor the core_mechanic, it should encapsulate the main function. Maybe something like tracking certifications and predicting staffing risks to ensure compliance and coverage. Need to keep it under 250 characters. Let me try: \"Tracks guard certifications and site-specific training, predicts staffing risks from expirations, and alerts managers to prevent coverage gaps under client contracts.\" That's concise and hits the key points.\n\nNow the keywords. The seed keywords include security-guards, training, renewals, certifications, staffing, compliance. But need to ensure they focus on commercial aspects like target customer and revenue. Maybe add \"regional-security\" to specify the customer. \"recurring-renewals\" emphasizes the recurring aspect. \"shift-risk\" from the problem and workflow. \"compliance-reports\" as a feature. \"subscription-based\" for the revenue model. Let me check the count: security-guards, renewals, certifications, staffing, compliance, regional-security, shift-risk, compliance-reports, subscription-based. That's nine, which is within 5-12. Avoided terms like app or platform. Looks good.\n</think>\n\n{\n  \"core_mechanic\": \"Tracks guard certifications and site-specific training, predicts staffing risks from expirations, and alerts managers to prevent coverage gaps under client contracts.\",\n  \"keywords\": [\n    \"security-guards\",\n    \"renewals\",\n    \"certifications\",\n    \"staffing\",\n    \"compliance\",\n    \"regional-security\",\n    \"shift-risk\",\n    \"compliance-reports\",\n    \"subscription-based\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772443851,
+    "model": "qwen/qwq-32b",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 515,
+      "prompt_tokens": 673,
+      "total_tokens": 1188,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null
+  },
+  "response_text": "Okay, let's tackle this. The user wants me to create a DejaShip intent payload based on the provided product brief. The requirements are to generate a concise core_mechanic under 250 characters and 5-12 keywords that focus on the commercial mechanism, target customer, and recurring revenue. Also, avoid filler terms like app or AI unless necessary.\n\nFirst, I need to parse the brief thoroughly. The target customer is regional security guard firms dealing with rotating schedules and frequent training renewals. The problem is that renewals are falling through, leading to staffing issues. The workflow involves tracking timelines, site requirements, and shift risks. The revenue model is a monthly subscription based on the number of guards, with tiers and add-ons for reporting.\n\nLooking at the must-have features: renewal tracker, risk alerts, site matrix, compliance reports. The constraints mention connecting training to staffing risk and simple views without replacing existing scheduling software.\n\nFor the core_mechanic, it should encapsulate the main function. Maybe something like tracking certifications and predicting staffing risks to ensure compliance and coverage. Need to keep it under 250 characters. Let me try: \"Tracks guard certifications and site-specific training, predicts staffing risks from expirations, and alerts managers to prevent coverage gaps under client contracts.\" That's concise and hits the key points.\n\nNow the keywords. The seed keywords include security-guards, training, renewals, certifications, staffing, compliance. But need to ensure they focus on commercial aspects like target customer and revenue. Maybe add \"regional-security\" to specify the customer. \"recurring-renewals\" emphasizes the recurring aspect. \"shift-risk\" from the problem and workflow. \"compliance-reports\" as a feature. \"subscription-based\" for the revenue model. Let me check the count: security-guards, renewals, certifications, staffing, compliance, regional-security, shift-risk, compliance-reports, subscription-based. That's nine, which is within 5-12. Avoided terms like app or platform. Looks good.\n</think>\n\n{\n  \"core_mechanic\": \"Tracks guard certifications and site-specific training, predicts staffing risks from expirations, and alerts managers to prevent coverage gaps under client contracts.\",\n  \"keywords\": [\n    \"security-guards\",\n    \"renewals\",\n    \"certifications\",\n    \"staffing\",\n    \"compliance\",\n    \"regional-security\",\n    \"shift-risk\",\n    \"compliance-reports\",\n    \"subscription-based\"\n  ]\n}",
+  "llm_output": {
+    "core_mechanic": "Tracks guard certifications and site-specific training, predicts staffing risks from expirations, and alerts managers to prevent coverage gaps under client contracts.",
+    "keywords": [
+      "security-guards",
+      "renewals",
+      "certifications",
+      "staffing",
+      "compliance",
+      "regional-security",
+      "shift-risk",
+      "compliance-reports",
+      "subscription-based"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "security-guards",
+      "renewals",
+      "certifications",
+      "staffing",
+      "compliance",
+      "regional-security",
+      "shift-risk",
+      "compliance-reports",
+      "subscription-based"
+    ],
+    "derived_keywords": [
+      "and",
+      "guard",
+      "requirements",
+      "site-specific",
+      "for",
+      "issues",
+      "risk",
+      "shift",
+      "with",
+      "security",
+      "affected",
+      "alerts",
+      "certification",
+      "client",
+      "client-ready",
+      "contract",
+      "contracts",
+      "coverage",
+      "cracks",
+      "credential",
+      "each",
+      "expiration",
+      "fall",
+      "frequent",
+      "gaps",
+      "lapses",
+      "matrix",
+      "open",
+      "renewal",
+      "reports",
+      "requirement",
+      "risking",
+      "rotating",
+      "schedules",
+      "shifts",
+      "site",
+      "that",
+      "the",
+      "through",
+      "timeline",
+      "track",
+      "tracker",
+      "will",
+      "active",
+      "based",
+      "operations",
+      "roster",
+      "size",
+      "add-on",
+      "caused",
+      "connect",
+      "expired",
+      "fewer",
+      "must",
+      "needs",
+      "optional",
+      "real",
+      "replacing",
+      "require",
+      "schedulers",
+      "scheduling",
+      "simple",
+      "status",
+      "tiers",
+      "views",
+      "workforce-ops",
+      "workforce-size",
+      "communities",
+      "consultants",
+      "workforce"
+    ],
+    "final_keywords": [
+      "security-guards",
+      "renewals",
+      "certifications",
+      "staffing",
+      "compliance",
+      "regional-security",
+      "shift-risk",
+      "compliance-reports",
+      "subscription-based",
+      "training"
+    ],
+    "keyword_provenance": {
+      "security-guards": [
+        "llm",
+        "seed_keywords"
+      ],
+      "renewals": [
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "certifications": [
+        "field:problem",
+        "field:success_metric",
+        "llm",
+        "seed_keywords"
+      ],
+      "staffing": [
+        "field:constraints",
+        "field:distribution_channel",
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "compliance": [
+        "field:distribution_channel",
+        "field:must_have_features",
+        "llm",
+        "seed_keywords"
+      ],
+      "regional-security": [
+        "llm"
+      ],
+      "shift-risk": [
+        "llm"
+      ],
+      "compliance-reports": [
+        "llm"
+      ],
+      "subscription-based": [
+        "llm"
+      ],
+      "training": [
+        "field:constraints",
+        "field:problem",
+        "field:success_metric",
+        "field:target_customer",
+        "field:workflow",
+        "seed_keywords"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Tracks guard certifications and site-specific training, predicts staffing risks from expirations, and alerts managers to prevent coverage gaps under client contracts.",
+    "keywords": [
+      "security-guards",
+      "renewals",
+      "certifications",
+      "staffing",
+      "compliance",
+      "regional-security",
+      "shift-risk",
+      "compliance-reports",
+      "subscription-based",
+      "training"
+    ]
+  },
+  "planned_resolution": "claim"
+}

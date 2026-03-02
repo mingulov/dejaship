@@ -1,0 +1,253 @@
+{
+  "brief_id": "solar-permit-inspection-desk",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "llama-3-3-70b-instruct",
+    "model_name": "meta/llama-3.3-70b-instruct",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "84e30b397f27cb0332b3b0ee75e2b4c8e3aaa8e720ffde68b2df284e14ff1c25",
+    "prompt_hash": "65396aa09bbad63f286001da80896f735021e393508c2957a218a77bfc06f0e6",
+    "generated_at": "2026-03-02T08:21:08.829385Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"solar-permit-inspection-desk\",\n  \"title\": \"Permit, inspection, and milestone desk for residential solar installers\",\n  \"category\": \"energy-ops\",\n  \"target_customer\": \"Residential solar installers coordinating permit packets, utility approvals, and inspection milestones across municipalities.\",\n  \"problem\": \"Projects stall because permit requirements and inspection status updates are tracked in inconsistent project notes instead of a visible desk.\",\n  \"workflow\": \"Standardize jurisdiction checklists, track inspection progress, and surface blockers before installation crews or customers are rescheduled.\",\n  \"recurring_revenue_model\": \"Recurring SaaS tied to active project volume for regional installers.\",\n  \"pricing_shape\": \"Monthly platform fee plus project-volume tiers.\",\n  \"distribution_channel\": \"Solar installer operators, implementation consultants, and local clean-energy networks.\",\n  \"constraints\": [\n    \"Must account for jurisdiction-specific steps.\",\n    \"Needs operational visibility for permit coordinators and install managers.\",\n    \"Cannot require replacing the CRM used for lead generation.\"\n  ],\n  \"must_have_features\": [\n    \"Jurisdiction checklist templates\",\n    \"Inspection milestone board\",\n    \"Blocker escalation queue\",\n    \"Utility approval tracking\"\n  ],\n  \"seed_keywords\": [\n    \"solar\",\n    \"permits\",\n    \"inspections\",\n    \"utility-approval\",\n    \"milestones\",\n    \"installers\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a design studio for panels.\",\n    \"Do not focus on utility-scale projects.\"\n  ],\n  \"success_metric\": \"Faster project throughput with fewer preventable schedule slips.\",\n  \"prompt_rendered_brief\": \"This product is a permit, inspection, and milestone desk for residential solar installers that operate across multiple municipalities. The team already has a CRM for sales, but once a deal closes, permit packets, utility approvals, and inspection status updates become a fragile coordination problem spread across notes and inboxes. The software should standardize local checklists, highlight project blockers, and tell operations staff what needs attention before crews or homeowners are rescheduled. The business model is recurring SaaS because installers manage a constant flow of active projects and pay for smoother throughput. The experience must feel operational, jurisdiction-aware, and practical for permit coordinators who live in email and spreadsheets. Success means fewer projects stalling for administrative reasons and better schedule reliability for installation teams.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-89ec2803d860ca86",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-ae921f708674fa2b",
+              "function": {
+                "arguments": "{\"core_mechanic\": \"streamlined permit and inspection management\", \"keywords\": [\"solar\", \"permits\", \"inspections\", \"utility-approval\", \"milestones\", \"installers\", \"jurisdiction-aware\", \"saas\", \"recurring-revenue\", \"project-management\"]}",
+                "name": "GeneratedIntentDraft"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning": null,
+          "reasoning_content": null
+        },
+        "stop_reason": null,
+        "token_ids": null
+      }
+    ],
+    "created": 1772439666,
+    "model": "meta/llama-3.3-70b-instruct",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 62,
+      "prompt_tokens": 896,
+      "total_tokens": 958,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "{\"core_mechanic\":\"streamlined permit and inspection management\",\"keywords\":[\"solar\",\"permits\",\"inspections\",\"utility-approval\",\"milestones\",\"installers\",\"jurisdiction-aware\",\"saas\",\"recurring-revenue\",\"project-management\"]}",
+  "llm_output": {
+    "core_mechanic": "streamlined permit and inspection management",
+    "keywords": [
+      "solar",
+      "permits",
+      "inspections",
+      "utility-approval",
+      "milestones",
+      "installers",
+      "jurisdiction-aware",
+      "saas",
+      "recurring-revenue",
+      "project-management"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "solar",
+      "permits",
+      "inspections",
+      "utility-approval",
+      "milestones",
+      "installers",
+      "jurisdiction-aware",
+      "saas",
+      "recurring-revenue",
+      "project-management"
+    ],
+    "derived_keywords": [
+      "inspection",
+      "and",
+      "permit",
+      "for",
+      "project",
+      "are",
+      "jurisdiction",
+      "utility",
+      "across",
+      "approval",
+      "approvals",
+      "because",
+      "blocker",
+      "blockers",
+      "board",
+      "checklist",
+      "checklists",
+      "coordinating",
+      "crews",
+      "desk",
+      "escalation",
+      "inconsistent",
+      "installation",
+      "instead",
+      "milestone",
+      "municipalities",
+      "notes",
+      "packets",
+      "progress",
+      "queue",
+      "requirements",
+      "rescheduled",
+      "residential",
+      "stall",
+      "standardize",
+      "status",
+      "surface",
+      "templates",
+      "track",
+      "tracked",
+      "tracking",
+      "updates",
+      "visible",
+      "active",
+      "saas",
+      "tied",
+      "volume",
+      "account",
+      "coordinators",
+      "crm",
+      "energy-ops",
+      "faster",
+      "fee",
+      "fewer",
+      "generation",
+      "install",
+      "jurisdiction-specific",
+      "lead",
+      "must",
+      "needs",
+      "operational",
+      "plus",
+      "preventable",
+      "project-volume",
+      "replacing",
+      "require",
+      "schedule",
+      "slips",
+      "steps",
+      "the",
+      "throughput",
+      "tiers",
+      "used",
+      "visibility",
+      "with",
+      "clean-energy",
+      "consultants",
+      "implementation",
+      "installer",
+      "networks"
+    ],
+    "final_keywords": [
+      "solar",
+      "permits",
+      "inspections",
+      "utility-approval",
+      "milestones",
+      "installers",
+      "jurisdiction-aware",
+      "saas",
+      "recurring-revenue",
+      "project-management"
+    ],
+    "keyword_provenance": {
+      "solar": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "permits": [
+        "llm",
+        "seed_keywords"
+      ],
+      "inspections": [
+        "llm",
+        "seed_keywords"
+      ],
+      "utility-approval": [
+        "llm",
+        "seed_keywords"
+      ],
+      "milestones": [
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "installers": [
+        "field:recurring_revenue_model",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "jurisdiction-aware": [
+        "llm"
+      ],
+      "saas": [
+        "field:recurring_revenue_model",
+        "llm"
+      ],
+      "recurring-revenue": [
+        "llm"
+      ],
+      "project-management": [
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "streamlined permit and inspection management",
+    "keywords": [
+      "solar",
+      "permits",
+      "inspections",
+      "utility-approval",
+      "milestones",
+      "installers",
+      "jurisdiction-aware",
+      "saas",
+      "recurring-revenue",
+      "project-management"
+    ]
+  },
+  "planned_resolution": "claim"
+}

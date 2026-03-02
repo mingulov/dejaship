@@ -1,0 +1,251 @@
+{
+  "brief_id": "pest-control-renewal-engine",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "magistral-small-2506",
+    "model_name": "mistralai/magistral-small-2506",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "e0ddb2e2d58b1d1d96c898a135d535909e43c676dd4917420d4076e206c7110d",
+    "prompt_hash": "5bd7d9dc1ff3c43f216c97433dcf3881be99052898af760b74dbf775faa4560e",
+    "generated_at": "2026-03-02T09:39:08.961010Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"pest-control-renewal-engine\",\n  \"title\": \"Recurring contract recovery and route prep for regional pest control operators\",\n  \"category\": \"field-service\",\n  \"target_customer\": \"Regional pest control companies with recurring quarterly service contracts and small call-center teams.\",\n  \"problem\": \"Contracts lapse quietly because route managers focus on today's stops instead of upcoming renewals, cancelled cards, and high-risk accounts.\",\n  \"workflow\": \"Watch contracts and payment failures, group accounts by route geography, and push save actions to office staff before routes are finalized.\",\n  \"recurring_revenue_model\": \"Quarterly or annual pest prevention memberships that renew automatically when customers do not churn.\",\n  \"pricing_shape\": \"Monthly subscription with usage tiers based on active contract count.\",\n  \"distribution_channel\": \"Direct outbound to owner-operators and consultants serving pest control agencies.\",\n  \"constraints\": [\n    \"Must support geographically grouped follow-up instead of generic churn lists.\",\n    \"Needs clear handling for card failures and skipped visits.\",\n    \"Should avoid requiring custom mobile hardware in the field.\"\n  ],\n  \"must_have_features\": [\n    \"Renewal-at-risk queue\",\n    \"Route-aware follow-up buckets\",\n    \"Failed-payment recovery board\",\n    \"Customer save-offer logging\"\n  ],\n  \"seed_keywords\": [\n    \"pest-control\",\n    \"renewals\",\n    \"routes\",\n    \"memberships\",\n    \"failed-payments\",\n    \"churn\"\n  ],\n  \"anti_goals\": [\n    \"Do not replace technician route execution tools.\",\n    \"Do not focus on one-time termite jobs.\"\n  ],\n  \"success_metric\": \"Lower contract churn and fewer route gaps caused by preventable lapses.\",\n  \"prompt_rendered_brief\": \"This product is a recurring contract recovery and route prep engine for regional pest control operators that live on quarterly service plans. The owner already has route software, but renewal risk, failed cards, and rescue calls are hidden inside generic customer lists that nobody works in time. The system should identify expiring or broken contracts, group them by route and technician assignment, and tell office staff which households need outreach before the next calendar is locked. The revenue model is straightforward recurring SaaS tied to active membership volume because the customer's economic value comes from retaining contracts rather than booking one-time jobs. The workflow needs to feel operational and local, with route-aware follow-up and clear notes about save offers or payment recovery attempts. If the product works, the business keeps more recurring revenue and protects route density without forcing the team to adopt a giant enterprise stack.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-27d990ddbb04471aaeb9affa7f3a16aa",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "\n\n```json\n{\"core_mechanic\":\"Automated renewal recovery and route preparation for pest control companies with recurring memberships.\",\"keywords\":[\"pest-control\",\"renewals\",\"routes\",\"memberships\",\"failed-payments\",\"churn\",\"route-aware\",\"save-actions\"]}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [],
+          "reasoning_content": "\nOkay, I have this product brief about a tool for pest control companies. The goal is to create a DejaShip intent payload, which is a structured way to describe the core value proposition and key aspects of the product.\n\nFirst, I need to understand the core mechanic. The problem is that pest control companies lose contracts because they don't manage renewals well. The solution is to monitor contracts, group accounts by route, and push actions to office staff to save at-risk contracts. So, the core mechanic is about \"automating renewal recovery and route preparation for pest control companies.\"\n\nNow, the keywords. The brief mentions several important terms:\n1. pest-control (from target customer and seed keywords)\n2. renewals (from problem and seed keywords)\n3. routes (from workflow and seed keywords)\n4. memberships (from recurring revenue model and seed keywords)\n5. failed-payments (from must_have_features and seed keywords)\n6. churn (from problem and seed keywords)\n\nBut I need to make sure these are truly discriminative. The problem is about renewals and routes, and the solution involves memberships, failed payments, and reducing churn. So these seem good.\n\nBut I need to check if any of these are filler terms. The brief says to avoid terms like 'app', 'ai', 'tool', or 'platform' unless they're discriminative. Here, 'pest-control' is specific to the domain, 'renewals' is about the core problem, 'routes' is about the workflow, 'memberships' is about the revenue model, 'failed-payments' is a key feature, and 'churn' is about the problem and success metric. So these seem good.\n\nBut I need 5 to 12 keywords. I have 6 so far. I can add more based on other parts of the brief:\n- 'contract recovery' is implied by the title and problem, but 'renewals' might cover that.\n- 'route prep' is in the title, but 'routes' is already there.\n- 'geographically grouped follow-up' is a constraint, but 'routes' might cover that.\n- 'failed-payment recovery' is a must-have feature, but 'failed-payments' is there.\n- 'save actions' is in the workflow, but 'renewals' might cover that.\n\nI think I can stick with these 6 for now, but I might need more. Let's see:\n- 'quarterly service' is in the target customer and recurring revenue model, but 'memberships' might cover that.\n- 'automatic renewals' is in the revenue model, but 'memberships' might cover that.\n- 'card failures' is similar to 'failed-payments'.\n- 'high-risk accounts' is in the problem, but 'renewals' and 'failed-payments' might cover that.\n\nI think 6 keywords might be enough, but the requirement is 5 to 12. Maybe I can add 'route-aware' from the must_have_features to make it more specific.\n\nSo now I have:\n1. pest-control\n2. renewals\n3. routes\n4. memberships\n5. failed-payments\n6. churn\n7. route-aware\n\nThat's 7 keywords. I can add 'contract recovery' to make it more explicit, but 'renewals' might be enough. Alternatively, 'save actions' or 'follow-up' could be added.\n\nLooking at the anti-goals, it's about not replacing route execution tools or focusing on one-time jobs. So I don't need keywords for those.\n\nThe success metric is about lowering churn and reducing route gaps, which is covered by 'churn' and 'routes'.\n\nI think 7 keywords are good. But to be safe, I can add 'payment recovery' to emphasize that part of the workflow.\n\nNow I have 8 keywords:\n1. pest-control\n2. renewals\n3. routes\n4. memberships\n5. failed-payments\n6. churn\n7. route-aware\n8. payment-recovery\n\nBut 'payment recovery' might be redundant with 'failed-payments'. Maybe I can drop 'payment-recovery' and keep 'failed-payments'.\n\nAlternatively, 'save actions' is important from the workflow. So maybe:\n1. pest-control\n2. renewals\n3. routes\n4. memberships\n5. failed-payments\n6. churn\n7. route-aware\n8. save-actions\n\nThat seems better. Now, the core mechanic needs to be under 250 characters. The core is about automating renewal recovery and route preparation for pest control companies. So something like: \"Automated renewal recovery and route preparation for pest control companies with recurring memberships.\"\n\nLet me count the characters:\n\"Automated renewal recovery and route preparation for pest control companies with recurring memberships.\" is about 100 characters, so it's under 250.\n\nNow, I need to make sure the keywords are alphanumeric or hyphenated. All of them are:\n- pest-control (hyphenated)\n- renewals (alphanumeric)\n- routes (alphanumeric)\n- memberships (alphanumeric)\n- failed-payments (hyphenated)\n- churn (alphanumeric)\n- route-aware (hyphenated)\n- save-actions (hyphenated)\n\nAll good.\n\nNow, I need to format this as strict JSON. So the structure will be:\n```json\n{\n  \"core_mechanic\": \"Automated renewal recovery and route preparation for pest control companies with recurring memberships.\",\n  \"keywords\": [\n    \"pest-control\",\n    \"renewals\",\n    \"routes\",\n    \"memberships\",\n    \"failed-payments\",\n    \"churn\",\n    \"route-aware\",\n    \"save-actions\"\n  ]\n}\n```\n\nBut I need to check if all keywords are necessary and if I can make them more precise. The problem is about contracts lapsing quietly, and the solution is to monitor contracts, group accounts by route, and push save actions. So 'contract monitoring' could be a keyword, but 'renewals' might cover that.\n\nLooking back at the must_have_features:\n- Renewal-at-risk queue: covered by 'renewals' and 'route-aware'\n- Route-aware follow-up buckets: covered by 'routes' and 'route-aware'\n- Failed-payment recovery board: covered by 'failed-payments'\n- Customer save-offer logging: covered by 'save-actions'\n\nSo the keywords seem to cover the must-have features.\n\nThe constraints mention geographically grouped follow-up, which is covered by 'route-aware' and 'routes'. Card failures and skipped visits are covered by 'failed-payments'. And avoiding custom mobile hardware is not directly a keyword, but it's an operational constraint.\n\nThe recurring revenue model is about memberships, which is covered by 'memberships'. The pricing shape is monthly subscription with usage tiers, but that's more about the business model than the core mechanic.\n\nThe anti-goals are about not replacing route execution tools or focusing on one-time jobs, which are not directly relevant to the keywords.\n\nSo, the keywords seem to cover the key aspects: target customer (pest-control), problem (renewals, churn, failed-payments), workflow (routes, route-aware, save-actions), and recurring revenue model (memberships).\n\nI think this is good. The core mechanic is concise and covers the main value proposition. The keywords are specific and cover the key aspects of the product.\n\nNow, I need to ensure that the JSON is strict, meaning no extra spaces or trailing commas. So the final JSON should be:\n\n```json\n{\"core_mechanic\":\"Automated renewal recovery and route preparation for pest control companies with recurring memberships.\",\"keywords\":[\"pest-control\",\"renewals\",\"routes\",\"memberships\",\"failed-payments\",\"churn\",\"route-aware\",\"save-actions\"]}\n```\n\nBut I need to double-check the character count for the core_mechanic. Let me recount:\n\n\"Automated renewal recovery and route preparation for pest control companies with recurring memberships.\"\n\nLet's count:\nAutomated (9) + space (1) = 10\nrenewal (7) + space (1) = 8 → total 18\nrecovery (7) + space (1) = 8 → total 26\nand (3) + space (1) = 4 → total 30\nroute (5) + space (1) = 6 → total 36\npreparation (11) + space (1) = 12 → total 48\nfor (3) + space (1) = 4 → total 52\npest (4) + hyphen (1) = 5 → total 57\ncontrol (6) + space (1) = 7 → total 64\ncompanies (8) + space (1) = 9 → total 73\nwith (4) + space (1) = 5 → total 78\nrecurring (9) + space (1) = 10 → total 88\nmemberships (11) + period (1) = 12 → total 100\n\nYes, it's 100 characters, which is under 250.\n\nNow, I need to ensure that the keywords are all lowercase and alphanumeric or hyphenated, which they are.\n\nSo, the final JSON payload is:\n\n```json\n{\"core_mechanic\":\"Automated renewal recovery and route preparation for pest control companies with recurring memberships.\",\"keywords\":[\"pest-control\",\"renewals\",\"routes\",\"memberships\",\"failed-payments\",\"churn\",\"route-aware\",\"save-actions\"]}\n```\n"
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772444264,
+    "model": "mistralai/magistral-small-2506",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2139,
+      "prompt_tokens": 910,
+      "total_tokens": 3049,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "\n\n```json\n{\"core_mechanic\":\"Automated renewal recovery and route preparation for pest control companies with recurring memberships.\",\"keywords\":[\"pest-control\",\"renewals\",\"routes\",\"memberships\",\"failed-payments\",\"churn\",\"route-aware\",\"save-actions\"]}\n```",
+  "llm_output": {
+    "core_mechanic": "Automated renewal recovery and route preparation for pest control companies with recurring memberships.",
+    "keywords": [
+      "pest-control",
+      "renewals",
+      "routes",
+      "memberships",
+      "failed-payments",
+      "churn",
+      "route-aware",
+      "save-actions"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "pest-control",
+      "renewals",
+      "routes",
+      "memberships",
+      "failed-payments",
+      "churn",
+      "route-aware",
+      "save-actions"
+    ],
+    "derived_keywords": [
+      "and",
+      "contracts",
+      "route",
+      "accounts",
+      "pest",
+      "quarterly",
+      "failures",
+      "follow-up",
+      "instead",
+      "with",
+      "control",
+      "actions",
+      "are",
+      "because",
+      "board",
+      "buckets",
+      "call-center",
+      "cancelled",
+      "cards",
+      "contract",
+      "failed-payment",
+      "finalized",
+      "geography",
+      "group",
+      "high-risk",
+      "lapse",
+      "logging",
+      "office",
+      "payment",
+      "push",
+      "queue",
+      "quietly",
+      "recovery",
+      "renewal-at-risk",
+      "route-aware",
+      "save",
+      "save-offer",
+      "staff",
+      "stops",
+      "today",
+      "upcoming",
+      "watch",
+      "automatically",
+      "not",
+      "prevention",
+      "renew",
+      "that",
+      "when",
+      "active",
+      "avoid",
+      "based",
+      "card",
+      "caused",
+      "clear",
+      "count",
+      "custom",
+      "fewer",
+      "field",
+      "field-service",
+      "for",
+      "gaps",
+      "generic",
+      "geographically",
+      "grouped",
+      "handling",
+      "hardware",
+      "lapses",
+      "lists",
+      "mobile",
+      "must",
+      "needs",
+      "preventable",
+      "requiring",
+      "should",
+      "skipped",
+      "support",
+      "the",
+      "tiers",
+      "usage",
+      "visits",
+      "agencies",
+      "consultants",
+      "direct",
+      "outbound",
+      "owner-operators",
+      "serving"
+    ],
+    "final_keywords": [
+      "pest-control",
+      "renewals",
+      "routes",
+      "memberships",
+      "failed-payments",
+      "churn",
+      "route-aware",
+      "save-actions",
+      "and",
+      "contracts"
+    ],
+    "keyword_provenance": {
+      "pest-control": [
+        "llm",
+        "seed_keywords"
+      ],
+      "renewals": [
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "routes": [
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "memberships": [
+        "field:recurring_revenue_model",
+        "llm",
+        "seed_keywords"
+      ],
+      "failed-payments": [
+        "llm",
+        "seed_keywords"
+      ],
+      "churn": [
+        "field:constraints",
+        "field:recurring_revenue_model",
+        "field:success_metric",
+        "llm",
+        "seed_keywords"
+      ],
+      "route-aware": [
+        "field:must_have_features",
+        "llm"
+      ],
+      "save-actions": [
+        "llm"
+      ],
+      "and": [
+        "field:constraints",
+        "field:distribution_channel",
+        "field:problem",
+        "field:success_metric",
+        "field:target_customer",
+        "field:workflow"
+      ],
+      "contracts": [
+        "field:problem",
+        "field:target_customer",
+        "field:workflow"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Automated renewal recovery and route preparation for pest control companies with recurring memberships.",
+    "keywords": [
+      "pest-control",
+      "renewals",
+      "routes",
+      "memberships",
+      "failed-payments",
+      "churn",
+      "route-aware",
+      "save-actions",
+      "and",
+      "contracts"
+    ]
+  },
+  "planned_resolution": "claim"
+}

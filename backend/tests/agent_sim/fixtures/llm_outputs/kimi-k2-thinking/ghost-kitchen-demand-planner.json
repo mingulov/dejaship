@@ -1,0 +1,239 @@
+{
+  "brief_id": "ghost-kitchen-demand-planner",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "kimi-k2-thinking",
+    "model_name": "moonshotai/kimi-k2-thinking",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "25ae2df8279e6a76705775ff598159458b729a1568e98a00aee1cac6a25f8024",
+    "prompt_hash": "0e82fc780ba4ef822c1ea7c5eb82da1f6f636487aaf696e15950944832a5364b",
+    "generated_at": "2026-03-02T08:41:55.049225Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"ghost-kitchen-demand-planner\",\n  \"title\": \"Demand shaping and prep scheduling for ghost kitchen operators\",\n  \"category\": \"food-ops\",\n  \"target_customer\": \"Ghost kitchen brands running multiple menus from one facility and relying heavily on delivery marketplaces.\",\n  \"problem\": \"Prep levels and staff timing drift because promotions, weather, and marketplace rankings change faster than kitchen managers can react.\",\n  \"workflow\": \"Forecast order waves, recommend prep windows, and connect promo timing to labor and ingredient readiness for each menu line.\",\n  \"recurring_revenue_model\": \"Monthly subscription per kitchen plus premium analytics for multi-brand operators.\",\n  \"pricing_shape\": \"Base kitchen fee with add-ons for each additional menu brand.\",\n  \"distribution_channel\": \"Outbound to multi-brand kitchen groups and delivery-operations consultants.\",\n  \"constraints\": [\n    \"Needs useful recommendations even when marketplace data is incomplete.\",\n    \"Must separate menu-brand behavior within the same kitchen.\",\n    \"Cannot depend on deeply customized ERP deployments.\"\n  ],\n  \"must_have_features\": [\n    \"Order wave forecasting\",\n    \"Prep timing recommendations\",\n    \"Promo and labor alignment dashboard\",\n    \"Multi-brand kitchen views\"\n  ],\n  \"seed_keywords\": [\n    \"ghost-kitchen\",\n    \"demand\",\n    \"prep\",\n    \"labor\",\n    \"promotions\",\n    \"delivery\"\n  ],\n  \"anti_goals\": [\n    \"Do not build a driver dispatch network.\",\n    \"Do not focus on dine-in restaurant workflows.\"\n  ],\n  \"success_metric\": \"Higher on-time fulfillment with less over-prep during promo-driven demand swings.\",\n  \"prompt_rendered_brief\": \"This demand shaping and prep scheduling product is for ghost kitchen operators running several virtual brands from the same production line. The pain is not generic analytics; it is the operational gap between volatile delivery demand, marketplace promotions, ingredient prep, and who should be on the line at each hour. Kitchen managers need a system that turns noisy demand signals into practical prep windows and staffing guidance before the rush starts. The software should monetize as recurring SaaS per kitchen and per menu brand because complexity rises quickly as operators stack more concepts into one facility. It also needs to stay useful when data is imperfect, since marketplace visibility is often partial or delayed. The win condition is fewer prep mistakes, better service levels, and smarter promo timing for a delivery-first kitchen business.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-b97f49ba5459fe46",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": " {\"core_mechanic\":\"Forecast delivery demand waves into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and menu brand.\",\"keywords\":[\"ghost-kitchen\",\"demand-forecasting\",\"prep-scheduling\",\"labor-alignment\",\"multi-brand\",\"delivery-marketplace\",\"promo-timing\",\"subscription\",\"order-waves\",\"kitchen-ops\"]}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [],
+          "reasoning": " The user wants me to extract a DejaShip intent payload from a product brief. I need to:\n\n1. Read the structured brief\n2. Produce a concise `core_mechanic` under 250 characters\n3. Return 5-12 lowercase keywords that are alphanumeric or hyphenated\n4. Focus on the true commercial mechanism, target customer, and recurring revenue path\n5. Avoid filler terms like \"app\", \"ai\", \"tool\", \"platform\" unless genuinely discriminative\n6. Prioritize signal from: target customer, problem, workflow, recurring revenue model, pricing shape, must-have features, operational constraints\n\nLet me analyze the brief:\n\n**Key elements:**\n- **Target customer**: Ghost kitchen brands running multiple menus from one facility, heavily reliant on delivery marketplaces\n- **Problem**: Prep levels and staff timing drift due to fast-changing promotions, weather, marketplace rankings\n- **Workflow**: Forecast order waves → recommend prep windows → connect promo timing to labor and ingredient readiness for each menu line\n- **Recurring revenue model**: Monthly subscription per kitchen + premium analytics for multi-brand operators\n- **Pricing shape**: Base kitchen fee + add-ons per additional menu brand\n- **Must-have features**: Order wave forecasting, prep timing recommendations, promo and labor alignment dashboard, multi-brand kitchen views\n- **Constraints**: Works with incomplete marketplace data, separates menu-brand behavior, no deep ERP customization needed\n- **Success metric**: Higher on-time fulfillment with less over-prep during promo-driven demand swings\n\n**Core mechanism**: This is about operational synchronization - connecting volatile delivery demand signals to kitchen prep and labor scheduling for multi-brand ghost kitchens. The key is turning noisy signals into actionable prep/staffing guidance.\n\nLet me craft the `core_mechanic`:\nI need to capture: demand forecasting → prep scheduling → labor alignment for multi-brand ghost kitchens, with subscription pricing per kitchen/brand.\n\nSomething like: \"SaaS that forecasts delivery demand waves and translates them into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and per menu brand.\"\n\nLet me count: \"SaaS that forecasts delivery demand waves and translates them into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and per menu brand.\" That's 168 characters. Good.\n\nBut I should make it more concise and focused on the mechanism. Let me try again:\n\"Forecast delivery demand waves into prep windows and labor schedules for multi-brand ghost kitchens, monetizing via monthly subscription per kitchen and per menu brand.\"\n\nCount: 138 characters. Good.\n\nEven more concise:\n\"Translate volatile delivery demand into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and menu brand.\"\n\nCount: 125 characters. This captures the essence well.\n\nLet me try one more variation:\n\"Forecast delivery demand waves and recommend prep windows with labor alignment for multi-brand ghost kitchens, monetizing per kitchen and menu brand.\"\n\nCount: 130 characters. This is good and includes the workflow elements.\n\nActually, let me focus on the commercial mechanism more directly:\n\"Monthly SaaS that turns delivery demand signals into prep/staffing guidance for multi-brand ghost kitchens, charging per kitchen and per menu brand.\"\n\nCount: 128 characters. This explicitly mentions the SaaS model and pricing.\n\nI think the best version is:\n\"Forecast delivery demand waves into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and menu brand.\"\n\nIt's clear, concise, and captures the workflow and revenue model.\n\nNow for keywords:\nI need 5-12 lowercase, alphanumeric/hyphenated keywords. Avoid filler terms.\n\nFrom the brief and my analysis:\n- ghost-kitchen (from seed keywords)\n- demand-forecasting (or demand-forecast)\n- prep-scheduling\n- labor-alignment\n- multi-brand\n- delivery-marketplace\n- promo-timing\n- subscription-saas (or just subscription)\n- kitchen-ops\n- order-waves\n- ingredient-readiness\n\nLet me select the most discriminative ones:\n1. ghost-kitchen (explicit target)\n2. demand-forecasting (core feature)\n3. prep-scheduling (core feature)\n4. labor-alignment (core feature)\n5. multi-brand (key differentiator)\n6. delivery-marketplace (context)\n7. promo-timing (important input)\n8. subscription (revenue model)\n9. kitchen-ops (category)\n10. order-waves (specific feature)\n\nThat's 10 keywords. Let me check them:\n- ghost-kitchen: good\n- demand-forecasting: good\n- prep-scheduling: good\n- labor-alignment: good\n- multi-brand: good\n- delivery-marketplace: good\n- promo-timing: good\n- subscription: good (but maybe too generic? The brief says \"monthly subscription per kitchen\" so it's accurate)\n- kitchen-ops: good\n- order-waves: good\n\nI could also add:\n- ingredient-readiness (from workflow)\n- ops-dashboard (from features)\n- volatile-demand (from problem)\n\nBut I need to keep it to 5-12. Let me refine to the most essential:\n\n1. ghost-kitchen (target)\n2. demand-forecasting (core function)\n3. prep-scheduling (core function)\n4. labor-alignment (core function)\n5. multi-brand (key constraint/segment)\n6. delivery-marketplace (channel)\n7. promo-timing (key variable)\n8. subscription-pricing (more specific than just subscription)\n9. order-waves (specific feature)\n10. kitchen-ops (category)\n\nThat's 10. All lowercase, hyphenated where needed.\n\nLet me reconsider \"subscription-pricing\" vs \"subscription\". The brief emphasizes \"per kitchen\" and \"per menu brand\", so maybe:\n- per-kitchen-pricing\n- per-brand-pricing\n\nBut that might be too specific. Let me stick with the feature-focused keywords.\n\nFinal keyword list:\n1. ghost-kitchen\n2. demand-forecasting\n3. prep-scheduling\n4. labor-alignment\n5. multi-brand\n6. delivery-marketplace\n7. promo-timing\n8. subscription\n9. order-waves\n10. kitchen-ops\n\nWait, \"subscription\" might be too generic. The brief says \"Monthly subscription per kitchen plus premium analytics\". Let me think about what makes this discriminative. The key is that it's a SaaS model for kitchens. Maybe \"saas\" is better, but that's a filler term. Let me keep \"subscription\" as it's part of the revenue model.\n\nActually, looking at the anti-goals and constraints:\n- \"Cannot depend on deeply customized ERP deployments\" suggests it's lightweight/standalone\n- \"Must separate menu-brand behavior\" is key\n\nMaybe I should include:\n- lightweight-ops (to contrast with ERP)\n- brand-separation (key feature)\n\nBut I need to stay focused on the most important signals. Let me prioritize:\n\n**Must-haves:**\n1. ghost-kitchen (target)\n2. demand-forecasting (core feature)\n3. prep-scheduling (core feature)\n4. labor-alignment (core feature)\n5. multi-brand (key differentiator)\n\n**Strong signals:**\n6. delivery-marketplace (context)\n7. promo-timing (key input)\n8. order-waves (specific feature)\n9. subscription (revenue model)\n10. kitchen-ops (category)\n\nI think this is a solid list of 10 keywords.\n\nLet me finalize the core_mechanic:\n\"Forecast delivery demand waves into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and menu brand.\"\n\n138 characters. Perfect.\n\nActually, let me make it even tighter:\n\"Turn delivery demand signals into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and menu brand.\"\n\nThat's 124 characters. Even better.\n\nOr:\n\"Forecast delivery demand into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and menu brand.\"\n\n110 characters. Very concise.\n\nI think the best balance is:\n\"Forecast delivery demand waves into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and menu brand.\"\n\nIt includes \"waves\" which is in the must-have features. Let me count: 138 characters. Good.\n\nFinal check:\n- Under 250 chars: Yes (138)\n- 5-12 keywords: Yes (10)\n- Lowercase: Yes\n- Alphanumeric/hyphenated: Yes\n- Focus on commercial mechanism, target customer, recurring revenue: Yes\n- Avoid filler terms: Yes (no app, ai, tool, platform)\n\nThe JSON should be:\n```json\n{\n  \"core_mechanic\": \"Forecast delivery demand waves into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and menu brand.\",\n  \"keywords\": [\"ghost-kitchen\", \"demand-forecasting\", \"prep-scheduling\", \"labor-alignment\", \"multi-brand\", \"delivery-marketplace\", \"promo-timing\", \"subscription\", \"order-waves\", \"kitchen-ops\"]\n}\n```\n\nWait, I should double-check the keyword count. Let me list them clearly:\n1. ghost-kitchen\n2. demand-forecasting\n3. prep-scheduling\n4. labor-alignment\n5. multi-brand\n6. delivery-marketplace\n7. promo-timing\n8. subscription\n9. order-waves\n10. kitchen-ops\n\nThat's exactly 10 keywords, which is within the 5-12 range.\n\nLet me review if any keywords could be more discriminative:\n- \"subscription\" could be \"monthly-subscription\" but that might be too specific\n- \"kitchen-ops\" is good but maybe \"food-ops\" from the category? The category is \"food-ops\" but \"kitchen-ops\" is more specific to the target.\n\nI think my selection is solid. It captures the target, core features, key differentiators, revenue model, and context.\n\nOne final consideration: Should I include \"saas\"? The brief mentions \"recurring SaaS\" in the prompt_rendered_brief. But \"saas\" is a filler term unless it's genuinely discriminative. In this case, the key is the per-kitchen and per-brand pricing, not that it's SaaS. So I'll keep \"subscription\" but not \"saas\".\n\nThe keywords are all lowercase and hyphenated appropriately. Perfect. ",
+          "reasoning_content": " The user wants me to extract a DejaShip intent payload from a product brief. I need to:\n\n1. Read the structured brief\n2. Produce a concise `core_mechanic` under 250 characters\n3. Return 5-12 lowercase keywords that are alphanumeric or hyphenated\n4. Focus on the true commercial mechanism, target customer, and recurring revenue path\n5. Avoid filler terms like \"app\", \"ai\", \"tool\", \"platform\" unless genuinely discriminative\n6. Prioritize signal from: target customer, problem, workflow, recurring revenue model, pricing shape, must-have features, operational constraints\n\nLet me analyze the brief:\n\n**Key elements:**\n- **Target customer**: Ghost kitchen brands running multiple menus from one facility, heavily reliant on delivery marketplaces\n- **Problem**: Prep levels and staff timing drift due to fast-changing promotions, weather, marketplace rankings\n- **Workflow**: Forecast order waves → recommend prep windows → connect promo timing to labor and ingredient readiness for each menu line\n- **Recurring revenue model**: Monthly subscription per kitchen + premium analytics for multi-brand operators\n- **Pricing shape**: Base kitchen fee + add-ons per additional menu brand\n- **Must-have features**: Order wave forecasting, prep timing recommendations, promo and labor alignment dashboard, multi-brand kitchen views\n- **Constraints**: Works with incomplete marketplace data, separates menu-brand behavior, no deep ERP customization needed\n- **Success metric**: Higher on-time fulfillment with less over-prep during promo-driven demand swings\n\n**Core mechanism**: This is about operational synchronization - connecting volatile delivery demand signals to kitchen prep and labor scheduling for multi-brand ghost kitchens. The key is turning noisy signals into actionable prep/staffing guidance.\n\nLet me craft the `core_mechanic`:\nI need to capture: demand forecasting → prep scheduling → labor alignment for multi-brand ghost kitchens, with subscription pricing per kitchen/brand.\n\nSomething like: \"SaaS that forecasts delivery demand waves and translates them into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and per menu brand.\"\n\nLet me count: \"SaaS that forecasts delivery demand waves and translates them into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and per menu brand.\" That's 168 characters. Good.\n\nBut I should make it more concise and focused on the mechanism. Let me try again:\n\"Forecast delivery demand waves into prep windows and labor schedules for multi-brand ghost kitchens, monetizing via monthly subscription per kitchen and per menu brand.\"\n\nCount: 138 characters. Good.\n\nEven more concise:\n\"Translate volatile delivery demand into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and menu brand.\"\n\nCount: 125 characters. This captures the essence well.\n\nLet me try one more variation:\n\"Forecast delivery demand waves and recommend prep windows with labor alignment for multi-brand ghost kitchens, monetizing per kitchen and menu brand.\"\n\nCount: 130 characters. This is good and includes the workflow elements.\n\nActually, let me focus on the commercial mechanism more directly:\n\"Monthly SaaS that turns delivery demand signals into prep/staffing guidance for multi-brand ghost kitchens, charging per kitchen and per menu brand.\"\n\nCount: 128 characters. This explicitly mentions the SaaS model and pricing.\n\nI think the best version is:\n\"Forecast delivery demand waves into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and menu brand.\"\n\nIt's clear, concise, and captures the workflow and revenue model.\n\nNow for keywords:\nI need 5-12 lowercase, alphanumeric/hyphenated keywords. Avoid filler terms.\n\nFrom the brief and my analysis:\n- ghost-kitchen (from seed keywords)\n- demand-forecasting (or demand-forecast)\n- prep-scheduling\n- labor-alignment\n- multi-brand\n- delivery-marketplace\n- promo-timing\n- subscription-saas (or just subscription)\n- kitchen-ops\n- order-waves\n- ingredient-readiness\n\nLet me select the most discriminative ones:\n1. ghost-kitchen (explicit target)\n2. demand-forecasting (core feature)\n3. prep-scheduling (core feature)\n4. labor-alignment (core feature)\n5. multi-brand (key differentiator)\n6. delivery-marketplace (context)\n7. promo-timing (important input)\n8. subscription (revenue model)\n9. kitchen-ops (category)\n10. order-waves (specific feature)\n\nThat's 10 keywords. Let me check them:\n- ghost-kitchen: good\n- demand-forecasting: good\n- prep-scheduling: good\n- labor-alignment: good\n- multi-brand: good\n- delivery-marketplace: good\n- promo-timing: good\n- subscription: good (but maybe too generic? The brief says \"monthly subscription per kitchen\" so it's accurate)\n- kitchen-ops: good\n- order-waves: good\n\nI could also add:\n- ingredient-readiness (from workflow)\n- ops-dashboard (from features)\n- volatile-demand (from problem)\n\nBut I need to keep it to 5-12. Let me refine to the most essential:\n\n1. ghost-kitchen (target)\n2. demand-forecasting (core function)\n3. prep-scheduling (core function)\n4. labor-alignment (core function)\n5. multi-brand (key constraint/segment)\n6. delivery-marketplace (channel)\n7. promo-timing (key variable)\n8. subscription-pricing (more specific than just subscription)\n9. order-waves (specific feature)\n10. kitchen-ops (category)\n\nThat's 10. All lowercase, hyphenated where needed.\n\nLet me reconsider \"subscription-pricing\" vs \"subscription\". The brief emphasizes \"per kitchen\" and \"per menu brand\", so maybe:\n- per-kitchen-pricing\n- per-brand-pricing\n\nBut that might be too specific. Let me stick with the feature-focused keywords.\n\nFinal keyword list:\n1. ghost-kitchen\n2. demand-forecasting\n3. prep-scheduling\n4. labor-alignment\n5. multi-brand\n6. delivery-marketplace\n7. promo-timing\n8. subscription\n9. order-waves\n10. kitchen-ops\n\nWait, \"subscription\" might be too generic. The brief says \"Monthly subscription per kitchen plus premium analytics\". Let me think about what makes this discriminative. The key is that it's a SaaS model for kitchens. Maybe \"saas\" is better, but that's a filler term. Let me keep \"subscription\" as it's part of the revenue model.\n\nActually, looking at the anti-goals and constraints:\n- \"Cannot depend on deeply customized ERP deployments\" suggests it's lightweight/standalone\n- \"Must separate menu-brand behavior\" is key\n\nMaybe I should include:\n- lightweight-ops (to contrast with ERP)\n- brand-separation (key feature)\n\nBut I need to stay focused on the most important signals. Let me prioritize:\n\n**Must-haves:**\n1. ghost-kitchen (target)\n2. demand-forecasting (core feature)\n3. prep-scheduling (core feature)\n4. labor-alignment (core feature)\n5. multi-brand (key differentiator)\n\n**Strong signals:**\n6. delivery-marketplace (context)\n7. promo-timing (key input)\n8. order-waves (specific feature)\n9. subscription (revenue model)\n10. kitchen-ops (category)\n\nI think this is a solid list of 10 keywords.\n\nLet me finalize the core_mechanic:\n\"Forecast delivery demand waves into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and menu brand.\"\n\n138 characters. Perfect.\n\nActually, let me make it even tighter:\n\"Turn delivery demand signals into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and menu brand.\"\n\nThat's 124 characters. Even better.\n\nOr:\n\"Forecast delivery demand into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and menu brand.\"\n\n110 characters. Very concise.\n\nI think the best balance is:\n\"Forecast delivery demand waves into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and menu brand.\"\n\nIt includes \"waves\" which is in the must-have features. Let me count: 138 characters. Good.\n\nFinal check:\n- Under 250 chars: Yes (138)\n- 5-12 keywords: Yes (10)\n- Lowercase: Yes\n- Alphanumeric/hyphenated: Yes\n- Focus on commercial mechanism, target customer, recurring revenue: Yes\n- Avoid filler terms: Yes (no app, ai, tool, platform)\n\nThe JSON should be:\n```json\n{\n  \"core_mechanic\": \"Forecast delivery demand waves into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and menu brand.\",\n  \"keywords\": [\"ghost-kitchen\", \"demand-forecasting\", \"prep-scheduling\", \"labor-alignment\", \"multi-brand\", \"delivery-marketplace\", \"promo-timing\", \"subscription\", \"order-waves\", \"kitchen-ops\"]\n}\n```\n\nWait, I should double-check the keyword count. Let me list them clearly:\n1. ghost-kitchen\n2. demand-forecasting\n3. prep-scheduling\n4. labor-alignment\n5. multi-brand\n6. delivery-marketplace\n7. promo-timing\n8. subscription\n9. order-waves\n10. kitchen-ops\n\nThat's exactly 10 keywords, which is within the 5-12 range.\n\nLet me review if any keywords could be more discriminative:\n- \"subscription\" could be \"monthly-subscription\" but that might be too specific\n- \"kitchen-ops\" is good but maybe \"food-ops\" from the category? The category is \"food-ops\" but \"kitchen-ops\" is more specific to the target.\n\nI think my selection is solid. It captures the target, core features, key differentiators, revenue model, and context.\n\nOne final consideration: Should I include \"saas\"? The brief mentions \"recurring SaaS\" in the prompt_rendered_brief. But \"saas\" is a filler term unless it's genuinely discriminative. In this case, the key is the per-kitchen and per-brand pricing, not that it's SaaS. So I'll keep \"subscription\" but not \"saas\".\n\nThe keywords are all lowercase and hyphenated appropriately. Perfect. "
+        },
+        "stop_reason": 163586,
+        "token_ids": null
+      }
+    ],
+    "created": 1772440888,
+    "model": "moonshotai/kimi-k2-thinking",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2207,
+      "prompt_tokens": 676,
+      "total_tokens": 2883,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": " {\"core_mechanic\":\"Forecast delivery demand waves into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and menu brand.\",\"keywords\":[\"ghost-kitchen\",\"demand-forecasting\",\"prep-scheduling\",\"labor-alignment\",\"multi-brand\",\"delivery-marketplace\",\"promo-timing\",\"subscription\",\"order-waves\",\"kitchen-ops\"]}",
+  "llm_output": {
+    "core_mechanic": "Forecast delivery demand waves into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and menu brand.",
+    "keywords": [
+      "ghost-kitchen",
+      "demand-forecasting",
+      "prep-scheduling",
+      "labor-alignment",
+      "multi-brand",
+      "delivery-marketplace",
+      "promo-timing",
+      "subscription",
+      "order-waves",
+      "kitchen-ops"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "ghost-kitchen",
+      "demand-forecasting",
+      "prep-scheduling",
+      "labor-alignment",
+      "multi-brand",
+      "delivery-marketplace",
+      "promo-timing",
+      "subscription",
+      "order-waves",
+      "kitchen-ops"
+    ],
+    "derived_keywords": [
+      "and",
+      "kitchen",
+      "timing",
+      "for",
+      "multi-brand",
+      "order",
+      "promo",
+      "each",
+      "marketplace",
+      "menu",
+      "recommendations",
+      "alignment",
+      "because",
+      "brands",
+      "can",
+      "change",
+      "connect",
+      "dashboard",
+      "drift",
+      "facility",
+      "faster",
+      "forecast",
+      "forecasting",
+      "from",
+      "ghost",
+      "heavily",
+      "ingredient",
+      "levels",
+      "line",
+      "marketplaces",
+      "menus",
+      "one",
+      "rankings",
+      "react",
+      "readiness",
+      "recommend",
+      "relying",
+      "running",
+      "staff",
+      "than",
+      "views",
+      "wave",
+      "waves",
+      "weather",
+      "windows",
+      "with",
+      "analytics",
+      "plus",
+      "premium",
+      "add-ons",
+      "additional",
+      "behavior",
+      "brand",
+      "customized",
+      "data",
+      "deeply",
+      "depend",
+      "deployments",
+      "during",
+      "erp",
+      "even",
+      "fee",
+      "food-ops",
+      "fulfillment",
+      "incomplete",
+      "less",
+      "menu-brand",
+      "must",
+      "needs",
+      "on-time",
+      "over-prep",
+      "promo-driven",
+      "same",
+      "separate",
+      "swings",
+      "the",
+      "useful",
+      "when",
+      "within",
+      "consultants",
+      "delivery-operations",
+      "groups",
+      "outbound"
+    ],
+    "final_keywords": [
+      "ghost-kitchen",
+      "demand-forecasting",
+      "prep-scheduling",
+      "labor-alignment",
+      "multi-brand",
+      "delivery-marketplace",
+      "promo-timing",
+      "subscription",
+      "order-waves",
+      "kitchen-ops"
+    ],
+    "keyword_provenance": {
+      "ghost-kitchen": [
+        "llm",
+        "seed_keywords"
+      ],
+      "demand-forecasting": [
+        "llm"
+      ],
+      "prep-scheduling": [
+        "llm"
+      ],
+      "labor-alignment": [
+        "llm"
+      ],
+      "multi-brand": [
+        "field:distribution_channel",
+        "field:must_have_features",
+        "field:recurring_revenue_model",
+        "llm"
+      ],
+      "delivery-marketplace": [
+        "llm"
+      ],
+      "promo-timing": [
+        "llm"
+      ],
+      "subscription": [
+        "llm"
+      ],
+      "order-waves": [
+        "llm"
+      ],
+      "kitchen-ops": [
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Forecast delivery demand waves into prep windows and labor schedules for multi-brand ghost kitchens, monetizing per kitchen and menu brand.",
+    "keywords": [
+      "ghost-kitchen",
+      "demand-forecasting",
+      "prep-scheduling",
+      "labor-alignment",
+      "multi-brand",
+      "delivery-marketplace",
+      "promo-timing",
+      "subscription",
+      "order-waves",
+      "kitchen-ops"
+    ]
+  },
+  "planned_resolution": "claim"
+}

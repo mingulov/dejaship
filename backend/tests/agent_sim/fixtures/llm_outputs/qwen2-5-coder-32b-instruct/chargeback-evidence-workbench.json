@@ -1,0 +1,239 @@
+{
+  "brief_id": "chargeback-evidence-workbench",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "qwen2-5-coder-32b-instruct",
+    "model_name": "qwen/qwen2.5-coder-32b-instruct",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "db05c25d23eae635dbf534a9b9437d14969d5ced8dcd4145584fbe6f074f05d3",
+    "prompt_hash": "f91cbf49226368a921c8c56ecb49b331a6b88d74d9aed1f1b92bd67ca792b489",
+    "generated_at": "2026-03-02T08:58:38.229821Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"chargeback-evidence-workbench\",\n  \"title\": \"Chargeback evidence workflow for indie subscription software companies\",\n  \"category\": \"subscription-finance\",\n  \"target_customer\": \"Small software companies selling subscriptions globally and handling support with small founder-led teams.\",\n  \"problem\": \"Chargeback disputes are handled too late because evidence is scattered across help desks, billing systems, and product logs.\",\n  \"workflow\": \"Build evidence packets from subscriptions, support history, and usage events so disputes can be filed quickly and patterns can be learned.\",\n  \"recurring_revenue_model\": \"Monthly subscription tied to dispute volume with a premium reporting tier.\",\n  \"pricing_shape\": \"Tiered by active subscriptions and historical chargeback count.\",\n  \"distribution_channel\": \"Payments consultants, indie SaaS communities, and support-ops operators.\",\n  \"constraints\": [\n    \"Must work with lightweight billing and support stacks.\",\n    \"Needs clear timelines because dispute windows are short.\",\n    \"Should improve future prevention, not only create paperwork.\"\n  ],\n  \"must_have_features\": [\n    \"Evidence packet builder\",\n    \"Dispute deadline tracker\",\n    \"Usage event snapshotting\",\n    \"Chargeback pattern reporting\"\n  ],\n  \"seed_keywords\": [\n    \"chargebacks\",\n    \"evidence\",\n    \"subscriptions\",\n    \"disputes\",\n    \"support\",\n    \"billing\"\n  ],\n  \"anti_goals\": [\n    \"Do not operate as a merchant of record.\",\n    \"Do not require enterprise fraud tooling first.\"\n  ],\n  \"success_metric\": \"Faster dispute filing and lower recurring revenue loss from chargebacks.\",\n  \"prompt_rendered_brief\": \"This product is a chargeback evidence workflow for indie subscription software companies that sell online but do not have a real finance-ops bench. When disputes happen, the team scrambles through support threads, billing events, and product logs to assemble evidence, often missing deadlines or learning nothing for next time. The tool should create a structured evidence packet fast, track deadlines, and highlight the behavioral patterns behind recurring disputes. The monetization should be recurring SaaS tied to dispute volume and active subscriptions because the value compounds with consistent prevention and faster wins. The experience must stay approachable for founder-led teams using lightweight billing, product analytics, and help-desk tools. The success case is a measurable reduction in revenue lost to chargebacks and panic-driven manual work.\\n\"\n}",
+  "raw_response": {
+    "id": "chat-61b6692b1c13444592e8c8e176f28be0",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"core_mechanic\": \"Streamlines chargeback dispute resolution for indie subscription software companies by automating evidence collection, tracking deadlines, and identifying patterns to prevent future disputes.\",\n  \"keywords\": [\n    \"chargebacks\",\n    \"evidence\",\n    \"subscriptions\",\n    \"disputes\",\n    \"support\",\n    \"billing\",\n    \"evidence-packet\",\n    \"dispute-tracker\",\n    \"usage-events\",\n    \"pattern-reporting\",\n    \"indie-saas\",\n    \"finance-ops\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772441914,
+    "model": "qwen/qwen2.5-coder-32b-instruct",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 112,
+      "prompt_tokens": 680,
+      "total_tokens": 792,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null
+  },
+  "response_text": "{\n  \"core_mechanic\": \"Streamlines chargeback dispute resolution for indie subscription software companies by automating evidence collection, tracking deadlines, and identifying patterns to prevent future disputes.\",\n  \"keywords\": [\n    \"chargebacks\",\n    \"evidence\",\n    \"subscriptions\",\n    \"disputes\",\n    \"support\",\n    \"billing\",\n    \"evidence-packet\",\n    \"dispute-tracker\",\n    \"usage-events\",\n    \"pattern-reporting\",\n    \"indie-saas\",\n    \"finance-ops\"\n  ]\n}",
+  "llm_output": {
+    "core_mechanic": "Streamlines chargeback dispute resolution for indie subscription software companies by automating evidence collection, tracking deadlines, and identifying patterns to prevent future disputes.",
+    "keywords": [
+      "chargebacks",
+      "evidence",
+      "subscriptions",
+      "disputes",
+      "support",
+      "billing",
+      "evidence-packet",
+      "dispute-tracker",
+      "usage-events",
+      "pattern-reporting",
+      "indie-saas",
+      "finance-ops"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "chargebacks",
+      "evidence",
+      "subscriptions",
+      "disputes",
+      "support",
+      "billing",
+      "evidence-packet",
+      "dispute-tracker",
+      "usage-events",
+      "pattern-reporting",
+      "indie-saas",
+      "finance-ops"
+    ],
+    "derived_keywords": [
+      "and",
+      "dispute",
+      "chargeback",
+      "with",
+      "can",
+      "usage",
+      "are",
+      "because",
+      "from",
+      "across",
+      "builder",
+      "deadline",
+      "desks",
+      "event",
+      "events",
+      "filed",
+      "founder-led",
+      "globally",
+      "handled",
+      "handling",
+      "help",
+      "history",
+      "late",
+      "learned",
+      "logs",
+      "packet",
+      "packets",
+      "pattern",
+      "patterns",
+      "quickly",
+      "scattered",
+      "selling",
+      "snapshotting",
+      "systems",
+      "too",
+      "tracker",
+      "premium",
+      "tied",
+      "tier",
+      "volume",
+      "active",
+      "clear",
+      "count",
+      "create",
+      "faster",
+      "filing",
+      "future",
+      "historical",
+      "improve",
+      "lightweight",
+      "loss",
+      "must",
+      "needs",
+      "not",
+      "only",
+      "paperwork",
+      "prevention",
+      "short",
+      "should",
+      "stacks",
+      "subscription-finance",
+      "tiered",
+      "timelines",
+      "windows",
+      "work",
+      "communities",
+      "consultants",
+      "indie",
+      "payments",
+      "saas",
+      "support-ops"
+    ],
+    "final_keywords": [
+      "chargebacks",
+      "evidence",
+      "subscriptions",
+      "disputes",
+      "support",
+      "billing",
+      "evidence-packet",
+      "dispute-tracker",
+      "usage-events",
+      "pattern-reporting"
+    ],
+    "keyword_provenance": {
+      "chargebacks": [
+        "field:success_metric",
+        "llm",
+        "seed_keywords"
+      ],
+      "evidence": [
+        "field:must_have_features",
+        "field:problem",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "subscriptions": [
+        "llm",
+        "seed_keywords"
+      ],
+      "disputes": [
+        "field:problem",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "support": [
+        "field:constraints",
+        "field:target_customer",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "billing": [
+        "field:constraints",
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "evidence-packet": [
+        "llm"
+      ],
+      "dispute-tracker": [
+        "llm"
+      ],
+      "usage-events": [
+        "llm"
+      ],
+      "pattern-reporting": [
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Streamlines chargeback dispute resolution for indie subscription software companies by automating evidence collection, tracking deadlines, and identifying patterns to prevent future disputes.",
+    "keywords": [
+      "chargebacks",
+      "evidence",
+      "subscriptions",
+      "disputes",
+      "support",
+      "billing",
+      "evidence-packet",
+      "dispute-tracker",
+      "usage-events",
+      "pattern-reporting"
+    ]
+  },
+  "planned_resolution": "claim"
+}

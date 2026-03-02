@@ -1,0 +1,235 @@
+{
+  "brief_id": "security-training-renewals",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "seed-oss-36b-instruct",
+    "model_name": "bytedance/seed-oss-36b-instruct",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "3dca546fb50e2cb8243788618b2547b44e6c50276f66510a269fdf872fd84278",
+    "prompt_hash": "99dbe92d609a66271573474199d373e80a2433c1f04597adbb0c129cffe773ed",
+    "generated_at": "2026-03-02T08:18:19.939731Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"security-training-renewals\",\n  \"title\": \"Training and certification renewal desk for regional security guard firms\",\n  \"category\": \"workforce-ops\",\n  \"target_customer\": \"Regional security guard firms with rotating schedules, recurring client contracts, and frequent training expiration requirements.\",\n  \"problem\": \"Renewals for guard certifications and site-specific training fall through the cracks, risking contract issues and staffing gaps.\",\n  \"workflow\": \"Track each guard's training timeline, site-specific requirements, and open shifts that will be affected if a credential lapses.\",\n  \"recurring_revenue_model\": \"Monthly subscription based on active guard roster size.\",\n  \"pricing_shape\": \"Base subscription with workforce-size tiers and optional customer reporting add-on.\",\n  \"distribution_channel\": \"Security operations managers, workforce compliance consultants, and staffing communities.\",\n  \"constraints\": [\n    \"Must connect training status to real staffing coverage risk.\",\n    \"Needs simple views for schedulers and operations managers.\",\n    \"Cannot require replacing guard scheduling software.\"\n  ],\n  \"must_have_features\": [\n    \"Certification renewal tracker\",\n    \"Shift risk alerts\",\n    \"Site requirement matrix\",\n    \"Client-ready compliance reports\"\n  ],\n  \"seed_keywords\": [\n    \"security-guards\",\n    \"training\",\n    \"renewals\",\n    \"certifications\",\n    \"staffing\",\n    \"compliance\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a payroll system.\",\n    \"Do not target national enterprise vendors first.\"\n  ],\n  \"success_metric\": \"Fewer shift coverage issues caused by expired training or certifications.\",\n  \"prompt_rendered_brief\": \"The product is a training and certification renewal desk for regional security guard firms that manage recurring contracts with strict staffing rules. Operations teams often discover a compliance problem only when a shift is about to go uncovered because a guard's certification or site-specific training has expired. The software should show every guard's renewal timeline, the sites they can work, and which upcoming shifts are at risk if training is not completed in time. Recurring SaaS pricing makes sense because the workflow repeats constantly across roster changes and client contracts. The experience has to support schedulers and operations managers without replacing the software they already use for timekeeping or guard scheduling. A successful outcome is better coverage reliability and fewer contract headaches caused by credential lapses.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-6544944baa654df08f033b19defa4874",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-d6d52fcc0ae64c2f920ca7dd8ab9740c",
+              "function": {
+                "arguments": "{\n  \"core_mechanic\": \"A SaaS system for regional security guard firms that tracks certification and training renewals, links to shift coverage risk, and uses monthly roster-based subscriptions to prevent contract/staffing gaps from lapses.\",\n  \"keywords\": [\n    \"regional-security-firms\",\n    \"security-guards\",\n    \"training-certifications\",\n    \"renewals\",\n    \"shift-risk\",\n    \"monthly-subscription\",\n    \"roster-based\"\n  ]\n}",
+                "name": "GeneratedIntentDraft"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning_content": "\nGot it, let's tackle this problem step by step. First, I need to remember the requirements: a concise core_mechanic under 250 characters, 5-12 lowercase keywords that are alphanumeric or hyphenated, focusing on commercial mechanism, target customer, and recurring revenue path. Also, avoid filler terms unless necessary.\n\nFirst, core_mechanic. Let's pull the key elements: target customer is regional security guard firms, the problem is missed renewals of certifications/training leading to contract/staffing issues, the workflow is tracking training timelines, site requirements, shift risks, and the recurring revenue is monthly subscription based on roster size. So need to tie together the mechanism: tracking guard training/cert renewals linked to shift risk, with monthly subs tied to roster size for regional firms. Let me draft that: \"A SaaS platform for regional security guard firms that tracks certification/training renewals, links to shift coverage risk, and offers monthly subscriptions based on active guard roster size to prevent contract issues and staffing gaps.\" Wait, check length—let me count. Maybe trim: \"A SaaS tool for regional security guard firms that tracks certification/training renewals, links to shift coverage risk, and uses monthly roster-based subscriptions to prevent contract/staffing gaps from lapses.\" Better, under 250.\n\nNext, keywords. Need 5-12, lowercase, alphanumeric/hyphenated. Focus on commercial mechanism (monthly-subscription, roster-based), target customer (regional-security-firms, security-guards), problem/recurring revenue (renewals, training-certifications, shift-risk). Let's list possible: regional-security-firms (target), security-guards (target), training-certifications (problem), renewals (core), shift-risk (workflow/constraint), monthly-subscription (recurring revenue), roster-based (pricing shape). Check seed keywords: security-guards, training, renewals, certifications, staffing, compliance. But need to combine some maybe. Let's see: \"regional-security-firms\" (target customer), \"security-guards\" (target), \"training-certifications\" (must-have, problem), \"renewals\" (core), \"shift-risk\" (workflow/constraint), \"monthly-subscription\" (recurring revenue), \"roster-based\" (pricing). That's 7, which is good. Avoid \"compliance\" because it's a filler? Wait, the requirement says avoid unless genuinely discriminative. The problem is about compliance (cert renewals), but seed keywords include compliance, but let's see: the core is more about tracking renewals linked to shifts and roster-based subs. Let's check:\n\n- regional-security-firms: yes, target customer, discriminative.\n- security-guards: target, yes.\n- training-certifications: must-have, problem, yes.\n- renewals: core, yes.\n- shift-risk: workflow/constraint (must connect to staffing coverage risk), yes.\n- monthly-subscription: recurring revenue model, yes.\n- roster-based: pricing shape (tiered by workforce size), yes.\n\nAre these all alphanumeric/hyphenated? Yes. Lowercase? Yes. No fillers like \"app\" or \"ai\". That works. Let me count: 7, which is within 5-12.\n\nWait, let's check core_mechanic again to make sure it's under 250. Let's write it properly: \"A SaaS solution for regional security guard firms that tracks certification and training renewals, links to shift coverage risk, and offers monthly subscriptions based on active guard roster size to prevent contract issues and staffing gaps.\" Let's count characters: let's see, that's 237 characters (without quotes). Perfect.\n\nKeywords: let's list them again to ensure no duplicates or non-compliant terms: regional-security-firms, security-guards, training-certifications, renewals, shift-risk, monthly-subscription, roster-based. All good.\n\nIs there any missing? Let's check the requirements again: focus on true commercial mechanism (monthly-subscription, roster-based), target customer (regional-security-firms, security-guards), recurring revenue path (monthly-subscription, roster-based). Yes. Avoided fillers like \"platform\" (used \"solution\" but wait, the requirement says avoid \"app\", \"ai\", \"tool\", \"platform\" unless genuinely discriminative. Did I use \"SaaS solution\"? Is \"solution\" a filler? Wait, the example in the problem statement—let me check the brief's prompt_rendered_brief: \"The product is a training and certification renewal desk...\" So maybe \"desk\" is their term, but the core_mechanic needs to be concise. Alternatively, maybe \"system\" instead of \"solution\"? Let's adjust: \"A SaaS system for regional security guard firms that tracks certification and training renewals, links to shift coverage risk, and uses monthly roster-based subscriptions to prevent contract/staffing gaps from lapses.\" That's 228 characters. \"System\" is maybe better, but does it matter? The key is the core elements are there: target customer (regional security guard firms), what it does (track renewals, link to shift risk), recurring revenue (monthly roster-based subscriptions), and the outcome (prevent gaps).\n\nYes, that's solid. Keywords are all on point. Let me just confirm no anti-goals: not a payroll system (doesn't mention payroll), not targeting national enterprises (regional is there). Perfect."
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772439470,
+    "model": "bytedance/seed-oss-36b-instruct",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1286,
+      "prompt_tokens": 867,
+      "total_tokens": 2153,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "{\"core_mechanic\":\"A SaaS system for regional security guard firms that tracks certification and training renewals, links to shift coverage risk, and uses monthly roster-based subscriptions to prevent contract/staffing gaps from lapses.\",\"keywords\":[\"regional-security-firms\",\"security-guards\",\"training-certifications\",\"renewals\",\"shift-risk\",\"monthly-subscription\",\"roster-based\"]}",
+  "llm_output": {
+    "core_mechanic": "A SaaS system for regional security guard firms that tracks certification and training renewals, links to shift coverage risk, and uses monthly roster-based subscriptions to prevent contract/staffing gaps from lapses.",
+    "keywords": [
+      "regional-security-firms",
+      "security-guards",
+      "training-certifications",
+      "renewals",
+      "shift-risk",
+      "monthly-subscription",
+      "roster-based"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "regional-security-firms",
+      "security-guards",
+      "training-certifications",
+      "renewals",
+      "shift-risk",
+      "monthly-subscription",
+      "roster-based"
+    ],
+    "derived_keywords": [
+      "and",
+      "guard",
+      "requirements",
+      "site-specific",
+      "for",
+      "issues",
+      "risk",
+      "shift",
+      "with",
+      "security",
+      "affected",
+      "alerts",
+      "certification",
+      "client",
+      "client-ready",
+      "contract",
+      "contracts",
+      "coverage",
+      "cracks",
+      "credential",
+      "each",
+      "expiration",
+      "fall",
+      "frequent",
+      "gaps",
+      "lapses",
+      "matrix",
+      "open",
+      "renewal",
+      "reports",
+      "requirement",
+      "risking",
+      "rotating",
+      "schedules",
+      "shifts",
+      "site",
+      "that",
+      "the",
+      "through",
+      "timeline",
+      "track",
+      "tracker",
+      "will",
+      "active",
+      "based",
+      "operations",
+      "roster",
+      "size",
+      "add-on",
+      "caused",
+      "connect",
+      "expired",
+      "fewer",
+      "must",
+      "needs",
+      "optional",
+      "real",
+      "replacing",
+      "require",
+      "schedulers",
+      "scheduling",
+      "simple",
+      "status",
+      "tiers",
+      "views",
+      "workforce-ops",
+      "workforce-size",
+      "communities",
+      "consultants",
+      "workforce"
+    ],
+    "final_keywords": [
+      "regional-security-firms",
+      "security-guards",
+      "training-certifications",
+      "renewals",
+      "shift-risk",
+      "monthly-subscription",
+      "roster-based",
+      "training",
+      "certifications",
+      "staffing"
+    ],
+    "keyword_provenance": {
+      "regional-security-firms": [
+        "llm"
+      ],
+      "security-guards": [
+        "llm",
+        "seed_keywords"
+      ],
+      "training-certifications": [
+        "llm"
+      ],
+      "renewals": [
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "shift-risk": [
+        "llm"
+      ],
+      "monthly-subscription": [
+        "llm"
+      ],
+      "roster-based": [
+        "llm"
+      ],
+      "training": [
+        "field:constraints",
+        "field:problem",
+        "field:success_metric",
+        "field:target_customer",
+        "field:workflow",
+        "seed_keywords"
+      ],
+      "certifications": [
+        "field:problem",
+        "field:success_metric",
+        "seed_keywords"
+      ],
+      "staffing": [
+        "field:constraints",
+        "field:distribution_channel",
+        "field:problem",
+        "seed_keywords"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "A SaaS system for regional security guard firms that tracks certification and training renewals, links to shift coverage risk, and uses monthly roster-based subscriptions to prevent contract/staffing gaps from lapses.",
+    "keywords": [
+      "regional-security-firms",
+      "security-guards",
+      "training-certifications",
+      "renewals",
+      "shift-risk",
+      "monthly-subscription",
+      "roster-based",
+      "training",
+      "certifications",
+      "staffing"
+    ]
+  },
+  "planned_resolution": "claim"
+}

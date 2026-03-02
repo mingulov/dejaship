@@ -1,0 +1,258 @@
+{
+  "brief_id": "vet-clinic-reorder-expiry",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "kimi-k2-thinking",
+    "model_name": "moonshotai/kimi-k2-thinking",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "1caf99641dfdb5c5593c69281c40a69d89f031e82703a6a6096fff19a356cbf7",
+    "prompt_hash": "7b5b52a94b0145aacc35f4ed0d5f012b50d511ce6a7ffa34bd73be050d63e9c6",
+    "generated_at": "2026-03-02T09:04:21.629226Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"vet-clinic-reorder-expiry\",\n  \"title\": \"Reorder timing and expiry protection for independent veterinary clinics\",\n  \"category\": \"clinical-ops\",\n  \"target_customer\": \"Independent veterinary clinics managing vaccines, medications, and treatment supplies with lean inventory habits.\",\n  \"problem\": \"Clinics either run out of critical items or overbuy products that expire because forecasting is ad hoc and based on memory.\",\n  \"workflow\": \"Track critical stock, reorder timing, expiry windows, and demand signals tied to seasonal visits and common treatment bundles.\",\n  \"recurring_revenue_model\": \"Subscription per clinic location with optional multi-site inventory rollups.\",\n  \"pricing_shape\": \"Per-location recurring fee with higher tiers for item count and additional branches.\",\n  \"distribution_channel\": \"Veterinary communities, practice consultants, and referrals from clinic-focused accountants.\",\n  \"constraints\": [\n    \"Must prioritize practical reorder decisions over full procurement suites.\",\n    \"Needs expiry visibility for regulated medications and vaccines.\",\n    \"Cannot depend on hardware changes or barcode rollouts to be useful.\"\n  ],\n  \"must_have_features\": [\n    \"Critical stock watchlist\",\n    \"Reorder recommendation queue\",\n    \"Expiry window alerts\",\n    \"Seasonal demand overlays\"\n  ],\n  \"seed_keywords\": [\n    \"veterinary\",\n    \"inventory\",\n    \"reorders\",\n    \"expiry\",\n    \"vaccines\",\n    \"clinic\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a general procurement ERP.\",\n    \"Do not focus on hospital procurement departments.\"\n  ],\n  \"success_metric\": \"Fewer stockouts and fewer expired items in routine clinical inventory.\",\n  \"prompt_rendered_brief\": \"This product is a reorder timing and expiry protection tool for independent veterinary clinics that keep just enough inventory to stay lean. The clinic team struggles because vaccine and medication demand changes with seasons, common treatment bundles are not tracked cleanly, and overbuying creates expensive expiry waste. The software should highlight critical stock, recommend reorder timing, and make expiry risk obvious before the next ordering cycle. A recurring per-location subscription is appropriate because the value shows up every week in smoother operations and less wasted inventory. The workflow needs to be practical and lightweight, not a full procurement system with enterprise implementation requirements. Success means the clinic has the right items on hand more often while throwing away less regulated stock.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-940f3aa8f4f3534f",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": " {\"core_mechanic\":\"Per-location subscription helping independent veterinary clinics optimize reorder timing for vaccines/meds using seasonal demand patterns to prevent stockouts and expiry waste.\",\"keywords\":[\"veterinary\",\"clinic\",\"inventory\",\"reorders\",\"expiry\",\"vaccines\",\"per-location\",\"subscription\",\"seasonal-demand\",\"lean-inventory\",\"stockouts\",\"critical-stock\"]}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [],
+          "reasoning": " The user wants me to parse a product brief and produce a \"DejaShip intent payload\" in strict JSON format. The payload must contain:\n1. `core_mechanic`: concise, under 250 characters\n2. `keywords`: 5-12 lowercase, alphanumeric or hyphenated keywords\n\nKey requirements:\n- Focus on true commercial mechanism, target customer, and recurring revenue path\n- Avoid filler terms like \"app\", \"ai\", \"tool\", \"platform\" unless genuinely discriminative\n- Prioritize signal from: target customer, problem, workflow, recurring revenue model, pricing shape, must-have features, operational constraints\n\nLet me analyze the brief:\n\n**Target customer**: \"Independent veterinary clinics managing vaccines, medications, and treatment supplies with lean inventory habits.\"\n\n**Problem**: \"Clinics either run out of critical items or overbuy products that expire because forecasting is ad hoc and based on memory.\"\n\n**Workflow**: \"Track critical stock, reorder timing, expiry windows, and demand signals tied to seasonal visits and common treatment bundles.\"\n\n**Recurring revenue model**: \"Subscription per clinic location with optional multi-site inventory rollups.\"\n\n**Pricing shape**: \"Per-location recurring fee with higher tiers for item count and additional branches.\"\n\n**Must-have features**: \n- \"Critical stock watchlist\"\n- \"Reorder recommendation queue\"\n- \"Expiry window alerts\"\n- \"Seasonal demand overlays\"\n\n**Constraints**:\n- \"Must prioritize practical reorder decisions over full procurement suites.\"\n- \"Needs expiry visibility for regulated medications and vaccines.\"\n- \"Cannot depend on hardware changes or barcode rollouts to be useful.\"\n\n**Anti-goals**: \n- \"Do not become a general procurement ERP.\"\n- \"Do not focus on hospital procurement departments.\"\n\n**Success metric**: \"Fewer stockouts and fewer expired items in routine clinical inventory.\"\n\nNow I need to craft the core_mechanic and keywords.\n\n**Core_mechanic**: Should capture the essence of the business model and value proposition. It's about helping independent vet clinics optimize inventory reorder timing to prevent stockouts and expiry waste, using seasonal demand patterns, with a per-location subscription model.\n\nLet me draft a core_mechanic:\n\"Per-location subscription for independent vet clinics that forecasts reorder timing and expiry risk for vaccines/meds using seasonal demand patterns to prevent stockouts and waste.\"\n\nLet me count characters: \"Per-location subscription for independent vet clinics that forecasts reorder timing and expiry risk for vaccines/meds using seasonal demand patterns to prevent stockouts and waste.\"\nThat's about 180 characters. Good, under 250.\n\nAlternative: \"Subscription-based reorder timing and expiry protection for independent veterinary clinics, using seasonal demand signals to optimize lean inventory and prevent stockouts/waste.\"\nThat's about 150 characters.\n\nLet me refine: \"Per-location subscription helping independent vet clinics optimize reorder timing for vaccines/meds using seasonal demand patterns to prevent stockouts and expiry waste.\"\nThat's about 155 characters. Good.\n\n**Keywords**: Need 5-12 lowercase, alphanumeric/hyphenated words. Avoid filler terms.\n\nFrom seed keywords: \"veterinary\", \"inventory\", \"reorders\", \"expiry\", \"vaccines\", \"clinic\"\n\nI should add more based on the brief:\n- \"per-location\" (from pricing shape)\n- \"subscription\" (from recurring revenue model)\n- \"seasonal-demand\" (from workflow and must-have features)\n- \"lean-inventory\" (from target customer description)\n- \"stockouts\" (from problem and success metric)\n- \"critical-stock\" (from must-have features)\n- \"reorder-timing\" (from title and workflow)\n\nLet me compile a list:\n1. veterinary\n2. inventory\n3. reorders\n4. expiry\n5. vaccines\n6. clinic\n7. per-location\n8. subscription\n9. seasonal-demand\n10. lean-inventory\n11. stockouts\n12. critical-stock\n\nThat's 12 keywords. Let me check if they meet criteria:\n- All lowercase? Yes\n- Alphanumeric or hyphenated? Yes (per-location, seasonal-demand, lean-inventory, critical-stock)\n- Avoid filler terms? Yes, no \"app\", \"ai\", \"tool\", \"platform\"\n- Focus on commercial mechanism, target customer, recurring revenue? Yes\n\nWait, \"clinic\" might be a bit generic, but it's specific to the target customer. \"veterinary\" is already there, so maybe \"clinic\" is redundant. Let me reconsider.\n\nBetter list:\n1. veterinary\n2. inventory\n3. reorders\n4. expiry\n5. vaccines\n6. per-location\n7. subscription\n8. seasonal-demand\n9. lean-inventory\n10. stockouts\n11. critical-stock\n12. reorder-timing\n\nThat's 12. But \"reorders\" and \"reorder-timing\" are similar. Maybe I should drop one.\n\nLet me think about the most important concepts:\n- Target: veterinary, clinic (but clinic is generic)\n- Problem: stockouts, expiry, lean-inventory\n- Solution: reorders, reorder-timing, critical-stock, seasonal-demand\n- Business model: subscription, per-location\n- Domain: inventory, vaccines\n\nMaybe:\n1. veterinary\n2. inventory\n3. reorders\n4. expiry\n5. vaccines\n6. per-location\n7. subscription\n8. seasonal-demand\n9. lean-inventory\n10. stockouts\n11. critical-stock\n\nThat's 11. Good.\n\nOr I could include \"medication\" but \"vaccines\" is more specific from the brief. The brief mentions \"vaccines, medications, and treatment supplies\" but vaccines are highlighted.\n\nLet me check the anti-goals: \"Do not become a general procurement ERP.\" So I should avoid terms that sound like ERP.\n\nThe core value is: reorder timing + expiry protection + seasonal demand + per-location subscription.\n\nKeywords should reflect this. Let me finalize:\n\n1. veterinary (target customer)\n2. inventory (domain)\n3. reorders (core function)\n4. expiry (core function)\n5. vaccines (specific product type)\n6. per-location (pricing model)\n7. subscription (revenue model)\n8. seasonal-demand (key feature)\n9. lean-inventory (customer habit/constraint)\n10. stockouts (problem)\n11. critical-stock (feature)\n\nThat's 11 keywords. I could add \"reorder-timing\" to make it 12, but it's similar to \"reorders\". Or \"treatment-supplies\" but that's too long and less specific than vaccines.\n\nActually, let me reconsider \"clinic\". The target is \"independent veterinary clinics\", so \"clinic\" is important to distinguish from hospital procurement departments (anti-goal). So maybe:\n\n1. veterinary\n2. clinic\n3. inventory\n4. reorders\n5. expiry\n6. vaccines\n7. per-location\n8. subscription\n9. seasonal-demand\n10. lean-inventory\n11. stockouts\n12. critical-stock\n\nThat's 12 keywords. All lowercase, hyphenated where needed, no filler terms. Perfect.\n\nNow for the core_mechanic. Let me make it even more concise and focused on the commercial mechanism:\n\n\"Per-location subscription for independent veterinary clinics that optimizes reorder timing and expiry protection for vaccines/meds using seasonal demand patterns to prevent stockouts and waste.\"\n\nThat's 158 characters. Good.\n\nAlternative: \"Subscription-based reorder timing and expiry protection for independent vet clinics, using seasonal demand to optimize lean inventory and prevent stockouts/waste.\"\n\nThat's 145 characters. Also good.\n\nI think the first one is slightly better because it explicitly mentions \"per-location subscription\" which is key to the pricing shape and recurring revenue model.\n\nLet me refine it one more time to be super crisp:\n\"Per-location subscription helping independent veterinary clinics optimize reorder timing for vaccines/meds using seasonal demand patterns to prevent stockouts and expiry waste.\"\n\nCount: 155 characters. Perfect.\n\nFinal check:\n- Under 250 characters? Yes (155)\n- Concise? Yes\n- Captures commercial mechanism (per-location subscription)? Yes\n- Captures target customer (independent veterinary clinics)? Yes\n- Captures recurring revenue path (subscription)? Yes\n- Mentions key features (reorder timing, seasonal demand, expiry)? Yes\n\nNow for the JSON structure. It must be strict JSON, no markdown fences.\n\n```json\n{\n  \"core_mechanic\": \"Per-location subscription helping independent veterinary clinics optimize reorder timing for vaccines/meds using seasonal demand patterns to prevent stockouts and expiry waste.\",\n  \"keywords\": [\n    \"veterinary\",\n    \"clinic\",\n    \"inventory\",\n    \"reorders\",\n    \"expiry\",\n    \"vaccines\",\n    \"per-location\",\n    \"subscription\",\n    \"seasonal-demand\",\n    \"lean-inventory\",\n    \"stockouts\",\n    \"critical-stock\"\n  ]\n}\n```\n\nWait, I need to double-check the hyphenation rules. The brief says \"alphanumeric or hyphenated\". So hyphens are allowed. Good.\n\nLet me verify each keyword:\n- veterinary: alphanumeric\n- clinic: alphanumeric\n- inventory: alphanumeric\n- reorders: alphanumeric\n- expiry: alphanumeric\n- vaccines: alphanumeric\n- per-location: hyphenated\n- subscription: alphanumeric\n- seasonal-demand: hyphenated\n- lean-inventory: hyphenated\n- stockouts: alphanumeric\n- critical-stock: hyphenated\n\nAll good.\n\nThe core_mechanic is 155 characters, well under 250.\n\nThe JSON is valid. No markdown fences. Perfect.\n\nI should also ensure I'm not including any filler terms. \"subscription\" is necessary here because it's the revenue model. \"veterinary\" is necessary as it's the target market. \"clinic\" is necessary to distinguish from hospitals (anti-goal). \"inventory\" is the domain. \"reorders\" and \"expiry\" are core functions. \"vaccines\" is a key product type. \"per-location\" is the pricing shape. \"seasonal-demand\" is a key feature. \"lean-inventory\" describes the customer habit. \"stockouts\" is the problem. \"critical-stock\" is a must-have feature.\n\nAll terms are signal, not filler. Good. ",
+          "reasoning_content": " The user wants me to parse a product brief and produce a \"DejaShip intent payload\" in strict JSON format. The payload must contain:\n1. `core_mechanic`: concise, under 250 characters\n2. `keywords`: 5-12 lowercase, alphanumeric or hyphenated keywords\n\nKey requirements:\n- Focus on true commercial mechanism, target customer, and recurring revenue path\n- Avoid filler terms like \"app\", \"ai\", \"tool\", \"platform\" unless genuinely discriminative\n- Prioritize signal from: target customer, problem, workflow, recurring revenue model, pricing shape, must-have features, operational constraints\n\nLet me analyze the brief:\n\n**Target customer**: \"Independent veterinary clinics managing vaccines, medications, and treatment supplies with lean inventory habits.\"\n\n**Problem**: \"Clinics either run out of critical items or overbuy products that expire because forecasting is ad hoc and based on memory.\"\n\n**Workflow**: \"Track critical stock, reorder timing, expiry windows, and demand signals tied to seasonal visits and common treatment bundles.\"\n\n**Recurring revenue model**: \"Subscription per clinic location with optional multi-site inventory rollups.\"\n\n**Pricing shape**: \"Per-location recurring fee with higher tiers for item count and additional branches.\"\n\n**Must-have features**: \n- \"Critical stock watchlist\"\n- \"Reorder recommendation queue\"\n- \"Expiry window alerts\"\n- \"Seasonal demand overlays\"\n\n**Constraints**:\n- \"Must prioritize practical reorder decisions over full procurement suites.\"\n- \"Needs expiry visibility for regulated medications and vaccines.\"\n- \"Cannot depend on hardware changes or barcode rollouts to be useful.\"\n\n**Anti-goals**: \n- \"Do not become a general procurement ERP.\"\n- \"Do not focus on hospital procurement departments.\"\n\n**Success metric**: \"Fewer stockouts and fewer expired items in routine clinical inventory.\"\n\nNow I need to craft the core_mechanic and keywords.\n\n**Core_mechanic**: Should capture the essence of the business model and value proposition. It's about helping independent vet clinics optimize inventory reorder timing to prevent stockouts and expiry waste, using seasonal demand patterns, with a per-location subscription model.\n\nLet me draft a core_mechanic:\n\"Per-location subscription for independent vet clinics that forecasts reorder timing and expiry risk for vaccines/meds using seasonal demand patterns to prevent stockouts and waste.\"\n\nLet me count characters: \"Per-location subscription for independent vet clinics that forecasts reorder timing and expiry risk for vaccines/meds using seasonal demand patterns to prevent stockouts and waste.\"\nThat's about 180 characters. Good, under 250.\n\nAlternative: \"Subscription-based reorder timing and expiry protection for independent veterinary clinics, using seasonal demand signals to optimize lean inventory and prevent stockouts/waste.\"\nThat's about 150 characters.\n\nLet me refine: \"Per-location subscription helping independent vet clinics optimize reorder timing for vaccines/meds using seasonal demand patterns to prevent stockouts and expiry waste.\"\nThat's about 155 characters. Good.\n\n**Keywords**: Need 5-12 lowercase, alphanumeric/hyphenated words. Avoid filler terms.\n\nFrom seed keywords: \"veterinary\", \"inventory\", \"reorders\", \"expiry\", \"vaccines\", \"clinic\"\n\nI should add more based on the brief:\n- \"per-location\" (from pricing shape)\n- \"subscription\" (from recurring revenue model)\n- \"seasonal-demand\" (from workflow and must-have features)\n- \"lean-inventory\" (from target customer description)\n- \"stockouts\" (from problem and success metric)\n- \"critical-stock\" (from must-have features)\n- \"reorder-timing\" (from title and workflow)\n\nLet me compile a list:\n1. veterinary\n2. inventory\n3. reorders\n4. expiry\n5. vaccines\n6. clinic\n7. per-location\n8. subscription\n9. seasonal-demand\n10. lean-inventory\n11. stockouts\n12. critical-stock\n\nThat's 12 keywords. Let me check if they meet criteria:\n- All lowercase? Yes\n- Alphanumeric or hyphenated? Yes (per-location, seasonal-demand, lean-inventory, critical-stock)\n- Avoid filler terms? Yes, no \"app\", \"ai\", \"tool\", \"platform\"\n- Focus on commercial mechanism, target customer, recurring revenue? Yes\n\nWait, \"clinic\" might be a bit generic, but it's specific to the target customer. \"veterinary\" is already there, so maybe \"clinic\" is redundant. Let me reconsider.\n\nBetter list:\n1. veterinary\n2. inventory\n3. reorders\n4. expiry\n5. vaccines\n6. per-location\n7. subscription\n8. seasonal-demand\n9. lean-inventory\n10. stockouts\n11. critical-stock\n12. reorder-timing\n\nThat's 12. But \"reorders\" and \"reorder-timing\" are similar. Maybe I should drop one.\n\nLet me think about the most important concepts:\n- Target: veterinary, clinic (but clinic is generic)\n- Problem: stockouts, expiry, lean-inventory\n- Solution: reorders, reorder-timing, critical-stock, seasonal-demand\n- Business model: subscription, per-location\n- Domain: inventory, vaccines\n\nMaybe:\n1. veterinary\n2. inventory\n3. reorders\n4. expiry\n5. vaccines\n6. per-location\n7. subscription\n8. seasonal-demand\n9. lean-inventory\n10. stockouts\n11. critical-stock\n\nThat's 11. Good.\n\nOr I could include \"medication\" but \"vaccines\" is more specific from the brief. The brief mentions \"vaccines, medications, and treatment supplies\" but vaccines are highlighted.\n\nLet me check the anti-goals: \"Do not become a general procurement ERP.\" So I should avoid terms that sound like ERP.\n\nThe core value is: reorder timing + expiry protection + seasonal demand + per-location subscription.\n\nKeywords should reflect this. Let me finalize:\n\n1. veterinary (target customer)\n2. inventory (domain)\n3. reorders (core function)\n4. expiry (core function)\n5. vaccines (specific product type)\n6. per-location (pricing model)\n7. subscription (revenue model)\n8. seasonal-demand (key feature)\n9. lean-inventory (customer habit/constraint)\n10. stockouts (problem)\n11. critical-stock (feature)\n\nThat's 11 keywords. I could add \"reorder-timing\" to make it 12, but it's similar to \"reorders\". Or \"treatment-supplies\" but that's too long and less specific than vaccines.\n\nActually, let me reconsider \"clinic\". The target is \"independent veterinary clinics\", so \"clinic\" is important to distinguish from hospital procurement departments (anti-goal). So maybe:\n\n1. veterinary\n2. clinic\n3. inventory\n4. reorders\n5. expiry\n6. vaccines\n7. per-location\n8. subscription\n9. seasonal-demand\n10. lean-inventory\n11. stockouts\n12. critical-stock\n\nThat's 12 keywords. All lowercase, hyphenated where needed, no filler terms. Perfect.\n\nNow for the core_mechanic. Let me make it even more concise and focused on the commercial mechanism:\n\n\"Per-location subscription for independent veterinary clinics that optimizes reorder timing and expiry protection for vaccines/meds using seasonal demand patterns to prevent stockouts and waste.\"\n\nThat's 158 characters. Good.\n\nAlternative: \"Subscription-based reorder timing and expiry protection for independent vet clinics, using seasonal demand to optimize lean inventory and prevent stockouts/waste.\"\n\nThat's 145 characters. Also good.\n\nI think the first one is slightly better because it explicitly mentions \"per-location subscription\" which is key to the pricing shape and recurring revenue model.\n\nLet me refine it one more time to be super crisp:\n\"Per-location subscription helping independent veterinary clinics optimize reorder timing for vaccines/meds using seasonal demand patterns to prevent stockouts and expiry waste.\"\n\nCount: 155 characters. Perfect.\n\nFinal check:\n- Under 250 characters? Yes (155)\n- Concise? Yes\n- Captures commercial mechanism (per-location subscription)? Yes\n- Captures target customer (independent veterinary clinics)? Yes\n- Captures recurring revenue path (subscription)? Yes\n- Mentions key features (reorder timing, seasonal demand, expiry)? Yes\n\nNow for the JSON structure. It must be strict JSON, no markdown fences.\n\n```json\n{\n  \"core_mechanic\": \"Per-location subscription helping independent veterinary clinics optimize reorder timing for vaccines/meds using seasonal demand patterns to prevent stockouts and expiry waste.\",\n  \"keywords\": [\n    \"veterinary\",\n    \"clinic\",\n    \"inventory\",\n    \"reorders\",\n    \"expiry\",\n    \"vaccines\",\n    \"per-location\",\n    \"subscription\",\n    \"seasonal-demand\",\n    \"lean-inventory\",\n    \"stockouts\",\n    \"critical-stock\"\n  ]\n}\n```\n\nWait, I need to double-check the hyphenation rules. The brief says \"alphanumeric or hyphenated\". So hyphens are allowed. Good.\n\nLet me verify each keyword:\n- veterinary: alphanumeric\n- clinic: alphanumeric\n- inventory: alphanumeric\n- reorders: alphanumeric\n- expiry: alphanumeric\n- vaccines: alphanumeric\n- per-location: hyphenated\n- subscription: alphanumeric\n- seasonal-demand: hyphenated\n- lean-inventory: hyphenated\n- stockouts: alphanumeric\n- critical-stock: hyphenated\n\nAll good.\n\nThe core_mechanic is 155 characters, well under 250.\n\nThe JSON is valid. No markdown fences. Perfect.\n\nI should also ensure I'm not including any filler terms. \"subscription\" is necessary here because it's the revenue model. \"veterinary\" is necessary as it's the target market. \"clinic\" is necessary to distinguish from hospitals (anti-goal). \"inventory\" is the domain. \"reorders\" and \"expiry\" are core functions. \"vaccines\" is a key product type. \"per-location\" is the pricing shape. \"seasonal-demand\" is a key feature. \"lean-inventory\" describes the customer habit. \"stockouts\" is the problem. \"critical-stock\" is a must-have feature.\n\nAll terms are signal, not filler. Good. "
+        },
+        "stop_reason": 163586,
+        "token_ids": null
+      }
+    ],
+    "created": 1772442230,
+    "model": "moonshotai/kimi-k2-thinking",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2170,
+      "prompt_tokens": 671,
+      "total_tokens": 2841,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": " {\"core_mechanic\":\"Per-location subscription helping independent veterinary clinics optimize reorder timing for vaccines/meds using seasonal demand patterns to prevent stockouts and expiry waste.\",\"keywords\":[\"veterinary\",\"clinic\",\"inventory\",\"reorders\",\"expiry\",\"vaccines\",\"per-location\",\"subscription\",\"seasonal-demand\",\"lean-inventory\",\"stockouts\",\"critical-stock\"]}",
+  "llm_output": {
+    "core_mechanic": "Per-location subscription helping independent veterinary clinics optimize reorder timing for vaccines/meds using seasonal demand patterns to prevent stockouts and expiry waste.",
+    "keywords": [
+      "veterinary",
+      "clinic",
+      "inventory",
+      "reorders",
+      "expiry",
+      "vaccines",
+      "per-location",
+      "subscription",
+      "seasonal-demand",
+      "lean-inventory",
+      "stockouts",
+      "critical-stock"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "veterinary",
+      "clinic",
+      "inventory",
+      "reorders",
+      "expiry",
+      "vaccines",
+      "per-location",
+      "subscription",
+      "seasonal-demand",
+      "lean-inventory",
+      "stockouts",
+      "critical-stock"
+    ],
+    "derived_keywords": [
+      "and",
+      "critical",
+      "reorder",
+      "with",
+      "clinics",
+      "demand",
+      "seasonal",
+      "stock",
+      "treatment",
+      "items",
+      "medications",
+      "alerts",
+      "based",
+      "because",
+      "bundles",
+      "common",
+      "either",
+      "expire",
+      "fewer",
+      "for",
+      "forecasting",
+      "habits",
+      "hoc",
+      "independent",
+      "lean",
+      "managing",
+      "memory",
+      "out",
+      "overbuy",
+      "overlays",
+      "products",
+      "queue",
+      "recommendation",
+      "run",
+      "signals",
+      "supplies",
+      "that",
+      "tied",
+      "timing",
+      "track",
+      "visits",
+      "watchlist",
+      "window",
+      "windows",
+      "location",
+      "multi-site",
+      "optional",
+      "rollups",
+      "additional",
+      "barcode",
+      "branches",
+      "changes",
+      "clinical",
+      "clinical-ops",
+      "count",
+      "decisions",
+      "depend",
+      "expired",
+      "fee",
+      "full",
+      "hardware",
+      "item",
+      "must",
+      "needs",
+      "over",
+      "per-location",
+      "practical",
+      "prioritize",
+      "procurement",
+      "regulated",
+      "rollouts",
+      "routine",
+      "stockouts",
+      "suites",
+      "tiers",
+      "useful",
+      "visibility",
+      "accountants",
+      "clinic-focused",
+      "communities",
+      "consultants",
+      "from",
+      "practice",
+      "referrals"
+    ],
+    "final_keywords": [
+      "veterinary",
+      "clinic",
+      "inventory",
+      "reorders",
+      "expiry",
+      "vaccines",
+      "per-location",
+      "subscription",
+      "seasonal-demand",
+      "lean-inventory"
+    ],
+    "keyword_provenance": {
+      "veterinary": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "clinic": [
+        "field:recurring_revenue_model",
+        "llm",
+        "seed_keywords"
+      ],
+      "inventory": [
+        "field:recurring_revenue_model",
+        "field:success_metric",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "reorders": [
+        "llm",
+        "seed_keywords"
+      ],
+      "expiry": [
+        "field:constraints",
+        "field:must_have_features",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "vaccines": [
+        "field:constraints",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "per-location": [
+        "field:pricing_shape",
+        "llm"
+      ],
+      "subscription": [
+        "llm"
+      ],
+      "seasonal-demand": [
+        "llm"
+      ],
+      "lean-inventory": [
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Per-location subscription helping independent veterinary clinics optimize reorder timing for vaccines/meds using seasonal demand patterns to prevent stockouts and expiry waste.",
+    "keywords": [
+      "veterinary",
+      "clinic",
+      "inventory",
+      "reorders",
+      "expiry",
+      "vaccines",
+      "per-location",
+      "subscription",
+      "seasonal-demand",
+      "lean-inventory"
+    ]
+  },
+  "planned_resolution": "claim"
+}

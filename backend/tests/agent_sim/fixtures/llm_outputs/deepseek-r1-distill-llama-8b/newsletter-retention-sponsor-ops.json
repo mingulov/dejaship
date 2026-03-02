@@ -1,0 +1,241 @@
+{
+  "brief_id": "newsletter-retention-sponsor-ops",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "deepseek-r1-distill-llama-8b",
+    "model_name": "deepseek-ai/deepseek-r1-distill-llama-8b",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "4ed2e655e9ef2fde8d680aaef6f1a74a4ccd3a7484f73a010a834557a3eed9a4",
+    "prompt_hash": "be13c85243bc305f9aa2d61dd674410a0e3d30777c8a198c33fd90a9e6b49577",
+    "generated_at": "2026-03-02T08:48:33.481865Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"newsletter-retention-sponsor-ops\",\n  \"title\": \"Retention and sponsor pipeline operating system for paid niche newsletters\",\n  \"category\": \"creator-business\",\n  \"target_customer\": \"Independent newsletter publishers with paid subscriptions, occasional sponsorships, and no dedicated operations team.\",\n  \"problem\": \"Growth looks healthy until renewals soften, sponsor follow-up slips, and the creator realizes revenue concentration is worse than expected.\",\n  \"workflow\": \"Track cohorts, renewal risk, sponsor follow-ups, and content commitments inside one operational calendar built for a solo publisher.\",\n  \"recurring_revenue_model\": \"Recurring SaaS priced for creators with one or two operators and scaled by subscriber count.\",\n  \"pricing_shape\": \"Subscription based on paid subscriber bands with a higher tier for sponsor workflow automation.\",\n  \"distribution_channel\": \"Creator communities, newsletter operators, and partnerships with media accountants.\",\n  \"constraints\": [\n    \"Must work for one-person teams with limited setup patience.\",\n    \"Needs lightweight sponsor workflow without acting like a CRM monster.\",\n    \"Should support both B2C subscriptions and B2B sponsorship revenue.\"\n  ],\n  \"must_have_features\": [\n    \"Cohort renewal dashboard\",\n    \"Sponsor follow-up tracker\",\n    \"Calendar for issue commitments\",\n    \"Revenue concentration alerts\"\n  ],\n  \"seed_keywords\": [\n    \"newsletter\",\n    \"retention\",\n    \"sponsorships\",\n    \"subscriptions\",\n    \"cohorts\",\n    \"creator\"\n  ],\n  \"anti_goals\": [\n    \"Do not replace the newsletter sending platform.\",\n    \"Do not target large media companies first.\"\n  ],\n  \"success_metric\": \"Higher renewal rates and better sponsor follow-through for solo media businesses.\",\n  \"prompt_rendered_brief\": \"The product is a retention and sponsor pipeline operating system for paid niche newsletters run by solo creators or tiny teams. The business problem is not publishing itself; it is that subscription renewals, sponsor conversations, and issue commitments live across spreadsheets and inbox searches until revenue starts slipping. The software should give a publisher one place to see at-risk cohorts, pending sponsor follow-up, and which issue slots are already promised. Pricing should be a recurring subscription that scales with paid subscribers and expands when sponsorship workflow becomes valuable enough to automate. The system must stay lightweight because the target customer will abandon anything that feels like agency software or enterprise CRM. If it works, creators preserve recurring reader revenue while building a more reliable sponsorship pipeline.\\n\"\n}",
+  "raw_response": {
+    "id": "chat-fdf022de17ce4db49c0b5b377301f09e",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "<think>\nAlright, I need to evaluate this product brief and create a DejaShip intent payload. Let me start by understanding the requirements.\n\nFirst, the core_mechanic needs to be concise, under 250 characters. It should focus on the true commercial mechanism, target customer, and recurring revenue path. I should avoid filler terms unless they're necessary.\n\nLooking at the brief, the target customer is independent newsletter publishers with paid subscriptions and occasional sponsorships. The problem is about renewal softening and sponsor follow-ups causing revenue concentration issues. The workflow involves tracking cohorts, renewals, sponsor follow-ups, and content commitments. The recurring revenue model is a SaaS subscription based on subscriber count, scaled for creators with one or two operators. Pricing is subscription-based with tiers for different features.\n\nThe must-have features include cohort renewal dashboards, sponsor follow-up trackers, content commitment calendars, and revenue alerts. Constraints are that it must work for one-person teams, have a lightweight sponsor workflow, and support both B2C and B2B revenue.\n\nSeed keywords are newsletter, retention, sponsorships, subscriptions, cohorts, creator. Anti-goals are not replacing the newsletter platform or targeting large media companies.\n\nSuccess metrics are higher renewals and better sponsor follow-through.\n\nNow, I need to form the core_mechanic. It should capture the essence: a SaaS tool for solo creators managing subscriptions and sponsorships, tracking renewals and follow-ups, with a focus on retention and scaling revenue through better sponsorships.\n\nFor keywords, I'll list the key elements: newsletter, retention, subscriptions, sponsorships, creator, cohorts, renewals, revenue, automation, lightweight.\n\nI should ensure all keywords are lowercase, alphanumeric, or hyphenated, and avoid any unnecessary terms.\n\nPutting it all together, the core_mechanic is a SaaS tool for solo creators managing subscriptions and sponsorships, tracking renewals and follow-ups, focusing on retention and scaling revenue through better sponsorships.\n\nThe keywords are newsletter, retention, subscriptions, sponsorships, creator, cohorts, renewals, revenue, automation, lightweight.\n\nI think that covers the main points without exceeding the character limit and meets all the requirements.\n</think>\n\n```json\n{\n  \"core_mechanic\": \"SaaS tool for solo creators managing subscriptions and sponsorships, tracking renewals and follow-ups, focusing on retention and scaling revenue through better sponsorships.\",\n  \"keywords\": [\"newsletter\", \"retention\", \"subscriptions\", \"sponsorships\", \"creator\", \"cohorts\", \"renewals\", \"revenue\", \"automation\", \"lightweight\"]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772441305,
+    "model": "deepseek-ai/deepseek-r1-distill-llama-8b",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 529,
+      "prompt_tokens": 681,
+      "total_tokens": 1210,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null
+  },
+  "response_text": "<think>\nAlright, I need to evaluate this product brief and create a DejaShip intent payload. Let me start by understanding the requirements.\n\nFirst, the core_mechanic needs to be concise, under 250 characters. It should focus on the true commercial mechanism, target customer, and recurring revenue path. I should avoid filler terms unless they're necessary.\n\nLooking at the brief, the target customer is independent newsletter publishers with paid subscriptions and occasional sponsorships. The problem is about renewal softening and sponsor follow-ups causing revenue concentration issues. The workflow involves tracking cohorts, renewals, sponsor follow-ups, and content commitments. The recurring revenue model is a SaaS subscription based on subscriber count, scaled for creators with one or two operators. Pricing is subscription-based with tiers for different features.\n\nThe must-have features include cohort renewal dashboards, sponsor follow-up trackers, content commitment calendars, and revenue alerts. Constraints are that it must work for one-person teams, have a lightweight sponsor workflow, and support both B2C and B2B revenue.\n\nSeed keywords are newsletter, retention, sponsorships, subscriptions, cohorts, creator. Anti-goals are not replacing the newsletter platform or targeting large media companies.\n\nSuccess metrics are higher renewals and better sponsor follow-through.\n\nNow, I need to form the core_mechanic. It should capture the essence: a SaaS tool for solo creators managing subscriptions and sponsorships, tracking renewals and follow-ups, with a focus on retention and scaling revenue through better sponsorships.\n\nFor keywords, I'll list the key elements: newsletter, retention, subscriptions, sponsorships, creator, cohorts, renewals, revenue, automation, lightweight.\n\nI should ensure all keywords are lowercase, alphanumeric, or hyphenated, and avoid any unnecessary terms.\n\nPutting it all together, the core_mechanic is a SaaS tool for solo creators managing subscriptions and sponsorships, tracking renewals and follow-ups, focusing on retention and scaling revenue through better sponsorships.\n\nThe keywords are newsletter, retention, subscriptions, sponsorships, creator, cohorts, renewals, revenue, automation, lightweight.\n\nI think that covers the main points without exceeding the character limit and meets all the requirements.\n</think>\n\n```json\n{\n  \"core_mechanic\": \"SaaS tool for solo creators managing subscriptions and sponsorships, tracking renewals and follow-ups, focusing on retention and scaling revenue through better sponsorships.\",\n  \"keywords\": [\"newsletter\", \"retention\", \"subscriptions\", \"sponsorships\", \"creator\", \"cohorts\", \"renewals\", \"revenue\", \"automation\", \"lightweight\"]\n}\n```",
+  "llm_output": {
+    "core_mechanic": "SaaS tool for solo creators managing subscriptions and sponsorships, tracking renewals and follow-ups, focusing on retention and scaling revenue through better sponsorships.",
+    "keywords": [
+      "newsletter",
+      "retention",
+      "subscriptions",
+      "sponsorships",
+      "creator",
+      "cohorts",
+      "renewals",
+      "revenue",
+      "automation",
+      "lightweight"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "newsletter",
+      "retention",
+      "subscriptions",
+      "sponsorships",
+      "creator",
+      "cohorts",
+      "renewals",
+      "revenue",
+      "automation",
+      "lightweight"
+    ],
+    "derived_keywords": [
+      "and",
+      "sponsor",
+      "for",
+      "with",
+      "renewal",
+      "calendar",
+      "commitments",
+      "concentration",
+      "follow-up",
+      "one",
+      "paid",
+      "solo",
+      "subscriber",
+      "alerts",
+      "cohort",
+      "content",
+      "dashboard",
+      "dedicated",
+      "expected",
+      "follow-ups",
+      "healthy",
+      "independent",
+      "inside",
+      "issue",
+      "looks",
+      "occasional",
+      "operational",
+      "operations",
+      "publisher",
+      "publishers",
+      "realizes",
+      "renewals",
+      "risk",
+      "slips",
+      "soften",
+      "team",
+      "than",
+      "the",
+      "track",
+      "tracker",
+      "until",
+      "worse",
+      "count",
+      "creators",
+      "media",
+      "priced",
+      "saas",
+      "scaled",
+      "two",
+      "acting",
+      "automation",
+      "b2b",
+      "b2c",
+      "bands",
+      "based",
+      "better",
+      "both",
+      "creator-business",
+      "crm",
+      "follow-through",
+      "lightweight",
+      "like",
+      "limited",
+      "monster",
+      "must",
+      "needs",
+      "one-person",
+      "patience",
+      "rates",
+      "setup",
+      "should",
+      "sponsorship",
+      "support",
+      "tier",
+      "without",
+      "work",
+      "accountants",
+      "communities",
+      "partnerships"
+    ],
+    "final_keywords": [
+      "newsletter",
+      "retention",
+      "subscriptions",
+      "sponsorships",
+      "creator",
+      "cohorts",
+      "renewals",
+      "revenue",
+      "automation",
+      "lightweight"
+    ],
+    "keyword_provenance": {
+      "newsletter": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "retention": [
+        "llm",
+        "seed_keywords"
+      ],
+      "subscriptions": [
+        "llm",
+        "seed_keywords"
+      ],
+      "sponsorships": [
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "creator": [
+        "field:distribution_channel",
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "cohorts": [
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "renewals": [
+        "field:problem",
+        "llm"
+      ],
+      "revenue": [
+        "llm"
+      ],
+      "automation": [
+        "field:pricing_shape",
+        "llm"
+      ],
+      "lightweight": [
+        "field:constraints",
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "SaaS tool for solo creators managing subscriptions and sponsorships, tracking renewals and follow-ups, focusing on retention and scaling revenue through better sponsorships.",
+    "keywords": [
+      "newsletter",
+      "retention",
+      "subscriptions",
+      "sponsorships",
+      "creator",
+      "cohorts",
+      "renewals",
+      "revenue",
+      "automation",
+      "lightweight"
+    ]
+  },
+  "planned_resolution": "claim"
+}

@@ -1,0 +1,264 @@
+{
+  "brief_id": "bakery-prep-margin-planner",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "magistral-small-2506",
+    "model_name": "mistralai/magistral-small-2506",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "e0debfffbd5ca662fdb0aeb56f2d18ca89b28dd523b50870d6dac5fa7bc413ef",
+    "prompt_hash": "89289d1309bcd73251d17fdea93b2f21f5ee36a5ac90e1808f9c47b8cfdab003",
+    "generated_at": "2026-03-02T10:16:51.772494Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"bakery-prep-margin-planner\",\n  \"title\": \"Prep forecasting and waste control for specialty bakery production teams\",\n  \"category\": \"food-ops\",\n  \"target_customer\": \"Specialty bakeries with one to four locations that juggle wholesale orders, custom cakes, and daily walk-in traffic.\",\n  \"problem\": \"Production leads over-prep fragile items because demand changes daily, leading to margin loss from waste and rushed last-minute labor.\",\n  \"workflow\": \"Combine standing wholesale demand, local event calendars, and custom-order windows into a prep forecast that can be adjusted before mixing starts.\",\n  \"recurring_revenue_model\": \"Monthly subscription sold per location with optional forecasting support for seasonal holidays.\",\n  \"pricing_shape\": \"Per-location subscription with an add-on for wholesale order complexity.\",\n  \"distribution_channel\": \"Founder outreach, bakery association communities, and referral accountants serving food businesses.\",\n  \"constraints\": [\n    \"Must handle fast-changing short shelf-life inventory.\",\n    \"Needs to work before dawn for prep teams with limited training time.\",\n    \"Cannot assume deep POS integrations at launch.\"\n  ],\n  \"must_have_features\": [\n    \"Daily prep targets by product family\",\n    \"Waste and overage tracking\",\n    \"Holiday demand overlays\",\n    \"Wholesale commitment visibility\"\n  ],\n  \"seed_keywords\": [\n    \"bakery\",\n    \"prep\",\n    \"waste\",\n    \"forecasting\",\n    \"wholesale\",\n    \"inventory\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a full restaurant POS.\",\n    \"Do not optimize national chains first.\"\n  ],\n  \"success_metric\": \"Lower spoilage percentage while preserving sell-through on peak days.\",\n  \"prompt_rendered_brief\": \"The product is a prep forecasting and waste control system for specialty bakery production teams that make perishable goods before sunrise. Managers currently rely on instinct when balancing wholesale commitments, custom orders, weather swings, and holiday spikes, so they either throw away margin in waste or pay overtime to recover late demand. The software should convert those signals into a daily prep plan that feels concrete enough for bakers and kitchen leads, not abstract enough for finance dashboards only. Revenue comes from recurring subscriptions per bakery location because the value compounds every day that the team avoids spoilage and labor chaos. The workflow must be fast, visual, and resilient to missing integrations because many bakeries still coordinate production with paper sheets and text threads. Success means the bakery makes the right amount of product more often and stops losing money to preventable over-prep.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-b101d8d1acbc4adeaf4585f2cdc24ae5",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "\n\n```json\n{\n  \"core_mechanic\": \"Forecasting and waste control for specialty bakeries by combining demand signals into daily prep targets\",\n  \"keywords\": [\n    \"bakery\",\n    \"prep\",\n    \"waste\",\n    \"forecasting\",\n    \"wholesale\",\n    \"inventory\",\n    \"daily\",\n    \"margin\",\n    \"spoilage\",\n    \"labor\",\n    \"subscription\",\n    \"perishable\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [],
+          "reasoning_content": "\nOkay, I have this product brief for a bakery prep margin planner. I need to extract the core mechanic and keywords based on the given requirements.\n\nFirst, let's understand the core mechanic. The problem is about over-prepping fragile items due to daily demand changes, leading to margin loss from waste and rushed labor. The solution is to combine standing wholesale demand, local event calendars, and custom-order windows into a prep forecast that can be adjusted before mixing starts.\n\nThe core mechanic seems to be about predicting the right amount of prep to minimize waste and labor chaos. It's about forecasting and waste control for specialty bakeries.\n\nNow, the keywords. The target customer is specialty bakeries with one to four locations. The problem involves over-prepping, waste, and labor issues. The workflow involves forecasting based on various factors. The recurring revenue model is a monthly subscription per location with optional support for seasonal holidays. Pricing is per-location with add-ons for wholesale order complexity.\n\nThe must-have features include daily prep targets, waste tracking, holiday demand overlays, and wholesale commitment visibility. The constraints mention handling fast-changing inventory, working before dawn, and not assuming deep POS integrations.\n\nGiven the requirements, I need to focus on the true commercial mechanism, target customer, and recurring revenue path. I should avoid filler terms unless they are discriminative.\n\nLet's draft the core mechanic:\n\"Forecasting and waste control for specialty bakeries by combining wholesale demand, local events, and custom orders into daily prep targets.\"\n\nBut it needs to be under 250 characters. Let me shorten it:\n\"Forecasting and waste control for specialty bakeries by combining demand signals into daily prep targets.\"\n\nNow, keywords. From the brief, we have:\n- target customer: specialty bakeries, small locations\n- problem: over-prep, waste, labor chaos\n- workflow: forecasting, demand signals (wholesale, events, custom orders)\n- recurring revenue: monthly subscription, per location, add-ons for wholesale complexity\n- must-have features: daily prep targets, waste tracking, holiday overlays, wholesale visibility\n- constraints: fast-changing inventory, early morning use, no deep POS integrations\n\nFrom these, I can extract keywords:\n1. bakery (from target customer and seed keywords)\n2. prep (from title and workflow)\n3. waste (from problem and must-have features)\n4. forecasting (from title and workflow)\n5. wholesale (from problem, workflow, and must-have features)\n6. inventory (from constraints and seed keywords)\n7. daily (from must-have features)\n8. margin (from title)\n9. spoilage (from success metric)\n10. labor (from problem)\n11. subscription (from recurring revenue model)\n12. perishable (from constraints)\n\nBut I need to ensure they are alphanumeric or hyphenated and lowercase. Also, I need between 5 to 12 keywords. The above list has 12 keywords, which fits.\n\nNow, I need to ensure that the keywords are truly discriminative and not filler terms. Terms like 'app', 'ai', 'tool', or 'platform' are not present here, so it's good.\n\nThe core mechanic is about forecasting and waste control, so it's concise and under 250 characters.\n\nLet me double-check:\n- Core mechanic: \"Forecasting and waste control for specialty bakeries by combining demand signals into daily prep targets.\" (249 characters)\n- Keywords: bakery, prep, waste, forecasting, wholesale, inventory, daily, margin, spoilage, labor, subscription, perishable (12 keywords)\n\nBut looking back at the anti-goals, it's not about becoming a full POS or optimizing for national chains, so those keywords are not relevant here.\n\nAlso, the seed keywords provided are bakery, prep, waste, forecasting, wholesale, inventory. I've included all of them plus additional ones based on the brief.\n\nNow, I need to ensure that the keywords are truly representative of the commercial mechanism, target customer, and recurring revenue path.\n\nThe target customer is specialty bakeries, so 'bakery' is essential. The problem is about waste and over-prep, so 'waste' and 'prep' are crucial. The workflow involves forecasting based on various demand signals, so 'forecasting' is important. The recurring revenue model is subscription-based, so 'subscription' is relevant.\n\nOther keywords like 'wholesale', 'inventory', 'daily', 'margin', 'spoilage', 'labor', and 'perishable' are all relevant to the problem, workflow, or constraints.\n\nI think this covers it well.\n\nNow, let's format this into strict JSON as required.\n\n"
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772446573,
+    "model": "mistralai/magistral-small-2506",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1096,
+      "prompt_tokens": 916,
+      "total_tokens": 2012,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "kv_transfer_params": null
+  },
+  "response_text": "\n\n```json\n{\n  \"core_mechanic\": \"Forecasting and waste control for specialty bakeries by combining demand signals into daily prep targets\",\n  \"keywords\": [\n    \"bakery\",\n    \"prep\",\n    \"waste\",\n    \"forecasting\",\n    \"wholesale\",\n    \"inventory\",\n    \"daily\",\n    \"margin\",\n    \"spoilage\",\n    \"labor\",\n    \"subscription\",\n    \"perishable\"\n  ]\n}\n```",
+  "llm_output": {
+    "core_mechanic": "Forecasting and waste control for specialty bakeries by combining demand signals into daily prep targets",
+    "keywords": [
+      "bakery",
+      "prep",
+      "waste",
+      "forecasting",
+      "wholesale",
+      "inventory",
+      "daily",
+      "margin",
+      "spoilage",
+      "labor",
+      "subscription",
+      "perishable"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "bakery",
+      "prep",
+      "waste",
+      "forecasting",
+      "wholesale",
+      "inventory",
+      "daily",
+      "margin",
+      "spoilage",
+      "labor",
+      "subscription",
+      "perishable"
+    ],
+    "derived_keywords": [
+      "and",
+      "demand",
+      "with",
+      "that",
+      "for",
+      "adjusted",
+      "bakeries",
+      "because",
+      "cakes",
+      "calendars",
+      "can",
+      "changes",
+      "combine",
+      "commitment",
+      "custom",
+      "custom-order",
+      "event",
+      "family",
+      "forecast",
+      "four",
+      "fragile",
+      "from",
+      "holiday",
+      "into",
+      "items",
+      "juggle",
+      "labor",
+      "last-minute",
+      "leading",
+      "leads",
+      "locations",
+      "loss",
+      "margin",
+      "mixing",
+      "one",
+      "orders",
+      "over-prep",
+      "overage",
+      "overlays",
+      "production",
+      "rushed",
+      "specialty",
+      "standing",
+      "starts",
+      "targets",
+      "tracking",
+      "traffic",
+      "visibility",
+      "walk-in",
+      "windows",
+      "holidays",
+      "location",
+      "optional",
+      "seasonal",
+      "sold",
+      "support",
+      "add-on",
+      "assume",
+      "complexity",
+      "dawn",
+      "days",
+      "deep",
+      "fast-changing",
+      "food-ops",
+      "integrations",
+      "launch",
+      "limited",
+      "must",
+      "needs",
+      "order",
+      "peak",
+      "per-location",
+      "percentage",
+      "pos",
+      "preserving",
+      "sell-through",
+      "shelf-life",
+      "short",
+      "spoilage",
+      "time",
+      "training",
+      "while",
+      "work",
+      "accountants",
+      "association",
+      "communities",
+      "food",
+      "outreach",
+      "referral",
+      "serving"
+    ],
+    "final_keywords": [
+      "bakery",
+      "prep",
+      "waste",
+      "forecasting",
+      "wholesale",
+      "inventory",
+      "daily",
+      "margin",
+      "spoilage",
+      "labor"
+    ],
+    "keyword_provenance": {
+      "bakery": [
+        "field:distribution_channel",
+        "llm",
+        "seed_keywords"
+      ],
+      "prep": [
+        "field:constraints",
+        "field:must_have_features",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "waste": [
+        "field:must_have_features",
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "forecasting": [
+        "field:recurring_revenue_model",
+        "llm",
+        "seed_keywords"
+      ],
+      "wholesale": [
+        "field:must_have_features",
+        "field:pricing_shape",
+        "field:target_customer",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "inventory": [
+        "field:constraints",
+        "llm",
+        "seed_keywords"
+      ],
+      "daily": [
+        "llm"
+      ],
+      "margin": [
+        "field:problem",
+        "llm"
+      ],
+      "spoilage": [
+        "field:success_metric",
+        "llm"
+      ],
+      "labor": [
+        "field:problem",
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Forecasting and waste control for specialty bakeries by combining demand signals into daily prep targets",
+    "keywords": [
+      "bakery",
+      "prep",
+      "waste",
+      "forecasting",
+      "wholesale",
+      "inventory",
+      "daily",
+      "margin",
+      "spoilage",
+      "labor"
+    ]
+  },
+  "planned_resolution": "claim"
+}

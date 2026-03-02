@@ -1,0 +1,233 @@
+{
+  "brief_id": "nonprofit-donor-renewals",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "qwq-32b",
+    "model_name": "qwen/qwq-32b",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "d0c54a39d9e039b13036fe9e81c9a0ca05d3469c8097ff6274c89b5edaaa64ae",
+    "prompt_hash": "eaa0e39c62b6b5058d63e67353e2a090477b17f865fa3e66f745a4343616bc1e",
+    "generated_at": "2026-03-02T10:14:27.345727Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"nonprofit-donor-renewals\",\n  \"title\": \"Donor renewal calendar and board-ready reporting for small nonprofits\",\n  \"category\": \"nonprofit-ops\",\n  \"target_customer\": \"Small nonprofits with recurring donors, grant cycles, and a lean fundraising team that reports regularly to the board.\",\n  \"problem\": \"Donor lapses, campaign follow-up, and board reporting all compete for attention, so renewals are missed and fundraising narratives stay reactive.\",\n  \"workflow\": \"Track recurring donors, renewal outreach, grant follow-up, and the metrics needed for monthly board updates in one place.\",\n  \"recurring_revenue_model\": \"Annual or monthly subscription for small nonprofit fundraising operations.\",\n  \"pricing_shape\": \"Flat recurring fee sized for small teams with a premium board-reporting tier.\",\n  \"distribution_channel\": \"Nonprofit operations communities, fundraising consultants, and board member referrals.\",\n  \"constraints\": [\n    \"Must serve very small teams with limited software budgets.\",\n    \"Needs clear donor renewal and grant follow-up views.\",\n    \"Cannot require enterprise nonprofit CRM implementation.\"\n  ],\n  \"must_have_features\": [\n    \"Donor renewal calendar\",\n    \"Grant follow-up queue\",\n    \"Board KPI snapshots\",\n    \"Campaign cadence planner\"\n  ],\n  \"seed_keywords\": [\n    \"nonprofit\",\n    \"donor-renewals\",\n    \"fundraising\",\n    \"board-reporting\",\n    \"grants\",\n    \"campaigns\"\n  ],\n  \"anti_goals\": [\n    \"Do not replace the nonprofit CRM.\",\n    \"Do not target universities first.\"\n  ],\n  \"success_metric\": \"Higher donor renewal rates and faster board reporting with less manual prep.\",\n  \"prompt_rendered_brief\": \"This product is a donor renewal calendar and board-ready reporting tool for small nonprofits that do not have a large development operations team. The challenge is not sending one more newsletter; it is keeping recurring donors warm, following up on grant obligations, and walking into every board meeting with trustworthy metrics. The software should put donor renewals, grant follow-up, and campaign pacing into a single operating view that a tiny team can actually use. The business model should be affordable recurring SaaS because nonprofits need predictable pricing more than custom implementation projects. It must avoid becoming a full donor CRM and instead focus on the renewal and reporting layer that most small teams lack. The outcome is steadier recurring giving and far less scramble before board meetings.\\n\"\n}",
+  "raw_response": {
+    "id": "chat-2953254893c44335905f0e0f1704d9a7",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "Okay, let's tackle this. The user wants me to create a DejaShip intent payload based on the provided product brief. The key points are to extract the core_mechanic and keywords following their strict JSON format. \n\nFirst, the core_mechanic needs to be concise under 250 characters. Looking at the brief, the main problem is managing donor renewals, grant follow-ups, and board reporting for small nonprofits with limited resources. The solution is a tool that centralizes these tasks. So maybe something like \"Centralizes donor renewal tracking, grant follow-up, and board-ready metrics in a low-cost SaaS tool for small nonprofits to improve retention and reporting efficiency.\"\n\nNow the keywords. They must be 5-12 lowercase, alphanumeric or hyphenated, avoiding terms like app or tool unless necessary. The target customer is small nonprofits, so \"nonprofit\" is key. The problem mentions donor renewals, so \"donor-renewals\" and \"grants\" from the seed keywords. The workflow includes board reporting, so \"board-reporting\". The must-have features include campaign cadence, so \"campaign-cadence\". Also, since it's a subscription model, maybe \"subscription-saas\" but check if \"saas\" is allowed. Wait, the anti-goals say not to use terms unless discriminative. \"SaaS\" might be okay here as it's part of the business model. Alternatively, \"recurring-subscription\". Hmm, but the pricing_shape mentions flat recurring fee, so maybe \"recurring-subscription\" is better. Also, \"fundraising\" is in the seed keywords. Let me list possible keywords:\n\nnonprofit, donor-renewals, board-reporting, grants, campaign-cadence, fundraising, recurring-subscription. That's seven. Let me check constraints: must not require enterprise CRM, so maybe \"lean-fundraising\" or \"small-team\" but the target customer is already covered. The must-have features include donor renewal calendar, grant follow-up queue, board KPIs, campaign planner. So \"campaign-cadence\" covers the planner. \"Grant-followup\" could be another but \"grants\" is already there. The keywords should focus on commercial mechanism, target customer, and revenue. The recurring revenue is via subscription, so including that. \n\nWait, the seed keywords include \"campaigns\", but \"campaign-cadence\" is more specific. Maybe better to use the seed ones unless more precise. The problem mentions \"board reporting\" so that's covered. The target customer is small nonprofits with lean teams, so maybe \"small-nonprofit\" but the first keyword is \"nonprofit\". \n\nI think the keywords should be: nonprofit, donor-renewals, board-reporting, grants, fundraising, recurring-subscription, campaign-cadence. That's seven, which is within 5-12. Let me check if any are non-alphanumeric or have forbidden terms. All are okay. \n\nCore_mechanic needs to be under 250. Let me count: \"Centralizes donor renewal tracking, grant follow-up, and board-ready metrics in a low-cost SaaS tool for small nonprofits to improve retention and reporting efficiency.\" That's 130 characters. Good. \n\nWait, the business model is annual or monthly subscription, so maybe mention SaaS. The prompt mentions \"affordable recurring SaaS\". So including \"SaaS\" is okay here. Alternatively, \"subscription-based\". Hmm. The core_mechanic should focus on the mechanism. \n\nAlternatively, \"Streamlines donor renewals, grant follow-ups, and board reporting into an affordable SaaS tool for small nonprofits to boost retention and reduce manual efforts.\" That's better? Let me check character count. \n\n\"Streamlines donor renewals, grant follow-ups, and board reporting into an affordable SaaS tool for small nonprofits to boost retention and reduce manual efforts.\" That's 143 characters. \n\nAlternatively, \"Centralizes donor renewal tracking, grant follow-up, and board-ready metrics in an affordable SaaS tool for small nonprofits to improve retention and reporting efficiency.\" 130 characters. \n\nEither works. The key elements are covered: donor renewals, grants, board reporting, SaaS, small nonprofits, retention, efficiency. \n\nSo finalizing the core_mechanic as: \"Centralizes donor renewal tracking, grant follow-up, and board-ready metrics in an affordable SaaS tool for small nonprofits to improve retention and reporting efficiency.\"\n\nKeywords: nonprofit, donor-renewals, board-reporting, grants, fundraising, recurring-subscription, campaign-cadence. \n\nWait, the seed keywords include \"campaigns\" but I used \"campaign-cadence\". Since \"campaign cadence planner\" is a must-have feature, \"campaign-cadence\" is more specific. That's better. \n\nI think that's it. Let me check again for any forbidden terms. \"Tool\" is in the anti-goals? The anti_goals say not to use unless discriminative. The core_mechanic includes \"tool\", but the brief's title mentions \"tool\", so maybe it's okay. The user said to avoid unless genuinely discriminative. Since the product is a tool, perhaps it's acceptable. Alternatively, rephrase without \"tool\"? Maybe \"solution\" instead. \n\n\"Centralizes donor renewal tracking, grant follow-up, and board-ready metrics in an affordable SaaS solution for small nonprofits to improve retention and reporting efficiency.\" \n\nThat removes \"tool\" but uses \"solution\". Maybe better. Let me check character count again. \n\nYes, same length. \"Solution\" might be better to avoid \"tool\" if possible. \n\nSo final core_mechanic: \"Centralizes donor renewal tracking, grant follow-up, and board-ready metrics in an affordable SaaS solution for small nonprofits to improve retention and reporting efficiency.\"\n\nKeywords: nonprofit, donor-renewals, board-reporting, grants, fundraising, recurring-subscription, campaign-cadence. \n\nThat should meet all requirements.\n</think>\n\n{\n  \"core_mechanic\": \"Centralizes donor renewal tracking, grant follow-up, and board-ready metrics in an affordable SaaS solution for small nonprofits to improve retention and reporting efficiency.\",\n  \"keywords\": [\"nonprofit\", \"donor-renewals\", \"board-reporting\", \"grants\", \"fundraising\", \"recurring-subscription\", \"campaign-cadence\"]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772446427,
+    "model": "qwen/qwq-32b",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1321,
+      "prompt_tokens": 693,
+      "total_tokens": 2014,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null
+  },
+  "response_text": "Okay, let's tackle this. The user wants me to create a DejaShip intent payload based on the provided product brief. The key points are to extract the core_mechanic and keywords following their strict JSON format. \n\nFirst, the core_mechanic needs to be concise under 250 characters. Looking at the brief, the main problem is managing donor renewals, grant follow-ups, and board reporting for small nonprofits with limited resources. The solution is a tool that centralizes these tasks. So maybe something like \"Centralizes donor renewal tracking, grant follow-up, and board-ready metrics in a low-cost SaaS tool for small nonprofits to improve retention and reporting efficiency.\"\n\nNow the keywords. They must be 5-12 lowercase, alphanumeric or hyphenated, avoiding terms like app or tool unless necessary. The target customer is small nonprofits, so \"nonprofit\" is key. The problem mentions donor renewals, so \"donor-renewals\" and \"grants\" from the seed keywords. The workflow includes board reporting, so \"board-reporting\". The must-have features include campaign cadence, so \"campaign-cadence\". Also, since it's a subscription model, maybe \"subscription-saas\" but check if \"saas\" is allowed. Wait, the anti-goals say not to use terms unless discriminative. \"SaaS\" might be okay here as it's part of the business model. Alternatively, \"recurring-subscription\". Hmm, but the pricing_shape mentions flat recurring fee, so maybe \"recurring-subscription\" is better. Also, \"fundraising\" is in the seed keywords. Let me list possible keywords:\n\nnonprofit, donor-renewals, board-reporting, grants, campaign-cadence, fundraising, recurring-subscription. That's seven. Let me check constraints: must not require enterprise CRM, so maybe \"lean-fundraising\" or \"small-team\" but the target customer is already covered. The must-have features include donor renewal calendar, grant follow-up queue, board KPIs, campaign planner. So \"campaign-cadence\" covers the planner. \"Grant-followup\" could be another but \"grants\" is already there. The keywords should focus on commercial mechanism, target customer, and revenue. The recurring revenue is via subscription, so including that. \n\nWait, the seed keywords include \"campaigns\", but \"campaign-cadence\" is more specific. Maybe better to use the seed ones unless more precise. The problem mentions \"board reporting\" so that's covered. The target customer is small nonprofits with lean teams, so maybe \"small-nonprofit\" but the first keyword is \"nonprofit\". \n\nI think the keywords should be: nonprofit, donor-renewals, board-reporting, grants, fundraising, recurring-subscription, campaign-cadence. That's seven, which is within 5-12. Let me check if any are non-alphanumeric or have forbidden terms. All are okay. \n\nCore_mechanic needs to be under 250. Let me count: \"Centralizes donor renewal tracking, grant follow-up, and board-ready metrics in a low-cost SaaS tool for small nonprofits to improve retention and reporting efficiency.\" That's 130 characters. Good. \n\nWait, the business model is annual or monthly subscription, so maybe mention SaaS. The prompt mentions \"affordable recurring SaaS\". So including \"SaaS\" is okay here. Alternatively, \"subscription-based\". Hmm. The core_mechanic should focus on the mechanism. \n\nAlternatively, \"Streamlines donor renewals, grant follow-ups, and board reporting into an affordable SaaS tool for small nonprofits to boost retention and reduce manual efforts.\" That's better? Let me check character count. \n\n\"Streamlines donor renewals, grant follow-ups, and board reporting into an affordable SaaS tool for small nonprofits to boost retention and reduce manual efforts.\" That's 143 characters. \n\nAlternatively, \"Centralizes donor renewal tracking, grant follow-up, and board-ready metrics in an affordable SaaS tool for small nonprofits to improve retention and reporting efficiency.\" 130 characters. \n\nEither works. The key elements are covered: donor renewals, grants, board reporting, SaaS, small nonprofits, retention, efficiency. \n\nSo finalizing the core_mechanic as: \"Centralizes donor renewal tracking, grant follow-up, and board-ready metrics in an affordable SaaS tool for small nonprofits to improve retention and reporting efficiency.\"\n\nKeywords: nonprofit, donor-renewals, board-reporting, grants, fundraising, recurring-subscription, campaign-cadence. \n\nWait, the seed keywords include \"campaigns\" but I used \"campaign-cadence\". Since \"campaign cadence planner\" is a must-have feature, \"campaign-cadence\" is more specific. That's better. \n\nI think that's it. Let me check again for any forbidden terms. \"Tool\" is in the anti-goals? The anti_goals say not to use unless discriminative. The core_mechanic includes \"tool\", but the brief's title mentions \"tool\", so maybe it's okay. The user said to avoid unless genuinely discriminative. Since the product is a tool, perhaps it's acceptable. Alternatively, rephrase without \"tool\"? Maybe \"solution\" instead. \n\n\"Centralizes donor renewal tracking, grant follow-up, and board-ready metrics in an affordable SaaS solution for small nonprofits to improve retention and reporting efficiency.\" \n\nThat removes \"tool\" but uses \"solution\". Maybe better. Let me check character count again. \n\nYes, same length. \"Solution\" might be better to avoid \"tool\" if possible. \n\nSo final core_mechanic: \"Centralizes donor renewal tracking, grant follow-up, and board-ready metrics in an affordable SaaS solution for small nonprofits to improve retention and reporting efficiency.\"\n\nKeywords: nonprofit, donor-renewals, board-reporting, grants, fundraising, recurring-subscription, campaign-cadence. \n\nThat should meet all requirements.\n</think>\n\n{\n  \"core_mechanic\": \"Centralizes donor renewal tracking, grant follow-up, and board-ready metrics in an affordable SaaS solution for small nonprofits to improve retention and reporting efficiency.\",\n  \"keywords\": [\"nonprofit\", \"donor-renewals\", \"board-reporting\", \"grants\", \"fundraising\", \"recurring-subscription\", \"campaign-cadence\"]\n}",
+  "llm_output": {
+    "core_mechanic": "Centralizes donor renewal tracking, grant follow-up, and board-ready metrics in an affordable SaaS solution for small nonprofits to improve retention and reporting efficiency.",
+    "keywords": [
+      "nonprofit",
+      "donor-renewals",
+      "board-reporting",
+      "grants",
+      "fundraising",
+      "recurring-subscription",
+      "campaign-cadence"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "nonprofit",
+      "donor-renewals",
+      "board-reporting",
+      "grants",
+      "fundraising",
+      "recurring-subscription",
+      "campaign-cadence"
+    ],
+    "derived_keywords": [
+      "and",
+      "board",
+      "follow-up",
+      "grant",
+      "for",
+      "donor",
+      "renewal",
+      "with",
+      "campaign",
+      "donors",
+      "the",
+      "all",
+      "are",
+      "attention",
+      "cadence",
+      "calendar",
+      "compete",
+      "cycles",
+      "kpi",
+      "lapses",
+      "lean",
+      "metrics",
+      "missed",
+      "narratives",
+      "needed",
+      "nonprofits",
+      "one",
+      "operations",
+      "outreach",
+      "place",
+      "planner",
+      "queue",
+      "reactive",
+      "regularly",
+      "renewals",
+      "reports",
+      "snapshots",
+      "stay",
+      "team",
+      "that",
+      "track",
+      "updates",
+      "budgets",
+      "clear",
+      "crm",
+      "enterprise",
+      "faster",
+      "fee",
+      "flat",
+      "implementation",
+      "less",
+      "limited",
+      "manual",
+      "must",
+      "needs",
+      "nonprofit-ops",
+      "premium",
+      "prep",
+      "rates",
+      "require",
+      "serve",
+      "sized",
+      "tier",
+      "very",
+      "views",
+      "communities",
+      "consultants",
+      "member",
+      "referrals"
+    ],
+    "final_keywords": [
+      "nonprofit",
+      "donor-renewals",
+      "board-reporting",
+      "grants",
+      "fundraising",
+      "recurring-subscription",
+      "campaign-cadence",
+      "campaigns",
+      "and",
+      "board"
+    ],
+    "keyword_provenance": {
+      "nonprofit": [
+        "field:constraints",
+        "field:distribution_channel",
+        "field:recurring_revenue_model",
+        "llm",
+        "seed_keywords"
+      ],
+      "donor-renewals": [
+        "llm",
+        "seed_keywords"
+      ],
+      "board-reporting": [
+        "field:pricing_shape",
+        "llm",
+        "seed_keywords"
+      ],
+      "grants": [
+        "llm",
+        "seed_keywords"
+      ],
+      "fundraising": [
+        "field:distribution_channel",
+        "field:problem",
+        "field:recurring_revenue_model",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "recurring-subscription": [
+        "llm"
+      ],
+      "campaign-cadence": [
+        "llm"
+      ],
+      "campaigns": [
+        "seed_keywords"
+      ],
+      "and": [
+        "field:constraints",
+        "field:distribution_channel",
+        "field:problem",
+        "field:success_metric",
+        "field:target_customer",
+        "field:workflow"
+      ],
+      "board": [
+        "field:distribution_channel",
+        "field:must_have_features",
+        "field:problem",
+        "field:success_metric",
+        "field:target_customer",
+        "field:workflow"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Centralizes donor renewal tracking, grant follow-up, and board-ready metrics in an affordable SaaS solution for small nonprofits to improve retention and reporting efficiency.",
+    "keywords": [
+      "nonprofit",
+      "donor-renewals",
+      "board-reporting",
+      "grants",
+      "fundraising",
+      "recurring-subscription",
+      "campaign-cadence",
+      "campaigns",
+      "and",
+      "board"
+    ]
+  },
+  "planned_resolution": "claim"
+}

@@ -1,0 +1,240 @@
+{
+  "brief_id": "newsletter-retention-sponsor-ops",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "kimi-k2-thinking",
+    "model_name": "moonshotai/kimi-k2-thinking",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "4ed2e655e9ef2fde8d680aaef6f1a74a4ccd3a7484f73a010a834557a3eed9a4",
+    "prompt_hash": "be13c85243bc305f9aa2d61dd674410a0e3d30777c8a198c33fd90a9e6b49577",
+    "generated_at": "2026-03-02T08:42:19.446298Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"newsletter-retention-sponsor-ops\",\n  \"title\": \"Retention and sponsor pipeline operating system for paid niche newsletters\",\n  \"category\": \"creator-business\",\n  \"target_customer\": \"Independent newsletter publishers with paid subscriptions, occasional sponsorships, and no dedicated operations team.\",\n  \"problem\": \"Growth looks healthy until renewals soften, sponsor follow-up slips, and the creator realizes revenue concentration is worse than expected.\",\n  \"workflow\": \"Track cohorts, renewal risk, sponsor follow-ups, and content commitments inside one operational calendar built for a solo publisher.\",\n  \"recurring_revenue_model\": \"Recurring SaaS priced for creators with one or two operators and scaled by subscriber count.\",\n  \"pricing_shape\": \"Subscription based on paid subscriber bands with a higher tier for sponsor workflow automation.\",\n  \"distribution_channel\": \"Creator communities, newsletter operators, and partnerships with media accountants.\",\n  \"constraints\": [\n    \"Must work for one-person teams with limited setup patience.\",\n    \"Needs lightweight sponsor workflow without acting like a CRM monster.\",\n    \"Should support both B2C subscriptions and B2B sponsorship revenue.\"\n  ],\n  \"must_have_features\": [\n    \"Cohort renewal dashboard\",\n    \"Sponsor follow-up tracker\",\n    \"Calendar for issue commitments\",\n    \"Revenue concentration alerts\"\n  ],\n  \"seed_keywords\": [\n    \"newsletter\",\n    \"retention\",\n    \"sponsorships\",\n    \"subscriptions\",\n    \"cohorts\",\n    \"creator\"\n  ],\n  \"anti_goals\": [\n    \"Do not replace the newsletter sending platform.\",\n    \"Do not target large media companies first.\"\n  ],\n  \"success_metric\": \"Higher renewal rates and better sponsor follow-through for solo media businesses.\",\n  \"prompt_rendered_brief\": \"The product is a retention and sponsor pipeline operating system for paid niche newsletters run by solo creators or tiny teams. The business problem is not publishing itself; it is that subscription renewals, sponsor conversations, and issue commitments live across spreadsheets and inbox searches until revenue starts slipping. The software should give a publisher one place to see at-risk cohorts, pending sponsor follow-up, and which issue slots are already promised. Pricing should be a recurring subscription that scales with paid subscribers and expands when sponsorship workflow becomes valuable enough to automate. The system must stay lightweight because the target customer will abandon anything that feels like agency software or enterprise CRM. If it works, creators preserve recurring reader revenue while building a more reliable sponsorship pipeline.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-b1469264901a484a",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": " {\"core_mechanic\":\"SaaS for solo newsletter publishers: cohort renewal tracking and sponsor pipeline management, priced by paid subscriber bands.\",\"keywords\":[\"newsletter\",\"retention\",\"sponsorships\",\"cohorts\",\"renewals\",\"pipeline\",\"solo-creator\",\"subscriber-bands\",\"revenue-concentration\",\"operational-calendar\"]}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [],
+          "reasoning": " The user wants me to act as an autonomous software agent evaluating a product brief and produce a DejaShip intent payload. Let me break down the requirements:\n\n1. **core_mechanic**: Must be under 250 characters, concise, focusing on the true commercial mechanism, target customer, and recurring revenue path.\n\n2. **keywords**: 5-12 lowercase keywords, alphanumeric or hyphenated. Must avoid filler terms like \"app\", \"ai\", \"tool\", \"platform\" unless genuinely discriminative. Should focus on signal from target customer, problem, workflow, recurring revenue model, pricing shape, must-have features, and operational constraints.\n\n3. **Focus areas**: target customer, problem, workflow, recurring revenue model, pricing shape, must-have features, operational constraints.\n\nLet me analyze the brief:\n\n- **Target customer**: \"Independent newsletter publishers with paid subscriptions, occasional sponsorships, and no dedicated operations team.\" - Key aspects: independent, newsletter publishers, paid subscriptions, sponsorships, solo/tiny teams.\n\n- **Problem**: \"Growth looks healthy until renewals soften, sponsor follow-up slips, and the creator realizes revenue concentration is worse than expected.\" - Key aspects: retention, renewal risk, sponsor pipeline management, revenue concentration.\n\n- **Workflow**: \"Track cohorts, renewal risk, sponsor follow-ups, and content commitments inside one operational calendar built for a solo publisher.\" - Key aspects: cohort tracking, renewal risk, sponsor follow-ups, content commitments, operational calendar.\n\n- **Recurring revenue model**: \"Recurring SaaS priced for creators with one or two operators and scaled by subscriber count.\" - Key aspects: SaaS, subscription, scaled by subscriber count.\n\n- **Pricing shape**: \"Subscription based on paid subscriber bands with a higher tier for sponsor workflow automation.\" - Key aspects: subscriber bands, tiered pricing, sponsor workflow automation.\n\n- **Must-have features**: \n  - \"Cohort renewal dashboard\"\n  - \"Sponsor follow-up tracker\"\n  - \"Calendar for issue commitments\"\n  - \"Revenue concentration alerts\"\n\n- **Constraints**: \n  - \"Must work for one-person teams with limited setup patience.\"\n  - \"Needs lightweight sponsor workflow without acting like a CRM monster.\"\n  - \"Should support both B2C subscriptions and B2B sponsorship revenue.\"\n\n- **Seed keywords**: newsletter, retention, sponsorships, subscriptions, cohorts, creator\n\nNow I need to craft the core_mechanic and keywords.\n\n**Core_mechanic**: Should capture the essence of the business model and value proposition. It needs to be under 250 characters.\n\nLet me think about the true commercial mechanism:\n- It's a SaaS product for newsletter creators\n- It helps with retention (renewals) and sponsor pipeline management\n- It's designed for solo operators\n- Revenue scales with subscriber count\n- It's an \"operating system\" for the business side of newsletters\n\nPossible core_mechanic:\n\"SaaS for solo newsletter creators to manage subscription renewals and sponsor pipelines, scaling pricing with paid subscriber count.\"\n\nLet me count: 119 characters. Good.\n\nOr more concise:\n\"Subscription SaaS that helps solo newsletter creators track renewal cohorts and sponsor pipelines, priced by subscriber bands.\"\n\nCount: 108 characters.\n\nEven better:\n\"SaaS for solo newsletter publishers: cohort renewal tracking and sponsor pipeline management, priced by paid subscriber bands.\"\n\nCount: 103 characters.\n\nI think this captures the key elements: SaaS model, target customer (solo newsletter publishers), core value (cohort renewal tracking + sponsor pipeline management), and pricing model (by paid subscriber bands).\n\n**Keywords**: Need 5-12 lowercase, alphanumeric/hyphenated. Avoid filler terms.\n\nFrom the brief, I can extract:\n- newsletter\n- retention\n- sponsorships\n- subscriptions\n- cohorts\n- creator\n- renewals\n- pipeline\n- solo-publisher (hyphenated)\n- revenue-concentration (hyphenated)\n- operational-calendar (hyphenated)\n- subscriber-bands (hyphenated)\n\nLet me select the most discriminative ones that focus on the mechanism, customer, and revenue:\n\n1. newsletter (from seed keywords)\n2. retention (from seed keywords)\n3. sponsorships (from seed keywords)\n4. cohorts (from seed keywords)\n5. renewals (specific to problem)\n6. pipeline (specific to sponsor workflow)\n7. solo-creator (captures target customer constraint)\n8. subscriber-bands (captures pricing model)\n9. revenue-concentration (captures key problem/metric)\n10. operational-calendar (captures workflow)\n\nThat's 10 keywords. Let me check if any are filler: \"newsletter\" is necessary and discriminative here. \"retention\", \"sponsorships\", \"cohorts\", \"renewals\", \"pipeline\", \"solo-creator\", \"subscriber-bands\", \"revenue-concentration\", \"operational-calendar\" are all specific and not filler.\n\nWait, I should avoid \"creator\" alone as it might be too generic. \"solo-creator\" is better. Let me refine:\n\nFinal keyword list:\n- newsletter\n- retention\n- sponsorships\n- cohorts\n- renewals\n- pipeline\n- solo-creator\n- subscriber-bands\n- revenue-concentration\n- operational-calendar\n\nThat's exactly 10 keywords, which is within the 5-12 range.\n\nLet me double-check the core_mechanic length: \"SaaS for solo newsletter publishers: cohort renewal tracking and sponsor pipeline management, priced by paid subscriber bands.\"\n\nCount: 115 characters. Under 250. Good.\n\nIt includes:\n- Commercial mechanism: SaaS\n- Target customer: solo newsletter publishers\n- Recurring revenue path: priced by paid subscriber bands (implies subscription model)\n- Core value: cohort renewal tracking and sponsor pipeline management\n\nPerfect.\n\nNow I need to return strict JSON only, no markdown fences.\n\n```json\n{\n  \"core_mechanic\": \"SaaS for solo newsletter publishers: cohort renewal tracking and sponsor pipeline management, priced by paid subscriber bands.\",\n  \"keywords\": [\"newsletter\", \"retention\", \"sponsorships\", \"cohorts\", \"renewals\", \"pipeline\", \"solo-creator\", \"subscriber-bands\", \"revenue-concentration\", \"operational-calendar\"]\n}\n```\n\nWait, let me re-read the keyword requirements: \"5 to 12 lowercase keywords\" - check. \"alphanumeric or hyphenated\" - all my keywords are either single words or hyphenated combinations of words. Good.\n\nLet me reconsider if any keywords could be more precise:\n- \"newsletter\" - necessary\n- \"retention\" - captures the renewal aspect\n- \"sponsorships\" - captures sponsor revenue\n- \"cohorts\" - specific feature\n- \"renewals\" - more specific than retention\n- \"pipeline\" - specific to sponsor workflow\n- \"solo-creator\" - target customer\n- \"subscriber-bands\" - pricing model\n- \"revenue-concentration\" - problem aspect\n- \"operational-calendar\" - workflow aspect\n\nI think this is a solid list. All are lowercase. All are either alphanumeric (single words) or hyphenated (compound concepts). None are filler terms like \"app\", \"ai\", \"tool\", \"platform\".\n\nThe core_mechanic is concise and captures the essence. Let me see if I can make it even more focused on the commercial mechanism:\n\nAlternative: \"SaaS for solo newsletter publishers: cohort retention and sponsor pipeline management, with subscription pricing scaled by paid subscriber bands.\"\n\nCount: 118 characters. Similar.\n\nOr: \"Subscription SaaS helping solo newsletter publishers manage cohort renewals and sponsor pipelines, priced by subscriber count.\"\n\nCount: 108 characters.\n\nI think the first version is clearest. Let me stick with it.\n\nFinal check:\n- core_mechanic under 250 chars? Yes (115 chars)\n- 5-12 keywords? Yes (10 keywords)\n- All lowercase? Yes\n- Alphanumeric or hyphenated? Yes\n- No filler terms? Yes\n- Focuses on commercial mechanism, target customer, recurring revenue? Yes\n\nThe JSON looks correct. I must not wrap it in markdown fences. ",
+          "reasoning_content": " The user wants me to act as an autonomous software agent evaluating a product brief and produce a DejaShip intent payload. Let me break down the requirements:\n\n1. **core_mechanic**: Must be under 250 characters, concise, focusing on the true commercial mechanism, target customer, and recurring revenue path.\n\n2. **keywords**: 5-12 lowercase keywords, alphanumeric or hyphenated. Must avoid filler terms like \"app\", \"ai\", \"tool\", \"platform\" unless genuinely discriminative. Should focus on signal from target customer, problem, workflow, recurring revenue model, pricing shape, must-have features, and operational constraints.\n\n3. **Focus areas**: target customer, problem, workflow, recurring revenue model, pricing shape, must-have features, operational constraints.\n\nLet me analyze the brief:\n\n- **Target customer**: \"Independent newsletter publishers with paid subscriptions, occasional sponsorships, and no dedicated operations team.\" - Key aspects: independent, newsletter publishers, paid subscriptions, sponsorships, solo/tiny teams.\n\n- **Problem**: \"Growth looks healthy until renewals soften, sponsor follow-up slips, and the creator realizes revenue concentration is worse than expected.\" - Key aspects: retention, renewal risk, sponsor pipeline management, revenue concentration.\n\n- **Workflow**: \"Track cohorts, renewal risk, sponsor follow-ups, and content commitments inside one operational calendar built for a solo publisher.\" - Key aspects: cohort tracking, renewal risk, sponsor follow-ups, content commitments, operational calendar.\n\n- **Recurring revenue model**: \"Recurring SaaS priced for creators with one or two operators and scaled by subscriber count.\" - Key aspects: SaaS, subscription, scaled by subscriber count.\n\n- **Pricing shape**: \"Subscription based on paid subscriber bands with a higher tier for sponsor workflow automation.\" - Key aspects: subscriber bands, tiered pricing, sponsor workflow automation.\n\n- **Must-have features**: \n  - \"Cohort renewal dashboard\"\n  - \"Sponsor follow-up tracker\"\n  - \"Calendar for issue commitments\"\n  - \"Revenue concentration alerts\"\n\n- **Constraints**: \n  - \"Must work for one-person teams with limited setup patience.\"\n  - \"Needs lightweight sponsor workflow without acting like a CRM monster.\"\n  - \"Should support both B2C subscriptions and B2B sponsorship revenue.\"\n\n- **Seed keywords**: newsletter, retention, sponsorships, subscriptions, cohorts, creator\n\nNow I need to craft the core_mechanic and keywords.\n\n**Core_mechanic**: Should capture the essence of the business model and value proposition. It needs to be under 250 characters.\n\nLet me think about the true commercial mechanism:\n- It's a SaaS product for newsletter creators\n- It helps with retention (renewals) and sponsor pipeline management\n- It's designed for solo operators\n- Revenue scales with subscriber count\n- It's an \"operating system\" for the business side of newsletters\n\nPossible core_mechanic:\n\"SaaS for solo newsletter creators to manage subscription renewals and sponsor pipelines, scaling pricing with paid subscriber count.\"\n\nLet me count: 119 characters. Good.\n\nOr more concise:\n\"Subscription SaaS that helps solo newsletter creators track renewal cohorts and sponsor pipelines, priced by subscriber bands.\"\n\nCount: 108 characters.\n\nEven better:\n\"SaaS for solo newsletter publishers: cohort renewal tracking and sponsor pipeline management, priced by paid subscriber bands.\"\n\nCount: 103 characters.\n\nI think this captures the key elements: SaaS model, target customer (solo newsletter publishers), core value (cohort renewal tracking + sponsor pipeline management), and pricing model (by paid subscriber bands).\n\n**Keywords**: Need 5-12 lowercase, alphanumeric/hyphenated. Avoid filler terms.\n\nFrom the brief, I can extract:\n- newsletter\n- retention\n- sponsorships\n- subscriptions\n- cohorts\n- creator\n- renewals\n- pipeline\n- solo-publisher (hyphenated)\n- revenue-concentration (hyphenated)\n- operational-calendar (hyphenated)\n- subscriber-bands (hyphenated)\n\nLet me select the most discriminative ones that focus on the mechanism, customer, and revenue:\n\n1. newsletter (from seed keywords)\n2. retention (from seed keywords)\n3. sponsorships (from seed keywords)\n4. cohorts (from seed keywords)\n5. renewals (specific to problem)\n6. pipeline (specific to sponsor workflow)\n7. solo-creator (captures target customer constraint)\n8. subscriber-bands (captures pricing model)\n9. revenue-concentration (captures key problem/metric)\n10. operational-calendar (captures workflow)\n\nThat's 10 keywords. Let me check if any are filler: \"newsletter\" is necessary and discriminative here. \"retention\", \"sponsorships\", \"cohorts\", \"renewals\", \"pipeline\", \"solo-creator\", \"subscriber-bands\", \"revenue-concentration\", \"operational-calendar\" are all specific and not filler.\n\nWait, I should avoid \"creator\" alone as it might be too generic. \"solo-creator\" is better. Let me refine:\n\nFinal keyword list:\n- newsletter\n- retention\n- sponsorships\n- cohorts\n- renewals\n- pipeline\n- solo-creator\n- subscriber-bands\n- revenue-concentration\n- operational-calendar\n\nThat's exactly 10 keywords, which is within the 5-12 range.\n\nLet me double-check the core_mechanic length: \"SaaS for solo newsletter publishers: cohort renewal tracking and sponsor pipeline management, priced by paid subscriber bands.\"\n\nCount: 115 characters. Under 250. Good.\n\nIt includes:\n- Commercial mechanism: SaaS\n- Target customer: solo newsletter publishers\n- Recurring revenue path: priced by paid subscriber bands (implies subscription model)\n- Core value: cohort renewal tracking and sponsor pipeline management\n\nPerfect.\n\nNow I need to return strict JSON only, no markdown fences.\n\n```json\n{\n  \"core_mechanic\": \"SaaS for solo newsletter publishers: cohort renewal tracking and sponsor pipeline management, priced by paid subscriber bands.\",\n  \"keywords\": [\"newsletter\", \"retention\", \"sponsorships\", \"cohorts\", \"renewals\", \"pipeline\", \"solo-creator\", \"subscriber-bands\", \"revenue-concentration\", \"operational-calendar\"]\n}\n```\n\nWait, let me re-read the keyword requirements: \"5 to 12 lowercase keywords\" - check. \"alphanumeric or hyphenated\" - all my keywords are either single words or hyphenated combinations of words. Good.\n\nLet me reconsider if any keywords could be more precise:\n- \"newsletter\" - necessary\n- \"retention\" - captures the renewal aspect\n- \"sponsorships\" - captures sponsor revenue\n- \"cohorts\" - specific feature\n- \"renewals\" - more specific than retention\n- \"pipeline\" - specific to sponsor workflow\n- \"solo-creator\" - target customer\n- \"subscriber-bands\" - pricing model\n- \"revenue-concentration\" - problem aspect\n- \"operational-calendar\" - workflow aspect\n\nI think this is a solid list. All are lowercase. All are either alphanumeric (single words) or hyphenated (compound concepts). None are filler terms like \"app\", \"ai\", \"tool\", \"platform\".\n\nThe core_mechanic is concise and captures the essence. Let me see if I can make it even more focused on the commercial mechanism:\n\nAlternative: \"SaaS for solo newsletter publishers: cohort retention and sponsor pipeline management, with subscription pricing scaled by paid subscriber bands.\"\n\nCount: 118 characters. Similar.\n\nOr: \"Subscription SaaS helping solo newsletter publishers manage cohort renewals and sponsor pipelines, priced by subscriber count.\"\n\nCount: 108 characters.\n\nI think the first version is clearest. Let me stick with it.\n\nFinal check:\n- core_mechanic under 250 chars? Yes (115 chars)\n- 5-12 keywords? Yes (10 keywords)\n- All lowercase? Yes\n- Alphanumeric or hyphenated? Yes\n- No filler terms? Yes\n- Focuses on commercial mechanism, target customer, recurring revenue? Yes\n\nThe JSON looks correct. I must not wrap it in markdown fences. "
+        },
+        "stop_reason": 163586,
+        "token_ids": null
+      }
+    ],
+    "created": 1772440913,
+    "model": "moonshotai/kimi-k2-thinking",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1757,
+      "prompt_tokens": 691,
+      "total_tokens": 2448,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": " {\"core_mechanic\":\"SaaS for solo newsletter publishers: cohort renewal tracking and sponsor pipeline management, priced by paid subscriber bands.\",\"keywords\":[\"newsletter\",\"retention\",\"sponsorships\",\"cohorts\",\"renewals\",\"pipeline\",\"solo-creator\",\"subscriber-bands\",\"revenue-concentration\",\"operational-calendar\"]}",
+  "llm_output": {
+    "core_mechanic": "SaaS for solo newsletter publishers: cohort renewal tracking and sponsor pipeline management, priced by paid subscriber bands.",
+    "keywords": [
+      "newsletter",
+      "retention",
+      "sponsorships",
+      "cohorts",
+      "renewals",
+      "pipeline",
+      "solo-creator",
+      "subscriber-bands",
+      "revenue-concentration",
+      "operational-calendar"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "newsletter",
+      "retention",
+      "sponsorships",
+      "cohorts",
+      "renewals",
+      "pipeline",
+      "solo-creator",
+      "subscriber-bands",
+      "revenue-concentration",
+      "operational-calendar"
+    ],
+    "derived_keywords": [
+      "and",
+      "sponsor",
+      "for",
+      "with",
+      "renewal",
+      "calendar",
+      "commitments",
+      "concentration",
+      "follow-up",
+      "one",
+      "paid",
+      "solo",
+      "subscriber",
+      "alerts",
+      "cohort",
+      "content",
+      "dashboard",
+      "dedicated",
+      "expected",
+      "follow-ups",
+      "healthy",
+      "independent",
+      "inside",
+      "issue",
+      "looks",
+      "occasional",
+      "operational",
+      "operations",
+      "publisher",
+      "publishers",
+      "realizes",
+      "renewals",
+      "risk",
+      "slips",
+      "soften",
+      "team",
+      "than",
+      "the",
+      "track",
+      "tracker",
+      "until",
+      "worse",
+      "count",
+      "creators",
+      "media",
+      "priced",
+      "saas",
+      "scaled",
+      "two",
+      "acting",
+      "automation",
+      "b2b",
+      "b2c",
+      "bands",
+      "based",
+      "better",
+      "both",
+      "creator-business",
+      "crm",
+      "follow-through",
+      "lightweight",
+      "like",
+      "limited",
+      "monster",
+      "must",
+      "needs",
+      "one-person",
+      "patience",
+      "rates",
+      "setup",
+      "should",
+      "sponsorship",
+      "support",
+      "tier",
+      "without",
+      "work",
+      "accountants",
+      "communities",
+      "partnerships"
+    ],
+    "final_keywords": [
+      "newsletter",
+      "retention",
+      "sponsorships",
+      "cohorts",
+      "renewals",
+      "pipeline",
+      "solo-creator",
+      "subscriber-bands",
+      "revenue-concentration",
+      "operational-calendar"
+    ],
+    "keyword_provenance": {
+      "newsletter": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "retention": [
+        "llm",
+        "seed_keywords"
+      ],
+      "sponsorships": [
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "cohorts": [
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "renewals": [
+        "field:problem",
+        "llm"
+      ],
+      "pipeline": [
+        "llm"
+      ],
+      "solo-creator": [
+        "llm"
+      ],
+      "subscriber-bands": [
+        "llm"
+      ],
+      "revenue-concentration": [
+        "llm"
+      ],
+      "operational-calendar": [
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "SaaS for solo newsletter publishers: cohort renewal tracking and sponsor pipeline management, priced by paid subscriber bands.",
+    "keywords": [
+      "newsletter",
+      "retention",
+      "sponsorships",
+      "cohorts",
+      "renewals",
+      "pipeline",
+      "solo-creator",
+      "subscriber-bands",
+      "revenue-concentration",
+      "operational-calendar"
+    ]
+  },
+  "planned_resolution": "claim"
+}

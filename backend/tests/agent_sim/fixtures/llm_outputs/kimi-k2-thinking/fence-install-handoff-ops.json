@@ -1,0 +1,233 @@
+{
+  "brief_id": "fence-install-handoff-ops",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "kimi-k2-thinking",
+    "model_name": "moonshotai/kimi-k2-thinking",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "ced836edf872d64f45632f45ccec667afe946189c99fd092cc61348ffb34c1f1",
+    "prompt_hash": "15579606149ec282b4b8e47bd4123ea607b718e5408d64576818bff6a8faa71e",
+    "generated_at": "2026-03-02T09:07:06.369971Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"fence-install-handoff-ops\",\n  \"title\": \"Quote-to-install handoff and scheduling readiness for fence contractors\",\n  \"category\": \"construction-ops\",\n  \"target_customer\": \"Small fence contractors juggling estimates, permits, materials, and crew scheduling across residential projects.\",\n  \"problem\": \"Jobs slip after the sale because material readiness, permit status, and customer approvals are scattered across estimator notes.\",\n  \"workflow\": \"Turn accepted quotes into a visible handoff board that shows readiness blockers before the crew calendar is committed.\",\n  \"recurring_revenue_model\": \"Monthly subscription for owner-led contractors managing a steady project pipeline.\",\n  \"pricing_shape\": \"Base platform fee with add-on for multiple crews or estimators.\",\n  \"distribution_channel\": \"Contractor communities, local implementation consultants, and construction accountants.\",\n  \"constraints\": [\n    \"Must support owner-operator firms with messy estimate-to-install handoffs.\",\n    \"Needs permit and material blocker visibility without becoming an ERP.\",\n    \"Cannot depend on municipal integrations to be useful.\"\n  ],\n  \"must_have_features\": [\n    \"Quote acceptance to install board\",\n    \"Material readiness checklist\",\n    \"Permit blocker tracker\",\n    \"Crew scheduling handoff notes\"\n  ],\n  \"seed_keywords\": [\n    \"fence-contractors\",\n    \"handoff\",\n    \"permits\",\n    \"materials\",\n    \"scheduling\",\n    \"crews\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a construction ERP.\",\n    \"Do not target national home builders first.\"\n  ],\n  \"success_metric\": \"More installs start on time after a quote is accepted.\",\n  \"prompt_rendered_brief\": \"This product is a quote-to-install handoff and scheduling readiness system for fence contractors that close work quickly but struggle to coordinate the next operational steps. Once a proposal is accepted, crews still need permits, material availability, and customer approvals, yet those blockers are usually buried inside estimator notes and text threads. The software should turn each accepted quote into a visible readiness board so owners know when the crew calendar is actually safe to lock. A recurring SaaS model makes sense because the same handoff problem repeats for every project in a busy contractor business. The product also sits near adjacent field-service and construction workflows, which makes it valuable for overlap testing later. The benefit should be fewer schedule slips and cleaner coordination between estimators, office staff, and crews.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-a8c9d1b0fe6a96e9",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": " {\"core_mechanic\":\"Monthly SaaS for owner-led fence contractors that turns accepted quotes into a readiness board, exposing permit/material blockers before crew scheduling.\",\"keywords\":[\"fence-contractors\",\"quote-to-install\",\"handoff\",\"permit-blockers\",\"material-readiness\",\"crew-scheduling\",\"readiness-board\",\"owner-operator\",\"residential\",\"monthly-subscription\"]}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [],
+          "reasoning": " The user wants me to extract a DejaShip intent payload from a product brief. The payload should include:\n1. `core_mechanic` - under 250 characters, concise\n2. `keywords` - 5 to 12 lowercase, alphanumeric or hyphenated\n\nKey requirements:\n- Focus on commercial mechanism, target customer, recurring revenue path\n- Avoid filler terms like \"app\", \"ai\", \"tool\", \"platform\" unless discriminative\n- Prioritize signal from: target customer, problem, workflow, recurring revenue model, pricing shape, must-have features, operational constraints\n\nLet me analyze the brief:\n\n**Target customer**: \"Small fence contractors juggling estimates, permits, materials, and crew scheduling across residential projects.\"\n- Key aspects: small fence contractors, residential projects, owner-led\n\n**Problem**: \"Jobs slip after the sale because material readiness, permit status, and customer approvals are scattered across estimator notes.\"\n- Key aspects: post-sale slippage, scattered information, readiness blockers\n\n**Workflow**: \"Turn accepted quotes into a visible handoff board that shows readiness blockers before the crew calendar is committed.\"\n- Key aspects: quote-to-install handoff, readiness board, blocker visibility\n\n**Recurring revenue model**: \"Monthly subscription for owner-led contractors managing a steady project pipeline.\"\n- Key aspects: monthly subscription, owner-led contractors\n\n**Pricing shape**: \"Base platform fee with add-on for multiple crews or estimators.\"\n- Key aspects: base fee + add-ons\n\n**Must-have features**:\n- Quote acceptance to install board\n- Material readiness checklist\n- Permit blocker tracker\n- Crew scheduling handoff notes\n\n**Constraints**:\n- Must support owner-operator firms with messy estimate-to-install handoffs\n- Needs permit and material blocker visibility without becoming an ERP\n- Cannot depend on municipal integrations to be useful\n\n**Seed keywords**: fence-contractors, handoff, permits, materials, scheduling, crews\n\n**Anti-goals**: Not an ERP, not targeting national home builders first\n\n**Success metric**: \"More installs start on time after a quote is accepted.\"\n\nNow I need to craft the core_mechanic and keywords.\n\n**Core_mechanic** should capture:\n- The commercial mechanism: monthly subscription SaaS for fence contractors\n- The core value: turning accepted quotes into a readiness board that prevents schedule slips\n- The target: small/owner-led fence contractors\n- The workflow: handoff from sales to operations\n\nLet me draft a core_mechanic:\n\"Monthly SaaS that turns accepted fence quotes into a readiness board, showing permit/material blockers before crew scheduling, for owner-led contractors.\"\n\nLet me count: 138 characters. Good, under 250.\n\nAlternative: \"Subscription software for small fence contractors that converts accepted quotes into a visual readiness board, tracking permit and material blockers to prevent crew scheduling conflicts.\"\n\nCount: 157 characters. Also good.\n\nI think the first one is more concise and direct. Let me refine it slightly:\n\"Monthly SaaS turning accepted fence quotes into a readiness board, exposing permit/material blockers before crew scheduling for owner-led contractors.\"\n\nCount: 140 characters. This is good.\n\n**Keywords**:\nI need 5-12 lowercase, alphanumeric or hyphenated keywords. Avoid filler terms.\n\nFrom seed keywords: fence-contractors, handoff, permits, materials, scheduling, crews\n\nI should add more based on the brief:\n- quote-to-install (or quote-to-install-handoff)\n- readiness-board\n- owner-operator\n- residential\n- subscription\n- blocker-tracker\n- crew-calendar\n\nLet me compile a list:\n1. fence-contractors (from seed)\n2. handoff (from seed)\n3. permits (from seed)\n4. materials (from seed)\n5. scheduling (from seed)\n6. crews (from seed)\n7. quote-to-install\n8. readiness-board\n9. owner-operator\n10. residential\n11. subscription\n12. blocker-tracker\n\nThat's 12 keywords. Let me check if any are redundant or could be combined.\n\n\"scheduling\" and \"crew-calendar\" - maybe \"crew-scheduling\" is better?\n\"permits\" and \"blocker-tracker\" - \"permit-blockers\" might be more specific\n\nLet me refine:\n1. fence-contractors\n2. handoff\n3. permit-blockers\n4. material-readiness\n5. crew-scheduling\n6. quote-to-install\n7. readiness-board\n8. owner-operator\n9. residential\n10. subscription\n11. readiness-checklist\n\nThat's 11. Good.\n\nWait, I should avoid \"subscription\" as it might be too generic/filler? But it's part of the revenue model, so it's important. Let me keep it.\n\nLet me check the constraints again:\n- Must support owner-operator firms with messy estimate-to-install handoffs.\n- Needs permit and material blocker visibility without becoming an ERP.\n- Cannot depend on municipal integrations to be useful.\n\nSo \"owner-operator\" is important. \"estimate-to-install\" is also important.\n\nLet me reconsider the keywords to be most discriminative:\n\n1. fence-contractors (specific target)\n2. quote-to-install (specific workflow)\n3. handoff (core concept)\n4. permit-blockers (specific problem)\n5. material-readiness (specific problem)\n6. crew-scheduling (specific workflow)\n7. readiness-board (core feature)\n8. owner-operator (specific target segment)\n9. monthly-saas (revenue model - but is this too generic? Maybe just \"subscription\" is better)\n10. residential (market segment)\n\nThat's 10 keywords. Let me make them all lowercase and hyphenated where needed.\n\nActually, let me think about what would be most discriminative for search/discovery:\n- fence-contractors (must have)\n- quote-to-install (specific workflow)\n- handoff (core concept)\n- permit-tracker (from must-have features)\n- material-checklist (from must-have features)\n- crew-scheduling (from must-have features)\n- readiness-board (core feature)\n- owner-operator (target)\n- residential (market)\n- subscription (revenue)\n\nThat's 10. Let me refine:\n\n1. fence-contractors\n2. quote-to-install\n3. handoff\n4. permit-tracker\n5. material-checklist\n6. crew-scheduling\n7. readiness-board\n8. owner-operator\n9. residential\n10. monthly-subscription\n\nWait, \"monthly-subscription\" might be better than just \"subscription\" to capture the pricing shape.\n\nLet me check the must-have features again:\n- Quote acceptance to install board → quote-to-install-board or readiness-board\n- Material readiness checklist → material-readiness or material-checklist\n- Permit blocker tracker → permit-blockers or permit-tracker\n- Crew scheduling handoff notes → crew-scheduling or handoff\n\nI think my list is good. Let me finalize:\n\nKeywords:\n1. fence-contractors\n2. quote-to-install\n3. handoff\n4. permit-blockers\n5. material-readiness\n6. crew-scheduling\n7. readiness-board\n8. owner-operator\n9. residential\n10. monthly-subscription\n\nThat's exactly 10 keywords. All lowercase, alphanumeric with hyphens. No filler words like \"app\", \"tool\", \"platform\", \"ai\".\n\nLet me double-check the core_mechanic one more time:\n\"Monthly SaaS turning accepted fence quotes into a readiness board, exposing permit/material blockers before crew scheduling for owner-led contractors.\"\n\nThis captures:\n- Commercial mechanism: Monthly SaaS\n- Target customer: owner-led contractors (implied: fence contractors)\n- Core workflow: turning accepted quotes into readiness board\n- Value prop: exposing blockers before scheduling\n- It's concise and under 250 characters.\n\nActually, let me make it even more direct:\n\"Monthly SaaS for fence contractors that turns accepted quotes into a readiness board, exposing permit/material blockers before crew scheduling.\"\n\nCount: 130 characters. This is good. But it loses \"owner-led\". Let me add it back:\n\"Monthly SaaS for owner-led fence contractors that turns accepted quotes into a readiness board, exposing permit/material blockers before crew scheduling.\"\n\nCount: 145 characters. Perfect.\n\nFinal check on keywords - should I include \"saas\"? It's part of the revenue model but might be too generic. The brief says \"recurring SaaS model\". But \"monthly-subscription\" already captures that. I think it's better to avoid \"saas\" as it could be considered a filler term in this context.\n\nLet me review the seed keywords again: fence-contractors, handoff, permits, materials, scheduling, crews\n\nMy final keyword list includes variations of these but makes them more specific:\n- fence-contractors (same)\n- handoff (same)\n- permit-blockers (more specific than permits)\n- material-readiness (more specific than materials)\n- crew-scheduling (more specific than scheduling and crews)\n- quote-to-install (new, from workflow)\n- readiness-board (new, from features)\n- owner-operator (new, from target customer)\n- residential (new, from target customer description)\n- monthly-subscription (new, from revenue model)\n\nThis seems like a solid list that captures the essence of the product.\n\nFinal JSON:\n{\n  \"core_mechanic\": \"Monthly SaaS for owner-led fence contractors that turns accepted quotes into a readiness board, exposing permit/material blockers before crew scheduling.\",\n  \"keywords\": [\"fence-contractors\",\"quote-to-install\",\"handoff\",\"permit-blockers\",\"material-readiness\",\"crew-scheduling\",\"readiness-board\",\"owner-operator\",\"residential\",\"monthly-subscription\"]\n}\n\nWait, let me count the characters in core_mechanic again: \"Monthly SaaS for owner-led fence contractors that turns accepted quotes into a readiness board, exposing permit/material blockers before crew scheduling.\"\nLet me count: M-o-n-t-h-l-y- -S-a-a-S- -f-o-r- -o-w-n-e-r---l-e-d- -f-e-n-c-e- -c-o-n-t-r-a-c-t-o-r-s- -t-h-a-t- -t-u-r-n-s- -a-c-c-e-p-t-e-d- -q-u-o-t-e-s- -i-n-t-o- -a- -r-e-a-d-i-n-e-s-s- -b-o-a-r-d-,- -e-x-p-o-s-i-n-g- -p-e-r-m-i-t-/-m-a-t-e-r-i-a-l- -b-l-o-c-k-e-r-s- -b-e-f-o-r-e- -c-r-e-w- -s-c-h-e-d-u-l-i-n-g-.\nThat's 145 characters. Good.\n\nKeywords count: 10 keywords, which is within 5-12 range.\n\nAll keywords are lowercase and hyphenated where needed. No filler words.\n\nI think this is ready. ",
+          "reasoning_content": " The user wants me to extract a DejaShip intent payload from a product brief. The payload should include:\n1. `core_mechanic` - under 250 characters, concise\n2. `keywords` - 5 to 12 lowercase, alphanumeric or hyphenated\n\nKey requirements:\n- Focus on commercial mechanism, target customer, recurring revenue path\n- Avoid filler terms like \"app\", \"ai\", \"tool\", \"platform\" unless discriminative\n- Prioritize signal from: target customer, problem, workflow, recurring revenue model, pricing shape, must-have features, operational constraints\n\nLet me analyze the brief:\n\n**Target customer**: \"Small fence contractors juggling estimates, permits, materials, and crew scheduling across residential projects.\"\n- Key aspects: small fence contractors, residential projects, owner-led\n\n**Problem**: \"Jobs slip after the sale because material readiness, permit status, and customer approvals are scattered across estimator notes.\"\n- Key aspects: post-sale slippage, scattered information, readiness blockers\n\n**Workflow**: \"Turn accepted quotes into a visible handoff board that shows readiness blockers before the crew calendar is committed.\"\n- Key aspects: quote-to-install handoff, readiness board, blocker visibility\n\n**Recurring revenue model**: \"Monthly subscription for owner-led contractors managing a steady project pipeline.\"\n- Key aspects: monthly subscription, owner-led contractors\n\n**Pricing shape**: \"Base platform fee with add-on for multiple crews or estimators.\"\n- Key aspects: base fee + add-ons\n\n**Must-have features**:\n- Quote acceptance to install board\n- Material readiness checklist\n- Permit blocker tracker\n- Crew scheduling handoff notes\n\n**Constraints**:\n- Must support owner-operator firms with messy estimate-to-install handoffs\n- Needs permit and material blocker visibility without becoming an ERP\n- Cannot depend on municipal integrations to be useful\n\n**Seed keywords**: fence-contractors, handoff, permits, materials, scheduling, crews\n\n**Anti-goals**: Not an ERP, not targeting national home builders first\n\n**Success metric**: \"More installs start on time after a quote is accepted.\"\n\nNow I need to craft the core_mechanic and keywords.\n\n**Core_mechanic** should capture:\n- The commercial mechanism: monthly subscription SaaS for fence contractors\n- The core value: turning accepted quotes into a readiness board that prevents schedule slips\n- The target: small/owner-led fence contractors\n- The workflow: handoff from sales to operations\n\nLet me draft a core_mechanic:\n\"Monthly SaaS that turns accepted fence quotes into a readiness board, showing permit/material blockers before crew scheduling, for owner-led contractors.\"\n\nLet me count: 138 characters. Good, under 250.\n\nAlternative: \"Subscription software for small fence contractors that converts accepted quotes into a visual readiness board, tracking permit and material blockers to prevent crew scheduling conflicts.\"\n\nCount: 157 characters. Also good.\n\nI think the first one is more concise and direct. Let me refine it slightly:\n\"Monthly SaaS turning accepted fence quotes into a readiness board, exposing permit/material blockers before crew scheduling for owner-led contractors.\"\n\nCount: 140 characters. This is good.\n\n**Keywords**:\nI need 5-12 lowercase, alphanumeric or hyphenated keywords. Avoid filler terms.\n\nFrom seed keywords: fence-contractors, handoff, permits, materials, scheduling, crews\n\nI should add more based on the brief:\n- quote-to-install (or quote-to-install-handoff)\n- readiness-board\n- owner-operator\n- residential\n- subscription\n- blocker-tracker\n- crew-calendar\n\nLet me compile a list:\n1. fence-contractors (from seed)\n2. handoff (from seed)\n3. permits (from seed)\n4. materials (from seed)\n5. scheduling (from seed)\n6. crews (from seed)\n7. quote-to-install\n8. readiness-board\n9. owner-operator\n10. residential\n11. subscription\n12. blocker-tracker\n\nThat's 12 keywords. Let me check if any are redundant or could be combined.\n\n\"scheduling\" and \"crew-calendar\" - maybe \"crew-scheduling\" is better?\n\"permits\" and \"blocker-tracker\" - \"permit-blockers\" might be more specific\n\nLet me refine:\n1. fence-contractors\n2. handoff\n3. permit-blockers\n4. material-readiness\n5. crew-scheduling\n6. quote-to-install\n7. readiness-board\n8. owner-operator\n9. residential\n10. subscription\n11. readiness-checklist\n\nThat's 11. Good.\n\nWait, I should avoid \"subscription\" as it might be too generic/filler? But it's part of the revenue model, so it's important. Let me keep it.\n\nLet me check the constraints again:\n- Must support owner-operator firms with messy estimate-to-install handoffs.\n- Needs permit and material blocker visibility without becoming an ERP.\n- Cannot depend on municipal integrations to be useful.\n\nSo \"owner-operator\" is important. \"estimate-to-install\" is also important.\n\nLet me reconsider the keywords to be most discriminative:\n\n1. fence-contractors (specific target)\n2. quote-to-install (specific workflow)\n3. handoff (core concept)\n4. permit-blockers (specific problem)\n5. material-readiness (specific problem)\n6. crew-scheduling (specific workflow)\n7. readiness-board (core feature)\n8. owner-operator (specific target segment)\n9. monthly-saas (revenue model - but is this too generic? Maybe just \"subscription\" is better)\n10. residential (market segment)\n\nThat's 10 keywords. Let me make them all lowercase and hyphenated where needed.\n\nActually, let me think about what would be most discriminative for search/discovery:\n- fence-contractors (must have)\n- quote-to-install (specific workflow)\n- handoff (core concept)\n- permit-tracker (from must-have features)\n- material-checklist (from must-have features)\n- crew-scheduling (from must-have features)\n- readiness-board (core feature)\n- owner-operator (target)\n- residential (market)\n- subscription (revenue)\n\nThat's 10. Let me refine:\n\n1. fence-contractors\n2. quote-to-install\n3. handoff\n4. permit-tracker\n5. material-checklist\n6. crew-scheduling\n7. readiness-board\n8. owner-operator\n9. residential\n10. monthly-subscription\n\nWait, \"monthly-subscription\" might be better than just \"subscription\" to capture the pricing shape.\n\nLet me check the must-have features again:\n- Quote acceptance to install board → quote-to-install-board or readiness-board\n- Material readiness checklist → material-readiness or material-checklist\n- Permit blocker tracker → permit-blockers or permit-tracker\n- Crew scheduling handoff notes → crew-scheduling or handoff\n\nI think my list is good. Let me finalize:\n\nKeywords:\n1. fence-contractors\n2. quote-to-install\n3. handoff\n4. permit-blockers\n5. material-readiness\n6. crew-scheduling\n7. readiness-board\n8. owner-operator\n9. residential\n10. monthly-subscription\n\nThat's exactly 10 keywords. All lowercase, alphanumeric with hyphens. No filler words like \"app\", \"tool\", \"platform\", \"ai\".\n\nLet me double-check the core_mechanic one more time:\n\"Monthly SaaS turning accepted fence quotes into a readiness board, exposing permit/material blockers before crew scheduling for owner-led contractors.\"\n\nThis captures:\n- Commercial mechanism: Monthly SaaS\n- Target customer: owner-led contractors (implied: fence contractors)\n- Core workflow: turning accepted quotes into readiness board\n- Value prop: exposing blockers before scheduling\n- It's concise and under 250 characters.\n\nActually, let me make it even more direct:\n\"Monthly SaaS for fence contractors that turns accepted quotes into a readiness board, exposing permit/material blockers before crew scheduling.\"\n\nCount: 130 characters. This is good. But it loses \"owner-led\". Let me add it back:\n\"Monthly SaaS for owner-led fence contractors that turns accepted quotes into a readiness board, exposing permit/material blockers before crew scheduling.\"\n\nCount: 145 characters. Perfect.\n\nFinal check on keywords - should I include \"saas\"? It's part of the revenue model but might be too generic. The brief says \"recurring SaaS model\". But \"monthly-subscription\" already captures that. I think it's better to avoid \"saas\" as it could be considered a filler term in this context.\n\nLet me review the seed keywords again: fence-contractors, handoff, permits, materials, scheduling, crews\n\nMy final keyword list includes variations of these but makes them more specific:\n- fence-contractors (same)\n- handoff (same)\n- permit-blockers (more specific than permits)\n- material-readiness (more specific than materials)\n- crew-scheduling (more specific than scheduling and crews)\n- quote-to-install (new, from workflow)\n- readiness-board (new, from features)\n- owner-operator (new, from target customer)\n- residential (new, from target customer description)\n- monthly-subscription (new, from revenue model)\n\nThis seems like a solid list that captures the essence of the product.\n\nFinal JSON:\n{\n  \"core_mechanic\": \"Monthly SaaS for owner-led fence contractors that turns accepted quotes into a readiness board, exposing permit/material blockers before crew scheduling.\",\n  \"keywords\": [\"fence-contractors\",\"quote-to-install\",\"handoff\",\"permit-blockers\",\"material-readiness\",\"crew-scheduling\",\"readiness-board\",\"owner-operator\",\"residential\",\"monthly-subscription\"]\n}\n\nWait, let me count the characters in core_mechanic again: \"Monthly SaaS for owner-led fence contractors that turns accepted quotes into a readiness board, exposing permit/material blockers before crew scheduling.\"\nLet me count: M-o-n-t-h-l-y- -S-a-a-S- -f-o-r- -o-w-n-e-r---l-e-d- -f-e-n-c-e- -c-o-n-t-r-a-c-t-o-r-s- -t-h-a-t- -t-u-r-n-s- -a-c-c-e-p-t-e-d- -q-u-o-t-e-s- -i-n-t-o- -a- -r-e-a-d-i-n-e-s-s- -b-o-a-r-d-,- -e-x-p-o-s-i-n-g- -p-e-r-m-i-t-/-m-a-t-e-r-i-a-l- -b-l-o-c-k-e-r-s- -b-e-f-o-r-e- -c-r-e-w- -s-c-h-e-d-u-l-i-n-g-.\nThat's 145 characters. Good.\n\nKeywords count: 10 keywords, which is within 5-12 range.\n\nAll keywords are lowercase and hyphenated where needed. No filler words.\n\nI think this is ready. "
+        },
+        "stop_reason": 163586,
+        "token_ids": null
+      }
+    ],
+    "created": 1772442400,
+    "model": "moonshotai/kimi-k2-thinking",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2321,
+      "prompt_tokens": 681,
+      "total_tokens": 3002,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": " {\"core_mechanic\":\"Monthly SaaS for owner-led fence contractors that turns accepted quotes into a readiness board, exposing permit/material blockers before crew scheduling.\",\"keywords\":[\"fence-contractors\",\"quote-to-install\",\"handoff\",\"permit-blockers\",\"material-readiness\",\"crew-scheduling\",\"readiness-board\",\"owner-operator\",\"residential\",\"monthly-subscription\"]}",
+  "llm_output": {
+    "core_mechanic": "Monthly SaaS for owner-led fence contractors that turns accepted quotes into a readiness board, exposing permit/material blockers before crew scheduling.",
+    "keywords": [
+      "fence-contractors",
+      "quote-to-install",
+      "handoff",
+      "permit-blockers",
+      "material-readiness",
+      "crew-scheduling",
+      "readiness-board",
+      "owner-operator",
+      "residential",
+      "monthly-subscription"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "fence-contractors",
+      "quote-to-install",
+      "handoff",
+      "permit-blockers",
+      "material-readiness",
+      "crew-scheduling",
+      "readiness-board",
+      "owner-operator",
+      "residential",
+      "monthly-subscription"
+    ],
+    "derived_keywords": [
+      "crew",
+      "readiness",
+      "and",
+      "material",
+      "permit",
+      "across",
+      "board",
+      "notes",
+      "the",
+      "contractors",
+      "accepted",
+      "blocker",
+      "quote",
+      "for",
+      "acceptance",
+      "approvals",
+      "are",
+      "because",
+      "blockers",
+      "calendar",
+      "checklist",
+      "committed",
+      "estimates",
+      "estimator",
+      "fence",
+      "install",
+      "into",
+      "jobs",
+      "juggling",
+      "quotes",
+      "residential",
+      "sale",
+      "scattered",
+      "shows",
+      "slip",
+      "status",
+      "that",
+      "tracker",
+      "turn",
+      "visible",
+      "with",
+      "managing",
+      "owner-led",
+      "pipeline",
+      "project",
+      "steady",
+      "add-on",
+      "becoming",
+      "construction-ops",
+      "depend",
+      "erp",
+      "estimate-to-install",
+      "estimators",
+      "fee",
+      "handoffs",
+      "installs",
+      "integrations",
+      "messy",
+      "more",
+      "municipal",
+      "must",
+      "needs",
+      "owner-operator",
+      "start",
+      "support",
+      "time",
+      "useful",
+      "visibility",
+      "without",
+      "accountants",
+      "communities",
+      "construction",
+      "consultants",
+      "contractor",
+      "implementation"
+    ],
+    "final_keywords": [
+      "fence-contractors",
+      "quote-to-install",
+      "handoff",
+      "permit-blockers",
+      "material-readiness",
+      "crew-scheduling",
+      "readiness-board",
+      "owner-operator",
+      "residential",
+      "monthly-subscription"
+    ],
+    "keyword_provenance": {
+      "fence-contractors": [
+        "llm",
+        "seed_keywords"
+      ],
+      "quote-to-install": [
+        "llm"
+      ],
+      "handoff": [
+        "field:must_have_features",
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "permit-blockers": [
+        "llm"
+      ],
+      "material-readiness": [
+        "llm"
+      ],
+      "crew-scheduling": [
+        "llm"
+      ],
+      "readiness-board": [
+        "llm"
+      ],
+      "owner-operator": [
+        "field:constraints",
+        "llm"
+      ],
+      "residential": [
+        "field:target_customer",
+        "llm"
+      ],
+      "monthly-subscription": [
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Monthly SaaS for owner-led fence contractors that turns accepted quotes into a readiness board, exposing permit/material blockers before crew scheduling.",
+    "keywords": [
+      "fence-contractors",
+      "quote-to-install",
+      "handoff",
+      "permit-blockers",
+      "material-readiness",
+      "crew-scheduling",
+      "readiness-board",
+      "owner-operator",
+      "residential",
+      "monthly-subscription"
+    ]
+  },
+  "planned_resolution": "claim"
+}

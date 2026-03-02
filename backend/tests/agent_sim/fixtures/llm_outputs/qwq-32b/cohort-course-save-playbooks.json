@@ -1,0 +1,232 @@
+{
+  "brief_id": "cohort-course-save-playbooks",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "qwq-32b",
+    "model_name": "qwen/qwq-32b",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "5f3d6fdde348fed168c396b054bda6bbe3d6d8eb40c15df3a7312d009c099261",
+    "prompt_hash": "1d5f33580b2fffb5462cdef67b8928c8fede056d10a7951a50aea4743461488f",
+    "generated_at": "2026-03-02T08:53:33.702681Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"cohort-course-save-playbooks\",\n  \"title\": \"Churn rescue and enrollment pacing for cohort course businesses\",\n  \"category\": \"creator-business\",\n  \"target_customer\": \"Small education creators selling cohort-based courses, memberships, and workshops to professionals.\",\n  \"problem\": \"Revenue spikes during launches but drops between cohorts because payment plans fail, alumni go cold, and re-enrollment is improvised.\",\n  \"workflow\": \"Track upcoming cohorts, payment-plan risk, alumni segmentation, and save campaigns that convert drop-offs into the next paid offer.\",\n  \"recurring_revenue_model\": \"Subscription with optional annual plan for education businesses that run repeated cohorts.\",\n  \"pricing_shape\": \"Flat monthly fee plus add-on for payment-plan monitoring volume.\",\n  \"distribution_channel\": \"Creator education communities, launch operators, and referrals from fractional marketers.\",\n  \"constraints\": [\n    \"Must reflect launch cycles instead of assuming daily SaaS usage.\",\n    \"Needs clear handling for alumni, waitlists, and payment-plan risk.\",\n    \"Cannot require a heavy learning management system migration.\"\n  ],\n  \"must_have_features\": [\n    \"Cohort calendar and pacing view\",\n    \"Alumni segment tracker\",\n    \"Payment-plan risk board\",\n    \"Re-enrollment campaign templates\"\n  ],\n  \"seed_keywords\": [\n    \"cohort-course\",\n    \"churn\",\n    \"reenrollment\",\n    \"payment-plans\",\n    \"alumni\",\n    \"launches\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a video hosting platform.\",\n    \"Do not target enterprise education departments first.\"\n  ],\n  \"success_metric\": \"More students rescued into future offers and fewer failed payment plans per launch cycle.\",\n  \"prompt_rendered_brief\": \"This product is a churn rescue and enrollment pacing system for cohort course businesses that live through launch spikes and long off-cycle gaps. Creators usually know how to market the next cohort, but they do not have a durable operating system for payment-plan risk, alumni reactivation, and converting drop-offs into future enrollment. The tool should show upcoming cohorts, segment alumni, surface accounts at risk, and make save campaigns easy to run without importing a giant CRM stack. The revenue model fits recurring SaaS because every launch cycle benefits from having the same playbooks, history, and risk tracking. The workflow must acknowledge that usage intensity rises around launches and reopens, rather than pretending this is an everyday transactional system. The outcome should be steadier education revenue with fewer preventable losses between cohorts.\\n\"\n}",
+  "raw_response": {
+    "id": "chat-699fd28f011f4593ba828e3cd16c8272",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "Okay, let's tackle this. The user wants me to generate a DejaShip intent payload based on the provided product brief. The key here is to extract the core mechanic and keywords following their strict guidelines.\n\nFirst, the core_mechanic needs to be under 250 characters and focus on the commercial mechanism, target customer, and recurring revenue. Looking at the brief, the target customers are small education creators running cohort-based courses. The problem is revenue drops between cohorts due to payment failures and inactive alumni. The solution involves tracking cohorts, payment risks, alumni segments, and campaigns to re-engage. The revenue model is a subscription with add-ons.\n\nSo, the core mechanic should encapsulate tracking and managing these elements to stabilize revenue. Maybe something like: \"Tracks cohort cycles, payment risks, and alumni engagement to automate re-enrollment campaigns, ensuring steady revenue through recurring subscriptions and add-ons based on payment-plan monitoring volume.\"\n\nNow for the keywords. They need to be 5-12 lowercase, alphanumeric or hyphenated, avoiding filler terms. The seed keywords include cohort-course, churn, reenrollment, payment-plans, alumni, launches. Let's see the must-have features and workflow for more. The workflow mentions payment-plan risk, alumni segmentation, save campaigns. The recurring model is subscription and annual plans. Also, the problem mentions payment plans failing and re-enrollment being improvised. \n\nPossible keywords: cohort-course, churn-prevention, reenrollment-campaigns, payment-plan-monitoring, alumni-reactivation, launch-cycles, enrollment-pacing. That's seven. Let me check if they fit the requirements. All are lowercase, hyphenated where needed, no forbidden terms. They focus on the core aspects: the target (cohort courses), the problem areas (churn, payment plans), the solution (campaigns, reactivation), and the recurring model (launch cycles). \n\nWait, maybe \"subscription-model\" could be included since the revenue model is subscription, but the brief says to focus on the mechanism. Alternatively, \"recurring-revenue\" but that's too generic. The keywords should reflect the commercial aspects. The problem mentions \"recurring revenue path\" so maybe \"recurring-launches\" but not sure. Alternatively, stick to the ones derived from the brief's keywords and features. The seed keywords already have some, so expanding from there. \n\nI think the selected keywords are solid. Let me count again: cohort-course, churn-prevention, reenrollment-campaigns, payment-plan-monitoring, alumni-reactivation, launch-cycles, enrollment-pacing. That's seven. Under 12, so that's good. They avoid the forbidden terms like app or tool. They focus on the true mechanism. \n\nDouble-check the core_mechanic length. Let me count: \"Tracks cohort cycles, payment risks, and alumni engagement to automate re-enrollment campaigns, ensuring steady revenue through recurring subscriptions and add-ons based on payment-plan monitoring volume.\" That's 84 words, but characters? Let me check. Probably under 250. \n\nYes, that should work. Alright, time to format the JSON without markdown.\n</think>\n\n{\n  \"core_mechanic\": \"Tracks cohort cycles, payment risks, and alumni engagement to automate re-enrollment campaigns, ensuring steady revenue through recurring subscriptions and add-ons based on payment-plan monitoring volume.\",\n  \"keywords\": [\n    \"cohort-course\",\n    \"churn-prevention\",\n    \"reenrollment-campaigns\",\n    \"payment-plan-monitoring\",\n    \"alumni-reactivation\",\n    \"launch-cycles\",\n    \"enrollment-pacing\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772441588,
+    "model": "qwen/qwq-32b",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 747,
+      "prompt_tokens": 709,
+      "total_tokens": 1456,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null
+  },
+  "response_text": "Okay, let's tackle this. The user wants me to generate a DejaShip intent payload based on the provided product brief. The key here is to extract the core mechanic and keywords following their strict guidelines.\n\nFirst, the core_mechanic needs to be under 250 characters and focus on the commercial mechanism, target customer, and recurring revenue. Looking at the brief, the target customers are small education creators running cohort-based courses. The problem is revenue drops between cohorts due to payment failures and inactive alumni. The solution involves tracking cohorts, payment risks, alumni segments, and campaigns to re-engage. The revenue model is a subscription with add-ons.\n\nSo, the core mechanic should encapsulate tracking and managing these elements to stabilize revenue. Maybe something like: \"Tracks cohort cycles, payment risks, and alumni engagement to automate re-enrollment campaigns, ensuring steady revenue through recurring subscriptions and add-ons based on payment-plan monitoring volume.\"\n\nNow for the keywords. They need to be 5-12 lowercase, alphanumeric or hyphenated, avoiding filler terms. The seed keywords include cohort-course, churn, reenrollment, payment-plans, alumni, launches. Let's see the must-have features and workflow for more. The workflow mentions payment-plan risk, alumni segmentation, save campaigns. The recurring model is subscription and annual plans. Also, the problem mentions payment plans failing and re-enrollment being improvised. \n\nPossible keywords: cohort-course, churn-prevention, reenrollment-campaigns, payment-plan-monitoring, alumni-reactivation, launch-cycles, enrollment-pacing. That's seven. Let me check if they fit the requirements. All are lowercase, hyphenated where needed, no forbidden terms. They focus on the core aspects: the target (cohort courses), the problem areas (churn, payment plans), the solution (campaigns, reactivation), and the recurring model (launch cycles). \n\nWait, maybe \"subscription-model\" could be included since the revenue model is subscription, but the brief says to focus on the mechanism. Alternatively, \"recurring-revenue\" but that's too generic. The keywords should reflect the commercial aspects. The problem mentions \"recurring revenue path\" so maybe \"recurring-launches\" but not sure. Alternatively, stick to the ones derived from the brief's keywords and features. The seed keywords already have some, so expanding from there. \n\nI think the selected keywords are solid. Let me count again: cohort-course, churn-prevention, reenrollment-campaigns, payment-plan-monitoring, alumni-reactivation, launch-cycles, enrollment-pacing. That's seven. Under 12, so that's good. They avoid the forbidden terms like app or tool. They focus on the true mechanism. \n\nDouble-check the core_mechanic length. Let me count: \"Tracks cohort cycles, payment risks, and alumni engagement to automate re-enrollment campaigns, ensuring steady revenue through recurring subscriptions and add-ons based on payment-plan monitoring volume.\" That's 84 words, but characters? Let me check. Probably under 250. \n\nYes, that should work. Alright, time to format the JSON without markdown.\n</think>\n\n{\n  \"core_mechanic\": \"Tracks cohort cycles, payment risks, and alumni engagement to automate re-enrollment campaigns, ensuring steady revenue through recurring subscriptions and add-ons based on payment-plan monitoring volume.\",\n  \"keywords\": [\n    \"cohort-course\",\n    \"churn-prevention\",\n    \"reenrollment-campaigns\",\n    \"payment-plan-monitoring\",\n    \"alumni-reactivation\",\n    \"launch-cycles\",\n    \"enrollment-pacing\"\n  ]\n}",
+  "llm_output": {
+    "core_mechanic": "Tracks cohort cycles, payment risks, and alumni engagement to automate re-enrollment campaigns, ensuring steady revenue through recurring subscriptions and add-ons based on payment-plan monitoring volume.",
+    "keywords": [
+      "cohort-course",
+      "churn-prevention",
+      "reenrollment-campaigns",
+      "payment-plan-monitoring",
+      "alumni-reactivation",
+      "launch-cycles",
+      "enrollment-pacing"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "cohort-course",
+      "churn-prevention",
+      "reenrollment-campaigns",
+      "payment-plan-monitoring",
+      "alumni-reactivation",
+      "launch-cycles",
+      "enrollment-pacing"
+    ],
+    "derived_keywords": [
+      "and",
+      "payment-plan",
+      "cohorts",
+      "risk",
+      "education",
+      "re-enrollment",
+      "for",
+      "that",
+      "into",
+      "payment",
+      "plans",
+      "launch",
+      "because",
+      "between",
+      "board",
+      "but",
+      "calendar",
+      "campaign",
+      "campaigns",
+      "cohort",
+      "cohort-based",
+      "cold",
+      "convert",
+      "courses",
+      "creators",
+      "drop-offs",
+      "drops",
+      "during",
+      "fail",
+      "improvised",
+      "memberships",
+      "next",
+      "offer",
+      "pacing",
+      "paid",
+      "professionals",
+      "save",
+      "segment",
+      "segmentation",
+      "selling",
+      "spikes",
+      "templates",
+      "the",
+      "track",
+      "tracker",
+      "upcoming",
+      "view",
+      "workshops",
+      "optional",
+      "plan",
+      "repeated",
+      "run",
+      "with",
+      "add-on",
+      "assuming",
+      "clear",
+      "creator-business",
+      "cycle",
+      "cycles",
+      "failed",
+      "fee",
+      "fewer",
+      "flat",
+      "future",
+      "handling",
+      "heavy",
+      "instead",
+      "learning",
+      "management",
+      "migration",
+      "monitoring",
+      "more",
+      "must",
+      "needs",
+      "offers",
+      "plus",
+      "reflect",
+      "require",
+      "rescued",
+      "saas",
+      "students",
+      "usage",
+      "volume",
+      "waitlists",
+      "communities",
+      "creator",
+      "fractional",
+      "from",
+      "marketers",
+      "referrals"
+    ],
+    "final_keywords": [
+      "cohort-course",
+      "churn-prevention",
+      "reenrollment-campaigns",
+      "payment-plan-monitoring",
+      "alumni-reactivation",
+      "launch-cycles",
+      "enrollment-pacing",
+      "churn",
+      "reenrollment",
+      "payment-plans"
+    ],
+    "keyword_provenance": {
+      "cohort-course": [
+        "llm",
+        "seed_keywords"
+      ],
+      "churn-prevention": [
+        "llm"
+      ],
+      "reenrollment-campaigns": [
+        "llm"
+      ],
+      "payment-plan-monitoring": [
+        "llm"
+      ],
+      "alumni-reactivation": [
+        "llm"
+      ],
+      "launch-cycles": [
+        "llm"
+      ],
+      "enrollment-pacing": [
+        "llm"
+      ],
+      "churn": [
+        "seed_keywords"
+      ],
+      "reenrollment": [
+        "seed_keywords"
+      ],
+      "payment-plans": [
+        "seed_keywords"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Tracks cohort cycles, payment risks, and alumni engagement to automate re-enrollment campaigns, ensuring steady revenue through recurring subscriptions and add-ons based on payment-plan monitoring volume.",
+    "keywords": [
+      "cohort-course",
+      "churn-prevention",
+      "reenrollment-campaigns",
+      "payment-plan-monitoring",
+      "alumni-reactivation",
+      "launch-cycles",
+      "enrollment-pacing",
+      "churn",
+      "reenrollment",
+      "payment-plans"
+    ]
+  },
+  "planned_resolution": "claim"
+}

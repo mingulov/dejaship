@@ -1,0 +1,264 @@
+{
+  "brief_id": "hvac-service-plan-ops",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "qwen2-5-coder-32b-instruct",
+    "model_name": "qwen/qwen2.5-coder-32b-instruct",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "3d38917840b8c4b74a5ee33221af3266efa61f080303c55101d546d3f2c6ac07",
+    "prompt_hash": "f1d9f94aad4c84a2c898eb508dac598755ae265dcc8b0037c51a6bd85175d978",
+    "generated_at": "2026-03-02T08:58:24.295060Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"hvac-service-plan-ops\",\n  \"title\": \"Service plan renewals and dispatch prep for independent HVAC installers\",\n  \"category\": \"field-service\",\n  \"target_customer\": \"Independent HVAC installation and maintenance companies with three to twenty-five technicians.\",\n  \"problem\": \"Owners sell maintenance plans after every install, but renewals, seasonal reminders, and technician follow-up all live in spreadsheets that get ignored during busy periods.\",\n  \"workflow\": \"Capture every install, schedule renewal windows, queue outbound reminders, and feed daily prep lists to dispatch before technicians leave the warehouse.\",\n  \"recurring_revenue_model\": \"Annual maintenance plans with optional monthly financing for larger equipment protection bundles.\",\n  \"pricing_shape\": \"Base subscription plus per-technician seats once the team grows past five field staff.\",\n  \"distribution_channel\": \"Founder-led outbound to local HVAC operators plus accountant and distributor referrals.\",\n  \"constraints\": [\n    \"Must work well for phone-first teams who barely use desktop software during the day.\",\n    \"Needs simple seasonal campaigns that map to spring and fall tune-up demand.\",\n    \"Cannot require deep integrations with enterprise field-service suites.\"\n  ],\n  \"must_have_features\": [\n    \"Renewal pipeline with due-date visibility\",\n    \"Technician-ready morning call sheets\",\n    \"Plan upsell prompts after completed installs\",\n    \"Contact history for homeowners and landlords\"\n  ],\n  \"seed_keywords\": [\n    \"hvac\",\n    \"maintenance-plans\",\n    \"renewals\",\n    \"dispatch\",\n    \"homeowner\",\n    \"technician\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a full dispatch suite.\",\n    \"Do not target national franchise operators first.\"\n  ],\n  \"success_metric\": \"More renewal revenue captured per install cohort without adding office headcount.\",\n  \"prompt_rendered_brief\": \"The product is a service plan renewals and dispatch prep system for independent HVAC installers that already sell maintenance memberships but fail to renew them consistently. The buyer is usually the owner or office manager at a shop with a small technician team and a large seasonal backlog. They need a way to record every install, trigger the right reminder campaigns, and hand dispatch a clean list of homeowner conversations to make each morning. Revenue should come from recurring software subscriptions tied to the number of technicians and renewal volume, not from one-off setup work. The workflow must be light enough for phone-first teams that still run the business with shared inboxes, clipboards, and quick calls from the van. The ideal product increases renewal capture, smooths shoulder-season demand, and creates a repeatable service-plan process without replacing the company's existing dispatch software.\\n\"\n}",
+  "raw_response": {
+    "id": "chat-4a0ece2cae574e198d913b67ed528959",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"core_mechanic\": \"Automate HVAC maintenance plan renewals and dispatch prep for small HVAC companies, focusing on seasonal reminders and technician-ready call sheets.\",\n  \"keywords\": [\n    \"hvac\",\n    \"maintenance-plans\",\n    \"renewals\",\n    \"dispatch\",\n    \"seasonal-reminders\",\n    \"technician-ready\",\n    \"upsell-prompts\",\n    \"contact-history\",\n    \"phone-first\",\n    \"subscription-based\",\n    \"renewal-capture\",\n    \"seasonal-demand\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772441900,
+    "model": "qwen/qwen2.5-coder-32b-instruct",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 113,
+      "prompt_tokens": 738,
+      "total_tokens": 851,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null
+  },
+  "response_text": "{\n  \"core_mechanic\": \"Automate HVAC maintenance plan renewals and dispatch prep for small HVAC companies, focusing on seasonal reminders and technician-ready call sheets.\",\n  \"keywords\": [\n    \"hvac\",\n    \"maintenance-plans\",\n    \"renewals\",\n    \"dispatch\",\n    \"seasonal-reminders\",\n    \"technician-ready\",\n    \"upsell-prompts\",\n    \"contact-history\",\n    \"phone-first\",\n    \"subscription-based\",\n    \"renewal-capture\",\n    \"seasonal-demand\"\n  ]\n}",
+  "llm_output": {
+    "core_mechanic": "Automate HVAC maintenance plan renewals and dispatch prep for small HVAC companies, focusing on seasonal reminders and technician-ready call sheets.",
+    "keywords": [
+      "hvac",
+      "maintenance-plans",
+      "renewals",
+      "dispatch",
+      "seasonal-reminders",
+      "technician-ready",
+      "upsell-prompts",
+      "contact-history",
+      "phone-first",
+      "subscription-based",
+      "renewal-capture",
+      "seasonal-demand"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "hvac",
+      "maintenance-plans",
+      "renewals",
+      "dispatch",
+      "seasonal-reminders",
+      "technician-ready",
+      "upsell-prompts",
+      "contact-history",
+      "phone-first",
+      "subscription-based",
+      "renewal-capture",
+      "seasonal-demand"
+    ],
+    "derived_keywords": [
+      "and",
+      "with",
+      "maintenance",
+      "install",
+      "renewal",
+      "for",
+      "reminders",
+      "technicians",
+      "the",
+      "plans",
+      "during",
+      "seasonal",
+      "that",
+      "outbound",
+      "all",
+      "busy",
+      "but",
+      "call",
+      "capture",
+      "completed",
+      "contact",
+      "due-date",
+      "feed",
+      "field-service",
+      "follow-up",
+      "get",
+      "history",
+      "homeowners",
+      "ignored",
+      "independent",
+      "installation",
+      "installs",
+      "landlords",
+      "leave",
+      "lists",
+      "live",
+      "morning",
+      "periods",
+      "pipeline",
+      "plan",
+      "prep",
+      "prompts",
+      "queue",
+      "schedule",
+      "sell",
+      "sheets",
+      "spreadsheets",
+      "technician-ready",
+      "three",
+      "twenty-five",
+      "upsell",
+      "visibility",
+      "warehouse",
+      "windows",
+      "bundles",
+      "equipment",
+      "financing",
+      "larger",
+      "optional",
+      "plus",
+      "protection",
+      "adding",
+      "barely",
+      "campaigns",
+      "captured",
+      "cohort",
+      "day",
+      "deep",
+      "demand",
+      "desktop",
+      "enterprise",
+      "fall",
+      "field",
+      "five",
+      "grows",
+      "headcount",
+      "integrations",
+      "map",
+      "more",
+      "must",
+      "needs",
+      "office",
+      "once",
+      "past",
+      "per-technician",
+      "phone-first",
+      "require",
+      "seats",
+      "simple",
+      "spring",
+      "staff",
+      "suites",
+      "team",
+      "tune-up",
+      "use",
+      "well",
+      "who",
+      "without",
+      "work",
+      "accountant",
+      "distributor",
+      "founder-led",
+      "referrals"
+    ],
+    "final_keywords": [
+      "hvac",
+      "maintenance-plans",
+      "renewals",
+      "dispatch",
+      "seasonal-reminders",
+      "technician-ready",
+      "upsell-prompts",
+      "contact-history",
+      "phone-first",
+      "subscription-based"
+    ],
+    "keyword_provenance": {
+      "hvac": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "maintenance-plans": [
+        "llm",
+        "seed_keywords"
+      ],
+      "renewals": [
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "dispatch": [
+        "field:workflow",
+        "llm",
+        "seed_keywords"
+      ],
+      "seasonal-reminders": [
+        "llm"
+      ],
+      "technician-ready": [
+        "field:must_have_features",
+        "llm"
+      ],
+      "upsell-prompts": [
+        "llm"
+      ],
+      "contact-history": [
+        "llm"
+      ],
+      "phone-first": [
+        "field:constraints",
+        "llm"
+      ],
+      "subscription-based": [
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Automate HVAC maintenance plan renewals and dispatch prep for small HVAC companies, focusing on seasonal reminders and technician-ready call sheets.",
+    "keywords": [
+      "hvac",
+      "maintenance-plans",
+      "renewals",
+      "dispatch",
+      "seasonal-reminders",
+      "technician-ready",
+      "upsell-prompts",
+      "contact-history",
+      "phone-first",
+      "subscription-based"
+    ]
+  },
+  "planned_resolution": "claim"
+}

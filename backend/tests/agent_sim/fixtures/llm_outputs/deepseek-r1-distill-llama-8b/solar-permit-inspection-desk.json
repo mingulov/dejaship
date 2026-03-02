@@ -1,0 +1,239 @@
+{
+  "brief_id": "solar-permit-inspection-desk",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "deepseek-r1-distill-llama-8b",
+    "model_name": "deepseek-ai/deepseek-r1-distill-llama-8b",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "84e30b397f27cb0332b3b0ee75e2b4c8e3aaa8e720ffde68b2df284e14ff1c25",
+    "prompt_hash": "65396aa09bbad63f286001da80896f735021e393508c2957a218a77bfc06f0e6",
+    "generated_at": "2026-03-02T08:49:04.677189Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"solar-permit-inspection-desk\",\n  \"title\": \"Permit, inspection, and milestone desk for residential solar installers\",\n  \"category\": \"energy-ops\",\n  \"target_customer\": \"Residential solar installers coordinating permit packets, utility approvals, and inspection milestones across municipalities.\",\n  \"problem\": \"Projects stall because permit requirements and inspection status updates are tracked in inconsistent project notes instead of a visible desk.\",\n  \"workflow\": \"Standardize jurisdiction checklists, track inspection progress, and surface blockers before installation crews or customers are rescheduled.\",\n  \"recurring_revenue_model\": \"Recurring SaaS tied to active project volume for regional installers.\",\n  \"pricing_shape\": \"Monthly platform fee plus project-volume tiers.\",\n  \"distribution_channel\": \"Solar installer operators, implementation consultants, and local clean-energy networks.\",\n  \"constraints\": [\n    \"Must account for jurisdiction-specific steps.\",\n    \"Needs operational visibility for permit coordinators and install managers.\",\n    \"Cannot require replacing the CRM used for lead generation.\"\n  ],\n  \"must_have_features\": [\n    \"Jurisdiction checklist templates\",\n    \"Inspection milestone board\",\n    \"Blocker escalation queue\",\n    \"Utility approval tracking\"\n  ],\n  \"seed_keywords\": [\n    \"solar\",\n    \"permits\",\n    \"inspections\",\n    \"utility-approval\",\n    \"milestones\",\n    \"installers\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a design studio for panels.\",\n    \"Do not focus on utility-scale projects.\"\n  ],\n  \"success_metric\": \"Faster project throughput with fewer preventable schedule slips.\",\n  \"prompt_rendered_brief\": \"This product is a permit, inspection, and milestone desk for residential solar installers that operate across multiple municipalities. The team already has a CRM for sales, but once a deal closes, permit packets, utility approvals, and inspection status updates become a fragile coordination problem spread across notes and inboxes. The software should standardize local checklists, highlight project blockers, and tell operations staff what needs attention before crews or homeowners are rescheduled. The business model is recurring SaaS because installers manage a constant flow of active projects and pay for smoother throughput. The experience must feel operational, jurisdiction-aware, and practical for permit coordinators who live in email and spreadsheets. Success means fewer projects stalling for administrative reasons and better schedule reliability for installation teams.\\n\"\n}",
+  "raw_response": {
+    "id": "chat-165aabb9f90449a7a3435019b34b8b4e",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "<think>\nAlright, I need to create a DejaShip intent payload based on the provided brief. Let me start by understanding the requirements.\n\nFirst, the core_mechanic needs to be concise, under 250 characters. It should focus on the true commercial mechanism, targeting residential solar installers. The recurring revenue model is a SaaS tied to active projects, so the core mechanism is likely about managing these projects efficiently.\n\nNext, I need 5 to 12 lowercase keywords. They should be alphanumeric or hyphenated. Looking at the seed_keywords, I see solar, permits, inspections, utility-approval, milestones, installers. These are all relevant and should be included.\n\nI should avoid filler terms unless necessary. The target customer is clear, so focusing on their needs is key. The problem is that projects stall due to inconsistent tracking, so tracking and visibility are important.\n\nThe workflow involves standardizing checklists and tracking inspections, so terms like workflow, tracking, and visibility come into play. The pricing is a monthly fee plus project tiers, so pricing and tiers are relevant.\n\nConstraints mention not replacing the existing CRM, so CRM integration is a consideration. Must-have features include templates, milestone boards, and tracking, so those should be included.\n\nPutting it all together, the core_mechanic should encapsulate the SaaS platform that helps installers manage permits, inspections, and milestones efficiently. The keywords will include the key elements from the brief.\n\nI need to ensure the JSON is strict, with only the required fields: core_mechanic and keywords. No markdown fences, just plain JSON.\n\nDouble-checking the requirements: under 250 characters, 5-12 keywords, alphanumeric, focus on the right aspects. I think I've covered everything without filler terms.\n</think>\n\n```json\n{\n  \"core_mechanic\": \"SaaS platform managing residential solar permits, inspections, and milestones for installers.\",\n  \"keywords\": [\"solar\", \"permits\", \"inspections\", \"milestones\", \"installers\", \"tracking\", \"visibility\", \"workflow\", \"revenue\", \"pricing\"]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772441337,
+    "model": "deepseek-ai/deepseek-r1-distill-llama-8b",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 430,
+      "prompt_tokens": 672,
+      "total_tokens": 1102,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null
+  },
+  "response_text": "<think>\nAlright, I need to create a DejaShip intent payload based on the provided brief. Let me start by understanding the requirements.\n\nFirst, the core_mechanic needs to be concise, under 250 characters. It should focus on the true commercial mechanism, targeting residential solar installers. The recurring revenue model is a SaaS tied to active projects, so the core mechanism is likely about managing these projects efficiently.\n\nNext, I need 5 to 12 lowercase keywords. They should be alphanumeric or hyphenated. Looking at the seed_keywords, I see solar, permits, inspections, utility-approval, milestones, installers. These are all relevant and should be included.\n\nI should avoid filler terms unless necessary. The target customer is clear, so focusing on their needs is key. The problem is that projects stall due to inconsistent tracking, so tracking and visibility are important.\n\nThe workflow involves standardizing checklists and tracking inspections, so terms like workflow, tracking, and visibility come into play. The pricing is a monthly fee plus project tiers, so pricing and tiers are relevant.\n\nConstraints mention not replacing the existing CRM, so CRM integration is a consideration. Must-have features include templates, milestone boards, and tracking, so those should be included.\n\nPutting it all together, the core_mechanic should encapsulate the SaaS platform that helps installers manage permits, inspections, and milestones efficiently. The keywords will include the key elements from the brief.\n\nI need to ensure the JSON is strict, with only the required fields: core_mechanic and keywords. No markdown fences, just plain JSON.\n\nDouble-checking the requirements: under 250 characters, 5-12 keywords, alphanumeric, focus on the right aspects. I think I've covered everything without filler terms.\n</think>\n\n```json\n{\n  \"core_mechanic\": \"SaaS platform managing residential solar permits, inspections, and milestones for installers.\",\n  \"keywords\": [\"solar\", \"permits\", \"inspections\", \"milestones\", \"installers\", \"tracking\", \"visibility\", \"workflow\", \"revenue\", \"pricing\"]\n}\n```",
+  "llm_output": {
+    "core_mechanic": "SaaS platform managing residential solar permits, inspections, and milestones for installers.",
+    "keywords": [
+      "solar",
+      "permits",
+      "inspections",
+      "milestones",
+      "installers",
+      "tracking",
+      "visibility",
+      "workflow",
+      "revenue",
+      "pricing"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "solar",
+      "permits",
+      "inspections",
+      "milestones",
+      "installers",
+      "tracking",
+      "visibility",
+      "workflow",
+      "revenue",
+      "pricing"
+    ],
+    "derived_keywords": [
+      "inspection",
+      "and",
+      "permit",
+      "for",
+      "project",
+      "are",
+      "jurisdiction",
+      "utility",
+      "across",
+      "approval",
+      "approvals",
+      "because",
+      "blocker",
+      "blockers",
+      "board",
+      "checklist",
+      "checklists",
+      "coordinating",
+      "crews",
+      "desk",
+      "escalation",
+      "inconsistent",
+      "installation",
+      "instead",
+      "milestone",
+      "municipalities",
+      "notes",
+      "packets",
+      "progress",
+      "queue",
+      "requirements",
+      "rescheduled",
+      "residential",
+      "stall",
+      "standardize",
+      "status",
+      "surface",
+      "templates",
+      "track",
+      "tracked",
+      "tracking",
+      "updates",
+      "visible",
+      "active",
+      "saas",
+      "tied",
+      "volume",
+      "account",
+      "coordinators",
+      "crm",
+      "energy-ops",
+      "faster",
+      "fee",
+      "fewer",
+      "generation",
+      "install",
+      "jurisdiction-specific",
+      "lead",
+      "must",
+      "needs",
+      "operational",
+      "plus",
+      "preventable",
+      "project-volume",
+      "replacing",
+      "require",
+      "schedule",
+      "slips",
+      "steps",
+      "the",
+      "throughput",
+      "tiers",
+      "used",
+      "visibility",
+      "with",
+      "clean-energy",
+      "consultants",
+      "implementation",
+      "installer",
+      "networks"
+    ],
+    "final_keywords": [
+      "solar",
+      "permits",
+      "inspections",
+      "milestones",
+      "installers",
+      "tracking",
+      "visibility",
+      "workflow",
+      "revenue",
+      "pricing"
+    ],
+    "keyword_provenance": {
+      "solar": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "permits": [
+        "llm",
+        "seed_keywords"
+      ],
+      "inspections": [
+        "llm",
+        "seed_keywords"
+      ],
+      "milestones": [
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "installers": [
+        "field:recurring_revenue_model",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "tracking": [
+        "field:must_have_features",
+        "llm"
+      ],
+      "visibility": [
+        "field:constraints",
+        "llm"
+      ],
+      "workflow": [
+        "llm"
+      ],
+      "revenue": [
+        "llm"
+      ],
+      "pricing": [
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "SaaS platform managing residential solar permits, inspections, and milestones for installers.",
+    "keywords": [
+      "solar",
+      "permits",
+      "inspections",
+      "milestones",
+      "installers",
+      "tracking",
+      "visibility",
+      "workflow",
+      "revenue",
+      "pricing"
+    ]
+  },
+  "planned_resolution": "claim"
+}

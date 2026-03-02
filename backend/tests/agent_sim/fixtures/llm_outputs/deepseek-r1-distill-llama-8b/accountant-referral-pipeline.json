@@ -1,0 +1,239 @@
+{
+  "brief_id": "accountant-referral-pipeline",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "deepseek-r1-distill-llama-8b",
+    "model_name": "deepseek-ai/deepseek-r1-distill-llama-8b",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "67a76bdf72c3451ad6a39a101b60be5b263a9eafbbb980affda56a5d7f1eb59f",
+    "prompt_hash": "321f5a6d9cd1f2f7f1849a9c4b20b84174e6f22f4204afdefc4817f80fe35870",
+    "generated_at": "2026-03-02T08:49:22.071075Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"accountant-referral-pipeline\",\n  \"title\": \"Referral relationship and renewal pipeline for boutique accounting firms\",\n  \"category\": \"professional-services\",\n  \"target_customer\": \"Boutique accounting and CFO advisory firms growing through referral partners and annual recurring client retainers.\",\n  \"problem\": \"Relationship-driven growth is fragile because partner follow-up, referral source health, and renewal timing are all tracked informally.\",\n  \"workflow\": \"Log referral relationships, monitor retainer renewal windows, and surface cross-sell or reactivation opportunities before tax season chaos takes over.\",\n  \"recurring_revenue_model\": \"Recurring SaaS for firms with retainer clients and a small partner ecosystem.\",\n  \"pricing_shape\": \"Monthly firm subscription with seat expansion for partners and account managers.\",\n  \"distribution_channel\": \"Accounting communities, fractional CFO networks, and niche software advisors.\",\n  \"constraints\": [\n    \"Must feel relationship-centric instead of like generic CRM bloat.\",\n    \"Needs renewal timing around seasonal workload peaks.\",\n    \"Cannot require replacing proposal and engagement software.\"\n  ],\n  \"must_have_features\": [\n    \"Referral source health board\",\n    \"Retainer renewal calendar\",\n    \"Cross-sell opportunity tracker\",\n    \"Meeting follow-up prompts\"\n  ],\n  \"seed_keywords\": [\n    \"accountants\",\n    \"referrals\",\n    \"retainers\",\n    \"renewals\",\n    \"advisory\",\n    \"partners\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a full sales CRM.\",\n    \"Do not target top-tier national firms first.\"\n  ],\n  \"success_metric\": \"Better referral partner retention and more recurring client renewals.\",\n  \"prompt_rendered_brief\": \"The product is a referral relationship and renewal pipeline for boutique accounting firms that win business through trust and annual retainers. Partners usually know which referral sources matter, but the operational reality is scattered meeting notes, forgotten follow-up, and missed renewal conversations when tax season gets busy. The software should show the health of each relationship, upcoming retainer renewals, and the best opportunities to cross-sell advisory work. The recurring SaaS model fits because relationship maintenance is constant and small firms value dependable recurring revenue. The experience must stay relationship-focused and avoid bloated CRM complexity that accountants already dislike. If the system works, firms keep more referral momentum and lose fewer recurring clients to neglect.\\n\"\n}",
+  "raw_response": {
+    "id": "chat-6566505c81024a71a80e5a85a8d41525",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "<think>\nAlright, I need to evaluate this product brief and create a DejaShip intent payload. Let me start by understanding the requirements.\n\nThe user wants a concise `core_mechanic` under 250 characters. I should focus on the true commercial mechanism, target customer, and recurring revenue path. They also mentioned avoiding filler terms unless necessary.\n\nLooking at the brief, the target customer is boutique accounting and CFO advisory firms. The problem is about informal tracking of referrals and renewals. The workflow involves monitoring relationships and renewals, and suggesting cross-sell opportunities.\n\nThe recurring revenue model is a SaaS subscription with retainer clients. Pricing is monthly with seat expansion. Distribution channels are accounting communities and fractional CFO networks.\n\nConstraints include being relationship-centric, not bloatware, and renewal timing around tax season. Must-have features are tracking referral health, renewal calendar, cross-sell opportunities, and follow-up prompts.\n\nSeed keywords are accountants, referrals, retainers, renewals, advisory, partners. Success metric is better retention and renewals.\n\nNow, I need to create `core_mechanic`. It should capture the essence: managing referral relationships and renewals for accounting firms through a SaaS model. Keep it concise.\n\nFor keywords, list the seed ones: accountants, referrals, retainers, renewals, advisory, partners. Maybe add 'revenue' as it's about recurring revenue.\n\nPutting it all together, ensure it's under 250 characters and meets all criteria. Let me draft it.\n</think>\n\n```json\n{\n  \"core_mechanic\": \"Referral relationship and renewal pipeline management for accounting firms via SaaS subscription with retainer clients.\",\n  \"keywords\": [\"accountants\", \"referrals\", \"retainers\", \"renewals\", \"advisory\", \"partners\", \"revenue\"]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772441355,
+    "model": "deepseek-ai/deepseek-r1-distill-llama-8b",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 374,
+      "prompt_tokens": 668,
+      "total_tokens": 1042,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null
+  },
+  "response_text": "<think>\nAlright, I need to evaluate this product brief and create a DejaShip intent payload. Let me start by understanding the requirements.\n\nThe user wants a concise `core_mechanic` under 250 characters. I should focus on the true commercial mechanism, target customer, and recurring revenue path. They also mentioned avoiding filler terms unless necessary.\n\nLooking at the brief, the target customer is boutique accounting and CFO advisory firms. The problem is about informal tracking of referrals and renewals. The workflow involves monitoring relationships and renewals, and suggesting cross-sell opportunities.\n\nThe recurring revenue model is a SaaS subscription with retainer clients. Pricing is monthly with seat expansion. Distribution channels are accounting communities and fractional CFO networks.\n\nConstraints include being relationship-centric, not bloatware, and renewal timing around tax season. Must-have features are tracking referral health, renewal calendar, cross-sell opportunities, and follow-up prompts.\n\nSeed keywords are accountants, referrals, retainers, renewals, advisory, partners. Success metric is better retention and renewals.\n\nNow, I need to create `core_mechanic`. It should capture the essence: managing referral relationships and renewals for accounting firms through a SaaS model. Keep it concise.\n\nFor keywords, list the seed ones: accountants, referrals, retainers, renewals, advisory, partners. Maybe add 'revenue' as it's about recurring revenue.\n\nPutting it all together, ensure it's under 250 characters and meets all criteria. Let me draft it.\n</think>\n\n```json\n{\n  \"core_mechanic\": \"Referral relationship and renewal pipeline management for accounting firms via SaaS subscription with retainer clients.\",\n  \"keywords\": [\"accountants\", \"referrals\", \"retainers\", \"renewals\", \"advisory\", \"partners\", \"revenue\"]\n}\n```",
+  "llm_output": {
+    "core_mechanic": "Referral relationship and renewal pipeline management for accounting firms via SaaS subscription with retainer clients.",
+    "keywords": [
+      "accountants",
+      "referrals",
+      "retainers",
+      "renewals",
+      "advisory",
+      "partners",
+      "revenue"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "accountants",
+      "referrals",
+      "retainers",
+      "renewals",
+      "advisory",
+      "partners",
+      "revenue"
+    ],
+    "derived_keywords": [
+      "and",
+      "referral",
+      "renewal",
+      "retainer",
+      "partner",
+      "cross-sell",
+      "follow-up",
+      "health",
+      "source",
+      "client",
+      "timing",
+      "accounting",
+      "cfo",
+      "for",
+      "with",
+      "all",
+      "are",
+      "because",
+      "board",
+      "boutique",
+      "calendar",
+      "chaos",
+      "fragile",
+      "growing",
+      "informally",
+      "log",
+      "monitor",
+      "opportunities",
+      "opportunity",
+      "over",
+      "prompts",
+      "reactivation",
+      "relationship-driven",
+      "relationships",
+      "season",
+      "surface",
+      "takes",
+      "tax",
+      "through",
+      "tracked",
+      "tracker",
+      "windows",
+      "ecosystem",
+      "saas",
+      "account",
+      "around",
+      "better",
+      "bloat",
+      "crm",
+      "engagement",
+      "expansion",
+      "feel",
+      "generic",
+      "instead",
+      "like",
+      "more",
+      "must",
+      "needs",
+      "peaks",
+      "professional-services",
+      "proposal",
+      "relationship-centric",
+      "replacing",
+      "require",
+      "retention",
+      "seasonal",
+      "seat",
+      "workload",
+      "advisors",
+      "communities",
+      "fractional",
+      "networks",
+      "niche"
+    ],
+    "final_keywords": [
+      "accountants",
+      "referrals",
+      "retainers",
+      "renewals",
+      "advisory",
+      "partners",
+      "revenue",
+      "and",
+      "referral",
+      "renewal"
+    ],
+    "keyword_provenance": {
+      "accountants": [
+        "llm",
+        "seed_keywords"
+      ],
+      "referrals": [
+        "llm",
+        "seed_keywords"
+      ],
+      "retainers": [
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "renewals": [
+        "field:success_metric",
+        "llm",
+        "seed_keywords"
+      ],
+      "advisory": [
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "partners": [
+        "field:pricing_shape",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "revenue": [
+        "llm"
+      ],
+      "and": [
+        "field:constraints",
+        "field:distribution_channel",
+        "field:pricing_shape",
+        "field:problem",
+        "field:recurring_revenue_model",
+        "field:success_metric",
+        "field:target_customer",
+        "field:workflow"
+      ],
+      "referral": [
+        "field:must_have_features",
+        "field:problem",
+        "field:success_metric",
+        "field:target_customer",
+        "field:workflow"
+      ],
+      "renewal": [
+        "field:constraints",
+        "field:must_have_features",
+        "field:problem",
+        "field:workflow"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Referral relationship and renewal pipeline management for accounting firms via SaaS subscription with retainer clients.",
+    "keywords": [
+      "accountants",
+      "referrals",
+      "retainers",
+      "renewals",
+      "advisory",
+      "partners",
+      "revenue",
+      "and",
+      "referral",
+      "renewal"
+    ]
+  },
+  "planned_resolution": "claim"
+}

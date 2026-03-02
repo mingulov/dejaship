@@ -1,0 +1,234 @@
+{
+  "brief_id": "ecommerce-return-reducer",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "qwen2-5-coder-32b-instruct",
+    "model_name": "qwen/qwen2.5-coder-32b-instruct",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "189912381d05d39c75260f53d9e2c431ba9aa4d52de2c10c385ca97305515b4f",
+    "prompt_hash": "e325b25b0d9044a4b77ce16704b31116497f097f8be251357ba560cce29c5e82",
+    "generated_at": "2026-03-02T08:59:02.093007Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"ecommerce-return-reducer\",\n  \"title\": \"Return reason clustering and save-offer workflow for specialty ecommerce brands\",\n  \"category\": \"commerce-ops\",\n  \"target_customer\": \"Specialty ecommerce brands with premium products, rising return rates, and small post-purchase support teams.\",\n  \"problem\": \"Brands collect return reasons, but they do not convert that data into save offers, product fixes, or recurring retention actions fast enough.\",\n  \"workflow\": \"Cluster return reasons, propose recovery playbooks, and route the right save offer before a return becomes a lost customer.\",\n  \"recurring_revenue_model\": \"Monthly subscription priced by order volume and saved revenue.\",\n  \"pricing_shape\": \"Base subscription with usage tiers tied to monthly return cases.\",\n  \"distribution_channel\": \"Ecommerce operators, retention agencies, and post-purchase optimization communities.\",\n  \"constraints\": [\n    \"Must help support teams act before the refund is final.\",\n    \"Needs enough structure to compare product and offer patterns over time.\",\n    \"Cannot require replacing help desk or order systems.\"\n  ],\n  \"must_have_features\": [\n    \"Return reason clustering\",\n    \"Save-offer recommendation queue\",\n    \"Product issue pattern reporting\",\n    \"Refund prevention workflow\"\n  ],\n  \"seed_keywords\": [\n    \"ecommerce\",\n    \"returns\",\n    \"save-offers\",\n    \"retention\",\n    \"refunds\",\n    \"support\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a warehouse returns platform.\",\n    \"Do not focus on giant retail enterprises first.\"\n  ],\n  \"success_metric\": \"More orders saved before refund completion and clearer insight into recurring return causes.\",\n  \"prompt_rendered_brief\": \"This product is a return reason clustering and save-offer workflow for specialty ecommerce brands that care about margin and customer lifetime value. Teams usually collect return tickets, but they do not turn that signal into immediate save offers, product fixes, or recurring retention decisions while the customer is still reachable. The software should cluster reasons, suggest recovery playbooks, and tell support which offer to try before the refund becomes final. A recurring subscription works well because brands face this workflow every week and the value comes from both immediate saves and pattern learning over time. The brief intentionally sits near subscription recovery and retention concepts so it can create ambiguous neighborhoods in simulation. A win means fewer preventable refunds and better learning from post-purchase friction.\\n\"\n}",
+  "raw_response": {
+    "id": "chat-ae1c265f1c0c41bb85170cb1f619f6c4",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"core_mechanic\": \"Clusters return reasons to recommend timely save offers, enhancing retention for specialty ecommerce brands with limited post-purchase support.\",\n  \"keywords\": [\n    \"ecommerce\",\n    \"returns\",\n    \"save-offers\",\n    \"retention\",\n    \"refund-prevention\",\n    \"support-automation\",\n    \"pattern-reporting\",\n    \"subscription-model\",\n    \"order-volume\",\n    \"saved-revenue\",\n    \"workflow-automation\",\n    \"customer-insight\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        },
+        "stop_reason": null
+      }
+    ],
+    "created": 1772441938,
+    "model": "qwen/qwen2.5-coder-32b-instruct",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 105,
+      "prompt_tokens": 688,
+      "total_tokens": 793,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null
+  },
+  "response_text": "{\n  \"core_mechanic\": \"Clusters return reasons to recommend timely save offers, enhancing retention for specialty ecommerce brands with limited post-purchase support.\",\n  \"keywords\": [\n    \"ecommerce\",\n    \"returns\",\n    \"save-offers\",\n    \"retention\",\n    \"refund-prevention\",\n    \"support-automation\",\n    \"pattern-reporting\",\n    \"subscription-model\",\n    \"order-volume\",\n    \"saved-revenue\",\n    \"workflow-automation\",\n    \"customer-insight\"\n  ]\n}",
+  "llm_output": {
+    "core_mechanic": "Clusters return reasons to recommend timely save offers, enhancing retention for specialty ecommerce brands with limited post-purchase support.",
+    "keywords": [
+      "ecommerce",
+      "returns",
+      "save-offers",
+      "retention",
+      "refund-prevention",
+      "support-automation",
+      "pattern-reporting",
+      "subscription-model",
+      "order-volume",
+      "saved-revenue",
+      "workflow-automation",
+      "customer-insight"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "ecommerce",
+      "returns",
+      "save-offers",
+      "retention",
+      "refund-prevention",
+      "support-automation",
+      "pattern-reporting",
+      "subscription-model",
+      "order-volume",
+      "saved-revenue",
+      "workflow-automation",
+      "customer-insight"
+    ],
+    "derived_keywords": [
+      "return",
+      "and",
+      "brands",
+      "reasons",
+      "refund",
+      "save",
+      "enough",
+      "into",
+      "offer",
+      "the",
+      "with",
+      "order",
+      "post-purchase",
+      "saved",
+      "actions",
+      "becomes",
+      "but",
+      "cluster",
+      "clustering",
+      "collect",
+      "convert",
+      "data",
+      "fast",
+      "fixes",
+      "help",
+      "issue",
+      "lost",
+      "not",
+      "offers",
+      "pattern",
+      "playbooks",
+      "premium",
+      "prevention",
+      "products",
+      "propose",
+      "queue",
+      "rates",
+      "reason",
+      "recommendation",
+      "recovery",
+      "right",
+      "rising",
+      "route",
+      "save-offer",
+      "specialty",
+      "that",
+      "priced",
+      "volume",
+      "act",
+      "cases",
+      "causes",
+      "clearer",
+      "commerce-ops",
+      "compare",
+      "completion",
+      "desk",
+      "final",
+      "insight",
+      "more",
+      "must",
+      "needs",
+      "orders",
+      "over",
+      "patterns",
+      "replacing",
+      "require",
+      "structure",
+      "systems",
+      "tied",
+      "tiers",
+      "time",
+      "usage",
+      "agencies",
+      "communities",
+      "optimization"
+    ],
+    "final_keywords": [
+      "ecommerce",
+      "returns",
+      "save-offers",
+      "retention",
+      "refund-prevention",
+      "support-automation",
+      "pattern-reporting",
+      "subscription-model",
+      "order-volume",
+      "saved-revenue"
+    ],
+    "keyword_provenance": {
+      "ecommerce": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "returns": [
+        "llm",
+        "seed_keywords"
+      ],
+      "save-offers": [
+        "llm",
+        "seed_keywords"
+      ],
+      "retention": [
+        "field:distribution_channel",
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "refund-prevention": [
+        "llm"
+      ],
+      "support-automation": [
+        "llm"
+      ],
+      "pattern-reporting": [
+        "llm"
+      ],
+      "subscription-model": [
+        "llm"
+      ],
+      "order-volume": [
+        "llm"
+      ],
+      "saved-revenue": [
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Clusters return reasons to recommend timely save offers, enhancing retention for specialty ecommerce brands with limited post-purchase support.",
+    "keywords": [
+      "ecommerce",
+      "returns",
+      "save-offers",
+      "retention",
+      "refund-prevention",
+      "support-automation",
+      "pattern-reporting",
+      "subscription-model",
+      "order-volume",
+      "saved-revenue"
+    ]
+  },
+  "planned_resolution": "claim"
+}

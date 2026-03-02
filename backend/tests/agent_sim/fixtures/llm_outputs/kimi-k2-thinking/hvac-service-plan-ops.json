@@ -1,0 +1,263 @@
+{
+  "brief_id": "hvac-service-plan-ops",
+  "metadata": {
+    "provider": "openai",
+    "model_alias": "kimi-k2-thinking",
+    "model_name": "moonshotai/kimi-k2-thinking",
+    "prompt_name": "intent-from-brief",
+    "prompt_version": "v1",
+    "brief_hash": "3d38917840b8c4b74a5ee33221af3266efa61f080303c55101d546d3f2c6ac07",
+    "prompt_hash": "f1d9f94aad4c84a2c898eb508dac598755ae265dcc8b0037c51a6bd85175d978",
+    "generated_at": "2026-03-02T08:40:45.936609Z"
+  },
+  "raw_prompt": "You are an autonomous software agent evaluating a product brief.\n\nRead the structured brief and produce a DejaShip intent payload.\n\nRequirements:\n\n- return a concise `core_mechanic` under 250 characters;\n- return 5 to 12 lowercase keywords;\n- keywords must be alphanumeric or hyphenated;\n- focus on the true commercial mechanism, target customer, and recurring revenue path;\n- avoid filler terms such as `app`, `ai`, `tool`, or `platform` unless they are genuinely discriminative.\n\nPrioritize signal from:\n\n- target customer\n- problem\n- workflow\n- recurring revenue model\n- pricing shape\n- must-have features\n- operational constraints\n\nReturn strict JSON with:\n\n- `core_mechanic`\n- `keywords`\n\n\nBrief:\n{\n  \"id\": \"hvac-service-plan-ops\",\n  \"title\": \"Service plan renewals and dispatch prep for independent HVAC installers\",\n  \"category\": \"field-service\",\n  \"target_customer\": \"Independent HVAC installation and maintenance companies with three to twenty-five technicians.\",\n  \"problem\": \"Owners sell maintenance plans after every install, but renewals, seasonal reminders, and technician follow-up all live in spreadsheets that get ignored during busy periods.\",\n  \"workflow\": \"Capture every install, schedule renewal windows, queue outbound reminders, and feed daily prep lists to dispatch before technicians leave the warehouse.\",\n  \"recurring_revenue_model\": \"Annual maintenance plans with optional monthly financing for larger equipment protection bundles.\",\n  \"pricing_shape\": \"Base subscription plus per-technician seats once the team grows past five field staff.\",\n  \"distribution_channel\": \"Founder-led outbound to local HVAC operators plus accountant and distributor referrals.\",\n  \"constraints\": [\n    \"Must work well for phone-first teams who barely use desktop software during the day.\",\n    \"Needs simple seasonal campaigns that map to spring and fall tune-up demand.\",\n    \"Cannot require deep integrations with enterprise field-service suites.\"\n  ],\n  \"must_have_features\": [\n    \"Renewal pipeline with due-date visibility\",\n    \"Technician-ready morning call sheets\",\n    \"Plan upsell prompts after completed installs\",\n    \"Contact history for homeowners and landlords\"\n  ],\n  \"seed_keywords\": [\n    \"hvac\",\n    \"maintenance-plans\",\n    \"renewals\",\n    \"dispatch\",\n    \"homeowner\",\n    \"technician\"\n  ],\n  \"anti_goals\": [\n    \"Do not become a full dispatch suite.\",\n    \"Do not target national franchise operators first.\"\n  ],\n  \"success_metric\": \"More renewal revenue captured per install cohort without adding office headcount.\",\n  \"prompt_rendered_brief\": \"The product is a service plan renewals and dispatch prep system for independent HVAC installers that already sell maintenance memberships but fail to renew them consistently. The buyer is usually the owner or office manager at a shop with a small technician team and a large seasonal backlog. They need a way to record every install, trigger the right reminder campaigns, and hand dispatch a clean list of homeowner conversations to make each morning. Revenue should come from recurring software subscriptions tied to the number of technicians and renewal volume, not from one-off setup work. The workflow must be light enough for phone-first teams that still run the business with shared inboxes, clipboards, and quick calls from the van. The ideal product increases renewal capture, smooths shoulder-season demand, and creates a repeatable service-plan process without replacing the company's existing dispatch software.\\n\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-bc141d0c84d268c6",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": " {\"core_mechanic\":\"Per-tech-seat SaaS automating HVAC maintenance-plan renewals via dispatch-prep call sheets.\",\"keywords\":[\"hvac\",\"maintenance-plans\",\"renewals\",\"technician\",\"call-sheets\",\"per-tech-seat\",\"seasonal-campaigns\",\"independent-hvac\",\"renewal-pipeline\",\"dispatch-prep\"]}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [],
+          "reasoning": " The user wants me to extract a DejaShip intent payload from a product brief. I need to produce a JSON with:\n- `core_mechanic`: concise, under 250 characters\n- `keywords`: 5-12 lowercase, alphanumeric or hyphenated\n\nKey requirements:\n- Focus on commercial mechanism, target customer, recurring revenue path\n- Avoid filler terms like \"app\", \"ai\", \"tool\", \"platform\" unless discriminative\n- Prioritize signal from: target customer, problem, workflow, recurring revenue model, pricing shape, must-have features, operational constraints\n\nLet me analyze the brief:\n\n**Target customer**: \"Independent HVAC installation and maintenance companies with three to twenty-five technicians.\" So small to medium HVAC contractors.\n\n**Problem**: They sell maintenance plans but renewals, reminders, and follow-up live in spreadsheets that get ignored during busy periods. This leads to lost renewal revenue.\n\n**Workflow**: Capture install → schedule renewal windows → queue outbound reminders → feed daily prep lists to dispatch before technicians leave warehouse.\n\n**Recurring revenue model**: \"Annual maintenance plans with optional monthly financing for larger equipment protection bundles.\" Wait, this is describing the HVAC company's revenue model, not the software's. The software's revenue is in \"pricing shape\": \"Base subscription plus per-technician seats once the team grows past five field staff.\" So the software is SaaS with per-seat pricing after a threshold.\n\n**Pricing shape**: Base subscription + per-technician seats for teams >5 technicians.\n\n**Must-have features**:\n- Renewal pipeline with due-date visibility\n- Technician-ready morning call sheets\n- Plan upsell prompts after completed installs\n- Contact history for homeowners and landlords\n\n**Constraints**:\n- Phone-first teams, minimal desktop use\n- Simple seasonal campaigns (spring/fall)\n- No deep integrations with enterprise field-service suites\n\n**Anti-goals**: Not a full dispatch suite, not targeting national franchises.\n\n**Success metric**: \"More renewal revenue captured per install cohort without adding office headcount.\"\n\n**Seed keywords**: hvac, maintenance-plans, renewals, dispatch, homeowner, technician\n\nNow I need to craft the `core_mechanic`. This should capture the essence of the commercial mechanism. What's the core value prop? It's about automating and operationalizing service plan renewals for HVAC contractors.\n\nLet me think about the true commercial mechanism:\n- The software helps HVAC contractors capture more renewal revenue from maintenance plans\n- It does this by automating reminders and giving technicians daily call sheets\n- Revenue model is SaaS subscription with per-technician pricing\n- Target is independent HVAC shops (3-25 techs)\n\nSo the core mechanic is something like: \"Automated renewal campaigns and technician call sheets for HVAC service plans, priced per technician.\"\n\nLet me count characters: \"Automated renewal campaigns and technician call sheets for HVAC service plans, priced per technician.\" That's 97 characters. Good, under 250.\n\nBut I can make it more concise and focused on the mechanism. Let me try: \"SaaS that automates HVAC service-plan renewals via technician call sheets, charging per tech seat.\" That's 78 characters.\n\nOr: \"Per-tech-seat SaaS automating HVAC maintenance-plan renewals with daily technician call sheets.\" That's 73 characters.\n\nLet me think about what DejaShip wants. They want the commercial mechanism - how it makes money and delivers value. The key elements are:\n- SaaS subscription model\n- Per-technician pricing (after 5)\n- Automates renewals\n- For HVAC contractors\n- Via technician call sheets\n\nSo: \"Per-technician SaaS automating HVAC service-plan renewals with morning call sheets for dispatch.\" That's 80 characters.\n\nOr even more direct: \"Per-tech-seat SaaS that turns HVAC installs into renewal revenue via automated reminders and technician call sheets.\" That's 95 characters.\n\nLet me try another angle focusing on the workflow and revenue: \"Automates HVAC maintenance plan renewals with technician call sheets; SaaS priced per tech seat.\" That's 78 characters.\n\nI think the best version is: \"Per-technician SaaS automating HVAC service-plan renewals with morning call sheets for dispatch.\" It's clear, concise, and captures the pricing model, target customer, mechanism, and workflow.\n\nNow for keywords. I need 5-12 lowercase, alphanumeric/hyphenated keywords that capture the essence.\n\nSeed keywords provided: hvac, maintenance-plans, renewals, dispatch, homeowner, technician\n\nI should add more based on the brief:\n- service-plans (or maintenance-plans is already there)\n- renewal-pipeline\n- call-sheets\n- per-technician-pricing\n- seasonal-campaigns\n- small-contractor\n- independent-hvac\n- field-service (but this is a category, might be too generic)\n- phone-first\n- upsell-prompts\n\nLet me select the best ones that are discriminative:\n\n1. hvac (seed)\n2. maintenance-plans (seed)\n3. renewals (seed)\n4. technician (seed)\n5. call-sheets (from must-have features)\n6. per-technician-pricing (from pricing shape)\n7. seasonal-campaigns (from constraints)\n8. independent-contractor (target customer)\n9. renewal-pipeline (must-have feature)\n10. dispatch-prep (workflow)\n\nI need to avoid filler terms. Let me check:\n- \"app\" - not needed\n- \"ai\" - not mentioned\n- \"tool\" - too generic\n- \"platform\" - too generic\n\nGood. Now I need to make sure they're all lowercase and hyphenated if multi-word.\n\nFinal keyword list:\n- hvac\n- maintenance-plans\n- renewals\n- technician\n- call-sheets\n- per-technician-pricing\n- seasonal-campaigns\n- independent-contractor\n- renewal-pipeline\n- dispatch-prep\n\nThat's 10 keywords, which is within 5-12 range.\n\nLet me review them against the priority signals:\n- target customer: independent-contractor, technician\n- problem: renewals, maintenance-plans\n- workflow: call-sheets, dispatch-prep\n- recurring revenue model: per-technician-pricing\n- pricing shape: per-technician-pricing\n- must-have features: renewal-pipeline, call-sheets\n- operational constraints: seasonal-campaigns\n\nAll covered. Good.\n\nNow let me refine the core_mechanic one more time. The brief says \"The product is a service plan renewals and dispatch prep system\". So maybe I should include \"dispatch-prep\" explicitly.\n\n\"Per-technician SaaS automating HVAC service-plan renewals and dispatch-prep with morning call sheets.\" That's 81 characters.\n\nOr: \"Per-tech-seat SaaS automating HVAC maintenance-plan renewals via dispatch-prep call sheets.\" That's 73 characters.\n\nI think the second one is better - more direct. Let me verify it captures everything:\n- Per-tech-seat: pricing shape ✓\n- SaaS: recurring revenue model ✓\n- automating: mechanism ✓\n- HVAC maintenance-plan renewals: target customer + problem ✓\n- via dispatch-prep call sheets: workflow + must-have feature ✓\n\nPerfect. Let me count again: \"Per-tech-seat SaaS automating HVAC maintenance-plan renewals via dispatch-prep call sheets.\" = 73 characters. Under 250. Good.\n\nActually, let me double-check the character count: P-e-r--t-e-c-h--s-e-a-t--S-a-a-S--a-u-t-o-m-a-t-i-n-g--H-V-A-C--m-a-i-n-t-e-n-a-n-c-e--p-l-a-n--r-e-n-e-w-a-l-s--v-i-a--d-i-s-p-a-t-c-h---p-r-e-p--c-a-l-l--s-h-e-e-t-s. That's 73 characters including spaces. Yes.\n\nFinal JSON structure:\n{\n  \"core_mechanic\": \"Per-tech-seat SaaS automating HVAC maintenance-plan renewals via dispatch-prep call sheets.\",\n  \"keywords\": [\"hvac\", \"maintenance-plans\", \"renewals\", \"technician\", \"call-sheets\", \"per-technician-pricing\", \"seasonal-campaigns\", \"independent-contractor\", \"renewal-pipeline\", \"dispatch-prep\"]\n}\n\nWait, I should check if \"per-technician-pricing\" is the best term. The brief says \"per-technician seats\". So maybe \"per-tech-seats\" or \"per-technician-seats\"? But the pricing shape is \"Base subscription plus per-technician seats\". So the discriminative keyword is about the pricing model being per-seat.\n\nLet me reconsider keywords:\n- per-tech-seat (shorter, matches my core_mechanic)\n- per-technician (simpler)\n- seat-based-pricing\n\nI think \"per-tech-seat\" is more concise and matches the language in my core_mechanic. Let me replace \"per-technician-pricing\" with \"per-tech-seat\".\n\nAlso, \"independent-contractor\" might be too broad. The brief says \"independent HVAC installation and maintenance companies\". So \"independent-hvac\" might be better.\n\nLet me refine the list:\n1. hvac\n2. maintenance-plans\n3. renewals\n4. technician\n5. call-sheets\n6. per-tech-seat\n7. seasonal-campaigns\n8. independent-hvac\n9. renewal-pipeline\n10. dispatch-prep\n\nThat's 10 keywords. Good.\n\nLet me review again for discriminative power:\n- hvac: specific industry ✓\n- maintenance-plans: specific offering ✓\n- renewals: specific action ✓\n- technician: specific user ✓\n- call-sheets: specific feature ✓\n- per-tech-seat: specific pricing model ✓\n- seasonal-campaigns: specific constraint/need ✓\n- independent-hvac: specific target segment ✓\n- renewal-pipeline: specific feature ✓\n- dispatch-prep: specific workflow ✓\n\nAll are discriminative and not filler terms. Perfect.\n\nFinal check on core_mechanic: \"Per-tech-seat SaaS automating HVAC maintenance-plan renewals via dispatch-prep call sheets.\"\n\nDoes this capture the commercial mechanism? Yes - per-tech-seat SaaS.\nTarget customer? Yes - HVAC companies (implied).\nRecurring revenue path? Yes - SaaS implies subscription, per-tech-seat clarifies model.\n\nI think this is ready. ",
+          "reasoning_content": " The user wants me to extract a DejaShip intent payload from a product brief. I need to produce a JSON with:\n- `core_mechanic`: concise, under 250 characters\n- `keywords`: 5-12 lowercase, alphanumeric or hyphenated\n\nKey requirements:\n- Focus on commercial mechanism, target customer, recurring revenue path\n- Avoid filler terms like \"app\", \"ai\", \"tool\", \"platform\" unless discriminative\n- Prioritize signal from: target customer, problem, workflow, recurring revenue model, pricing shape, must-have features, operational constraints\n\nLet me analyze the brief:\n\n**Target customer**: \"Independent HVAC installation and maintenance companies with three to twenty-five technicians.\" So small to medium HVAC contractors.\n\n**Problem**: They sell maintenance plans but renewals, reminders, and follow-up live in spreadsheets that get ignored during busy periods. This leads to lost renewal revenue.\n\n**Workflow**: Capture install → schedule renewal windows → queue outbound reminders → feed daily prep lists to dispatch before technicians leave warehouse.\n\n**Recurring revenue model**: \"Annual maintenance plans with optional monthly financing for larger equipment protection bundles.\" Wait, this is describing the HVAC company's revenue model, not the software's. The software's revenue is in \"pricing shape\": \"Base subscription plus per-technician seats once the team grows past five field staff.\" So the software is SaaS with per-seat pricing after a threshold.\n\n**Pricing shape**: Base subscription + per-technician seats for teams >5 technicians.\n\n**Must-have features**:\n- Renewal pipeline with due-date visibility\n- Technician-ready morning call sheets\n- Plan upsell prompts after completed installs\n- Contact history for homeowners and landlords\n\n**Constraints**:\n- Phone-first teams, minimal desktop use\n- Simple seasonal campaigns (spring/fall)\n- No deep integrations with enterprise field-service suites\n\n**Anti-goals**: Not a full dispatch suite, not targeting national franchises.\n\n**Success metric**: \"More renewal revenue captured per install cohort without adding office headcount.\"\n\n**Seed keywords**: hvac, maintenance-plans, renewals, dispatch, homeowner, technician\n\nNow I need to craft the `core_mechanic`. This should capture the essence of the commercial mechanism. What's the core value prop? It's about automating and operationalizing service plan renewals for HVAC contractors.\n\nLet me think about the true commercial mechanism:\n- The software helps HVAC contractors capture more renewal revenue from maintenance plans\n- It does this by automating reminders and giving technicians daily call sheets\n- Revenue model is SaaS subscription with per-technician pricing\n- Target is independent HVAC shops (3-25 techs)\n\nSo the core mechanic is something like: \"Automated renewal campaigns and technician call sheets for HVAC service plans, priced per technician.\"\n\nLet me count characters: \"Automated renewal campaigns and technician call sheets for HVAC service plans, priced per technician.\" That's 97 characters. Good, under 250.\n\nBut I can make it more concise and focused on the mechanism. Let me try: \"SaaS that automates HVAC service-plan renewals via technician call sheets, charging per tech seat.\" That's 78 characters.\n\nOr: \"Per-tech-seat SaaS automating HVAC maintenance-plan renewals with daily technician call sheets.\" That's 73 characters.\n\nLet me think about what DejaShip wants. They want the commercial mechanism - how it makes money and delivers value. The key elements are:\n- SaaS subscription model\n- Per-technician pricing (after 5)\n- Automates renewals\n- For HVAC contractors\n- Via technician call sheets\n\nSo: \"Per-technician SaaS automating HVAC service-plan renewals with morning call sheets for dispatch.\" That's 80 characters.\n\nOr even more direct: \"Per-tech-seat SaaS that turns HVAC installs into renewal revenue via automated reminders and technician call sheets.\" That's 95 characters.\n\nLet me try another angle focusing on the workflow and revenue: \"Automates HVAC maintenance plan renewals with technician call sheets; SaaS priced per tech seat.\" That's 78 characters.\n\nI think the best version is: \"Per-technician SaaS automating HVAC service-plan renewals with morning call sheets for dispatch.\" It's clear, concise, and captures the pricing model, target customer, mechanism, and workflow.\n\nNow for keywords. I need 5-12 lowercase, alphanumeric/hyphenated keywords that capture the essence.\n\nSeed keywords provided: hvac, maintenance-plans, renewals, dispatch, homeowner, technician\n\nI should add more based on the brief:\n- service-plans (or maintenance-plans is already there)\n- renewal-pipeline\n- call-sheets\n- per-technician-pricing\n- seasonal-campaigns\n- small-contractor\n- independent-hvac\n- field-service (but this is a category, might be too generic)\n- phone-first\n- upsell-prompts\n\nLet me select the best ones that are discriminative:\n\n1. hvac (seed)\n2. maintenance-plans (seed)\n3. renewals (seed)\n4. technician (seed)\n5. call-sheets (from must-have features)\n6. per-technician-pricing (from pricing shape)\n7. seasonal-campaigns (from constraints)\n8. independent-contractor (target customer)\n9. renewal-pipeline (must-have feature)\n10. dispatch-prep (workflow)\n\nI need to avoid filler terms. Let me check:\n- \"app\" - not needed\n- \"ai\" - not mentioned\n- \"tool\" - too generic\n- \"platform\" - too generic\n\nGood. Now I need to make sure they're all lowercase and hyphenated if multi-word.\n\nFinal keyword list:\n- hvac\n- maintenance-plans\n- renewals\n- technician\n- call-sheets\n- per-technician-pricing\n- seasonal-campaigns\n- independent-contractor\n- renewal-pipeline\n- dispatch-prep\n\nThat's 10 keywords, which is within 5-12 range.\n\nLet me review them against the priority signals:\n- target customer: independent-contractor, technician\n- problem: renewals, maintenance-plans\n- workflow: call-sheets, dispatch-prep\n- recurring revenue model: per-technician-pricing\n- pricing shape: per-technician-pricing\n- must-have features: renewal-pipeline, call-sheets\n- operational constraints: seasonal-campaigns\n\nAll covered. Good.\n\nNow let me refine the core_mechanic one more time. The brief says \"The product is a service plan renewals and dispatch prep system\". So maybe I should include \"dispatch-prep\" explicitly.\n\n\"Per-technician SaaS automating HVAC service-plan renewals and dispatch-prep with morning call sheets.\" That's 81 characters.\n\nOr: \"Per-tech-seat SaaS automating HVAC maintenance-plan renewals via dispatch-prep call sheets.\" That's 73 characters.\n\nI think the second one is better - more direct. Let me verify it captures everything:\n- Per-tech-seat: pricing shape ✓\n- SaaS: recurring revenue model ✓\n- automating: mechanism ✓\n- HVAC maintenance-plan renewals: target customer + problem ✓\n- via dispatch-prep call sheets: workflow + must-have feature ✓\n\nPerfect. Let me count again: \"Per-tech-seat SaaS automating HVAC maintenance-plan renewals via dispatch-prep call sheets.\" = 73 characters. Under 250. Good.\n\nActually, let me double-check the character count: P-e-r--t-e-c-h--s-e-a-t--S-a-a-S--a-u-t-o-m-a-t-i-n-g--H-V-A-C--m-a-i-n-t-e-n-a-n-c-e--p-l-a-n--r-e-n-e-w-a-l-s--v-i-a--d-i-s-p-a-t-c-h---p-r-e-p--c-a-l-l--s-h-e-e-t-s. That's 73 characters including spaces. Yes.\n\nFinal JSON structure:\n{\n  \"core_mechanic\": \"Per-tech-seat SaaS automating HVAC maintenance-plan renewals via dispatch-prep call sheets.\",\n  \"keywords\": [\"hvac\", \"maintenance-plans\", \"renewals\", \"technician\", \"call-sheets\", \"per-technician-pricing\", \"seasonal-campaigns\", \"independent-contractor\", \"renewal-pipeline\", \"dispatch-prep\"]\n}\n\nWait, I should check if \"per-technician-pricing\" is the best term. The brief says \"per-technician seats\". So maybe \"per-tech-seats\" or \"per-technician-seats\"? But the pricing shape is \"Base subscription plus per-technician seats\". So the discriminative keyword is about the pricing model being per-seat.\n\nLet me reconsider keywords:\n- per-tech-seat (shorter, matches my core_mechanic)\n- per-technician (simpler)\n- seat-based-pricing\n\nI think \"per-tech-seat\" is more concise and matches the language in my core_mechanic. Let me replace \"per-technician-pricing\" with \"per-tech-seat\".\n\nAlso, \"independent-contractor\" might be too broad. The brief says \"independent HVAC installation and maintenance companies\". So \"independent-hvac\" might be better.\n\nLet me refine the list:\n1. hvac\n2. maintenance-plans\n3. renewals\n4. technician\n5. call-sheets\n6. per-tech-seat\n7. seasonal-campaigns\n8. independent-hvac\n9. renewal-pipeline\n10. dispatch-prep\n\nThat's 10 keywords. Good.\n\nLet me review again for discriminative power:\n- hvac: specific industry ✓\n- maintenance-plans: specific offering ✓\n- renewals: specific action ✓\n- technician: specific user ✓\n- call-sheets: specific feature ✓\n- per-tech-seat: specific pricing model ✓\n- seasonal-campaigns: specific constraint/need ✓\n- independent-hvac: specific target segment ✓\n- renewal-pipeline: specific feature ✓\n- dispatch-prep: specific workflow ✓\n\nAll are discriminative and not filler terms. Perfect.\n\nFinal check on core_mechanic: \"Per-tech-seat SaaS automating HVAC maintenance-plan renewals via dispatch-prep call sheets.\"\n\nDoes this capture the commercial mechanism? Yes - per-tech-seat SaaS.\nTarget customer? Yes - HVAC companies (implied).\nRecurring revenue path? Yes - SaaS implies subscription, per-tech-seat clarifies model.\n\nI think this is ready. "
+        },
+        "stop_reason": 163586,
+        "token_ids": null
+      }
+    ],
+    "created": 1772440823,
+    "model": "moonshotai/kimi-k2-thinking",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2257,
+      "prompt_tokens": 726,
+      "total_tokens": 2983,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "kv_transfer_params": null
+  },
+  "response_text": " {\"core_mechanic\":\"Per-tech-seat SaaS automating HVAC maintenance-plan renewals via dispatch-prep call sheets.\",\"keywords\":[\"hvac\",\"maintenance-plans\",\"renewals\",\"technician\",\"call-sheets\",\"per-tech-seat\",\"seasonal-campaigns\",\"independent-hvac\",\"renewal-pipeline\",\"dispatch-prep\"]}",
+  "llm_output": {
+    "core_mechanic": "Per-tech-seat SaaS automating HVAC maintenance-plan renewals via dispatch-prep call sheets.",
+    "keywords": [
+      "hvac",
+      "maintenance-plans",
+      "renewals",
+      "technician",
+      "call-sheets",
+      "per-tech-seat",
+      "seasonal-campaigns",
+      "independent-hvac",
+      "renewal-pipeline",
+      "dispatch-prep"
+    ]
+  },
+  "keyword_result": {
+    "llm_keywords": [
+      "hvac",
+      "maintenance-plans",
+      "renewals",
+      "technician",
+      "call-sheets",
+      "per-tech-seat",
+      "seasonal-campaigns",
+      "independent-hvac",
+      "renewal-pipeline",
+      "dispatch-prep"
+    ],
+    "derived_keywords": [
+      "and",
+      "with",
+      "maintenance",
+      "install",
+      "renewal",
+      "for",
+      "reminders",
+      "technicians",
+      "the",
+      "plans",
+      "during",
+      "seasonal",
+      "that",
+      "outbound",
+      "all",
+      "busy",
+      "but",
+      "call",
+      "capture",
+      "completed",
+      "contact",
+      "due-date",
+      "feed",
+      "field-service",
+      "follow-up",
+      "get",
+      "history",
+      "homeowners",
+      "ignored",
+      "independent",
+      "installation",
+      "installs",
+      "landlords",
+      "leave",
+      "lists",
+      "live",
+      "morning",
+      "periods",
+      "pipeline",
+      "plan",
+      "prep",
+      "prompts",
+      "queue",
+      "schedule",
+      "sell",
+      "sheets",
+      "spreadsheets",
+      "technician-ready",
+      "three",
+      "twenty-five",
+      "upsell",
+      "visibility",
+      "warehouse",
+      "windows",
+      "bundles",
+      "equipment",
+      "financing",
+      "larger",
+      "optional",
+      "plus",
+      "protection",
+      "adding",
+      "barely",
+      "campaigns",
+      "captured",
+      "cohort",
+      "day",
+      "deep",
+      "demand",
+      "desktop",
+      "enterprise",
+      "fall",
+      "field",
+      "five",
+      "grows",
+      "headcount",
+      "integrations",
+      "map",
+      "more",
+      "must",
+      "needs",
+      "office",
+      "once",
+      "past",
+      "per-technician",
+      "phone-first",
+      "require",
+      "seats",
+      "simple",
+      "spring",
+      "staff",
+      "suites",
+      "team",
+      "tune-up",
+      "use",
+      "well",
+      "who",
+      "without",
+      "work",
+      "accountant",
+      "distributor",
+      "founder-led",
+      "referrals"
+    ],
+    "final_keywords": [
+      "hvac",
+      "maintenance-plans",
+      "renewals",
+      "technician",
+      "call-sheets",
+      "per-tech-seat",
+      "seasonal-campaigns",
+      "independent-hvac",
+      "renewal-pipeline",
+      "dispatch-prep"
+    ],
+    "keyword_provenance": {
+      "hvac": [
+        "field:distribution_channel",
+        "field:target_customer",
+        "llm",
+        "seed_keywords"
+      ],
+      "maintenance-plans": [
+        "llm",
+        "seed_keywords"
+      ],
+      "renewals": [
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "technician": [
+        "field:problem",
+        "llm",
+        "seed_keywords"
+      ],
+      "call-sheets": [
+        "llm"
+      ],
+      "per-tech-seat": [
+        "llm"
+      ],
+      "seasonal-campaigns": [
+        "llm"
+      ],
+      "independent-hvac": [
+        "llm"
+      ],
+      "renewal-pipeline": [
+        "llm"
+      ],
+      "dispatch-prep": [
+        "llm"
+      ]
+    }
+  },
+  "final_intent_input": {
+    "core_mechanic": "Per-tech-seat SaaS automating HVAC maintenance-plan renewals via dispatch-prep call sheets.",
+    "keywords": [
+      "hvac",
+      "maintenance-plans",
+      "renewals",
+      "technician",
+      "call-sheets",
+      "per-tech-seat",
+      "seasonal-campaigns",
+      "independent-hvac",
+      "renewal-pipeline",
+      "dispatch-prep"
+    ]
+  },
+  "planned_resolution": "claim"
+}
