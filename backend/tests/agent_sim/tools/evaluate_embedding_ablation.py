@@ -88,6 +88,8 @@ def main() -> None:
                             brief_id=brief.id,
                             model_alias=model_alias,
                             vector=embed_text(text),
+                            keywords=fixture.final_intent_input.keywords,
+                            mechanic_vector=embed_text(fixture.final_intent_input.core_mechanic),
                         )
                     )
             result = compute_cross_model_retrieval_matrix(

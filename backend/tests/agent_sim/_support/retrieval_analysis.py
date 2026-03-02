@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from math import sqrt
 
 from tests.agent_sim._support.types import AppCatalog
@@ -11,6 +11,8 @@ class RetrievalRecord:
     brief_id: str
     model_alias: str
     vector: list[float]
+    keywords: list[str] = field(default_factory=list)
+    mechanic_vector: list[float] = field(default_factory=list)
 
 
 def cosine_similarity(left: list[float], right: list[float]) -> float:
