@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import functools
+from collections.abc import Sequence
 from typing import Protocol, TypeVar
 
 
@@ -45,7 +46,7 @@ def _normalize_keyword(kw: str, *, lemmatize: bool) -> str:
 
 def apply_jaccard_filter(
     query_keywords: list[str],
-    candidates: list[_T],
+    candidates: Sequence[_T],
     threshold: float,
     min_keywords: int,
     lemmatize: bool = False,
@@ -57,7 +58,7 @@ def apply_jaccard_filter(
     (e.g., "renewals" and "renewal" are treated as identical).
     """
     if len(query_keywords) < min_keywords:
-        return candidates
+        return list(candidates)
     query_set = {_normalize_keyword(kw, lemmatize=lemmatize) for kw in query_keywords}
     return [
         c for c in candidates

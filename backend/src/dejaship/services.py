@@ -138,7 +138,7 @@ async def check_airspace(input: IntentInput, session: AsyncSession) -> CheckResp
         if settings.ENABLE_JACCARD_FILTER:
             intents = apply_jaccard_filter(
                 query_keywords=input.keywords,
-                candidates=intents,
+                candidates=intents,  # type: ignore[arg-type]  # SQLAlchemy Mapped descriptor vs Protocol
                 threshold=settings.JACCARD_THRESHOLD,
                 min_keywords=settings.JACCARD_MIN_KEYWORDS,
                 lemmatize=settings.ENABLE_SPACY_LEMMATIZATION,

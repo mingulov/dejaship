@@ -26,7 +26,7 @@ class AgentIntent(Base):
 
     id: Mapped[UUID] = mapped_column(primary_key=True, server_default=func.gen_random_uuid())
     core_mechanic: Mapped[str] = mapped_column(Text, nullable=False)
-    keywords: Mapped[list] = mapped_column(JSONB, nullable=False)
+    keywords: Mapped[list[str]] = mapped_column(JSONB, nullable=False)
     embedding = mapped_column(Vector(settings.VECTOR_DIMENSIONS), nullable=False)
     mechanic_embedding = mapped_column(Vector(settings.VECTOR_DIMENSIONS), nullable=True)
     status: Mapped[IntentStatus] = mapped_column(
