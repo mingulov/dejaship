@@ -25,7 +25,13 @@ RUN uv sync --frozen --no-dev
 COPY src/ src/
 COPY alembic/ alembic/
 COPY alembic.ini .
+COPY entrypoint.sh .
+RUN chmod +x entrypoint.sh
+
+# Non-root user
+RUN useradd --create-home appuser && chown -R appuser:appuser /app /tmp/fastembed_cache
+USER appuser
 
 EXPOSE 8000
 
-CMD ["uv", "run", "uvicorn", "dejaship.main:app", "--host", "0.0.0.0", "--port", "8000"]
+ENTRYPOINT ["./entrypoint.sh"]
