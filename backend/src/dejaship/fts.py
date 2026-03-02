@@ -1,15 +1,10 @@
 """Reciprocal Rank Fusion for hybrid vector + full-text search."""
 from __future__ import annotations
 
-from typing import TypeVar
-
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from dejaship.models import AgentIntent, IntentStatus
-
-
-_T = TypeVar("_T")
 
 
 def rrf_score(vector_rank: int, fts_rank: int, *, fts_weight: float, k: int) -> float:

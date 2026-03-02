@@ -1,5 +1,4 @@
 """Unit tests for Reciprocal Rank Fusion (no DB required)."""
-import pytest
 from dejaship.fts import rrf_score
 
 
