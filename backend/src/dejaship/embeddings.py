@@ -1,3 +1,5 @@
+import functools
+
 from fastembed import TextEmbedding
 
 from dejaship.config import settings
@@ -17,6 +19,12 @@ def get_model() -> TextEmbedding:
     return _model
 
 
+@functools.lru_cache(maxsize=None)
+def _parse_stopwords(keyword_stopwords: str) -> set[str]:
+    """Parse the KEYWORD_STOPWORDS config string into a set. Cached by value."""
+    return {s.strip().lower() for s in keyword_stopwords.split(",") if s.strip()}
+
+
 def clean_keywords(keywords: list[str], stopwords: set[str]) -> list[str]:
     """Remove stopword and single-character keywords."""
     return [kw for kw in keywords if kw.lower() not in stopwords and len(kw) > 1]
@@ -33,8 +41,7 @@ def build_embedding_text(core_mechanic: str, keywords: list[str]) -> str:
     - ENABLE_KEYWORD_CLEANUP (default False): remove generic SaaS stopwords before embedding.
     """
     if settings.ENABLE_KEYWORD_CLEANUP:
-        stopwords = {s.strip().lower() for s in settings.KEYWORD_STOPWORDS.split(",") if s.strip()}
-        keywords = clean_keywords(keywords, stopwords)
+        keywords = clean_keywords(keywords, _parse_stopwords(settings.KEYWORD_STOPWORDS))
     primary = keywords[:10]
     secondary = keywords[10:]
     parts = []

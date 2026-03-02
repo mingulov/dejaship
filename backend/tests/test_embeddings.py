@@ -1,6 +1,7 @@
 """Unit tests for the embeddings module."""
 
-from dejaship.embeddings import build_embedding_text, embed_text, load_model
+from dejaship.config import settings
+from dejaship.embeddings import build_embedding_text, clean_keywords, embed_text, load_model
 
 
 def test_build_embedding_text_basic():
@@ -71,7 +72,6 @@ def test_build_embedding_text_empty_secondary():
 
 def test_clean_keywords_removes_stopwords():
     """Stopwords are removed from keyword list."""
-    from dejaship.embeddings import clean_keywords
     stopwords = {"and", "the", "saas"}
     result = clean_keywords(["hvac", "and", "saas", "subscription"], stopwords)
     assert result == ["hvac", "subscription"]
@@ -79,14 +79,12 @@ def test_clean_keywords_removes_stopwords():
 
 def test_clean_keywords_removes_single_chars():
     """Single-character keywords are always removed."""
-    from dejaship.embeddings import clean_keywords
     result = clean_keywords(["a", "hvac", "b"], set())
     assert result == ["hvac"]
 
 
 def test_clean_keywords_case_insensitive():
     """Stopword matching is case-insensitive."""
-    from dejaship.embeddings import clean_keywords
     stopwords = {"saas"}
     result = clean_keywords(["HVAC", "SaaS", "billing"], stopwords)
     assert result == ["HVAC", "billing"]
@@ -94,12 +92,22 @@ def test_clean_keywords_case_insensitive():
 
 def test_clean_keywords_preserves_order():
     """Order of non-stopword keywords is preserved."""
-    from dejaship.embeddings import clean_keywords
     stopwords = {"remove"}
     result = clean_keywords(["crm", "analytics", "billing"], stopwords)
     assert result == ["crm", "analytics", "billing"]
 
 
 def test_clean_keywords_empty_input():
-    from dejaship.embeddings import clean_keywords
     assert clean_keywords([], {"saas"}) == []
+
+
+def test_build_embedding_text_applies_cleanup_when_enabled(monkeypatch):
+    """build_embedding_text strips stopwords when ENABLE_KEYWORD_CLEANUP is True."""
+    monkeypatch.setattr(settings, "ENABLE_KEYWORD_CLEANUP", True)
+    monkeypatch.setattr(settings, "KEYWORD_STOPWORDS", "saas,renewals")
+    text = build_embedding_text("billing tool", ["saas", "crm", "renewals", "invoicing"])
+    words = text.split()
+    assert "saas" not in words
+    assert "renewals" not in words
+    assert "crm" in words
+    assert "invoicing" in words
