@@ -2,8 +2,14 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from math import sqrt
+from typing import Callable, cast
 
 from tests.agent_sim._support.types import AppCatalog
+
+PostFilterFn = Callable[
+    [list[str], list[tuple["RetrievalRecord", float]]],
+    list[tuple["RetrievalRecord", float]],
+]
 
 
 @dataclass(slots=True)
@@ -53,6 +59,7 @@ def compute_cross_model_retrieval_matrix(
     records: list[RetrievalRecord],
     threshold: float,
     top_k: int,
+    post_filter: PostFilterFn | None = None,
 ) -> dict[str, object]:
     by_model: dict[str, list[RetrievalRecord]] = {}
     for record in records:
@@ -80,7 +87,7 @@ def compute_cross_model_retrieval_matrix(
             if query_model == claim_model:
                 continue
 
-            pair = {
+            pair = cast(dict[str, int | float], {
                 "query_count": 0,
                 "exact_queries": 0,
                 "exact_top1_hits": 0,
@@ -93,7 +100,7 @@ def compute_cross_model_retrieval_matrix(
                 "false_positive_retrieved_total": 0,
                 "first_relevant_rank_total": 0,
                 "first_relevant_rank_count": 0,
-            }
+            })
             claim_by_brief = {record.brief_id: record for record in claim_records}
 
             for query in query_records:
@@ -110,6 +117,8 @@ def compute_cross_model_retrieval_matrix(
                     for candidate, similarity in similarities
                     if similarity >= threshold
                 ][:top_k]
+                if post_filter is not None:
+                    retrieved = post_filter(query.keywords, retrieved)
                 related_ids = related_brief_ids(catalog, query.brief_id)
                 exact_target = claim_by_brief.get(query.brief_id)
                 relevant_ids = set(related_ids)
@@ -213,11 +222,11 @@ def compute_cross_model_retrieval_matrix(
             global_counts["first_relevant_rank_total"], global_counts["first_relevant_rank_count"]
         ),
         "average_exact_top1_gap": _safe_rate(
-            sum(row["exact_top1_gap"] for row in asymmetry_rows),
+            sum(float(row["exact_top1_gap"]) for row in asymmetry_rows),
             len(asymmetry_rows),
         ),
         "average_overlap_hit_gap": _safe_rate(
-            sum(row["overlap_hit_gap"] for row in asymmetry_rows),
+            sum(float(row["overlap_hit_gap"]) for row in asymmetry_rows),
             len(asymmetry_rows),
         ),
     }
@@ -234,6 +243,7 @@ def evaluate_thresholds(
     records: list[RetrievalRecord],
     thresholds: list[float],
     top_k: int,
+    post_filter: PostFilterFn | None = None,
 ) -> dict[str, object]:
     evaluations: list[dict[str, object]] = []
     for threshold in thresholds:
@@ -242,22 +252,23 @@ def evaluate_thresholds(
             records=records,
             threshold=threshold,
             top_k=top_k,
+            post_filter=post_filter,
         )
-        summary = dict(result["summary"])
+        summary = dict(cast(dict[str, object], result["summary"]))
         summary["threshold"] = threshold
         summary["balanced_score"] = round(
             (
-                summary["exact_top1_rate"]
-                + summary["overlap_hit_rate"]
-                + summary["overlap_precision_at_k"]
-                + summary["recall_at_k"]
-                - summary["false_positive_rate"]
+                cast(float, summary["exact_top1_rate"])
+                + cast(float, summary["overlap_hit_rate"])
+                + cast(float, summary["overlap_precision_at_k"])
+                + cast(float, summary["recall_at_k"])
+                - cast(float, summary["false_positive_rate"])
             ),
             4,
         )
         evaluations.append(summary)
 
-    best = max(evaluations, key=lambda evaluation: evaluation["balanced_score"]) if evaluations else None
+    best = max(evaluations, key=lambda evaluation: cast(float, evaluation["balanced_score"])) if evaluations else None
     return {
         "evaluations": evaluations,
         "recommended_threshold": best["threshold"] if best is not None else None,
