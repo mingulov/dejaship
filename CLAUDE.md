@@ -52,6 +52,23 @@ node build/index.js            # Run locally
 - Rate limiting: SlowAPI 60/min per IP, Cloudflare-aware (`limiter.py`)
 - pgvector for vector similarity search (HNSW index, m=16, ef_construction=64)
 
+## MCP Server Requirements
+
+**Python FastMCP** (`backend/src/dejaship/mcp/server.py`):
+- Always add `ToolAnnotations` to every tool: `from mcp.types import ToolAnnotations`, then `@mcp.tool(annotations=ToolAnnotations(readOnlyHint=..., destructiveHint=..., idempotentHint=...))`
+- `FastMCP("name", instructions="...", ...)` — `instructions` is a first-class kwarg; without it `mcp.instructions = None` and agents get no server overview
+- `Literal["a", "b"]` type hints generate **no description** in JSON Schema — must use `Annotated[Literal["a", "b"], Field(description="...")]`
+- Inspect live schema without running the server: `mcp._tool_manager.list_tools()` → `.parameters`, `.annotations`, `.description`; check `mcp.instructions`
+
+**TypeScript MCP client** (`mcp-client/src/index.ts`):
+- `new McpServer(serverInfo, { instructions: "..." })` — instructions goes in the second arg options object
+- `server.tool(name, description, schema, annotations, callback)` — annotations `{readOnlyHint, destructiveHint, idempotentHint}` is the 4th positional arg
+- Inspect live wire output: `printf 'msg1\nmsg2\n' | node build/index.js 2>/dev/null`
+
+**Verification** — always verify wire output, not just source code:
+- TypeScript: send real MCP messages via stdio and parse JSON responses
+- Python: `mcp._tool_manager.list_tools()` → check `.annotations` (must not be `None`) and `.parameters` for field descriptions
+
 ## Gotchas
 
 - **Pyright `reportMissingImports`** for `dejaship.*`, `fastembed`, `sqlalchemy` etc. are false
@@ -74,6 +91,9 @@ node build/index.js            # Run locally
   fixtures that don't satisfy min-length or field-count constraints.
 - **`/v1/claim` returns 200**, not 201 — FastAPI default for `@router.post`. Test assertions
   should use `status_code == 200`.
+- **asyncpg UUID cast**: use `CAST(:param as uuid)` NOT `::uuid` inline cast with named parameters.
+- **Module-level variable patching**: `monkeypatch.setattr(module, "engine", engine)` patches
+  the local binding in the script's namespace — not `monkeypatch.setattr("dejaship.db.engine", ...)`.
 - **rulesync**: `GEMINI.md`, `AGENTS.md`, `.agent/rules/claude.md`, etc. are generated.
   Edit `.rulesync/rules/CLAUDE.md`, then run `rulesync generate`.
 
