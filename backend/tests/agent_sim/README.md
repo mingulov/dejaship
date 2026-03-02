@@ -9,6 +9,12 @@ Goals:
 - support deterministic replay tests that use stored LLM outputs later;
 - exercise swarm simulations that hit the real `/mcp` endpoint.
 
+Current baseline:
+
+- the supported offline replay path is the pre-generated `smoke` fixture set
+- non-live scenarios are expected to use stored smoke fixtures only
+- broader model inventory remains available for optional live generation, but it is not required for the core suite
+
 Key files:
 
 - `fixtures/app_catalog.yaml`: structured app briefs plus rendered narratives
@@ -55,14 +61,15 @@ Live generation behavior:
 Model inventory notes:
 
 - the fixture catalog now includes a broader mix of model families, including Llama, Mixtral, DeepSeek, Kimi, MiniMax, Phi, Qwen, and Nemotron variants
-- `smoke` and `default` stay conservative for stable local runs
-- wider coverage lives in `expanded` and `nightly`
+- `smoke` is the current fully supported offline baseline
+- wider coverage lives in `expanded` and `nightly` for optional live generation work
 - models that are not yet verified on the target endpoint remain disabled in the matrix
 
 Offline replay stack:
 
 - stored fixtures are loaded through a `FixtureIndex`
 - when a brief has no stored fixture yet, the suite synthesizes a deterministic baseline fixture from catalog data
+- non-live swarm scenarios should not rely on that synthetic fallback; tests enforce stored-only usage for the smoke-backed scenarios
 - concurrent swarm execution uses `anyio` task groups with one MCP session per virtual agent
 - swarm assertions validate persisted DB state, terminal status transitions, and overlap pressure across claimed briefs
 - stored fixture replay also checks prompt and brief hashes so catalog or prompt drift is detected early

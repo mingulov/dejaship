@@ -56,3 +56,9 @@ def assert_report_has_overlap_pressure(report: SimulationReport, catalog: AppCat
     )
     assert claimed_groups
     assert any(count >= 2 for count in claimed_groups.values())
+
+
+def assert_report_uses_only_stored_fixtures(report: SimulationReport) -> None:
+    assert report.fixture_source_counts
+    assert report.fixture_source_counts.get("synthetic", 0) == 0
+    assert report.fixture_source_counts.get("stored", 0) >= 1

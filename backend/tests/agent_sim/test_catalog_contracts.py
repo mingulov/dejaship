@@ -61,4 +61,8 @@ def test_scenario_matrix_matches_expected_scale(agent_sim_scenario_matrix):
     assert scenarios["stress"].agent_count == 20
     assert scenarios["stress"].total_calls_target == 1000
     assert scenarios["live-smoke"].requires_live_llm is True
+    assert scenarios["smoke"].model_set == "smoke"
+    assert scenarios["local"].model_set == "smoke"
+    assert scenarios["extended"].model_set == "smoke"
+    assert scenarios["stress"].model_set == "smoke"
     assert scenarios["local"].total_calls_target < scenarios["stress"].total_calls_target

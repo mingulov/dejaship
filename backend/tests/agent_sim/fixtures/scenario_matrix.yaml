@@ -14,7 +14,7 @@ scenarios:
   local:
     agent_count: 10
     total_calls_target: 300
-    model_set: default
+    model_set: smoke
     persona_mix:
       cautious: 1
       aggressive: 1
@@ -32,7 +32,7 @@ scenarios:
   extended:
     agent_count: 12
     total_calls_target: 500
-    model_set: default
+    model_set: smoke
     persona_mix:
       cautious: 2
       aggressive: 1
@@ -49,7 +49,7 @@ scenarios:
   stress:
     agent_count: 20
     total_calls_target: 1000
-    model_set: nightly
+    model_set: smoke
     persona_mix:
       cautious: 3
       aggressive: 2

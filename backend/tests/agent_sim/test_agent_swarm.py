@@ -3,6 +3,7 @@ import pytest
 from tests.agent_sim._support.assertions import (
     assert_db_snapshot_matches_report,
     assert_report_has_overlap_pressure,
+    assert_report_uses_only_stored_fixtures,
     assert_simulation_report,
     assert_swarm_outcomes_have_terminal_states,
 )
@@ -49,6 +50,7 @@ async def _run_and_assert_scenario(
     assert_swarm_outcomes_have_terminal_states(report)
     assert_db_snapshot_matches_report(snapshot, report)
     assert_report_has_overlap_pressure(report, agent_sim_catalog)
+    assert_report_uses_only_stored_fixtures(report)
 
     return report
 

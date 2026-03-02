@@ -291,6 +291,11 @@ Recommended named sets:
 - `expanded`
 - `nightly`
 
+Current implementation note:
+
+- the supported deterministic replay baseline is the pre-generated `smoke` set
+- broader sets are kept for optional live generation work, not as a requirement for the core offline suite
+
 Example shape:
 
 ```yaml
@@ -489,6 +494,8 @@ Recommended usage:
 cd backend
 uv run pytest tests/agent_sim -m "agent_sim and not live_llm" -v
 ```
+
+The current offline scenarios should run against stored `smoke` fixtures only and should fail if they drift into synthetic fallback.
 
 Live smoke:
 

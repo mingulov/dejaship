@@ -22,7 +22,7 @@ def test_build_simulation_plan_matches_scenario(agent_sim_catalog, agent_sim_mod
     assert plan.agent_count == scenario.agent_count
     assert plan.total_calls_target == scenario.total_calls_target
     assert len(plan.assignments) == scenario.agent_count
-    assert all(assignment.model_alias in agent_sim_model_matrix.sets["default"] for assignment in plan.assignments)
+    assert all(assignment.model_alias in agent_sim_model_matrix.sets["smoke"] for assignment in plan.assignments)
 
 
 def test_build_simulation_plan_respects_persona_mix(agent_sim_catalog, agent_sim_model_matrix, agent_sim_scenario_matrix):
