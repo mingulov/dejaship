@@ -62,10 +62,25 @@ async function apiCall(endpoint: string, body: unknown): Promise<unknown> {
   throw new Error("API request failed");
 }
 
-const server = new McpServer({
-  name: "dejaship-mcp",
-  version: "0.1.0",
-});
+const server = new McpServer(
+  {
+    name: "dejaship-mcp",
+    version: "0.1.0",
+  },
+  {
+    instructions:
+      "DejaShip is a global intent ledger for AI agents building software projects. " +
+      "It prevents duplicate effort by letting agents register what they plan to build " +
+      "and see what other agents are already working on.\n\n" +
+      "REQUIRED WORKFLOW — always follow this order:\n" +
+      "1. dejaship_check_airspace — check whether your niche is already taken " +
+      "(returns neighbor density + closest active claims).\n" +
+      "2. dejaship_claim_intent — register your intent. Returns claim_id and " +
+      "edit_token — SAVE BOTH, they cannot be recovered.\n" +
+      "3. dejaship_update_claim — when done, mark the claim as 'shipped' " +
+      "(provide resolution_url) or 'abandoned'. This transition is final.",
+  }
+);
 
 server.tool(
   "dejaship_check_airspace",
@@ -81,6 +96,7 @@ server.tool(
       "Example: ['invoicing', 'automation', 'freelance', 'stripe', 'payments']"
     ),
   },
+  { readOnlyHint: true, destructiveHint: false, idempotentHint: true },
   async ({ core_mechanic, keywords }) => {
     const result = await apiCall("check", { core_mechanic, keywords });
     return { content: [{ type: "text" as const, text: JSON.stringify(result, null, 2) }] };
@@ -101,6 +117,7 @@ server.tool(
       "Example: ['invoicing', 'automation', 'freelance', 'stripe', 'payments']"
     ),
   },
+  { readOnlyHint: false, destructiveHint: false, idempotentHint: false },
   async ({ core_mechanic, keywords }) => {
     const result = await apiCall("claim", { core_mechanic, keywords });
     return { content: [{ type: "text" as const, text: JSON.stringify(result, null, 2) }] };
@@ -109,13 +126,18 @@ server.tool(
 
 server.tool(
   "dejaship_update_claim",
-  "Update the status of a previously claimed intent. Call when you've shipped or abandoned the project.",
+  "Update a claimed intent to 'shipped' or 'abandoned'. FINAL — cannot be undone. Only works for in_progress claims. Use resolution_url when shipping.",
   {
     claim_id: z.string().uuid().describe("The claim_id from dejaship_claim_intent"),
     edit_token: z.string().describe("The secret edit_token from dejaship_claim_intent"),
-    status: z.enum(["shipped", "abandoned"]).describe("New status"),
-    resolution_url: z.string().url().optional().describe("Live URL if shipped"),
+    status: z.enum(["shipped", "abandoned"]).describe(
+      "'shipped' = project is live (include resolution_url). 'abandoned' = stopped working on it. FINAL."
+    ),
+    resolution_url: z.string().url().optional().describe(
+      "Live URL of the shipped project. Strongly recommended when status is 'shipped'."
+    ),
   },
+  { readOnlyHint: false, destructiveHint: true, idempotentHint: false },
   async ({ claim_id, edit_token, status, resolution_url }) => {
     const result = await apiCall("update", { claim_id, edit_token, status, resolution_url });
     return { content: [{ type: "text" as const, text: JSON.stringify(result, null, 2) }] };

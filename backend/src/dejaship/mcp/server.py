@@ -1,6 +1,7 @@
 from typing import Annotated, Literal
 
 from mcp.server.fastmcp import FastMCP
+from mcp.types import ToolAnnotations
 from pydantic import Field, ValidationError
 
 from dejaship.db import async_session
@@ -9,6 +10,18 @@ from dejaship.services import check_airspace, claim_intent, update_claim
 
 mcp = FastMCP(
     "DejaShip",
+    instructions=(
+        "DejaShip is a global intent ledger for AI agents building software projects. "
+        "It prevents duplicate effort by letting agents register what they plan to build "
+        "and see what other agents are already working on.\n\n"
+        "REQUIRED WORKFLOW — always follow this order:\n"
+        "1. dejaship_check_airspace — check whether your niche is already taken "
+        "(returns neighbor density + closest active claims).\n"
+        "2. dejaship_claim_intent — register your intent. Returns claim_id and "
+        "edit_token — SAVE BOTH, they cannot be recovered.\n"
+        "3. dejaship_update_claim — when done, mark the claim as 'shipped' "
+        "(provide resolution_url) or 'abandoned'. This transition is final."
+    ),
     stateless_http=True,
     json_response=True,
     streamable_http_path="/",
@@ -31,7 +44,7 @@ def _validation_error_response(e: ValidationError) -> dict:
     }
 
 
-@mcp.tool()
+@mcp.tool(annotations=ToolAnnotations(readOnlyHint=True, destructiveHint=False, idempotentHint=True))
 async def dejaship_check_airspace(
     core_mechanic: Annotated[
         str,
@@ -75,7 +88,7 @@ async def dejaship_check_airspace(
     return result.model_dump()
 
 
-@mcp.tool()
+@mcp.tool(annotations=ToolAnnotations(readOnlyHint=False, destructiveHint=False, idempotentHint=False))
 async def dejaship_claim_intent(
     core_mechanic: Annotated[
         str,
@@ -119,17 +132,30 @@ async def dejaship_claim_intent(
     return result.model_dump(mode="json")
 
 
-@mcp.tool()
+@mcp.tool(annotations=ToolAnnotations(readOnlyHint=False, destructiveHint=True, idempotentHint=False))
 async def dejaship_update_claim(
     claim_id: Annotated[str, Field(description="The claim_id UUID returned from dejaship_claim_intent")],
     edit_token: Annotated[str, Field(description="The secret edit_token returned from dejaship_claim_intent")],
-    status: Literal["shipped", "abandoned"],
-    resolution_url: Annotated[str | None, Field(default=None, description="Live URL of the shipped project (required when status is 'shipped')")] = None,
+    status: Annotated[
+        Literal["shipped", "abandoned"],
+        Field(description=(
+            "'shipped' = project is live (strongly recommended: include resolution_url). "
+            "'abandoned' = stopped working on it. FINAL — cannot be undone."
+        )),
+    ],
+    resolution_url: Annotated[str | None, Field(default=None, description=(
+        "Live URL of the shipped project. Strongly recommended when status is 'shipped'. "
+        "Omit only when status is 'abandoned'."
+    ))] = None,
 ) -> dict:
-    """Update the status of a previously claimed intent.
+    """Update the status of a previously claimed intent. FINAL — cannot be undone.
 
-    Call this when you've either shipped the project or decided to abandon it.
-    Only works for claims with status 'in_progress'.
+    Only works for claims currently in 'in_progress' status.
+    - 'shipped': project is live. Include resolution_url with the live URL.
+    - 'abandoned': stopped working on it. No resolution_url needed.
+
+    Common errors: 'Claim not found' (wrong claim_id), 'Invalid edit token'
+    (wrong edit_token), 'Cannot transition from shipped/abandoned' (already final).
     """
     try:
         input = UpdateInput(
