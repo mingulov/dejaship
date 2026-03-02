@@ -16,6 +16,12 @@ class Settings(BaseSettings):
     # Keyword weighting
     KEYWORD_REPEAT: int = 2
 
+    # Embedding text construction experiments
+    # EMBEDDING_INCLUDE_CORE_MECHANIC=false gives keywords-only embedding.
+    # Tested 2026-03-02: keywords-only did NOT improve FPR on coverage-max corpus —
+    # it reduced recall too much. Keep true. See docs/decisions/2026-03-02-embedding-text-strategy.md
+    EMBEDDING_INCLUDE_CORE_MECHANIC: bool = True
+
     # Validation
     MIN_KEYWORDS: int = 5
     MAX_KEYWORDS: int = 50

@@ -90,18 +90,44 @@ Use model sets this way:
 
 The mistake would be optimizing only for `smoke` or `default` and assuming that broad client behavior is already handled.
 
+## Embedding Strategy Experiment (2026-03-02)
+
+A `keywords_only` embedding strategy was tested after a controlled 6-brief experiment suggested it would reduce FPR.
+
+The lab experiment (1 model, 6 briefs) showed promising results:
+
+- keywords-only at threshold 0.65: FPR=0.07 (vs 0.21 for current approach at same threshold)
+
+However, the real `coverage-max` corpus (17 models × 20 briefs) showed a different outcome:
+
+| Metric | current_combined @ 0.60 | keywords_only @ 0.65 | Delta |
+|--------|------------------------|----------------------|-------|
+| `exact_top1_rate` | 1.0000 | 0.9971 | -0.003 |
+| `overlap_hit_rate` | 0.9890 | 0.8695 | **-0.120** |
+| `recall_at_k` | 0.7348 | 0.5092 | **-0.226** |
+| `false_positive_rate` | 0.7224 | 0.6144 | -0.108 |
+| **balanced score** | **2.3591** | **2.1434** | **-0.216** |
+
+Keywords-only at threshold 0.60 was even worse on FPR (0.7797 vs 0.7224 baseline).
+
+**Conclusion**: `keywords_only` was reverted. The current `current_combined` strategy at threshold `0.60` remains best measured.
+
+Why the lab was misleading: in the real corpus, 17 models generate different keywords for the same brief. The `core_mechanic` text is more canonical and consistent across models, so it provides discrimination that keyword bags cannot replicate under heterogeneous client phrasing.
+
+See: `docs/decisions/2026-03-02-embedding-text-strategy.md` for full analysis.
+
 ## Next Product Work
 
 The next work should target DejaShip search quality, not more test scaffolding.
 
 Priority order:
 
-1. Improve embedding text construction in `backend/src/dejaship/embeddings.py`.
-2. Add more discriminative weighting between `core_mechanic` and keywords instead of relying mainly on keyword repetition.
-3. Consider a two-stage retrieval strategy:
-   - broader first-pass candidate retrieval
-   - stricter reranking for top results
-4. Keep tuning against `coverage-max`, not `smoke` alone.
+1. **Two-stage retrieval** (highest expected impact — see decision doc):
+   - Stage 1: broad candidate retrieval at threshold 0.55 using current combined embedding
+   - Stage 2: rerank candidates by `core_mechanic`-only vector similarity at threshold 0.65
+   - Requires schema migration to store a second `mechanic_embedding` vector per claim
+2. Keep tuning against `coverage-max`, not `smoke` alone.
+3. Avoid further single-metric optimization (FPR alone) without checking the balanced score.
 
 ## Bottom Line
 

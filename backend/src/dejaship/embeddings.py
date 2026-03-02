@@ -18,14 +18,22 @@ def get_model() -> TextEmbedding:
 
 
 def build_embedding_text(core_mechanic: str, keywords: list[str]) -> str:
-    """Build weighted text for embedding. First 10 keywords repeated for emphasis."""
+    """Build weighted embedding text from keywords and optionally the core_mechanic.
+
+    Strategy (controlled by DEJASHIP_ env vars):
+    - EMBEDDING_INCLUDE_CORE_MECHANIC (default True): append core_mechanic after keywords.
+      Set to false for keywords-only mode. Tested 2026-03-02 — keywords-only hurt recall
+      on the coverage-max corpus; keep True. See docs/decisions/2026-03-02-embedding-text-strategy.md
+    - KEYWORD_REPEAT (default 2): repeat the first 10 keywords N times for emphasis.
+    """
     primary = keywords[:10]
     secondary = keywords[10:]
     parts = []
     for _ in range(settings.KEYWORD_REPEAT):
         parts.extend(primary)
     parts.extend(secondary)
-    parts.append(core_mechanic)
+    if settings.EMBEDDING_INCLUDE_CORE_MECHANIC:
+        parts.append(core_mechanic)
     return " ".join(parts)
 
 
