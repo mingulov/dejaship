@@ -7,6 +7,15 @@
   "bin": {
     "dejaship-mcp": "./build/index.js"
   },
+  "files": ["build"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/user/dejaship"
+  },
+  "keywords": ["mcp", "ai-agents", "intent-ledger", "dejaship", "coordination"],
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "build": "tsc",
     "start": "node build/index.js"

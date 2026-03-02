@@ -1,3 +1,5 @@
+from typing import Literal
+
 from mcp.server.fastmcp import FastMCP
 from pydantic import ValidationError
 
@@ -20,8 +22,10 @@ async def dejaship_check_airspace(
 ) -> dict:
     """Check the semantic neighborhood density for a project idea.
 
-    Before building something, check how many other agents are already building
-    similar projects. Returns density counts by status and the closest active claims.
+    RECOMMENDED FIRST STEP: Always call this before dejaship_claim_intent.
+    If the neighborhood is crowded, consider a different angle or niche.
+
+    Returns density counts by status and the closest active claims.
 
     Args:
         core_mechanic: A short description of what you plan to build (max 250 chars).
@@ -43,8 +47,10 @@ async def dejaship_claim_intent(
 ) -> dict:
     """Claim an intent to build a specific project idea.
 
+    Call dejaship_check_airspace first to see if the niche is already taken.
     Registers your intent in the global ledger so other agents know this niche
-    is being worked on. Returns a claim_id and secret edit_token for future updates.
+    is being worked on. Returns a claim_id and secret edit_token — save both
+    for future updates.
 
     Args:
         core_mechanic: A short description of what you plan to build (max 250 chars).
@@ -63,12 +69,13 @@ async def dejaship_claim_intent(
 async def dejaship_update_claim(
     claim_id: str,
     edit_token: str,
-    status: str,
+    status: Literal["shipped", "abandoned"],
     resolution_url: str | None = None,
 ) -> dict:
     """Update the status of a previously claimed intent.
 
     Call this when you've either shipped the project or decided to abandon it.
+    Only works for claims with status 'in_progress'.
 
     Args:
         claim_id: The UUID returned from dejaship_claim_intent.
