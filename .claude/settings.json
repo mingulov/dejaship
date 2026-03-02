@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(*)",
+      "Read(*)",
+      "Write(*)",
+      "Edit(*)"
+    ],
+    "deny": []
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "includeCoAuthoredBy": false,
+  "env": {
+    "ENABLE_LSP_TOOL": "1"
+  },
+  "lsp": [
+    {
+      "name": "pyright",
+      "command": "/home/user/.local/bin/pyright",
+      "args": [
+        "--stdio"
+      ],
+      "language": "python"
+    }
+  ],
+  "hooks": {}
+}

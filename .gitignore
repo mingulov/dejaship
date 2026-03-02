@@ -90,3 +90,7 @@ node_modules/
 .rulesync/rules/*.local.md
 rulesync.local.jsonc
 !.rulesync/.aiignore
+
+# Serena MCP runtime state
+.serena/cache/
+.serena/memories/
