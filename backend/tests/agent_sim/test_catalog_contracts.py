@@ -45,11 +45,19 @@ def test_catalog_has_deliberate_overlap_groups(agent_sim_catalog):
 
 
 def test_model_matrix_has_expected_sets(agent_sim_model_matrix):
-    assert {"smoke", "default", "nightly"} <= set(agent_sim_model_matrix.sets)
+    assert {"smoke", "default", "search-probe", "coverage-max", "nightly"} <= set(
+        agent_sim_model_matrix.sets
+    )
     assert len(agent_sim_model_matrix.sets["smoke"]) >= 2
-    assert len(agent_sim_model_matrix.sets["default"]) >= 4
-    assert len(agent_sim_model_matrix.sets["nightly"]) >= len(
+    assert len(agent_sim_model_matrix.sets["default"]) >= 2
+    assert len(agent_sim_model_matrix.sets["search-probe"]) > len(
         agent_sim_model_matrix.sets["default"]
+    )
+    assert len(agent_sim_model_matrix.sets["coverage-max"]) >= len(
+        agent_sim_model_matrix.sets["search-probe"]
+    )
+    assert len(agent_sim_model_matrix.sets["nightly"]) >= len(
+        agent_sim_model_matrix.sets["coverage-max"]
     )
 
 
@@ -60,7 +68,8 @@ def test_scenario_matrix_matches_expected_scale(agent_sim_scenario_matrix):
     assert scenarios["local"].agent_count == 10
     assert scenarios["stress"].agent_count == 20
     assert scenarios["hundred-agent"].agent_count == 100
-    assert scenarios["stress"].total_calls_target == 1000
+    assert scenarios["stress"].total_calls_target == 3000
+    assert scenarios["hundred-agent"].total_calls_target == 10000
     assert scenarios["live-smoke"].requires_live_llm is True
     assert scenarios["smoke"].model_set == "smoke"
     assert scenarios["local"].model_set == "smoke"

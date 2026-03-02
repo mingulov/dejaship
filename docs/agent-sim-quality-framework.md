@@ -52,6 +52,12 @@ Model choice for intent generation is not something DejaShip controls, but it st
 - DejaShip should remain robust across that diversity
 - cross-model retrieval is therefore a system-quality metric, not a client-prescription metric
 
+The suite should also model incomplete client inputs:
+
+- some agents should omit `1-3` keywords while still sending a valid payload
+- this tests whether DejaShip remains useful when clients provide only part of the available signal
+- those partial-keyword runs should be measured explicitly rather than mixed invisibly into other scenarios
+
 ## Most Useful Metric Families
 
 ### 1. Retrieval Quality
@@ -171,7 +177,7 @@ The suite should be treated as a regression harness for semantic behavior:
 - if a change improves one metric but damages false-positive rate badly, it is not an overall improvement
 - if a change improves same-model retrieval but hurts cross-model retrieval, it may reduce robustness for real clients
 
-Current measured recommendation from the default stored-fixture corpus:
+Current measured recommendation from the stable `default` stored-fixture corpus:
 
 - keep the current combined embedding text strategy
 - keep `KEYWORD_REPEAT=2`
@@ -182,6 +188,9 @@ Reason:
 - `0.75` preserved exact-match retrieval but collapsed cross-model overlap retrieval almost completely
 - `0.60` preserved exact retrieval while restoring useful related-overlap discovery
 - current combined text with `KEYWORD_REPEAT=2` remained the best balanced default among the tested text variants
+- `default` should remain the fast stable regression gate
+- `search-probe` should be used for mid-cost heterogeneous retrieval checks
+- `coverage-max` should be used when tuning DejaShip search quality against a realistic many-client corpus
 
 ## Current Command Set
 
@@ -215,7 +224,7 @@ Evaluate cross-model retrieval:
 ```bash
 cd backend
 uv run python -m tests.agent_sim.tools.evaluate_cross_model_retrieval \
-  --model-set default \
+  --model-set coverage-max \
   --output-json /tmp/agent-sim-cross-model.json \
   --output-md /tmp/agent-sim-cross-model.md
 ```
@@ -225,7 +234,7 @@ Evaluate threshold sensitivity:
 ```bash
 cd backend
 uv run python -m tests.agent_sim.tools.evaluate_similarity_thresholds \
-  --model-set default \
+  --model-set coverage-max \
   --output-json /tmp/agent-sim-thresholds.json \
   --output-md /tmp/agent-sim-thresholds.md
 ```
@@ -235,7 +244,7 @@ Evaluate embedding-text ablation:
 ```bash
 cd backend
 uv run python -m tests.agent_sim.tools.evaluate_embedding_ablation \
-  --model-set default \
+  --model-set coverage-max \
   --output-json /tmp/agent-sim-ablation.json \
   --output-md /tmp/agent-sim-ablation.md
 ```
@@ -246,7 +255,7 @@ Run the full quality bundle:
 cd backend
 uv run python -m tests.agent_sim.tools.run_quality_suite \
   --scenario smoke \
-  --model-set default \
+  --model-set coverage-max \
   --output-dir /tmp/agent-sim-quality-bundle
 ```
 

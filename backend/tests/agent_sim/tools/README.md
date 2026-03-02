@@ -15,3 +15,9 @@ Planned commands:
 - `compare_quality_bundles.py`
 
 These commands will use the typed contracts in `_support/` and the fixture files in `fixtures/`.
+
+Recommended usage:
+
+- use `default` for fast stable regression runs
+- use `search-probe` for medium-cost heterogeneous analysis
+- use `coverage-max` when tuning DejaShip search quality against the broadest fully covered fixture corpus

@@ -131,6 +131,8 @@ class ScenarioDefinition(BaseModel):
     requires_live_llm: bool = False
     require_stored_fixtures: bool = False
     run_stale_cleanup: bool = False
+    keyword_drop_min: int = Field(ge=0, le=10, default=0)
+    keyword_drop_max: int = Field(ge=0, le=10, default=0)
     description: str = Field(min_length=10, max_length=300)
 
     @field_validator("model_set", "brief_selection_strategy")
@@ -279,6 +281,7 @@ class SimulationAgentAssignment(BaseModel):
     model_name: str = Field(min_length=3, max_length=200)
     brief_ids: list[str] = Field(min_length=1)
     seed: int = Field(ge=0)
+    keyword_drop_count: int = Field(ge=0, le=10, default=0)
 
     @field_validator("agent_id", "persona", "model_alias")
     @classmethod
@@ -298,6 +301,8 @@ class SimulationPlan(BaseModel):
     model_set: str = Field(min_length=3, max_length=80)
     require_stored_fixtures: bool = False
     run_stale_cleanup: bool = False
+    keyword_drop_min: int = Field(ge=0, le=10, default=0)
+    keyword_drop_max: int = Field(ge=0, le=10, default=0)
     assignments: list[SimulationAgentAssignment] = Field(min_length=1)
 
     @field_validator("scenario_name", "model_set")
@@ -349,6 +354,8 @@ class AgentRunSummary(BaseModel):
     skips: int = Field(ge=0, default=0)
     errors: int = Field(ge=0, default=0)
     crowded_checks: int = Field(ge=0, default=0)
+    keyword_drop_count: int = Field(ge=0, default=0)
+    partial_keyword_requests: int = Field(ge=0, default=0)
     claimed_brief_ids: list[str] = Field(default_factory=list)
     claim_ids: list[str] = Field(default_factory=list)
     shipped_claim_ids: list[str] = Field(default_factory=list)
@@ -389,6 +396,7 @@ class ModelSimulationSummary(BaseModel):
     skips: int = Field(ge=0, default=0)
     errors: int = Field(ge=0, default=0)
     crowded_checks: int = Field(ge=0, default=0)
+    partial_keyword_requests: int = Field(ge=0, default=0)
     overlap_evaluable_checks: int = Field(ge=0, default=0)
     overlap_hits: int = Field(ge=0, default=0)
     overlap_precision: float = Field(ge=0.0, default=0.0)
@@ -411,6 +419,7 @@ class PersonaSimulationSummary(BaseModel):
     total_agents: int = Field(ge=0, default=0)
     claims: int = Field(ge=0, default=0)
     skips: int = Field(ge=0, default=0)
+    partial_keyword_requests: int = Field(ge=0, default=0)
     crowded_decisions: int = Field(ge=0, default=0)
     clear_decisions: int = Field(ge=0, default=0)
     claims_after_clear: int = Field(ge=0, default=0)
@@ -433,6 +442,7 @@ class SimulationMetrics(BaseModel):
     stored_fixture_ratio: float = Field(ge=0.0)
     duplicate_brief_claim_rate: float = Field(ge=0.0)
     unresolved_claim_rate: float = Field(ge=0.0)
+    partial_keyword_request_rate: float = Field(ge=0.0)
     average_density_in_progress: float = Field(ge=0.0)
     average_density_shipped: float = Field(ge=0.0)
     average_density_abandoned: float = Field(ge=0.0)

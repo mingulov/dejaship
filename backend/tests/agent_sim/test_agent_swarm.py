@@ -108,7 +108,9 @@ async def test_agent_swarm_local_scenario(
     )
 
     assert report.total_agents == 10
+    assert report.total_calls >= 900
     assert len(report.unique_claimed_briefs) >= 6
+    assert report.metrics.partial_keyword_request_rate > 0.0
 
 
 @pytest.mark.asyncio
@@ -135,8 +137,9 @@ async def test_agent_swarm_extended_scenario(
     )
 
     assert report.total_agents == 12
-    assert report.total_calls == 500
+    assert report.total_calls >= 1500
     assert len(report.unique_claimed_briefs) >= 7
+    assert report.metrics.partial_keyword_request_rate > 0.0
 
 
 @pytest.mark.asyncio

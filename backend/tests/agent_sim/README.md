@@ -63,6 +63,9 @@ Model inventory notes:
 
 - the fixture catalog now includes a broader mix of model families, including Llama, Mixtral, DeepSeek, Kimi, MiniMax, Phi, Qwen, and Nemotron variants
 - `smoke` is the current fully supported offline baseline
+- `default` is the stable CI and local-regression baseline and currently matches `smoke`
+- `search-probe` is the curated broader fully covered set used for heterogeneous retrieval analysis
+- `coverage-max` is the broadest fully covered corpus and should be used for DejaShip search tuning and robustness analysis
 - wider coverage lives in `expanded` and `nightly` for optional live generation work
 - models that are not yet verified on the target endpoint remain disabled in the matrix
 
@@ -71,6 +74,7 @@ Offline replay stack:
 - stored fixtures are loaded through a `FixtureIndex`
 - when a brief has no stored fixture yet, the suite synthesizes a deterministic baseline fixture from catalog data
 - non-live swarm scenarios should not rely on that synthetic fallback; tests enforce stored-only usage for the smoke-backed scenarios
+- larger non-smoke scenarios now deliberately simulate imperfect clients by omitting `1-3` lower-priority keywords from otherwise valid stored payloads
 - concurrent swarm execution uses `anyio` task groups with one MCP session per virtual agent
 - swarm assertions validate persisted DB state, terminal status transitions, and overlap pressure across claimed briefs
 - agent summaries now include event timelines, unresolved claims, and per-model outcome aggregation
@@ -86,6 +90,8 @@ Report workflow:
 - `evaluate_embedding_ablation.py` compares embedding-text variants and keyword-repeat sensitivity
 - `run_quality_suite.py` emits a single analysis bundle with swarm, retrieval, threshold, ablation, and run metadata artifacts
 - `compare_quality_bundles.py` diffs two saved quality bundles so search experiments can be judged without manual JSON review
+- use `coverage-max` when tuning DejaShip search behavior; use `default` when you need a fast stable regression gate
+- reports now include partial-keyword request rates so DejaShip robustness can be judged against incomplete client inputs
 - the durable quality framework, metric definitions, and improvement roadmap live in `docs/agent-sim-quality-framework.md`
 - `stale-cleanup` simulates agents that never return and then validates cleanup behavior
 - `hundred-agent` is an opt-in large scenario for manual stress analysis, not routine pytest

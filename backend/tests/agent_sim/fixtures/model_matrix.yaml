@@ -5,14 +5,31 @@ sets:
   default:
     - step-3-5-flash
     - llama-3-1-8b-instruct
+  search-probe:
+    - step-3-5-flash
+    - llama-3-1-8b-instruct
     - deepseek-r1-distill-llama-8b
+    - gpt-oss-120b
+    - kimi-k2-thinking
+    - qwen2-5-coder-32b-instruct
+  coverage-max:
+    - step-3-5-flash
+    - llama-3-1-8b-instruct
+    - deepseek-r1-distill-llama-8b
+    - devstral-2-123b-instruct-2512
     - gpt-oss-120b
     - gpt-oss-20b
     - kimi-k2-instruct
+    - kimi-k2-thinking
     - llama-3-3-70b-instruct
+    - mixtral-8x7b-instruct-v0-1
+    - ministral-14b-instruct-2512
     - phi-3-5-mini-instruct
     - qwen2-5-coder-32b-instruct
+    - qwen3-next-80b-a3b-instruct
+    - qwq-32b
     - seed-oss-36b-instruct
+    - stockmark-2-100b-instruct
   expanded:
     - step-3-5-flash
     - llama-3-1-8b-instruct
@@ -31,12 +48,17 @@ sets:
     - qwen2-5-coder-32b-instruct
     - nemotron-3-nano-30b-a3b
     - llama-3-3-70b-instruct
+    - qwen3-next-80b-a3b-instruct
+    - mixtral-8x7b-instruct-v0-1
+    - devstral-2-123b-instruct-2512
   nightly:
     - step-3-5-flash
     - llama-3-1-8b-instruct
+    - mixtral-8x7b-instruct-v0-1
     - phi-4-mini-instruct
     - phi-3-5-mini-instruct
     - deepseek-r1-distill-llama-8b
+    - devstral-2-123b-instruct-2512
     - qwq-32b
     - magistral-small-2506
     - ministral-14b-instruct-2512
@@ -45,7 +67,10 @@ sets:
     - gpt-oss-120b
     - gpt-oss-20b
     - qwen2-5-coder-32b-instruct
+    - qwen3-next-80b-a3b-instruct
     - llama-3-3-70b-instruct
+    - kimi-k2-instruct
+    - kimi-k2-thinking
 
 models:
   step-3-5-flash:
@@ -279,4 +304,10 @@ models:
     enabled: true
     generation_mode: json_text
     notes: No.
-
+  devstral-2-123b-instruct-2512:
+    model: mistralai/devstral-2-123b-instruct-2512
+    role: balanced
+    weight: 1
+    enabled: true
+    generation_mode: json_text
+    notes: No.

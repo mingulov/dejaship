@@ -35,6 +35,7 @@ def _build_quality_flags(
     skip_when_crowded_rate: float,
     revision_success_rate: float,
     duplicate_overlap_group_rate: float,
+    partial_keyword_request_rate: float,
 ) -> list[str]:
     flags: list[str] = []
     if ship_rate < 0.45:
@@ -65,6 +66,8 @@ def _build_quality_flags(
         flags.append("weak-revision-recovery")
     if duplicate_overlap_group_rate > 0.45:
         flags.append("high-same-group-collision-rate")
+    if partial_keyword_request_rate > 0.0 and overlap_hit_rate < 0.4:
+        flags.append("partial-keyword-search-fragile")
     if claim_rate < 0.4:
         flags.append("low-claim-rate")
     return flags
@@ -193,6 +196,7 @@ def _compute_decision_metrics(
         persona_summary.total_agents += 1
         persona_summary.claims += summary.claims
         persona_summary.skips += summary.skips
+        persona_summary.partial_keyword_requests += summary.partial_keyword_requests
 
         last_check_by_brief: dict[str, object] = {}
         saw_crowded_other_brief = False
@@ -297,6 +301,7 @@ def build_simulation_report(
         model_summary.skips += summary.skips
         model_summary.errors += summary.errors
         model_summary.crowded_checks += summary.crowded_checks
+        model_summary.partial_keyword_requests += summary.partial_keyword_requests
         model_summary.unique_claimed_briefs = sorted(
             set(model_summary.unique_claimed_briefs) | set(summary.claimed_brief_ids)
         )
@@ -329,6 +334,10 @@ def build_simulation_report(
         stored_fixture_ratio=_safe_rate(total_stored, total_fixture_source_events),
         duplicate_brief_claim_rate=_safe_rate(duplicate_claim_count, total_claims),
         unresolved_claim_rate=_safe_rate(len(unresolved_claim_ids), total_claims),
+        partial_keyword_request_rate=_safe_rate(
+            sum(summary.partial_keyword_requests for summary in summaries),
+            sum(summary.checks for summary in summaries),
+        ),
         average_density_in_progress=round(
             sum(event.density_in_progress or 0 for event in density_events) / max(1, len(density_events)),
             4,
@@ -365,6 +374,7 @@ def build_simulation_report(
         skip_when_crowded_rate=metrics.skip_when_crowded_rate,
         revision_success_rate=metrics.revision_success_rate,
         duplicate_overlap_group_rate=metrics.duplicate_overlap_group_rate,
+        partial_keyword_request_rate=metrics.partial_keyword_request_rate,
     )
     return SimulationReport(
         scenario_name=scenario_name,

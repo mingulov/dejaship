@@ -5,6 +5,8 @@ scenarios:
     model_set: smoke
     require_stored_fixtures: true
     run_stale_cleanup: false
+    keyword_drop_min: 0
+    keyword_drop_max: 0
     persona_mix:
       cautious: 1
       aggressive: 1
@@ -15,10 +17,12 @@ scenarios:
     description: Quick deterministic replay for local development.
   local:
     agent_count: 10
-    total_calls_target: 300
+    total_calls_target: 900
     model_set: smoke
     require_stored_fixtures: true
     run_stale_cleanup: false
+    keyword_drop_min: 0
+    keyword_drop_max: 2
     persona_mix:
       cautious: 1
       aggressive: 1
@@ -35,10 +39,12 @@ scenarios:
     description: Default multi-agent replay with deliberate overlap pressure.
   extended:
     agent_count: 12
-    total_calls_target: 500
+    total_calls_target: 1500
     model_set: smoke
     require_stored_fixtures: true
     run_stale_cleanup: false
+    keyword_drop_min: 0
+    keyword_drop_max: 3
     persona_mix:
       cautious: 2
       aggressive: 1
@@ -54,10 +60,12 @@ scenarios:
     description: Larger deterministic run intended for pre-merge confidence.
   stress:
     agent_count: 20
-    total_calls_target: 1000
+    total_calls_target: 3000
     model_set: smoke
     require_stored_fixtures: true
     run_stale_cleanup: false
+    keyword_drop_min: 0
+    keyword_drop_max: 3
     persona_mix:
       cautious: 3
       aggressive: 2
@@ -74,10 +82,12 @@ scenarios:
     description: Stress simulation for concurrency, repeated checks, and heavy MCP traffic.
   stale-cleanup:
     agent_count: 12
-    total_calls_target: 240
+    total_calls_target: 720
     model_set: smoke
     require_stored_fixtures: true
     run_stale_cleanup: true
+    keyword_drop_min: 0
+    keyword_drop_max: 3
     persona_mix:
       cautious: 2
       aggressive: 2
@@ -90,10 +100,12 @@ scenarios:
     description: Simulates agents that claim intents, disappear, and later get cleaned up as stale.
   hundred-agent:
     agent_count: 100
-    total_calls_target: 4000
+    total_calls_target: 10000
     model_set: smoke
     require_stored_fixtures: true
     run_stale_cleanup: true
+    keyword_drop_min: 0
+    keyword_drop_max: 3
     persona_mix:
       cautious: 15
       aggressive: 10
@@ -115,6 +127,8 @@ scenarios:
     model_set: smoke
     require_stored_fixtures: false
     run_stale_cleanup: false
+    keyword_drop_min: 0
+    keyword_drop_max: 0
     persona_mix:
       cautious: 1
       reviser: 1

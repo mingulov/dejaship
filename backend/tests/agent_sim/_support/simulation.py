@@ -66,6 +66,8 @@ def build_simulation_plan(
     seed: int = 1,
 ) -> SimulationPlan:
     rng = random.Random(seed)
+    if scenario.keyword_drop_max < scenario.keyword_drop_min:
+        raise ValueError("keyword_drop_max must be >= keyword_drop_min")
     models = resolve_model_set(model_matrix, scenario.model_set)
     model_aliases = [alias for alias, _ in models]
     model_weights = [entry.weight for _, entry in models]
@@ -93,6 +95,11 @@ def build_simulation_plan(
                 model_name=model_name,
                 brief_ids=brief_ids,
                 seed=seed * 1000 + agent_index,
+                keyword_drop_count=(
+                    rng.randint(scenario.keyword_drop_min, scenario.keyword_drop_max)
+                    if scenario.keyword_drop_max > 0
+                    else 0
+                ),
             )
         )
 
@@ -103,6 +110,8 @@ def build_simulation_plan(
         model_set=scenario.model_set,
         require_stored_fixtures=scenario.require_stored_fixtures,
         run_stale_cleanup=scenario.run_stale_cleanup,
+        keyword_drop_min=scenario.keyword_drop_min,
+        keyword_drop_max=scenario.keyword_drop_max,
         assignments=assignments,
     )
 

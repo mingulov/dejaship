@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import random
 from dataclasses import dataclass
 
+from dejaship.config import settings
 from dejaship.schemas import CheckResponse, IntentInput, UpdateInput
 from tests.agent_sim._support.mcp_client import DejaShipMCPClient
 from tests.agent_sim._support.types import (
@@ -85,6 +87,31 @@ def _resolution_status(persona: str, preferred: str) -> str | None:
     return "shipped"
 
 
+def _variant_intent_for_assignment(
+    assignment: SimulationAgentAssignment,
+    resolved: ResolvedSimulationIntent,
+) -> IntentInput:
+    drop_count = assignment.keyword_drop_count
+    base_intent = resolved.fixture.final_intent_input
+    if drop_count <= 0:
+        return base_intent
+
+    max_drop = max(0, len(base_intent.keywords) - settings.MIN_KEYWORDS)
+    actual_drop = min(drop_count, max_drop, 3)
+    if actual_drop <= 0:
+        return base_intent
+
+    keywords = base_intent.keywords[:]
+    protected_count = min(3, len(keywords))
+    candidate_indexes = list(range(protected_count, len(keywords)))
+    if len(candidate_indexes) < actual_drop:
+        candidate_indexes = list(range(len(keywords)))
+    rng = random.Random(f"{assignment.seed}:{resolved.brief_id}:{drop_count}")
+    drop_indexes = set(rng.sample(candidate_indexes, k=actual_drop))
+    kept_keywords = [keyword for index, keyword in enumerate(keywords) if index not in drop_indexes]
+    return IntentInput(core_mechanic=base_intent.core_mechanic, keywords=kept_keywords)
+
+
 async def _list_tools(
     client: DejaShipMCPClient,
     state: AgentExecutionState,
@@ -109,6 +136,8 @@ async def _check_intent(
         return None
     result = await client.check_airspace(intent)
     state.summary.checks += 1
+    if state.summary.keyword_drop_count > 0:
+        state.summary.partial_keyword_requests += 1
     state.calls_used += 1
     crowded = _is_crowded(result)
     if crowded:
@@ -132,10 +161,11 @@ async def _claim_intent(
     state: AgentExecutionState,
     budget: int,
     resolved: ResolvedSimulationIntent,
+    intent: IntentInput,
 ) -> object | None:
     if state.calls_used >= budget:
         return None
-    result = await client.claim_intent(resolved.fixture.final_intent_input)
+    result = await client.claim_intent(intent)
     state.summary.claims += 1
     state.summary.claimed_brief_ids.append(resolved.brief_id)
     state.summary.claim_ids.append(str(result.claim_id))
@@ -146,7 +176,7 @@ async def _claim_intent(
     state.log_event(
         event_type="claim",
         brief_id=resolved.brief_id,
-        core_mechanic=resolved.fixture.final_intent_input.core_mechanic,
+        core_mechanic=intent.core_mechanic,
         claim_id=str(result.claim_id),
         status=result.status,
     )
@@ -239,18 +269,22 @@ async def execute_agent_run(
             agent_id=assignment.agent_id,
             persona=assignment.persona,
             model_alias=assignment.model_alias,
+            keyword_drop_count=assignment.keyword_drop_count,
         )
     )
     await _list_tools(client, state, call_budget)
 
     checks_by_brief: dict[str, CheckResponse] = {}
+    intent_variants: dict[str, IntentInput] = {}
     for resolved in intents:
+        variant_intent = _variant_intent_for_assignment(assignment, resolved)
+        intent_variants[resolved.brief_id] = variant_intent
         check = await _check_intent(
             client,
             state,
             call_budget,
             resolved.brief_id,
-            resolved.fixture.final_intent_input,
+            variant_intent,
         )
         if check is not None:
             checks_by_brief[resolved.brief_id] = check
@@ -261,7 +295,7 @@ async def execute_agent_run(
         return state.summary
 
     primary = _select_primary_intent(assignment, checks_by_brief, intents)
-    primary_intent = primary.fixture.final_intent_input
+    primary_intent = intent_variants[primary.brief_id]
 
     if assignment.persona in EXTRA_MONITORING_PERSONAS:
         await _check_intent(client, state, call_budget, primary.brief_id, primary_intent)
@@ -275,7 +309,7 @@ async def execute_agent_run(
             message="overlap-averse agent skipped crowded singleton brief",
         )
     else:
-        claim = await _claim_intent(client, state, call_budget, primary)
+        claim = await _claim_intent(client, state, call_budget, primary, primary_intent)
         if claim is not None:
             if assignment.persona in EXTRA_MONITORING_PERSONAS:
                 await _check_intent(client, state, call_budget, primary.brief_id, primary_intent)

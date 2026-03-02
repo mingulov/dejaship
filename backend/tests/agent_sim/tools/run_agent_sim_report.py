@@ -57,6 +57,7 @@ def render_markdown_summary(report, snapshot) -> str:
         f"- Stored fixture ratio: {metrics.stored_fixture_ratio}",
         f"- Duplicate brief claim rate: {metrics.duplicate_brief_claim_rate}",
         f"- Unresolved claim rate: {metrics.unresolved_claim_rate}",
+        f"- Partial keyword request rate: {metrics.partial_keyword_request_rate}",
         f"- Avg in-progress density: {metrics.average_density_in_progress}",
         f"- Avg shipped density: {metrics.average_density_shipped}",
         f"- Avg abandoned density: {metrics.average_density_abandoned}",
@@ -99,6 +100,7 @@ def render_markdown_summary(report, snapshot) -> str:
     for persona, summary in sorted(report.persona_summaries.items()):
         lines.append(
             f"- {persona}: agents={summary.total_agents}, claims={summary.claims}, skips={summary.skips}, "
+            f"partial_keyword_requests={summary.partial_keyword_requests}, "
             f"claim_when_clear_rate={round(summary.claims_after_clear / summary.clear_decisions, 4) if summary.clear_decisions else 0.0}, "
             f"skip_when_crowded_rate={round(summary.skips_after_crowded / summary.crowded_decisions, 4) if summary.crowded_decisions else 0.0}, "
             f"revision_success_rate={round(summary.revision_successes / summary.revision_attempts, 4) if summary.revision_attempts else 0.0}"
