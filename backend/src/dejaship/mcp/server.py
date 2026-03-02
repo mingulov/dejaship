@@ -5,7 +5,7 @@ from mcp.types import ToolAnnotations
 from pydantic import Field, ValidationError
 
 from dejaship.db import async_session
-from dejaship.schemas import IntentInput, UpdateInput
+from dejaship.schemas import IntentInput, UpdateInput, CheckResponse, ClaimResponse, UpdateResponse
 from dejaship.services import check_airspace, claim_intent, update_claim
 
 mcp = FastMCP(
@@ -44,7 +44,7 @@ def _validation_error_response(e: ValidationError) -> dict:
     }
 
 
-@mcp.tool(annotations=ToolAnnotations(readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=True))
+@mcp.tool(annotations=ToolAnnotations(readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=True), structured_output=True)
 async def dejaship_check_airspace(
     core_mechanic: Annotated[
         str,
@@ -71,7 +71,7 @@ async def dejaship_check_airspace(
             ),
         ),
     ],
-) -> dict:
+) -> CheckResponse:
     """Check the semantic neighborhood density for a project idea.
 
     RECOMMENDED FIRST STEP: Always call this before dejaship_claim_intent.
@@ -85,10 +85,10 @@ async def dejaship_check_airspace(
         return _validation_error_response(e)
     async with async_session() as session:
         result = await check_airspace(input, session)
-    return result.model_dump()
+    return result
 
 
-@mcp.tool(annotations=ToolAnnotations(readOnlyHint=False, destructiveHint=False, idempotentHint=False, openWorldHint=True))
+@mcp.tool(annotations=ToolAnnotations(readOnlyHint=False, destructiveHint=False, idempotentHint=False, openWorldHint=True), structured_output=True)
 async def dejaship_claim_intent(
     core_mechanic: Annotated[
         str,
@@ -115,7 +115,7 @@ async def dejaship_claim_intent(
             ),
         ),
     ],
-) -> dict:
+) -> ClaimResponse:
     """Claim an intent to build a specific project idea.
 
     Call dejaship_check_airspace first to see if the niche is already taken.
@@ -129,10 +129,10 @@ async def dejaship_claim_intent(
         return _validation_error_response(e)
     async with async_session() as session:
         result = await claim_intent(input, session)
-    return result.model_dump(mode="json")
+    return result
 
 
-@mcp.tool(annotations=ToolAnnotations(readOnlyHint=False, destructiveHint=True, idempotentHint=False, openWorldHint=True))
+@mcp.tool(annotations=ToolAnnotations(readOnlyHint=False, destructiveHint=True, idempotentHint=False, openWorldHint=True), structured_output=True)
 async def dejaship_update_claim(
     claim_id: Annotated[str, Field(description="The claim_id UUID returned from dejaship_claim_intent")],
     edit_token: Annotated[str, Field(description="The secret edit_token returned from dejaship_claim_intent")],
@@ -147,7 +147,7 @@ async def dejaship_update_claim(
         "Live URL of the shipped project. Strongly recommended when status is 'shipped'. "
         "Omit only when status is 'abandoned'."
     ))] = None,
-) -> dict:
+) -> UpdateResponse:
     """Update the status of a previously claimed intent. FINAL — cannot be undone.
 
     Only works for claims currently in 'in_progress' status.
@@ -169,6 +169,6 @@ async def dejaship_update_claim(
     async with async_session() as session:
         try:
             result = await update_claim(input, session)
-            return result.model_dump()
+            return result
         except (ValueError, PermissionError) as e:
             return {"success": False, "error": str(e)}

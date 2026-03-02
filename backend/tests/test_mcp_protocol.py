@@ -300,3 +300,44 @@ class TestKeywordNormalizationMCPPath:
             resp = _validation_error_response(e)
             assert resp["error"] == "validation_failed"
             assert any("too short" in issue for issue in resp["issues"])
+
+
+class TestOutputSchemas:
+    """Tools must declare output schemas so agents know the response shape."""
+
+    def test_check_airspace_has_output_schema(self):
+        tool = _get_tool("dejaship_check_airspace")
+        assert tool.output_schema is not None
+
+    def test_check_airspace_output_has_neighborhood_density(self):
+        tool = _get_tool("dejaship_check_airspace")
+        props = tool.output_schema.get("properties", {})
+        assert "neighborhood_density" in props
+
+    def test_check_airspace_output_has_closest_active_claims(self):
+        tool = _get_tool("dejaship_check_airspace")
+        props = tool.output_schema.get("properties", {})
+        assert "closest_active_claims" in props
+
+    def test_claim_intent_has_output_schema(self):
+        tool = _get_tool("dejaship_claim_intent")
+        assert tool.output_schema is not None
+
+    def test_claim_intent_output_has_claim_id(self):
+        tool = _get_tool("dejaship_claim_intent")
+        props = tool.output_schema.get("properties", {})
+        assert "claim_id" in props
+
+    def test_claim_intent_output_has_edit_token(self):
+        tool = _get_tool("dejaship_claim_intent")
+        props = tool.output_schema.get("properties", {})
+        assert "edit_token" in props
+
+    def test_update_claim_has_output_schema(self):
+        tool = _get_tool("dejaship_update_claim")
+        assert tool.output_schema is not None
+
+    def test_update_claim_output_has_success(self):
+        tool = _get_tool("dejaship_update_claim")
+        props = tool.output_schema.get("properties", {})
+        assert "success" in props
