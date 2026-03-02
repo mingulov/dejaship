@@ -71,8 +71,15 @@ server.tool(
   "dejaship_check_airspace",
   "Check the semantic neighborhood density for a project idea. RECOMMENDED FIRST STEP: always call this before claiming. If crowded, consider a different niche.",
   {
-    core_mechanic: z.string().min(1).max(250).describe("Short description of what you plan to build"),
-    keywords: z.array(z.string().min(3).max(40)).min(5).max(50).describe("5-50 lowercase keywords describing the project (alphanumeric + hyphens)"),
+    core_mechanic: z.string().min(1).max(250).describe(
+      "Short, specific description of what you plan to build. Be concrete about the core value proposition. " +
+      "Example: 'AI-powered invoice automation for freelancers'"
+    ),
+    keywords: z.array(z.string().min(3).max(40)).min(5).max(50).describe(
+      "5-50 keywords describing the project. Auto-normalized by the server: uppercase converted to lowercase, " +
+      "spaces converted to hyphens. Use domain terms, tech stack, and target market. " +
+      "Example: ['invoicing', 'automation', 'freelance', 'stripe', 'payments']"
+    ),
   },
   async ({ core_mechanic, keywords }) => {
     const result = await apiCall("check", { core_mechanic, keywords });
@@ -84,8 +91,15 @@ server.tool(
   "dejaship_claim_intent",
   "Claim an intent to build a project. Call check_airspace first. Registers your intent so other agents know this niche is taken. Save the returned claim_id and edit_token.",
   {
-    core_mechanic: z.string().min(1).max(250).describe("Short description of what you plan to build"),
-    keywords: z.array(z.string().min(3).max(40)).min(5).max(50).describe("5-50 lowercase keywords describing the project (alphanumeric + hyphens)"),
+    core_mechanic: z.string().min(1).max(250).describe(
+      "Short, specific description of what you plan to build. Be concrete about the core value proposition. " +
+      "Example: 'AI-powered invoice automation for freelancers'"
+    ),
+    keywords: z.array(z.string().min(3).max(40)).min(5).max(50).describe(
+      "5-50 keywords describing the project. Auto-normalized by the server: uppercase converted to lowercase, " +
+      "spaces converted to hyphens. Use domain terms, tech stack, and target market. " +
+      "Example: ['invoicing', 'automation', 'freelance', 'stripe', 'payments']"
+    ),
   },
   async ({ core_mechanic, keywords }) => {
     const result = await apiCall("claim", { core_mechanic, keywords });

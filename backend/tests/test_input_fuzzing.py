@@ -50,13 +50,14 @@ def test_short_keywords_rejected(short_kw: str):
     bad_kw=st.text(alphabet=string.ascii_uppercase, min_size=3, max_size=10),
 )
 @settings(max_examples=50)
-def test_uppercase_keywords_rejected(bad_kw: str):
-    """Keywords with uppercase characters must be rejected."""
-    with pytest.raises(ValidationError):
-        IntentInput(
-            core_mechanic="test mechanic",
-            keywords=[bad_kw, "valid1", "valid2", "valid3", "valid4"],
-        )
+def test_uppercase_keywords_normalized(bad_kw: str):
+    """Keywords with uppercase characters are auto-normalized to lowercase."""
+    result = IntentInput(
+        core_mechanic="test mechanic",
+        keywords=[bad_kw, "valid1", "valid2", "valid3", "valid4"],
+    )
+    for kw in result.keywords:
+        assert kw == kw.lower()
 
 
 @given(

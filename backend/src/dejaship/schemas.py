@@ -1,12 +1,10 @@
-import re
 from datetime import datetime
 from uuid import UUID
 
 from pydantic import BaseModel, Field, field_validator
 
 from dejaship.config import settings
-
-KEYWORD_PATTERN = re.compile(r"^[a-z0-9][a-z0-9\-]*[a-z0-9]$")
+from dejaship.keyword_utils import normalize_keyword
 
 
 class IntentInput(BaseModel):
@@ -30,16 +28,24 @@ class IntentInput(BaseModel):
     @field_validator("keywords")
     @classmethod
     def validate_keywords(cls, v: list[str]) -> list[str]:
+        normalized = []
+        errors = []
         for kw in v:
-            if len(kw) < settings.KEYWORD_MIN_LENGTH or len(kw) > settings.KEYWORD_MAX_LENGTH:
-                raise ValueError(
-                    f"Each keyword must be {settings.KEYWORD_MIN_LENGTH}-{settings.KEYWORD_MAX_LENGTH} chars, got '{kw}'"
+            kw_norm = normalize_keyword(kw)
+            if len(kw_norm) < settings.KEYWORD_MIN_LENGTH:
+                errors.append(
+                    f"'{kw}' → '{kw_norm}' is too short after normalization "
+                    f"(min {settings.KEYWORD_MIN_LENGTH} chars)"
                 )
-            if not KEYWORD_PATTERN.match(kw):
-                raise ValueError(
-                    f"Keywords must be lowercase alphanumeric with hyphens, got '{kw}'"
+            elif len(kw_norm) > settings.KEYWORD_MAX_LENGTH:
+                errors.append(
+                    f"'{kw}' is too long (max {settings.KEYWORD_MAX_LENGTH} chars)"
                 )
-        return v
+            else:
+                normalized.append(kw_norm)
+        if errors:
+            raise ValueError(f"Invalid keywords: {'; '.join(errors)}")
+        return normalized
 
 
 class NeighborhoodDensity(BaseModel):

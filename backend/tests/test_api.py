@@ -372,12 +372,12 @@ async def test_keyword_validation_too_few(client):
 
 @pytest.mark.asyncio
 async def test_keyword_validation_bad_format(client):
-    """Reject keywords with invalid characters."""
+    """Keywords with uppercase/spaces are auto-normalized and accepted."""
     resp = await client.post("/v1/check", json={
         "core_mechanic": "seo tool",
         "keywords": ["SEO", "Plumber", "local business", "MARKETING", "website"],
     })
-    assert resp.status_code == 422
+    assert resp.status_code == 200
 
 
 @pytest.mark.asyncio

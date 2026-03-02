@@ -7,7 +7,8 @@ from typing import Any, Literal
 from pydantic import BaseModel, Field, field_validator, model_validator
 
 from dejaship.config import settings
-from dejaship.schemas import IntentInput, KEYWORD_PATTERN
+from dejaship.keyword_utils import KEYWORD_PATTERN
+from dejaship.schemas import IntentInput
 
 
 def _validate_keyword(value: str) -> str:
