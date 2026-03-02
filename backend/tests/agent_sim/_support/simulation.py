@@ -2,11 +2,16 @@ from __future__ import annotations
 
 import random
 from collections import defaultdict
+from datetime import datetime, timedelta, timezone
 from math import floor
 
 import anyio
 import httpx
+from sqlalchemy import update
+from sqlalchemy.ext.asyncio import AsyncEngine
 
+from dejaship.config import settings
+from dejaship.models import AgentIntent, IntentStatus
 from tests.agent_sim._support.catalog import resolve_model_set
 from tests.agent_sim._support.agents import execute_agent_run
 from tests.agent_sim._support.fixture_store import FixtureIndex
@@ -16,6 +21,7 @@ from tests.agent_sim._support.types import (
     AppCatalog,
     AgentRunSummary,
     ModelMatrix,
+    SimulationEvent,
     ScenarioDefinition,
     SimulationAgentAssignment,
     SimulationPlan,
@@ -95,6 +101,8 @@ def build_simulation_plan(
         agent_count=scenario.agent_count,
         total_calls_target=scenario.total_calls_target,
         model_set=scenario.model_set,
+        require_stored_fixtures=scenario.require_stored_fixtures,
+        run_stale_cleanup=scenario.run_stale_cleanup,
         assignments=assignments,
     )
 
@@ -115,6 +123,7 @@ async def run_simulation(
     fixture_index: FixtureIndex,
     http_client: httpx.AsyncClient,
     base_url: str = "http://localhost/mcp/",
+    engine: AsyncEngine | None = None,
 ) -> SimulationReport:
     brief_map = {brief.id: brief for brief in catalog.briefs}
     budgets = calculate_call_budgets(plan)
@@ -130,6 +139,12 @@ async def run_simulation(
             )
             for brief_id in assignment.brief_ids
         ]
+        if plan.require_stored_fixtures:
+            synthetic_briefs = [intent.brief_id for intent in intents if intent.source != "stored"]
+            if synthetic_briefs:
+                raise ValueError(
+                    f"scenario '{plan.scenario_name}' requires stored fixtures, missing: {synthetic_briefs}"
+                )
         async with connect_mcp_client(base_url=base_url, http_client=http_client) as client:
             summary = await execute_agent_run(
                 client=client,
@@ -144,7 +159,54 @@ async def run_simulation(
         for assignment in plan.assignments:
             tg.start_soon(run_assignment, assignment)
 
+    if plan.run_stale_cleanup:
+        if engine is None:
+            raise ValueError("engine is required when run_stale_cleanup is enabled")
+
+        unresolved = {
+            claim_id: summary
+            for summary in summaries
+            for claim_id in summary.unresolved_claim_ids
+        }
+        if unresolved:
+            stale_cutoff = datetime.now(timezone.utc) - timedelta(days=settings.ABANDONMENT_DAYS + 1)
+            async with engine.begin() as conn:
+                await conn.execute(
+                    update(AgentIntent)
+                    .where(AgentIntent.id.in_(list(unresolved)))
+                    .values(updated_at=stale_cutoff)
+                )
+                result = await conn.execute(
+                    update(AgentIntent)
+                    .where(AgentIntent.status == IntentStatus.IN_PROGRESS)
+                    .where(AgentIntent.updated_at < datetime.now(timezone.utc) - timedelta(days=settings.ABANDONMENT_DAYS))
+                    .values(
+                        status=IntentStatus.ABANDONED,
+                        updated_at=datetime.now(timezone.utc),
+                    )
+                )
+            if result.rowcount:
+                for claim_id, summary in unresolved.items():
+                    summary.stale_cleanup_actions += 1
+                    summary.stale_abandoned_claim_ids.append(claim_id)
+                    if claim_id in summary.unresolved_claim_ids:
+                        summary.unresolved_claim_ids.remove(claim_id)
+                    summary.completed_statuses.append("abandoned")
+                    summary.events.append(
+                        SimulationEvent(
+                            event_index=len(summary.events),
+                            event_type="cleanup",
+                            agent_id=summary.agent_id,
+                            persona=summary.persona,
+                            model_alias=summary.model_alias,
+                            claim_id=claim_id,
+                            status="abandoned",
+                            message="stale cleanup marked unresolved claim as abandoned",
+                        )
+                    )
+
     return build_simulation_report(
         scenario_name=plan.scenario_name,
         summaries=sorted(summaries, key=lambda summary: summary.agent_id),
+        catalog=catalog,
     )

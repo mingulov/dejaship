@@ -3,6 +3,8 @@ scenarios:
     agent_count: 4
     total_calls_target: 60
     model_set: smoke
+    require_stored_fixtures: true
+    run_stale_cleanup: false
     persona_mix:
       cautious: 1
       aggressive: 1
@@ -15,6 +17,8 @@ scenarios:
     agent_count: 10
     total_calls_target: 300
     model_set: smoke
+    require_stored_fixtures: true
+    run_stale_cleanup: false
     persona_mix:
       cautious: 1
       aggressive: 1
@@ -33,6 +37,8 @@ scenarios:
     agent_count: 12
     total_calls_target: 500
     model_set: smoke
+    require_stored_fixtures: true
+    run_stale_cleanup: false
     persona_mix:
       cautious: 2
       aggressive: 1
@@ -50,6 +56,8 @@ scenarios:
     agent_count: 20
     total_calls_target: 1000
     model_set: smoke
+    require_stored_fixtures: true
+    run_stale_cleanup: false
     persona_mix:
       cautious: 3
       aggressive: 2
@@ -64,10 +72,49 @@ scenarios:
     brief_selection_strategy: weighted-mixed
     requires_live_llm: false
     description: Stress simulation for concurrency, repeated checks, and heavy MCP traffic.
+  stale-cleanup:
+    agent_count: 12
+    total_calls_target: 240
+    model_set: smoke
+    require_stored_fixtures: true
+    run_stale_cleanup: true
+    persona_mix:
+      cautious: 2
+      aggressive: 2
+      dropout: 3
+      reviser: 1
+      shipper: 2
+      abandoner: 2
+    brief_selection_strategy: weighted-mixed
+    requires_live_llm: false
+    description: Simulates agents that claim intents, disappear, and later get cleaned up as stale.
+  hundred-agent:
+    agent_count: 100
+    total_calls_target: 4000
+    model_set: smoke
+    require_stored_fixtures: true
+    run_stale_cleanup: true
+    persona_mix:
+      cautious: 15
+      aggressive: 10
+      overlap-averse: 10
+      overlap-tolerant: 10
+      reviser: 10
+      shipper: 15
+      abandoner: 10
+      monitor-first: 5
+      noisy-prompter: 5
+      duplicate-prone: 5
+      dropout: 5
+    brief_selection_strategy: weighted-mixed
+    requires_live_llm: false
+    description: Opt-in large-scale stress simulation intended for manual performance and quality analysis.
   live-smoke:
     agent_count: 2
     total_calls_target: 20
     model_set: smoke
+    require_stored_fixtures: false
+    run_stale_cleanup: false
     persona_mix:
       cautious: 1
       reviser: 1

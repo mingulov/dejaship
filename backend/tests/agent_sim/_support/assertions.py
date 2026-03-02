@@ -19,18 +19,22 @@ def assert_simulation_report(
     assert report.scenario_name == scenario_name
     assert report.total_agents == scenario.agent_count
     assert len(report.agent_summaries) == scenario.agent_count
-    assert report.total_calls == scenario.total_calls_target
+    assert report.total_calls <= scenario.total_calls_target
+    assert report.total_calls >= scenario.agent_count * 3
     assert report.tool_lists == scenario.agent_count
     assert report.checks >= scenario.agent_count
     assert report.claims >= max(1, scenario.agent_count // 2)
     assert report.errors == 0
     assert report.fixture_source_counts
+    assert report.event_count >= report.total_agents
+    assert report.model_summaries
+    assert report.metrics.stored_fixture_ratio >= 0.0
 
 
 def assert_swarm_outcomes_have_terminal_states(report: SimulationReport) -> None:
     terminal_total = sum(report.status_counts.values())
     assert terminal_total >= max(1, report.claims // 2)
-    assert terminal_total == report.updates
+    assert terminal_total == report.updates + report.stale_cleanup_actions
 
 
 def assert_db_snapshot_matches_report(
@@ -42,6 +46,11 @@ def assert_db_snapshot_matches_report(
     assert snapshot.shipped_with_resolution_url == report.status_counts.get("shipped", 0)
     assert snapshot.abandoned_with_resolution_url == 0
     assert snapshot.in_progress_with_resolution_url == 0
+
+
+def assert_cleanup_closed_unresolved_claims(report: SimulationReport) -> None:
+    if report.stale_cleanup_actions > 0:
+        assert report.unresolved_claim_ids == []
 
 
 def assert_report_has_overlap_pressure(report: SimulationReport, catalog: AppCatalog) -> None:

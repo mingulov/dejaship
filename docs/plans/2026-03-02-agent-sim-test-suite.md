@@ -4,6 +4,11 @@
 
 Build a thorough test suite that exercises DejaShip through its real MCP interface under realistic multi-agent behavior.
 
+Status:
+
+- the foundation described here is now implemented in `backend/tests/agent_sim/`
+- the current operational quality framework and future metric roadmap are documented in `docs/agent-sim-quality-framework.md`
+
 The suite should answer four questions:
 
 1. Can many agents use the MCP protocol repeatedly without protocol or state-machine failures?

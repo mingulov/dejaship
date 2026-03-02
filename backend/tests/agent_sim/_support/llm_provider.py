@@ -4,6 +4,7 @@ import importlib
 import json
 from typing import Any
 
+from dejaship.config import settings
 from tests.agent_sim._support.types import AgentSimLLMSettings, GeneratedIntentDraft, ModelEntry
 
 
@@ -57,6 +58,24 @@ def _parse_json_payload(text: str) -> dict[str, Any]:
             return json.loads(text[start : end + 1])
         except json.JSONDecodeError as exc:
             raise LLMProviderError("provider response contained invalid JSON") from exc
+
+
+def normalize_core_mechanic(text: str) -> str:
+    normalized = " ".join(text.split())
+    if len(normalized) <= settings.CORE_MECHANIC_MAX_LENGTH:
+        return normalized
+
+    clipped = normalized[: settings.CORE_MECHANIC_MAX_LENGTH].rstrip()
+    last_space = clipped.rfind(" ")
+    if last_space >= settings.CORE_MECHANIC_MAX_LENGTH // 2:
+        clipped = clipped[:last_space]
+    return clipped.rstrip(" ,;:-")
+
+
+def normalize_generated_intent_draft(draft: GeneratedIntentDraft) -> GeneratedIntentDraft:
+    return draft.model_copy(
+        update={"core_mechanic": normalize_core_mechanic(draft.core_mechanic)}
+    )
 
 
 class OpenAICompatibleProvider:
@@ -137,7 +156,7 @@ class OpenAICompatibleProvider:
             response_text = draft.model_dump_json()
         if not response_text.strip():
             response_text = draft.model_dump_json()
-        return draft, response_json, response_text
+        return normalize_generated_intent_draft(draft), response_json, response_text
 
     async def _generate_with_json_text(
         self,
@@ -157,6 +176,7 @@ class OpenAICompatibleProvider:
         response_json = self._serialize_completion(completion)
         response_text = _extract_message_text(response_json)
         parsed = _parse_json_payload(response_text)
+        parsed["core_mechanic"] = normalize_core_mechanic(str(parsed["core_mechanic"]))
         draft = GeneratedIntentDraft.model_validate(parsed)
         return draft, response_json, response_text
 

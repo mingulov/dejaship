@@ -1,6 +1,7 @@
 import pytest
 
 from tests.agent_sim._support.assertions import (
+    assert_cleanup_closed_unresolved_claims,
     assert_db_snapshot_matches_report,
     assert_report_has_overlap_pressure,
     assert_report_uses_only_stored_fixtures,
@@ -42,6 +43,7 @@ async def _run_and_assert_scenario(
             fixture_index=agent_sim_fixture_index,
             http_client=mcp_http_client,
             base_url=mcp_base_url,
+            engine=engine,
         )
 
     snapshot = await fetch_simulation_db_snapshot(engine)
@@ -51,6 +53,7 @@ async def _run_and_assert_scenario(
     assert_db_snapshot_matches_report(snapshot, report)
     assert_report_has_overlap_pressure(report, agent_sim_catalog)
     assert_report_uses_only_stored_fixtures(report)
+    assert_cleanup_closed_unresolved_claims(report)
 
     return report
 
@@ -134,3 +137,29 @@ async def test_agent_swarm_extended_scenario(
     assert report.total_agents == 12
     assert report.total_calls == 500
     assert len(report.unique_claimed_briefs) >= 7
+
+
+@pytest.mark.asyncio
+@pytest.mark.slow
+async def test_agent_swarm_stale_cleanup_scenario(
+    agent_sim_catalog,
+    agent_sim_fixture_index,
+    agent_sim_model_matrix,
+    agent_sim_scenario_matrix,
+    engine,
+    mcp_base_url,
+    mcp_http_client_factory,
+):
+    report = await _run_and_assert_scenario(
+        scenario_name="stale-cleanup",
+        seed=29,
+        agent_sim_catalog=agent_sim_catalog,
+        agent_sim_fixture_index=agent_sim_fixture_index,
+        agent_sim_model_matrix=agent_sim_model_matrix,
+        agent_sim_scenario_matrix=agent_sim_scenario_matrix,
+        engine=engine,
+        mcp_base_url=mcp_base_url,
+        mcp_http_client_factory=mcp_http_client_factory,
+    )
+
+    assert report.stale_cleanup_actions >= 1

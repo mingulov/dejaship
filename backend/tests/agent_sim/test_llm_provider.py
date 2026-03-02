@@ -9,6 +9,7 @@ from tests.agent_sim._support.llm_provider import (
     _load_instructor_dependencies,
     _parse_json_payload,
     OpenAICompatibleProvider,
+    normalize_core_mechanic,
 )
 from tests.agent_sim._support.types import AgentSimLLMSettings, GeneratedIntentDraft
 
@@ -45,6 +46,26 @@ def test_parse_json_payload_extracts_embedded_json():
 def test_parse_json_payload_raises_for_missing_json():
     with pytest.raises(LLMProviderError):
         _parse_json_payload("plain text only")
+
+
+def test_normalize_core_mechanic_keeps_short_values():
+    text = "Short recurring workflow for HVAC renewals"
+    assert normalize_core_mechanic(text) == text
+
+
+def test_normalize_core_mechanic_trims_long_values_on_word_boundary():
+    text = (
+        "Independent HVAC install-to-renewal operating system that detects expiring service "
+        "plans, generates seasonal call sheets, routes technicians, prompts upsells, and sells "
+        "on a recurring per-technician subscription with optional white-glove onboarding for "
+        "teams that do not want enterprise systems."
+    )
+
+    normalized = normalize_core_mechanic(text)
+
+    assert len(normalized) <= 250
+    assert normalized in text
+    assert normalized[-1].isalnum()
 
 
 def test_load_instructor_dependencies_raises_when_missing(monkeypatch):

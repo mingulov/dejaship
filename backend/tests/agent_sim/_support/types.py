@@ -129,6 +129,8 @@ class ScenarioDefinition(BaseModel):
     persona_mix: dict[str, int] = Field(min_length=1)
     brief_selection_strategy: str = Field(min_length=3, max_length=80)
     requires_live_llm: bool = False
+    require_stored_fixtures: bool = False
+    run_stale_cleanup: bool = False
     description: str = Field(min_length=10, max_length=300)
 
     @field_validator("model_set", "brief_selection_strategy")
@@ -294,6 +296,8 @@ class SimulationPlan(BaseModel):
     agent_count: int = Field(ge=1)
     total_calls_target: int = Field(ge=1)
     model_set: str = Field(min_length=3, max_length=80)
+    require_stored_fixtures: bool = False
+    run_stale_cleanup: bool = False
     assignments: list[SimulationAgentAssignment] = Field(min_length=1)
 
     @field_validator("scenario_name", "model_set")
@@ -302,27 +306,144 @@ class SimulationPlan(BaseModel):
         return _validate_keyword(value)
 
 
+class SimulationEvent(BaseModel):
+    event_index: int = Field(ge=0)
+    event_type: str = Field(min_length=3, max_length=80)
+    agent_id: str = Field(min_length=3, max_length=80)
+    persona: str = Field(min_length=3, max_length=80)
+    model_alias: str = Field(min_length=3, max_length=80)
+    brief_id: str | None = Field(default=None, min_length=3, max_length=80)
+    core_mechanic: str | None = Field(default=None, min_length=1, max_length=settings.CORE_MECHANIC_MAX_LENGTH)
+    claim_id: str | None = Field(default=None, min_length=8, max_length=80)
+    status: str | None = Field(default=None, min_length=3, max_length=40)
+    crowded: bool | None = None
+    density_in_progress: int | None = Field(default=None, ge=0)
+    density_shipped: int | None = Field(default=None, ge=0)
+    density_abandoned: int | None = Field(default=None, ge=0)
+    closest_count: int | None = Field(default=None, ge=0)
+    closest_mechanics: list[str] = Field(default_factory=list)
+    message: str | None = Field(default=None, max_length=500)
+
+    @field_validator("agent_id", "persona", "model_alias")
+    @classmethod
+    def validate_agent_fields(cls, value: str) -> str:
+        return _validate_keyword(value)
+
+    @field_validator("brief_id")
+    @classmethod
+    def validate_optional_brief_id(cls, value: str | None) -> str | None:
+        if value is None:
+            return value
+        return _validate_keyword(value)
+
+
 class AgentRunSummary(BaseModel):
     agent_id: str = Field(min_length=3, max_length=80)
+    persona: str = Field(min_length=3, max_length=80)
+    model_alias: str = Field(min_length=3, max_length=80)
     tool_lists: int = Field(ge=0, default=0)
     checks: int = Field(ge=0, default=0)
     claims: int = Field(ge=0, default=0)
     updates: int = Field(ge=0, default=0)
+    stale_cleanup_actions: int = Field(ge=0, default=0)
     skips: int = Field(ge=0, default=0)
     errors: int = Field(ge=0, default=0)
+    crowded_checks: int = Field(ge=0, default=0)
     claimed_brief_ids: list[str] = Field(default_factory=list)
+    claim_ids: list[str] = Field(default_factory=list)
+    shipped_claim_ids: list[str] = Field(default_factory=list)
+    abandoned_claim_ids: list[str] = Field(default_factory=list)
+    stale_abandoned_claim_ids: list[str] = Field(default_factory=list)
+    unresolved_claim_ids: list[str] = Field(default_factory=list)
     completed_statuses: list[str] = Field(default_factory=list)
     fixture_sources: list[str] = Field(default_factory=list)
+    events: list[SimulationEvent] = Field(default_factory=list)
 
-    @field_validator("agent_id")
+    @field_validator("agent_id", "persona", "model_alias")
     @classmethod
     def validate_agent_id(cls, value: str) -> str:
         return _validate_keyword(value)
 
-    @field_validator("claimed_brief_ids")
+    @field_validator(
+        "claimed_brief_ids",
+        "claim_ids",
+        "shipped_claim_ids",
+        "abandoned_claim_ids",
+        "stale_abandoned_claim_ids",
+        "unresolved_claim_ids",
+    )
     @classmethod
     def validate_claimed_brief_ids(cls, values: list[str]) -> list[str]:
+        return [value if value.startswith("claim-") else _validate_keyword(value) for value in values]
+
+
+class ModelSimulationSummary(BaseModel):
+    model_alias: str = Field(min_length=3, max_length=80)
+    total_agents: int = Field(ge=0, default=0)
+    checks: int = Field(ge=0, default=0)
+    claims: int = Field(ge=0, default=0)
+    updates: int = Field(ge=0, default=0)
+    shipped: int = Field(ge=0, default=0)
+    abandoned: int = Field(ge=0, default=0)
+    stale_abandoned: int = Field(ge=0, default=0)
+    skips: int = Field(ge=0, default=0)
+    errors: int = Field(ge=0, default=0)
+    crowded_checks: int = Field(ge=0, default=0)
+    overlap_evaluable_checks: int = Field(ge=0, default=0)
+    overlap_hits: int = Field(ge=0, default=0)
+    overlap_precision: float = Field(ge=0.0, default=0.0)
+    overlap_recall_proxy: float = Field(ge=0.0, default=0.0)
+    unique_claimed_briefs: list[str] = Field(default_factory=list)
+
+    @field_validator("model_alias")
+    @classmethod
+    def validate_model_alias(cls, value: str) -> str:
+        return _validate_keyword(value)
+
+    @field_validator("unique_claimed_briefs")
+    @classmethod
+    def validate_unique_claimed_briefs_for_model(cls, values: list[str]) -> list[str]:
         return [_validate_keyword(value) for value in values]
+
+
+class PersonaSimulationSummary(BaseModel):
+    persona: str = Field(min_length=3, max_length=80)
+    total_agents: int = Field(ge=0, default=0)
+    claims: int = Field(ge=0, default=0)
+    skips: int = Field(ge=0, default=0)
+    crowded_decisions: int = Field(ge=0, default=0)
+    clear_decisions: int = Field(ge=0, default=0)
+    claims_after_clear: int = Field(ge=0, default=0)
+    skips_after_crowded: int = Field(ge=0, default=0)
+    revision_attempts: int = Field(ge=0, default=0)
+    revision_successes: int = Field(ge=0, default=0)
+
+    @field_validator("persona")
+    @classmethod
+    def validate_persona(cls, value: str) -> str:
+        return _validate_keyword(value)
+
+
+class SimulationMetrics(BaseModel):
+    claim_rate: float = Field(ge=0.0)
+    ship_rate: float = Field(ge=0.0)
+    abandon_rate: float = Field(ge=0.0)
+    stale_cleanup_rate: float = Field(ge=0.0)
+    crowded_check_rate: float = Field(ge=0.0)
+    stored_fixture_ratio: float = Field(ge=0.0)
+    duplicate_brief_claim_rate: float = Field(ge=0.0)
+    unresolved_claim_rate: float = Field(ge=0.0)
+    average_density_in_progress: float = Field(ge=0.0)
+    average_density_shipped: float = Field(ge=0.0)
+    average_density_abandoned: float = Field(ge=0.0)
+    overlap_hit_rate: float = Field(ge=0.0)
+    overlap_precision: float = Field(ge=0.0)
+    overlap_recall_proxy: float = Field(ge=0.0)
+    claim_when_clear_rate: float = Field(ge=0.0)
+    skip_when_crowded_rate: float = Field(ge=0.0)
+    revision_success_rate: float = Field(ge=0.0)
+    duplicate_overlap_group_rate: float = Field(ge=0.0)
+    quality_flags: list[str] = Field(default_factory=list)
 
 
 class SimulationReport(BaseModel):
@@ -333,11 +454,17 @@ class SimulationReport(BaseModel):
     checks: int = Field(ge=0, default=0)
     claims: int = Field(ge=0, default=0)
     updates: int = Field(ge=0, default=0)
+    stale_cleanup_actions: int = Field(ge=0, default=0)
     errors: int = Field(ge=0, default=0)
     skips: int = Field(ge=0, default=0)
     status_counts: dict[str, int] = Field(default_factory=dict)
     fixture_source_counts: dict[str, int] = Field(default_factory=dict)
     unique_claimed_briefs: list[str] = Field(default_factory=list)
+    unresolved_claim_ids: list[str] = Field(default_factory=list)
+    event_count: int = Field(ge=0, default=0)
+    model_summaries: dict[str, ModelSimulationSummary] = Field(default_factory=dict)
+    persona_summaries: dict[str, PersonaSimulationSummary] = Field(default_factory=dict)
+    metrics: SimulationMetrics = Field(default_factory=SimulationMetrics)
     agent_summaries: list[AgentRunSummary] = Field(default_factory=list)
 
     @field_validator("scenario_name")
@@ -357,6 +484,11 @@ class SimulationReport(BaseModel):
     @classmethod
     def validate_unique_claimed_briefs(cls, values: list[str]) -> list[str]:
         return [_validate_keyword(value) for value in values]
+
+    @field_validator("unresolved_claim_ids")
+    @classmethod
+    def validate_unresolved_claim_ids(cls, values: list[str]) -> list[str]:
+        return values
 
 
 class PersistedIntentRow(BaseModel):
