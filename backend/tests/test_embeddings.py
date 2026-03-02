@@ -67,3 +67,39 @@ def test_build_embedding_text_empty_secondary():
     # Only primary keywords (repeated 2x) and mechanic - no secondary
     expected_count = len(keywords) * 2 + 1  # +1 for "mechanic"
     assert len(parts) == expected_count
+
+
+def test_clean_keywords_removes_stopwords():
+    """Stopwords are removed from keyword list."""
+    from dejaship.embeddings import clean_keywords
+    stopwords = {"and", "the", "saas"}
+    result = clean_keywords(["hvac", "and", "saas", "subscription"], stopwords)
+    assert result == ["hvac", "subscription"]
+
+
+def test_clean_keywords_removes_single_chars():
+    """Single-character keywords are always removed."""
+    from dejaship.embeddings import clean_keywords
+    result = clean_keywords(["a", "hvac", "b"], set())
+    assert result == ["hvac"]
+
+
+def test_clean_keywords_case_insensitive():
+    """Stopword matching is case-insensitive."""
+    from dejaship.embeddings import clean_keywords
+    stopwords = {"saas"}
+    result = clean_keywords(["HVAC", "SaaS", "billing"], stopwords)
+    assert result == ["HVAC", "billing"]
+
+
+def test_clean_keywords_preserves_order():
+    """Order of non-stopword keywords is preserved."""
+    from dejaship.embeddings import clean_keywords
+    stopwords = {"remove"}
+    result = clean_keywords(["crm", "analytics", "billing"], stopwords)
+    assert result == ["crm", "analytics", "billing"]
+
+
+def test_clean_keywords_empty_input():
+    from dejaship.embeddings import clean_keywords
+    assert clean_keywords([], {"saas"}) == []

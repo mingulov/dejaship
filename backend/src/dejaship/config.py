@@ -53,6 +53,12 @@ class Settings(BaseSettings):
     JACCARD_THRESHOLD: float = 0.15
     JACCARD_MIN_KEYWORDS: int = 3
 
+    # Keyword stopword cleanup before embedding
+    # Removes generic SaaS terms that inflate cross-domain similarity.
+    # See docs/search-quality/false-positive-root-cause.md
+    ENABLE_KEYWORD_CLEANUP: bool = False
+    KEYWORD_STOPWORDS: str = "and,with,the,for,subscription,saas,recurring-revenue,revenue,renewals,retention"
+
     model_config = {"env_prefix": "DEJASHIP_"}
 
 

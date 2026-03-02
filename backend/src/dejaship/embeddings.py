@@ -17,6 +17,11 @@ def get_model() -> TextEmbedding:
     return _model
 
 
+def clean_keywords(keywords: list[str], stopwords: set[str]) -> list[str]:
+    """Remove stopword and single-character keywords."""
+    return [kw for kw in keywords if kw.lower() not in stopwords and len(kw) > 1]
+
+
 def build_embedding_text(core_mechanic: str, keywords: list[str]) -> str:
     """Build weighted embedding text from keywords and optionally the core_mechanic.
 
@@ -25,7 +30,11 @@ def build_embedding_text(core_mechanic: str, keywords: list[str]) -> str:
       Set to false for keywords-only mode. Tested 2026-03-02 — keywords-only hurt recall
       on the coverage-max corpus; keep True. See docs/decisions/2026-03-02-embedding-text-strategy.md
     - KEYWORD_REPEAT (default 2): repeat the first 10 keywords N times for emphasis.
+    - ENABLE_KEYWORD_CLEANUP (default False): remove generic SaaS stopwords before embedding.
     """
+    if settings.ENABLE_KEYWORD_CLEANUP:
+        stopwords = {s.strip().lower() for s in settings.KEYWORD_STOPWORDS.split(",") if s.strip()}
+        keywords = clean_keywords(keywords, stopwords)
     primary = keywords[:10]
     secondary = keywords[10:]
     parts = []
