@@ -683,3 +683,16 @@ async def test_cors_allows_configured_origin(client: AsyncClient):
         },
     )
     assert resp.headers.get("access-control-allow-origin") == "https://dejaship.com"
+
+
+@pytest.mark.asyncio
+async def test_cors_rejects_unknown_origin(client: AsyncClient):
+    resp = await client.options(
+        "/v1/stats",
+        headers={
+            "Origin": "https://evil.example.com",
+            "Access-Control-Request-Method": "GET",
+        },
+    )
+    assert resp.headers.get("access-control-allow-origin") != "https://evil.example.com"
+    assert resp.headers.get("access-control-allow-origin") != "*"
