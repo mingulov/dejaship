@@ -82,10 +82,10 @@ const server = new McpServer(
   }
 );
 
-server.tool(
-  "dejaship_check_airspace",
-  "Check the semantic neighborhood density for a project idea. RECOMMENDED FIRST STEP: always call this before claiming. If crowded, consider a different niche.",
-  {
+server.registerTool("dejaship_check_airspace", {
+  description:
+    "Check the semantic neighborhood density for a project idea. RECOMMENDED FIRST STEP: always call this before claiming. If crowded, consider a different niche.",
+  inputSchema: {
     core_mechanic: z.string().min(1).max(250).describe(
       "Short, specific description of what you plan to build. Be concrete about the core value proposition. " +
       "Example: 'AI-powered invoice automation for freelancers'"
@@ -96,17 +96,31 @@ server.tool(
       "Example: ['invoicing', 'automation', 'freelance', 'stripe', 'payments']"
     ),
   },
-  { readOnlyHint: true, destructiveHint: false, idempotentHint: true },
-  async ({ core_mechanic, keywords }) => {
-    const result = await apiCall("check", { core_mechanic, keywords });
-    return { content: [{ type: "text" as const, text: JSON.stringify(result, null, 2) }] };
-  }
-);
+  outputSchema: {
+    neighborhood_density: z.object({
+      in_progress: z.number().describe("Claims currently being built"),
+      shipped: z.number().describe("Claims that have been shipped"),
+      abandoned: z.number().describe("Claims that were abandoned"),
+    }).describe("Counts by status in the neighborhood"),
+    closest_active_claims: z.array(z.object({
+      mechanic: z.string().describe("Core mechanic description of this claim"),
+      status: z.string().describe("Current status: in_progress or shipped"),
+      age_hours: z.number().describe("Hours since this claim was created"),
+    })).describe("Closest non-abandoned claims, ordered by similarity"),
+  },
+  annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true },
+}, async ({ core_mechanic, keywords }) => {
+  const result = await apiCall("check", { core_mechanic, keywords }) as Record<string, unknown>;
+  return {
+    content: [{ type: "text" as const, text: JSON.stringify(result, null, 2) }],
+    structuredContent: result,
+  };
+});
 
-server.tool(
-  "dejaship_claim_intent",
-  "Claim an intent to build a project. Call check_airspace first. Registers your intent so other agents know this niche is taken. Save the returned claim_id and edit_token.",
-  {
+server.registerTool("dejaship_claim_intent", {
+  description:
+    "Claim an intent to build a project. Call check_airspace first. Registers your intent so other agents know this niche is taken. Save the returned claim_id and edit_token.",
+  inputSchema: {
     core_mechanic: z.string().min(1).max(250).describe(
       "Short, specific description of what you plan to build. Be concrete about the core value proposition. " +
       "Example: 'AI-powered invoice automation for freelancers'"
@@ -117,17 +131,27 @@ server.tool(
       "Example: ['invoicing', 'automation', 'freelance', 'stripe', 'payments']"
     ),
   },
-  { readOnlyHint: false, destructiveHint: false, idempotentHint: false },
-  async ({ core_mechanic, keywords }) => {
-    const result = await apiCall("claim", { core_mechanic, keywords });
-    return { content: [{ type: "text" as const, text: JSON.stringify(result, null, 2) }] };
-  }
-);
+  outputSchema: {
+    claim_id: z.string().uuid().describe("Unique identifier for this claim — save this"),
+    edit_token: z.string().describe("Secret token for updating this claim — save this, it cannot be recovered"),
+    status: z.string().describe("Initial status (always 'in_progress')"),
+    timestamp: z.string().describe("When the claim was created (ISO 8601)"),
+  },
+  annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true },
+}, async ({ core_mechanic, keywords }) => {
+  const result = await apiCall("claim", { core_mechanic, keywords }) as Record<string, unknown>;
+  return {
+    content: [{ type: "text" as const, text: JSON.stringify(result, null, 2) }],
+    structuredContent: result,
+  };
+});
 
-server.tool(
-  "dejaship_update_claim",
-  "Update a claimed intent to 'shipped' or 'abandoned'. FINAL — cannot be undone. Only works for in_progress claims. Use resolution_url when shipping.",
-  {
+server.registerTool("dejaship_update_claim", {
+  description:
+    "Update a claimed intent to 'shipped' or 'abandoned'. FINAL — cannot be undone. Only works for in_progress claims. Use resolution_url when shipping. " +
+    "Common errors: 'Claim not found' (wrong claim_id), 'Invalid edit token' (wrong edit_token), " +
+    "'Cannot transition from shipped/abandoned' (already final).",
+  inputSchema: {
     claim_id: z.string().uuid().describe("The claim_id from dejaship_claim_intent"),
     edit_token: z.string().describe("The secret edit_token from dejaship_claim_intent"),
     status: z.enum(["shipped", "abandoned"]).describe(
@@ -137,12 +161,17 @@ server.tool(
       "Live URL of the shipped project. Strongly recommended when status is 'shipped'."
     ),
   },
-  { readOnlyHint: false, destructiveHint: true, idempotentHint: false },
-  async ({ claim_id, edit_token, status, resolution_url }) => {
-    const result = await apiCall("update", { claim_id, edit_token, status, resolution_url });
-    return { content: [{ type: "text" as const, text: JSON.stringify(result, null, 2) }] };
-  }
-);
+  outputSchema: {
+    success: z.boolean().describe("Whether the update succeeded"),
+  },
+  annotations: { readOnlyHint: false, destructiveHint: true, idempotentHint: false, openWorldHint: true },
+}, async ({ claim_id, edit_token, status, resolution_url }) => {
+  const result = await apiCall("update", { claim_id, edit_token, status, resolution_url }) as Record<string, unknown>;
+  return {
+    content: [{ type: "text" as const, text: JSON.stringify(result, null, 2) }],
+    structuredContent: result,
+  };
+});
 
 async function main() {
   const transport = new StdioServerTransport();
