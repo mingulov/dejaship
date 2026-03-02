@@ -44,6 +44,9 @@ node build/index.js            # Run locally
 - REST endpoints at `/v1/check`, `/v1/claim`, `/v1/update`
 - MCP Streamable HTTP at `/mcp`
 - Both REST and MCP call shared `services.py`
+- `filters.py` — Jaccard keyword filter + optional spaCy lemmatization
+- `reranker.py` — ColBERT MaxSim reranker (LateInteractionTextEmbedding)
+- `fts.py` — Reciprocal Rank Fusion for hybrid vector + FTS search
 - Embeddings via fastembed (ONNX, configurable model)
 - `embed_text()` is CPU-bound — services.py offloads it via `run_in_threadpool`
 - Rate limiting: SlowAPI 60/min per IP, Cloudflare-aware (`limiter.py`)
@@ -51,6 +54,14 @@ node build/index.js            # Run locally
 
 ## Gotchas
 
+- **Pyright `reportMissingImports`** for `dejaship.*`, `fastembed`, `sqlalchemy` etc. are false
+  positives — Pyright doesn't see the uv venv. All tests pass regardless.
+- **`keywords` column is JSONB** — use `jsonb_array_elements_text(keywords)` in raw SQL,
+  NOT `array_to_string(keywords, ' ')` (that's for native PostgreSQL ARRAYs, not JSONB).
+- **fastembed**: `TextCrossEncoder` does NOT exist. Use `LateInteractionTextEmbedding` for
+  reranking. Available models: `colbert-ir/colbertv2.0`, `answerdotai/answerai-colbert-small-v1`.
+- **NLP extras**: `uv sync --extra nlp` installs NLTK+spaCy. Also run:
+  `uv run python -m nltk.downloader stopwords` and `uv run python -m spacy download en_core_web_sm`
 - **Never call `embed_text()` directly in async context** — it blocks the event loop.
   It's always wrapped in `run_in_threadpool` inside `services.py`. Keep it that way.
 - **Tests need Docker running** — testcontainers spins up a real pgvector container.
@@ -65,15 +76,22 @@ node build/index.js            # Run locally
 All prefixed with `DEJASHIP_`. See `.env.example` for full list.
 Key: `DATABASE_URL`, `EMBEDDING_MODEL`, `SIMILARITY_THRESHOLD`.
 
-Experiment flags (all default to off):
+Experiment flags (all default `False`):
 - `EMBEDDING_INCLUDE_CORE_MECHANIC` — toggle core_mechanic in embedding text
-- `ENABLE_JACCARD_FILTER`, `ENABLE_TWO_STAGE_RETRIEVAL`, `ENABLE_CROSS_ENCODER`, etc.
+- `ENABLE_JACCARD_FILTER` + `JACCARD_THRESHOLD` + `JACCARD_MIN_KEYWORDS` — keyword overlap post-filter
+- `ENABLE_KEYWORD_CLEANUP` + `KEYWORD_STOPWORDS` — strip generic SaaS terms before embedding
+- `ENABLE_NLTK_STOPWORDS` — merge NLTK 179-word list (needs `ENABLE_KEYWORD_CLEANUP` + nlp extras)
+- `ENABLE_SPACY_LEMMATIZATION` — lemmatize before Jaccard, "renewals"="renewal" (needs nlp extras)
+- `ENABLE_TWO_STAGE_RETRIEVAL` — stage1 broad vector, stage2 mechanic-only rerank
+- `ENABLE_RERANKER` + `RERANKER_MODEL` — ColBERT MaxSim reranker
+- `ENABLE_HYBRID_SEARCH` — vector + PostgreSQL FTS with RRF fusion
 
 ## Search Quality
 
-Current state (2026-03-02, coverage-max corpus):
-- FPR: 0.72, recall: 0.73, exact_top1: 1.0, balanced_score: 2.36
-- Main blocker: generic SaaS vocabulary inflates cross-domain similarity
+Baseline (2026-03-02, coverage-max corpus): FPR=0.72, recall=0.73, exact_top1=1.0
+Root cause: generic SaaS vocabulary ("renewals", "subscription") inflates cross-domain similarity.
+All 8 improvement flags are implemented — enable and evaluate with commands below.
+Model comparison result: BGE (default) outperforms snowflake and nomic on coverage-max.
 
 Key docs:
 - `docs/search-quality/false-positive-root-cause.md` — why FPR is 72%
@@ -83,7 +101,7 @@ Key docs:
 - `docs/agent-sim-coverage-max-status.md` — measured quality metrics & next steps
 - `docs/plans/2026-03-02-search-quality-improvement-plan.md` — implementation plan
 
-Evaluation commands:
+Evaluation commands (no Docker needed — runs in-memory against pre-computed fixtures):
 ```bash
 cd backend
 uv run python -m tests.agent_sim.tools.evaluate_cross_model_retrieval --model-set coverage-max
