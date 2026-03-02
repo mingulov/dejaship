@@ -36,6 +36,9 @@ class Settings(BaseSettings):
     # Stale claim cleanup
     ABANDONMENT_DAYS: int = 7
 
+    # CORS
+    CORS_ORIGINS: str = "https://dejaship.com"
+
     # Rate limits (requests per minute per IP)
     RATE_LIMIT_CHECK: str = "60/minute"
     RATE_LIMIT_CLAIM: str = "60/minute"

@@ -671,3 +671,15 @@ async def test_stats_counts_claims(client: AsyncClient):
     assert data["active"] == 1
     assert data["shipped"] == 1
     assert data["abandoned"] == 0
+
+
+@pytest.mark.asyncio
+async def test_cors_allows_configured_origin(client: AsyncClient):
+    resp = await client.options(
+        "/v1/stats",
+        headers={
+            "Origin": "https://dejaship.com",
+            "Access-Control-Request-Method": "GET",
+        },
+    )
+    assert resp.headers.get("access-control-allow-origin") == "https://dejaship.com"

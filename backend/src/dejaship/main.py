@@ -1,6 +1,7 @@
 import contextlib
 
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
@@ -37,6 +38,14 @@ app = FastAPI(
     description="The Global Intent Ledger for AI Agents",
     version="0.1.0",
     lifespan=lifespan,
+)
+
+# CORS — allow the landing page to call the API
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[origin.strip() for origin in settings.CORS_ORIGINS.split(",")],
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type"],
 )
 
 # Rate limiting
