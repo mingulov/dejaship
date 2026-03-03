@@ -487,6 +487,36 @@ async def test_resolution_url_non_http_scheme_becomes_none(client):
     assert shipped[0]["resolution_url"] is None
 
 
+# --- core_mechanic control character stripping ---
+
+
+@pytest.mark.asyncio
+async def test_core_mechanic_control_chars_stripped(client):
+    """Control characters are stripped from core_mechanic silently."""
+    resp = await client.post("/v1/check", json={
+        "core_mechanic": "invoice tool\x00\x01\x1f",
+        "keywords": SAMPLE_KEYWORDS_SEO,
+    })
+    assert resp.status_code == 200
+
+
+@pytest.mark.asyncio
+async def test_core_mechanic_null_byte_stripped(client):
+    """Null bytes in core_mechanic are stripped, not stored."""
+    claim = (await client.post("/v1/claim", json={
+        "core_mechanic": "seo\x00 tool for plumbers",
+        "keywords": SAMPLE_KEYWORDS_SEO,
+    })).json()
+    resp = await client.post("/v1/check", json={
+        "core_mechanic": "seo for local plumbing businesses",
+        "keywords": ["seo", "plumbing", "local-business", "website", "marketing"],
+    })
+    data = resp.json()
+    for claim_item in data["closest_active_claims"]:
+        assert "\x00" not in claim_item["mechanic"]
+        assert "\x01" not in claim_item["mechanic"]
+
+
 # --- Validation ---
 
 
