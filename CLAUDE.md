@@ -80,8 +80,9 @@ node build/index.js            # Run locally
 
 ## Gotchas
 
-- **Pyright `reportMissingImports`** for `dejaship.*`, `fastembed`, `sqlalchemy` etc. are false
-  positives — Pyright doesn't see the uv venv. All tests pass regardless.
+- **Pyright editable install**: `dejaship.*` imports are resolved via `"extraPaths": ["src"]` in
+  `backend/pyrightconfig.json`. Pyright finds the venv fine but doesn't follow `.pth` files
+  (how editable installs work), so `src/` must be listed explicitly.
 - **`keywords` column is JSONB** — use `jsonb_array_elements_text(keywords)` in raw SQL,
   NOT `array_to_string(keywords, ' ')` (that's for native PostgreSQL ARRAYs, not JSONB).
 - **fastembed**: `TextCrossEncoder` does NOT exist. Use `LateInteractionTextEmbedding` for

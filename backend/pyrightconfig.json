@@ -4,5 +4,6 @@
   "pythonVersion": "3.12",
   "pythonPlatform": "Linux",
   "typeCheckingMode": "basic",
-  "include": ["src", "tests", "alembic"]
+  "include": ["src", "tests", "alembic"],
+  "extraPaths": ["src"]
 }
