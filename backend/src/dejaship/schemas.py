@@ -1,4 +1,5 @@
 from datetime import datetime
+from urllib.parse import urlparse, urlunparse
 from uuid import UUID
 
 from pydantic import BaseModel, Field, field_validator
@@ -88,6 +89,14 @@ class UpdateInput(BaseModel):
     edit_token: str = Field(..., max_length=256, description="The secret edit_token returned from /v1/claim", examples=["abc123def456"])
     status: str = Field(..., pattern=r"^(shipped|abandoned)$", description="New status: 'shipped' or 'abandoned'", examples=["shipped"])
     resolution_url: str | None = Field(default=None, max_length=2048, description="The live URL if status is 'shipped' (optional)", examples=["https://myapp.com"])
+
+    @field_validator("resolution_url")
+    @classmethod
+    def strip_query_and_fragment(cls, v: str | None) -> str | None:
+        if v is None:
+            return None
+        parsed = urlparse(v)
+        return urlunparse(parsed._replace(query="", fragment=""))
 
 
 class UpdateResponse(BaseModel):

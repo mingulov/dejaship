@@ -390,6 +390,55 @@ async def test_update_invalid_status_value(client):
     assert resp.status_code == 422
 
 
+# --- resolution_url sanitization ---
+
+
+@pytest.mark.asyncio
+async def test_resolution_url_query_string_stripped(client):
+    """Query string is stripped from resolution_url at ingestion."""
+    claim = (await client.post("/v1/claim", json={
+        "core_mechanic": "seo tool for plumbers",
+        "keywords": SAMPLE_KEYWORDS_SEO,
+    })).json()
+    await client.post("/v1/update", json={
+        "claim_id": claim["claim_id"],
+        "edit_token": claim["edit_token"],
+        "status": "shipped",
+        "resolution_url": "https://example.com/path?ref=tracker&utm_source=email",
+    })
+    resp = await client.post("/v1/check", json={
+        "core_mechanic": "seo for local plumbing businesses",
+        "keywords": ["seo", "plumbing", "local-business", "website", "marketing"],
+    })
+    data = resp.json()
+    shipped = [c for c in data["closest_active_claims"] if c["status"] == "shipped"]
+    assert len(shipped) >= 1
+    assert shipped[0]["resolution_url"] == "https://example.com/path"
+
+
+@pytest.mark.asyncio
+async def test_resolution_url_fragment_stripped(client):
+    """URL fragment (#...) is stripped from resolution_url at ingestion."""
+    claim = (await client.post("/v1/claim", json={
+        "core_mechanic": "seo tool for plumbers",
+        "keywords": SAMPLE_KEYWORDS_SEO,
+    })).json()
+    await client.post("/v1/update", json={
+        "claim_id": claim["claim_id"],
+        "edit_token": claim["edit_token"],
+        "status": "shipped",
+        "resolution_url": "https://example.com/app#section",
+    })
+    resp = await client.post("/v1/check", json={
+        "core_mechanic": "seo for local plumbing businesses",
+        "keywords": ["seo", "plumbing", "local-business", "website", "marketing"],
+    })
+    data = resp.json()
+    shipped = [c for c in data["closest_active_claims"] if c["status"] == "shipped"]
+    assert len(shipped) >= 1
+    assert shipped[0]["resolution_url"] == "https://example.com/app"
+
+
 # --- Validation ---
 
 
