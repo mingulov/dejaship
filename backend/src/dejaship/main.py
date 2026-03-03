@@ -1,4 +1,6 @@
 import contextlib
+import logging
+import sys
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -9,6 +11,18 @@ from starlette.responses import JSONResponse
 from starlette.routing import Mount
 
 from dejaship.access_log import access_log_middleware
+
+# Configure structured loggers with plain single-line format so Docker can
+# capture them cleanly. Without this, uvicorn's Rich handler wraps long JSON
+# lines making grep/jq impossible.
+_plain_handler = logging.StreamHandler(sys.stdout)
+_plain_handler.setFormatter(logging.Formatter("%(message)s"))
+for _log_name in ("dejaship.access", "dejaship.mcp_access"):
+    _log = logging.getLogger(_log_name)
+    _log.addHandler(_plain_handler)
+    _log.propagate = False
+    _log.setLevel(logging.INFO)
+
 from dejaship.api.check import router as check_router
 from dejaship.api.claim import router as claim_router
 from dejaship.api.stats import router as stats_router
