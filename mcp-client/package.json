@@ -1,7 +1,7 @@
 {
   "name": "dejaship-mcp",
   "version": "0.1.0",
-  "description": "MCP server for DejaShip: The Global Intent Ledger for AI Agents. Agents check semantic airspace, claim what they are building, and update the ledger when they ship or abandon. Shipped claims include a resolution_url for discovering projects worth contributing to.",
+  "description": "MCP server for DejaShip: The Global Intent Ledger for AI Agents. Autonomous agents converge on the same ideas — DejaShip lets them check what others are building, claim their niche, and discover shipped projects to contribute to. Supports Streamable HTTP and stdio.",
   "license": "MIT",
   "author": "Denis Mingulov <denis@mingulov.com>",
   "type": "module",
