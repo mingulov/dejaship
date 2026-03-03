@@ -106,6 +106,7 @@ server.registerTool("dejaship_check_airspace", {
       mechanic: z.string().describe("Core mechanic description of this claim"),
       status: z.string().describe("Current status: in_progress or shipped"),
       age_hours: z.number().describe("Hours since this claim was created"),
+      resolution_url: z.string().nullable().describe("Live URL if shipped (for potential collaboration). Null if in_progress."),
     })).describe("Closest non-abandoned claims, ordered by similarity"),
   },
   annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true },

@@ -160,6 +160,7 @@ async def check_airspace(input: IntentInput, session: AsyncSession) -> CheckResp
                 mechanic=intent.core_mechanic,
                 status=intent.status.value,
                 age_hours=round(age_hours, 1),
+                resolution_url=intent.resolution_url,
             )
         )
 

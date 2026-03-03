@@ -154,6 +154,39 @@ async def test_check_closest_includes_shipped(client):
 
 
 @pytest.mark.asyncio
+async def test_check_closest_includes_resolution_url(client):
+    """Shipped claims expose resolution_url; in_progress claims have it null."""
+    # Create an in_progress claim
+    await client.post("/v1/claim", json={
+        "core_mechanic": "seo tool for plumbers",
+        "keywords": SAMPLE_KEYWORDS_SEO,
+    })
+    # Create a shipped claim with resolution_url
+    shipped = (await client.post("/v1/claim", json={
+        "core_mechanic": "seo dashboard for plumbing companies",
+        "keywords": ["seo", "plumbing", "dashboard", "analytics", "marketing"],
+    })).json()
+    await client.post("/v1/update", json={
+        "claim_id": shipped["claim_id"],
+        "edit_token": shipped["edit_token"],
+        "status": "shipped",
+        "resolution_url": "https://plumber-seo.example.com",
+    })
+
+    resp = await client.post("/v1/check", json={
+        "core_mechanic": "seo for local plumbing businesses",
+        "keywords": ["seo", "plumbing", "local-business", "website", "marketing"],
+    })
+    data = resp.json()
+    for claim_item in data["closest_active_claims"]:
+        assert "resolution_url" in claim_item
+        if claim_item["status"] == "shipped":
+            assert claim_item["resolution_url"] == "https://plumber-seo.example.com"
+        else:
+            assert claim_item["resolution_url"] is None
+
+
+@pytest.mark.asyncio
 async def test_check_closest_has_age_hours(client):
     """closest_active_claims entries have age_hours field."""
     await client.post("/v1/claim", json={

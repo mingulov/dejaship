@@ -48,6 +48,22 @@ def _make_app() -> FastAPI:
     return app
 
 
+@pytest.fixture(autouse=True)
+def _enable_log_propagation():
+    """Re-enable propagation so caplog captures our loggers.
+
+    main.py sets propagate=False for production (plain stdout handler).
+    Tests need propagation for caplog to work.
+    """
+    loggers = [logging.getLogger(n) for n in ("dejaship.access", "dejaship.mcp_access")]
+    original = [(lg, lg.propagate) for lg in loggers]
+    for lg in loggers:
+        lg.propagate = True
+    yield
+    for lg, prop in original:
+        lg.propagate = prop
+
+
 @pytest.fixture
 def client():
     return TestClient(_make_app())

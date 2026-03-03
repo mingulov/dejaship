@@ -62,6 +62,7 @@ class ActiveClaim(BaseModel):
     mechanic: str = Field(description="The core mechanic description of this claim", examples=["AI-powered HVAC maintenance scheduling with predictive failure detection"])
     status: str = Field(description="Current status: in_progress or shipped", examples=["in_progress"])
     age_hours: float = Field(description="Hours since this claim was created", examples=[4.5])
+    resolution_url: str | None = Field(default=None, description="Live URL if status is shipped (for potential collaboration)", examples=["https://myapp.example.com"])
 
 
 class CheckResponse(BaseModel):
