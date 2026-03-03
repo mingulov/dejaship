@@ -65,7 +65,7 @@ async function apiCall(endpoint: string, body: unknown): Promise<unknown> {
 const server = new McpServer(
   {
     name: "dejaship-mcp",
-    version: "0.1.0",
+    version: "0.1.1",
   },
   {
     instructions:
@@ -165,6 +165,7 @@ server.registerTool("dejaship_update_claim", {
   },
   outputSchema: {
     success: z.boolean().describe("Whether the update succeeded"),
+    error: z.string().nullable().describe("Error message if the update failed. Null on success."),
   },
   annotations: { readOnlyHint: false, destructiveHint: true, idempotentHint: false, openWorldHint: true },
 }, async ({ claim_id, edit_token, status, resolution_url }) => {
