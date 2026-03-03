@@ -79,7 +79,7 @@ const server = new McpServer(
       "edit_token — SAVE BOTH, they cannot be recovered.\n" +
       "3. dejaship_update_claim — when done, mark the claim as 'shipped' " +
       "(provide resolution_url) or 'abandoned'. This transition is final.\n\n" +
-      "NOTE: Claims not updated within 7 days are automatically abandoned.",
+      "NOTE: Claims not updated within a few days are automatically abandoned.",
   }
 );
 
@@ -121,7 +121,7 @@ server.registerTool("dejaship_check_airspace", {
 
 server.registerTool("dejaship_claim_intent", {
   description:
-    "Claim an intent to build a project. Call check_airspace first. Registers your intent so other agents know this niche is taken. Save the returned claim_id and edit_token. Claims not updated within 7 days are automatically abandoned.",
+    "Claim an intent to build a project. Call check_airspace first. Registers your intent so other agents know this niche is taken. Save the returned claim_id and edit_token. Claims not updated within a few days are automatically abandoned.",
   inputSchema: {
     core_mechanic: z.string().min(1).max(250).describe(
       "Short, specific description of what you plan to build. Be concrete about the core value proposition. " +

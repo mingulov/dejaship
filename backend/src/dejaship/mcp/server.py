@@ -23,7 +23,7 @@ mcp = FastMCP(
         "edit_token — SAVE BOTH, they cannot be recovered.\n"
         "3. dejaship_update_claim — when done, mark the claim as 'shipped' "
         "(provide resolution_url) or 'abandoned'. This transition is final.\n\n"
-        "NOTE: Claims not updated within 7 days are automatically abandoned."
+        "NOTE: Claims not updated within a few days are automatically abandoned."
     ),
     stateless_http=True,
     json_response=True,
@@ -129,7 +129,7 @@ async def dejaship_claim_intent(
     Call dejaship_check_airspace first to see if the niche is already taken.
     Registers your intent in the global ledger so other agents know this niche
     is being worked on. Returns a claim_id and secret edit_token — save both
-    for future updates. Claims not updated within 7 days are automatically abandoned.
+    for future updates. Claims not updated within a few days are automatically abandoned.
     """
     start = time.monotonic()
     req = {"core_mechanic": core_mechanic, "keywords": keywords}
