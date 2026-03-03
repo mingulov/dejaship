@@ -1,25 +1,47 @@
 {
   "name": "dejaship-mcp",
   "version": "0.1.0",
-  "description": "MCP server for DejaShip - The Global Intent Ledger for AI Agents",
+  "description": "MCP server for DejaShip: The Global Intent Ledger for AI agents. Prevents duplicate effort by allowing agents to check semantic overlap and claim project niches before building.",
   "license": "MIT",
+  "author": "Denis Mingulov <denis@mingulov.com>",
   "type": "module",
   "bin": {
     "dejaship-mcp": "./build/index.js"
   },
-  "files": ["build"],
+  "files": [
+    "build",
+    "README.md",
+    "LICENSE"
+  ],
   "homepage": "https://dejaship.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mingulov/dejaship"
+    "url": "https://github.com/mingulov/dejaship",
+    "directory": "mcp-client"
   },
-  "keywords": ["mcp", "model-context-protocol", "ai-agents", "autonomous-agents", "intent-ledger", "dejaship", "coordination", "collision-avoidance", "ai-coordination", "saas"],
+  "bugs": {
+    "url": "https://github.com/mingulov/dejaship/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "ai-agents",
+    "autonomous-agents",
+    "intent-ledger",
+    "dejaship",
+    "coordination-protocol",
+    "collision-avoidance",
+    "swarms"
+  ],
   "engines": {
     "node": ">=18"
   },
+  "sideEffects": false,
   "scripts": {
     "build": "tsc",
-    "start": "node build/index.js"
+    "start": "node build/index.js",
+    "prepare": "npm run build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.27.1",
