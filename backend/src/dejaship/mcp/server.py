@@ -1,9 +1,11 @@
+import time
 from typing import Annotated, Literal
 
 from mcp.server.fastmcp import FastMCP
 from mcp.types import ToolAnnotations
 from pydantic import Field, ValidationError
 
+from dejaship.access_log import log_mcp_tool_call
 from dejaship.db import async_session
 from dejaship.schemas import IntentInput, UpdateInput, CheckResponse, ClaimResponse, UpdateResponse
 from dejaship.services import check_airspace, claim_intent, update_claim
@@ -79,12 +81,17 @@ async def dejaship_check_airspace(
 
     Returns density counts by status and the closest active claims.
     """
+    start = time.monotonic()
+    req = {"core_mechanic": core_mechanic, "keywords": keywords}
     try:
         input = IntentInput(core_mechanic=core_mechanic, keywords=keywords)
     except ValidationError as e:
-        return _validation_error_response(e)
+        resp = _validation_error_response(e)
+        log_mcp_tool_call("dejaship_check_airspace", req, resp, latency_ms=int((time.monotonic() - start) * 1000))
+        return resp
     async with async_session() as session:
         result = await check_airspace(input, session)
+    log_mcp_tool_call("dejaship_check_airspace", req, result.model_dump(), latency_ms=int((time.monotonic() - start) * 1000))
     return result
 
 
@@ -123,12 +130,17 @@ async def dejaship_claim_intent(
     is being worked on. Returns a claim_id and secret edit_token — save both
     for future updates.
     """
+    start = time.monotonic()
+    req = {"core_mechanic": core_mechanic, "keywords": keywords}
     try:
         input = IntentInput(core_mechanic=core_mechanic, keywords=keywords)
     except ValidationError as e:
-        return _validation_error_response(e)
+        resp = _validation_error_response(e)
+        log_mcp_tool_call("dejaship_claim_intent", req, resp, latency_ms=int((time.monotonic() - start) * 1000))
+        return resp
     async with async_session() as session:
         result = await claim_intent(input, session)
+    log_mcp_tool_call("dejaship_claim_intent", req, result.model_dump(mode="json"), latency_ms=int((time.monotonic() - start) * 1000))
     return result
 
 
@@ -157,6 +169,8 @@ async def dejaship_update_claim(
     Common errors: 'Claim not found' (wrong claim_id), 'Invalid edit token'
     (wrong edit_token), 'Cannot transition from shipped/abandoned' (already final).
     """
+    start = time.monotonic()
+    req = {"claim_id": claim_id, "edit_token": edit_token, "status": status, "resolution_url": resolution_url}
     try:
         input = UpdateInput(
             claim_id=claim_id,
@@ -165,10 +179,15 @@ async def dejaship_update_claim(
             resolution_url=resolution_url,
         )
     except ValidationError as e:
-        return _validation_error_response(e)
+        resp = _validation_error_response(e)
+        log_mcp_tool_call("dejaship_update_claim", req, resp, latency_ms=int((time.monotonic() - start) * 1000))
+        return resp
     async with async_session() as session:
         try:
             result = await update_claim(input, session)
+            log_mcp_tool_call("dejaship_update_claim", req, result.model_dump(), latency_ms=int((time.monotonic() - start) * 1000))
             return result
         except (ValueError, PermissionError) as e:
-            return {"success": False, "error": str(e)}
+            resp = {"success": False, "error": str(e)}
+            log_mcp_tool_call("dejaship_update_claim", req, resp, latency_ms=int((time.monotonic() - start) * 1000), error=str(e))
+            return resp
