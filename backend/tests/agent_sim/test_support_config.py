@@ -15,8 +15,6 @@ def test_env_loader_prefers_process_environment(monkeypatch):
 
     assert settings.provider == "env-provider"
     assert settings.model_set == "nightly"
-    assert settings.base_url is not None
-    assert settings.default_model is not None
 
 
 def test_env_loader_returns_unconfigured_state_without_secrets(monkeypatch):

@@ -1,5 +1,7 @@
 """Unit tests for the embeddings module."""
 
+import pytest
+
 from dejaship.config import settings
 from dejaship.embeddings import build_embedding_text, clean_keywords, embed_text, load_model
 
@@ -115,6 +117,7 @@ def test_build_embedding_text_applies_cleanup_when_enabled(monkeypatch):
 
 def test_parse_stopwords_includes_nltk_when_enabled():
     """When use_nltk=True, NLTK English stopwords are merged into the set."""
+    pytest.importorskip("nltk")
     from dejaship.embeddings import _parse_stopwords
     result = _parse_stopwords("saas,renewals", True)
     # NLTK English list includes common words like "the", "and", "is"
@@ -140,6 +143,7 @@ def test_parse_stopwords_excludes_nltk_when_disabled():
 def test_build_embedding_text_uses_nltk_stopwords(monkeypatch):
     """When both ENABLE_KEYWORD_CLEANUP and ENABLE_NLTK_STOPWORDS are True,
     NLTK stopwords are applied to keywords before embedding."""
+    pytest.importorskip("nltk")
     from dejaship.config import settings
     from dejaship.embeddings import build_embedding_text
     monkeypatch.setattr(settings, "ENABLE_KEYWORD_CLEANUP", True)

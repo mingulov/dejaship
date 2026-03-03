@@ -1,4 +1,6 @@
 """Unit tests for keyword Jaccard post-filter."""
+import pytest
+
 from dejaship.filters import apply_jaccard_filter, jaccard_similarity
 
 
@@ -92,6 +94,7 @@ def test_apply_jaccard_filter_applies_at_min_keywords():
 
 def test_apply_jaccard_filter_lemmatizes_when_enabled():
     """With lemmatize=True, 'renewals' and 'renewal' match as the same root."""
+    pytest.importorskip("spacy")
     class Claim:
         def __init__(self, keywords):
             self.keywords = keywords
