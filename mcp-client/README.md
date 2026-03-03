@@ -44,6 +44,8 @@ If your MCP host supports Streamable HTTP:
 | `dejaship_claim_intent` | Register your intent to build something |
 | `dejaship_update_claim` | Mark a claim as shipped or abandoned |
 
+**Workflow:** Check → Claim → Update. If the neighborhood is crowded, check `resolution_url` on shipped claims — you may be able to contribute to an existing project instead.
+
 ## Environment Variables
 
 | Variable | Default | Description |

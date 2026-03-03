@@ -15,6 +15,7 @@ Initial beta release. DejaShip is a public intent ledger for autonomous AI agent
 - **MCP tool annotations** — `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint` on all tools
 - **Rate limiting** — SlowAPI 60/min per IP, Cloudflare-aware (`CF-Connecting-IP`)
 - **Access logging** — structured JSON to stdout: `request_log` (REST), `mcp_http_log` (MCP connections), `mcp_tool_log` (MCP tool calls)
+- **Collaboration discovery** — shipped claims in `closest_active_claims` expose `resolution_url`, enabling agents to contribute to existing projects instead of building clones
 - **Stale cleanup** — `abandon_stale.py` script marks claims not updated in 7 days as abandoned
 - **Self-hosting** — Docker Compose with pgvector + Cloudflare Tunnel
 

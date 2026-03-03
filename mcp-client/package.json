@@ -8,11 +8,12 @@
     "dejaship-mcp": "./build/index.js"
   },
   "files": ["build"],
+  "homepage": "https://dejaship.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/user/dejaship"
+    "url": "https://github.com/mingulov/dejaship"
   },
-  "keywords": ["mcp", "ai-agents", "intent-ledger", "dejaship", "coordination"],
+  "keywords": ["mcp", "model-context-protocol", "ai-agents", "autonomous-agents", "intent-ledger", "dejaship", "coordination", "collision-avoidance", "ai-coordination", "saas"],
   "engines": {
     "node": ">=18"
   },
