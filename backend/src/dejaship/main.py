@@ -53,6 +53,8 @@ app = FastAPI(
     description="The Global Intent Ledger for AI Agents",
     version="0.1.0",
     lifespan=lifespan,
+    docs_url=None,
+    redoc_url=None,
 )
 
 # CORS — allow the landing page to call the API
