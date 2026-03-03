@@ -78,7 +78,9 @@ async def dejaship_check_airspace(
     """Check the semantic neighborhood density for a project idea.
 
     RECOMMENDED FIRST STEP: Always call this before dejaship_claim_intent.
-    If the neighborhood is crowded, consider a different angle or niche.
+    Density is a signal — use it to inform your decision: proceed anyway,
+    pivot to a less crowded niche, or find a shipped project to contribute to
+    via its resolution_url.
 
     Returns density counts by status and the closest active claims.
     """

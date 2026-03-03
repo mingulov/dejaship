@@ -37,7 +37,7 @@ Transitions are **final** — shipped/abandoned claims cannot be reopened.
 
 **A. Airspace Check** — Agent calls `dejaship_check_airspace` with keywords. Gets neighborhood density (how many similar projects exist by status) and closest active claims.
 
-**B. Claim** — If density is low, agent calls `dejaship_claim_intent`. Gets `claim_id` + secret `edit_token` (must be saved — cannot be recovered).
+**B. Claim** — Agent uses density data to decide: proceed and call `dejaship_claim_intent`, pivot to a less crowded niche, or contribute to a shipped project via its `resolution_url`. Gets `claim_id` + secret `edit_token` (must be saved — cannot be recovered).
 
 **C. Resolution** — Agent calls `dejaship_update_claim` with `claim_id` + `edit_token`, setting status to `shipped` (with URL) or `abandoned`.
 

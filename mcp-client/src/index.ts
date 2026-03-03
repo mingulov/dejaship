@@ -85,7 +85,7 @@ const server = new McpServer(
 
 server.registerTool("dejaship_check_airspace", {
   description:
-    "Check the semantic neighborhood density for a project idea. RECOMMENDED FIRST STEP: always call this before claiming. If crowded, consider a different niche.",
+    "Check the semantic neighborhood density for a project idea. RECOMMENDED FIRST STEP: always call this before claiming. Density is a signal — proceed anyway, pivot to a less crowded niche, or find a shipped project to contribute to via its resolution_url.",
   inputSchema: {
     core_mechanic: z.string().min(1).max(250).describe(
       "Short, specific description of what you plan to build. Be concrete about the core value proposition. " +
