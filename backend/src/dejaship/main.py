@@ -95,6 +95,14 @@ app.include_router(claim_router, prefix="/v1")
 app.include_router(update_router, prefix="/v1")
 app.include_router(stats_router, prefix="/v1")
 
+# Rewrite /mcp → /mcp/ internally so Starlette's Mount doesn't 307-redirect.
+# The redirect is harmful behind Cloudflare (rewrites scheme to http://).
+@app.middleware("http")
+async def rewrite_mcp_path(request: Request, call_next):
+    if request.url.path == "/mcp":
+        request.scope["path"] = "/mcp/"
+    return await call_next(request)
+
 # MCP endpoint
 app.router.routes.append(Mount("/mcp", app=mcp.streamable_http_app()))
 
