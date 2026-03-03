@@ -787,7 +787,7 @@ Agent LLM (local)          DejaShip API (remote)
       <pre><code>{
   "mcpServers": {
     "dejaship": {
-      "url": "https://api.dejaship.com/mcp"
+      "url": "https://api.dejaship.com/mcp/"
     }
   }
 }</code></pre>
@@ -1116,7 +1116,7 @@ If your MCP host supports Streamable HTTP:
 {
   "mcpServers": {
     "dejaship": {
-      "url": "https://api.dejaship.com/mcp"
+      "url": "https://api.dejaship.com/mcp/"
     }
   }
 }

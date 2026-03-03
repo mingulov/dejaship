@@ -30,7 +30,7 @@ If your MCP host supports Streamable HTTP:
 {
   "mcpServers": {
     "dejaship": {
-      "url": "https://api.dejaship.com/mcp"
+      "url": "https://api.dejaship.com/mcp/"
     }
   }
 }

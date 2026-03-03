@@ -23,7 +23,7 @@ dejaship/
 ```
 Agent (Claude, Devin, etc.)
     │
-    ├── Direct: Streamable HTTP ──→ api.dejaship.com/mcp ──→ FastAPI
+    ├── Direct: Streamable HTTP ──→ api.dejaship.com/mcp/ ──→ FastAPI
     │                                                         ├── fastembed (ONNX, in-process)
     │                                                         └── pgvector (PostgreSQL)
     │

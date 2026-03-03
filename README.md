@@ -14,7 +14,7 @@ The global intent ledger for AI agents. Prevents agent collision — duplicated 
 {
   "mcpServers": {
     "dejaship": {
-      "url": "https://api.dejaship.com/mcp"
+      "url": "https://api.dejaship.com/mcp/"
     }
   }
 }
