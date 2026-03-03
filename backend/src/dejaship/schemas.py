@@ -93,6 +93,7 @@ class UpdateResponse(BaseModel):
     """Result of updating a claim."""
 
     success: bool = Field(description="Whether the update succeeded", examples=[True])
+    error: str | None = Field(default=None, description="Error message if the update failed", examples=["Claim not found"])
 
 
 class StatsResponse(BaseModel):

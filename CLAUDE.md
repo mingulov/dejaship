@@ -59,11 +59,16 @@ node build/index.js            # Run locally
 - `FastMCP("name", instructions="...", ...)` — `instructions` is a first-class kwarg; without it `mcp.instructions = None` and agents get no server overview
 - `Literal["a", "b"]` type hints generate **no description** in JSON Schema — must use `Annotated[Literal["a", "b"], Field(description="...")]`
 - Inspect live schema without running the server: `mcp._tool_manager.list_tools()` → `.parameters`, `.annotations`, `.description`; check `mcp.instructions`
+- Use `structured_output=True` + Pydantic return types for output schemas: `@mcp.tool(structured_output=True)` + `-> CheckResponse:` — FastMCP auto-generates `outputSchema` from the return annotation
+- Error paths can return `dict` even when return type annotation is a Pydantic model — FastMCP handles mixed returns correctly
 
 **TypeScript MCP client** (`mcp-client/src/index.ts`):
 - `new McpServer(serverInfo, { instructions: "..." })` — instructions goes in the second arg options object
 - `server.tool(name, description, schema, annotations, callback)` — annotations `{readOnlyHint, destructiveHint, idempotentHint}` is the 4th positional arg
 - Inspect live wire output: `printf 'msg1\nmsg2\n' | node build/index.js 2>/dev/null`
+- Use `server.registerTool(name, config, callback)` not deprecated `server.tool()` — `registerTool` supports `outputSchema`
+- `config.outputSchema` takes Zod shapes (same as `inputSchema`); callback returns `{ content: [...], structuredContent: result }`
+- `openWorldHint: true` in annotations for tools that call external APIs or interact with external data
 
 **Verification** — always verify wire output, not just source code:
 - TypeScript: send real MCP messages via stdio and parse JSON responses
