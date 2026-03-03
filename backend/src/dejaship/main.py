@@ -8,6 +8,7 @@ from slowapi.errors import RateLimitExceeded
 from starlette.responses import JSONResponse
 from starlette.routing import Mount
 
+from dejaship.access_log import access_log_middleware
 from dejaship.api.check import router as check_router
 from dejaship.api.claim import router as claim_router
 from dejaship.api.stats import router as stats_router
@@ -47,6 +48,11 @@ app.add_middleware(
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type"],
 )
+
+# Access logging — structured JSON to stdout for beta quality analysis
+@app.middleware("http")
+async def _access_log(request: Request, call_next):
+    return await access_log_middleware(request, call_next)
 
 # Rate limiting
 app.state.limiter = limiter
