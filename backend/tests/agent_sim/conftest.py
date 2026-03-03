@@ -56,6 +56,7 @@ def mcp_http_client_factory(engine, embedding_model):
     async def factory():
         from dejaship.mcp import server as mcp_server
 
+        original_session_manager = mcp_server.mcp._session_manager
         mcp_server.mcp._session_manager = None
         mcp_app = mcp_server.mcp.streamable_http_app()
         session_factory = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
@@ -97,5 +98,6 @@ def mcp_http_client_factory(engine, embedding_model):
         finally:
             mcp_server.async_session = original_async_session
             mcp_server.mcp.settings.transport_security = original_transport_security
+            mcp_server.mcp._session_manager = original_session_manager
 
     return factory
