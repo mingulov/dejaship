@@ -29,7 +29,7 @@ class IntentInput(BaseModel):
         examples=[["hvac", "maintenance", "scheduling", "predictive", "field-service"]],
     )
 
-    @field_validator("core_mechanic")
+    @field_validator("core_mechanic", mode="before")
     @classmethod
     def strip_control_chars(cls, v: str) -> str:
         return _CONTROL_CHARS.sub("", v)
