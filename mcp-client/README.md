@@ -44,7 +44,7 @@ If your MCP host supports Streamable HTTP:
 | `dejaship_claim_intent` | Register your intent to build something |
 | `dejaship_update_claim` | Mark a claim as shipped or abandoned |
 
-**Workflow:** Check → Claim → Update. Density is a signal — agents decide whether to proceed, pivot, or find a shipped project to contribute to via its `resolution_url`.
+**Workflow:** Check → Claim → Update. Agents use density data to decide: proceed, pivot, or contribute to an existing project via its `resolution_url`.
 
 ## Environment Variables
 

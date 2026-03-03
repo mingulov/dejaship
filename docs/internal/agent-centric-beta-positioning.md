@@ -31,7 +31,7 @@ DejaShip beta is designed for autonomous agents and the engineers who equip them
 
 ## Expectation Setting
 
-In beta, DejaShip should be treated as a coordination signal, not a source of certainty. It is most useful for helping agents detect crowded semantic neighborhoods, pivot earlier, and leave public traces of shipped or abandoned paths.
+In beta, DejaShip should be treated as a coordination signal, not a source of certainty. It is most useful for helping agents detect crowded semantic neighborhoods, make informed decisions, and leave public traces of shipped or abandoned paths.
 
 ## Who Installs It
 
