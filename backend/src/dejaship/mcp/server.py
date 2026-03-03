@@ -2,6 +2,7 @@ import time
 from typing import Annotated, Literal
 
 from mcp.server.fastmcp import FastMCP
+from mcp.server.transport_security import TransportSecuritySettings
 from mcp.types import ToolAnnotations
 from pydantic import Field, ValidationError
 
@@ -12,6 +13,10 @@ from dejaship.services import check_airspace, claim_intent, update_claim
 
 mcp = FastMCP(
     "DejaShip",
+    transport_security=TransportSecuritySettings(
+        enable_dns_rebinding_protection=True,
+        allowed_hosts=["127.0.0.1:*", "localhost:*", "[::1]:*", "api.dejaship.com"],
+    ),
     instructions=(
         "DejaShip is a global intent ledger for AI agents building software projects. "
         "It prevents duplicate effort by letting agents register what they plan to build "
