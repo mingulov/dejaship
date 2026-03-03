@@ -10,8 +10,7 @@
   },
   "files": [
     "build",
-    "README.md",
-    "LICENSE"
+    "README.md"
   ],
   "homepage": "https://dejaship.com",
   "repository": {
