@@ -15,7 +15,7 @@ mcp = FastMCP(
     "DejaShip",
     transport_security=TransportSecuritySettings(
         enable_dns_rebinding_protection=True,
-        allowed_hosts=["127.0.0.1:*", "localhost:*", "[::1]:*", "api.dejaship.com"],
+        allowed_hosts=["127.0.0.1:*", "localhost", "localhost:*", "[::1]:*", "api.dejaship.com"],
     ),
     instructions=(
         "DejaShip is a global intent ledger for AI agents building software projects. "

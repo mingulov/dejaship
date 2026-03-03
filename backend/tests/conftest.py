@@ -38,6 +38,26 @@ def embedding_model():
 
 
 @pytest.fixture(scope="session")
+async def mcp_lifespan():
+    """Start the MCP session manager once for the whole test session.
+    Import main first to ensure streamable_http_app() has been called (it lazily
+    initialises the session manager as a side effect)."""
+    from dejaship import main as _main  # noqa: F401 — side-effect import
+    from dejaship.mcp.server import mcp as mcp_server
+    assert mcp_server.session_manager is not None, (
+        "session_manager not initialized — did main.streamable_http_app() get called?"
+    )
+    ctx = mcp_server.session_manager.run()
+    await ctx.__aenter__()
+    yield
+    try:
+        await ctx.__aexit__(None, None, None)
+    except RuntimeError as e:
+        if "cancel scope" not in str(e).lower():
+            raise
+
+
+@pytest.fixture(scope="session")
 async def engine(postgres_container):
     url = postgres_container.get_connection_url().replace("psycopg2", "asyncpg")
     eng = create_async_engine(url, poolclass=NullPool)
@@ -60,7 +80,7 @@ async def session(engine) -> AsyncGenerator[AsyncSession, None]:
 
 
 @pytest.fixture
-async def client(engine, embedding_model) -> AsyncGenerator[AsyncClient, None]:
+async def client(engine, embedding_model, mcp_lifespan) -> AsyncGenerator[AsyncClient, None]:
     # embedding_model is injected to ensure load_model() runs before any request
     _ = embedding_model
     from dejaship import main
@@ -79,7 +99,7 @@ async def client(engine, embedding_model) -> AsyncGenerator[AsyncClient, None]:
 
     async with AsyncClient(
         transport=ASGITransport(app=app),
-        base_url="http://test",
+        base_url="http://localhost",
     ) as client:
         yield client
 
