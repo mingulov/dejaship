@@ -439,6 +439,54 @@ async def test_resolution_url_fragment_stripped(client):
     assert shipped[0]["resolution_url"] == "https://example.com/app"
 
 
+@pytest.mark.asyncio
+async def test_resolution_url_invalid_becomes_none(client):
+    """Invalid resolution_url is silently dropped (returns None) rather than failing."""
+    claim = (await client.post("/v1/claim", json={
+        "core_mechanic": "seo tool for plumbers",
+        "keywords": SAMPLE_KEYWORDS_SEO,
+    })).json()
+    resp = await client.post("/v1/update", json={
+        "claim_id": claim["claim_id"],
+        "edit_token": claim["edit_token"],
+        "status": "shipped",
+        "resolution_url": "not-a-url-at-all",
+    })
+    assert resp.status_code == 200
+    check = await client.post("/v1/check", json={
+        "core_mechanic": "seo for local plumbing businesses",
+        "keywords": ["seo", "plumbing", "local-business", "website", "marketing"],
+    })
+    data = check.json()
+    shipped = [c for c in data["closest_active_claims"] if c["status"] == "shipped"]
+    assert len(shipped) >= 1
+    assert shipped[0]["resolution_url"] is None
+
+
+@pytest.mark.asyncio
+async def test_resolution_url_non_http_scheme_becomes_none(client):
+    """Non-http(s) schemes (javascript:, ftp:, etc.) are silently dropped."""
+    claim = (await client.post("/v1/claim", json={
+        "core_mechanic": "seo tool for plumbers",
+        "keywords": SAMPLE_KEYWORDS_SEO,
+    })).json()
+    resp = await client.post("/v1/update", json={
+        "claim_id": claim["claim_id"],
+        "edit_token": claim["edit_token"],
+        "status": "shipped",
+        "resolution_url": "javascript:alert(1)",
+    })
+    assert resp.status_code == 200
+    check = await client.post("/v1/check", json={
+        "core_mechanic": "seo for local plumbing businesses",
+        "keywords": ["seo", "plumbing", "local-business", "website", "marketing"],
+    })
+    data = check.json()
+    shipped = [c for c in data["closest_active_claims"] if c["status"] == "shipped"]
+    assert len(shipped) >= 1
+    assert shipped[0]["resolution_url"] is None
+
+
 # --- Validation ---
 
 

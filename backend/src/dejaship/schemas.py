@@ -92,11 +92,16 @@ class UpdateInput(BaseModel):
 
     @field_validator("resolution_url")
     @classmethod
-    def strip_query_and_fragment(cls, v: str | None) -> str | None:
+    def sanitize_url(cls, v: str | None) -> str | None:
         if v is None:
             return None
-        parsed = urlparse(v)
-        return urlunparse(parsed._replace(query="", fragment=""))
+        try:
+            parsed = urlparse(v)
+            if parsed.scheme not in ("http", "https") or not parsed.netloc:
+                return None
+            return urlunparse(parsed._replace(query="", fragment=""))
+        except Exception:
+            return None
 
 
 class UpdateResponse(BaseModel):
