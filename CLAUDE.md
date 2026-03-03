@@ -2,9 +2,10 @@
 
 ## Project Structure
 
-Monorepo with two packages:
+Monorepo with three packages:
 - `backend/` - Python FastAPI server (REST API + MCP endpoint)
 - `mcp-client/` - TypeScript MCP stdio client (npx wrapper)
+- `site/` - Static landing page (dejaship.com), deployed via GitHub Pages
 
 ## Quick Start
 
@@ -41,7 +42,7 @@ node build/index.js            # Run locally
 
 ## Architecture
 
-- REST endpoints at `/v1/check`, `/v1/claim`, `/v1/update`
+- REST endpoints at `/v1/check`, `/v1/claim`, `/v1/update`, `/v1/stats`
 - MCP Streamable HTTP at `/mcp`
 - Both REST and MCP call shared `services.py`
 - `filters.py` — Jaccard keyword filter + optional spaCy lemmatization
@@ -51,6 +52,9 @@ node build/index.js            # Run locally
 - `embed_text()` is CPU-bound — services.py offloads it via `run_in_threadpool`
 - Rate limiting: SlowAPI 60/min per IP, Cloudflare-aware (`limiter.py`)
 - pgvector for vector similarity search (HNSW index, m=16, ef_construction=64)
+- Access logging: structured JSON to stdout (`access_log.py`)
+  - `request_log` — REST req/resp bodies, `mcp_http_log` — MCP connection metadata,
+    `mcp_tool_log` — MCP tool invocations. Filter: `docker compose logs backend | grep request_log | jq .`
 
 ## MCP Server Requirements
 
@@ -124,19 +128,19 @@ Root cause: generic SaaS vocabulary ("renewals", "subscription") inflates cross-
 All 8 improvement flags are implemented but ALL DISABLED by default (empirically validated).
 Feature ablation (2026-03-02): Jaccard filter harmful, mechanic rerank mediocre — no post-filter
 improves FPR without disproportionate recall loss. Full-stack FPR=0.48 (much better than
-cross-model benchmark 0.72). See `docs/decisions/2026-03-02-production-config.md`.
+cross-model benchmark 0.72). See `docs/internal/decisions/2026-03-02-production-config.md`.
 Model comparison result: BGE (default) outperforms snowflake and nomic on coverage-max.
 
-Key docs:
-- `docs/search-quality/false-positive-root-cause.md` — why FPR is 72%
-- `docs/search-quality/improvement-approaches.md` — 11 ranked solutions with config flags
-- `docs/search-quality/model-comparison.md` — fastembed 768-dim model analysis
-- `docs/search-quality/feature-ablation.md` — Jaccard + mechanic rerank ablation results
-- `docs/decisions/2026-03-02-embedding-text-strategy.md` — keywords-only experiment & revert
-- `docs/decisions/2026-03-02-production-config.md` — validated production config (all defaults)
-- `docs/agent-sim-coverage-max-status.md` — measured quality metrics & next steps
-- `docs/plans/2026-03-02-search-quality-improvement-plan.md` — implementation plan
-- `docs/plans/2026-03-02-feature-ablation-evaluation.md` — ablation harness plan (5 tasks)
+Key docs (all under `docs/internal/`):
+- `search-quality/false-positive-root-cause.md` — why FPR is 72%
+- `search-quality/improvement-approaches.md` — 11 ranked solutions with config flags
+- `search-quality/model-comparison.md` — fastembed 768-dim model analysis
+- `search-quality/feature-ablation.md` — Jaccard + mechanic rerank ablation results
+- `decisions/2026-03-02-embedding-text-strategy.md` — keywords-only experiment & revert
+- `decisions/2026-03-02-production-config.md` — validated production config (all defaults)
+- `agent-sim-coverage-max-status.md` — measured quality metrics & next steps
+- `plans/2026-03-02-search-quality-improvement-plan.md` — implementation plan
+- `plans/2026-03-02-feature-ablation-evaluation.md` — ablation harness plan (5 tasks)
 
 Evaluation commands (no Docker needed — runs in-memory against pre-computed fixtures):
 ```bash
