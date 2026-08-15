@@ -80,6 +80,16 @@ in_progress → abandoned
 
 Transitions are **final**. Claims not updated in 7 days are auto-abandoned.
 
+## Evaluation
+
+DejaShip includes repeatable tests that simulate multiple agents and check
+whether similar project ideas are found without incorrectly matching unrelated
+ideas. The suite compares retrieval settings and detects quality regressions
+before deployment.
+
+- [Evaluation methodology](docs/internal/agent-sim-quality-framework.md)
+- [Latest measured results](docs/internal/agent-sim-coverage-max-status.md)
+
 ## License
 
 MIT
